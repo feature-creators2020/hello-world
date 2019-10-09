@@ -35,19 +35,19 @@ public abstract class CStateObjectBase<Template,TEnum>
         return m_cStateMachineList[index].GetCurrentState() == m_cStateList[state.ToInt32(null)];
     }
 
-    //public virtual void Update()
-    //{
-    //    for(int i = 0;i < m_cStateMachineList.Count;i++)
-    //    {
-    //        m_cStateMachineList[i].Update();
-    //    }
-    //}
-
-    public virtual void StateUpdate()
+    public virtual void Update()
     {
         for (int i = 0; i < m_cStateMachineList.Count; i++)
         {
             m_cStateMachineList[i].Update();
         }
     }
+
+    //public virtual void StateUpdate()
+    //{
+    //    for (int i = 0; i < m_cStateMachineList.Count; i++)
+    //    {
+    //        m_cStateMachineList[i].Update();
+    //    }
+    //}
 }
