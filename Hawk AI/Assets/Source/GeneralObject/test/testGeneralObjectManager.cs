@@ -13,7 +13,6 @@ public class testGeneralObjectManager : MonoBehaviour
         foreach (var obj in GameObject.FindGameObjectsWithTag("testObject"))
         {
             gameObjects.Add(obj);
-            //Debug.Log(val.name);
 
             ExecuteEvents.Execute<IGeneralInterface>(
                 target: obj,
