@@ -1,22 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class GeneralObject : MonoBehaviour
+public interface IGeneralInterface : IEventSystemHandler
 {
-    void Init()
+    void GeneralInit();
+    void GeneralUpdate();
+    void GeneralRelease();
+
+}
+
+public class GeneralObject : MonoBehaviour, IGeneralInterface
+{
+    public virtual void GeneralInit()
+    {
+        Debug.Log("GeneralInit");
+    }
+
+    public virtual void GeneralUpdate()
     {
 
     }
 
-    void Update()
+    public virtual void GeneralRelease()
     {
-
-    }
-
-    void Release()
-    {
-
+        Debug.Log("GeneralRelease");
     }
 
 }
