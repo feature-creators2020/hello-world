@@ -37,17 +37,40 @@ public class MouseMove : MonoBehaviour
 
     float inputHorizontal;
     float inputVertical;
-    Rigidbody rb;
+    //Rigidbody rb;
+    public Camera targetCamera;
 
     float moveSpeed = 3f;
 
     void Start()
     {
-        
+        //rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        inputHorizontal = Input.GetAxisRaw("Horizontal");
+        inputVertical = Input.GetAxisRaw("Vertical");
+    }
+
+    void FixedUpdate()
+    {
+        // カメラの方向から、x-z平面の単位ベクトルを取得
+        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+        // 移動量
+        Vector3 moveForward = cameraForward * inputVertical + targetCamera.transform.right * inputHorizontal;
+
+        // 移動方向にスピードを掛ける。
+        //rb.velocity = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
+
+        transform.position += moveForward * moveSpeed * Time.deltaTime;
+
+        // キャラクターの向きを進行方向に
+        if(moveForward != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(moveForward);
+        }
 
     }
 }
