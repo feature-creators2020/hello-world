@@ -21,7 +21,7 @@ public class SceneObject
 
     public string GetSceneName()
     {
-        return m_SceneName;
+        return sceneObject.m_SceneName;
     }
 }
 
