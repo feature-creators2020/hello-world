@@ -44,14 +44,41 @@ public class MouseRespawn : MonoBehaviour
     //        //coll.gameObject.SetActive(false);
     //    }
     //}
+    void Update()
+    {
+        if (Input.GetKey("up"))
+        {
+            this.transform.position += Vector3.forward * 0.1f;
+        }
+        if (Input.GetKey("down"))
+        {
+            this.transform.position += Vector3.back * 0.1f;
+        }
+        if (Input.GetKey("right"))
+        {
+            this.transform.position += Vector3.right * 0.1f;
+        }
+        if (Input.GetKey("left"))
+        {
+            this.transform.position += Vector3.left * 0.1f;
+        }
+    }
+
+
+    /*  ゴールするか倒されるかでRespawn関数をシングルトンで呼び出し*/
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Goal")
+        //現状名前判定、タグ判定の方がいいかな？
+        //ゴール時、死亡時の違いはまだつけてない
+        //呼ぶのを遅らせるか関数内で何秒後にリスポーンするかをいれる
+        if (other.gameObject.layer == LayerMask.NameToLayer("Goal"))
         {
+            ScoreManager.Instance.GoalMouse();
             RespawnPoint.Instance.Respawn(this.gameObject);
         }
         if(other.gameObject.name == "Dead")
         {
+            ScoreManager.Instance.DeadMouse();
             RespawnPoint.Instance.Respawn(this.gameObject);
         }
     }

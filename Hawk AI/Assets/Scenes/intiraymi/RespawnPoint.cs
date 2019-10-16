@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/****シングルトン化****/
 public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
 {
-    //対象のオブジェクト
-    private Vector3 initPos;
-
-    void Start()
-    {
-        //初期値設定 
-        this.initPos = this.gameObject.transform.position;
-    }
+    public GameObject[] RespObj;
     
+    //Respawn関数(出現させるオブジェクト)
     public void Respawn(GameObject Obj)
     {
-        Debug.Log("singleton");
+        //ランダムで生成場所を決定
+        int number = Random.Range(0, RespObj.Length);
+        //Debug.Log("singleton");
+        //ゴール時、死亡時非アクティブ化する想定のコード
         Obj.SetActive(true);
-        Obj.transform.position = initPos;
+        //設定位置に移動
+        Obj.transform.position = RespObj[number].transform.position;
+
     }
 }
