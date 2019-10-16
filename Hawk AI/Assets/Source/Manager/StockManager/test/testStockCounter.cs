@@ -23,6 +23,7 @@ public class testStockCounter : MonoBehaviour
         {
             Debug.Log("KeyCode.RightArrow");
             //StockManager.Instance.AddPlayerStockCount(4);
+            
 
             GameObject obj = GameObject.FindWithTag("testObject");
 

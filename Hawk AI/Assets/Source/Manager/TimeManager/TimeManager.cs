@@ -21,7 +21,7 @@ public interface ITimeManager : IEventSystemHandler
 /// <summary>
 /// @name : TimeManager
 /// </summary>
-public class TimeManager : GeneralObject
+public class TimeManager : GeneralManager
 {
     private bool m_bTimeCounting = false;
     private float m_fNowCountTime = 0f;

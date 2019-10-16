@@ -12,6 +12,10 @@ public class testGeneralObjectA : GeneralObject
 
     public override void GeneralUpdate()
     {
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("A");
+        }
 
     }
 

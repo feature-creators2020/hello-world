@@ -9,6 +9,7 @@ public interface IGeneralInterface : IEventSystemHandler
     void GeneralUpdate();
     void GeneralRelease();
 
+    GameObject GetGameObject(int _ID);
 }
 
 public class GeneralObject : MonoBehaviour, IGeneralInterface
@@ -26,6 +27,14 @@ public class GeneralObject : MonoBehaviour, IGeneralInterface
     public virtual void GeneralRelease()
     {
         Debug.Log("GeneralRelease");
+    }
+
+
+    public virtual GameObject GetGameObject(int _ID)
+    {
+        Debug.Log("GetGameObject");
+
+        return this.gameObject;
     }
 
 }

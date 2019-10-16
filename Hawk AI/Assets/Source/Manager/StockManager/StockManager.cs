@@ -14,7 +14,7 @@ public interface IStockManager : IEventSystemHandler
     void AddPlayerStockCount(int _NumStock);
 }
 
-public class StockManager : GeneralObject,IStockManager
+public class StockManager : GeneralManager, IStockManager
 {
     private List<int> m_nPlayerStockCount = new List<int>();
 
