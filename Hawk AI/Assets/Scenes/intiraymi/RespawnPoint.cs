@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
 {
-    public void Test()
+    //対象のオブジェクト
+    private Vector3 initPos;
+
+    void Start()
+    {
+        //初期値設定 
+        this.initPos = this.gameObject.transform.position;
+    }
+    
+    public void Respawn(GameObject Obj)
     {
         Debug.Log("singleton");
-    }
-    public void Respawn()
-    {
-
+        Obj.SetActive(true);
+        Obj.transform.position = initPos;
     }
 }
