@@ -19,7 +19,7 @@ public class HumanMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //targetCamera = transform.Find("Camera").gameObject;
     }
 
     // Update is called once per frame
@@ -31,6 +31,9 @@ public class HumanMove : MonoBehaviour
         var keyState = GamePad.GetState(playerNo, false);
 
         // ゲームパッドの入力情報取得
+        inputHorizontal = 0f;
+        inputVertical = 0f;
+
         inputHorizontal = keyState.LeftStickAxis.x;
         inputVertical = keyState.LeftStickAxis.y;
 
@@ -66,19 +69,14 @@ public class HumanMove : MonoBehaviour
         // 移動量
         Vector3 moveForward = cameraForward * inputVertical + targetCamera.transform.right * inputHorizontal;
 
-        // 移動方向にスピードを掛ける。
-        //rb.velocity = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
-
-        transform.position += moveForward * moveSpeed * Time.deltaTime;
+        this.transform.position += moveForward * moveSpeed * Time.deltaTime;
 
         // キャラクターの向きを進行方向に
         if (moveForward != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(moveForward);
+            this.transform.rotation = Quaternion.LookRotation(moveForward);
         }
 
-        inputHorizontal = 0f;
-        inputVertical = 0f;
 
     }
 
