@@ -3,38 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 
-public class MouseMove : MonoBehaviour
+
+public class HumanMove : MonoBehaviour
 {
-
-    //public float speed = 3.0f;
-    //public float gravity = 9.81f;
-
-    //public Vector3 moveDirection = Vector3.zero;
-
-    //CharacterController controller;
-
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    controller = GetComponent<CharacterController>();
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (controller.isGrounded)
-    //    {
-    //        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-    //        moveDirection = transform.TransformDirection(moveDirection);
-    //        moveDirection *= speed;
-    //    }
-
-    //    moveDirection.y -= gravity * Time.deltaTime;
-    //    controller.Move(moveDirection * Time.deltaTime);
-    //}
-
-
 
     float inputHorizontal;
     float inputVertical;
@@ -44,11 +15,14 @@ public class MouseMove : MonoBehaviour
 
     float moveSpeed = 3f;
 
+
+    // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody>();
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
 
@@ -60,25 +34,26 @@ public class MouseMove : MonoBehaviour
         inputHorizontal = keyState.LeftStickAxis.x;
         inputVertical = keyState.LeftStickAxis.y;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.F))
         {
             inputHorizontal = -1;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.H))
         {
             inputHorizontal = 1;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.G))
         {
             inputVertical = -1;
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.T))
         {
             inputVertical = 1;
         }
 
         //inputHorizontal = Input.GetAxisRaw("Horizontal");
         //inputVertical = Input.GetAxisRaw("Vertical");
+
     }
 
 
@@ -97,7 +72,7 @@ public class MouseMove : MonoBehaviour
         transform.position += moveForward * moveSpeed * Time.deltaTime;
 
         // キャラクターの向きを進行方向に
-        if(moveForward != Vector3.zero)
+        if (moveForward != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(moveForward);
         }
@@ -106,4 +81,5 @@ public class MouseMove : MonoBehaviour
         inputVertical = 0f;
 
     }
+
 }
