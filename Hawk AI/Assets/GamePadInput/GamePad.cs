@@ -118,78 +118,78 @@ namespace GamepadInput
                 case Index.One:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick1Button0;
-                        case Button.B: return KeyCode.Joystick1Button1;
-                        case Button.X: return KeyCode.Joystick1Button2;
+                        case Button.A: return KeyCode.Joystick1Button1;
+                        case Button.B: return KeyCode.Joystick1Button2;
+                        case Button.X: return KeyCode.Joystick1Button0;
                         case Button.Y: return KeyCode.Joystick1Button3;
                         case Button.RightShoulder: return KeyCode.Joystick1Button5;
                         case Button.LeftShoulder: return KeyCode.Joystick1Button4;
-                        case Button.Back: return KeyCode.Joystick1Button6;
-                        case Button.Start: return KeyCode.Joystick1Button7;
-                        case Button.LeftStick: return KeyCode.Joystick1Button8;
-                        case Button.RightStick: return KeyCode.Joystick1Button9;
+                        case Button.Back: return KeyCode.Joystick1Button8;
+                        case Button.Start: return KeyCode.Joystick1Button9;
+                        case Button.LeftStick: return KeyCode.Joystick1Button10;
+                        case Button.RightStick: return KeyCode.Joystick1Button11;
                     }
                     break;
                 case Index.Two:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick2Button0;
-                        case Button.B: return KeyCode.Joystick2Button1;
-                        case Button.X: return KeyCode.Joystick2Button2;
+                        case Button.A: return KeyCode.Joystick2Button1;
+                        case Button.B: return KeyCode.Joystick2Button2;
+                        case Button.X: return KeyCode.Joystick2Button0;
                         case Button.Y: return KeyCode.Joystick2Button3;
                         case Button.RightShoulder: return KeyCode.Joystick2Button5;
                         case Button.LeftShoulder: return KeyCode.Joystick2Button4;
-                        case Button.Back: return KeyCode.Joystick2Button6;
-                        case Button.Start: return KeyCode.Joystick2Button7;
-                        case Button.LeftStick: return KeyCode.Joystick2Button8;
-                        case Button.RightStick: return KeyCode.Joystick2Button9;
+                        case Button.Back: return KeyCode.Joystick2Button8;
+                        case Button.Start: return KeyCode.Joystick2Button9;
+                        case Button.LeftStick: return KeyCode.Joystick2Button10;
+                        case Button.RightStick: return KeyCode.Joystick2Button11;
                     }
                     break;
                 case Index.Three:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick3Button0;
-                        case Button.B: return KeyCode.Joystick3Button1;
-                        case Button.X: return KeyCode.Joystick3Button2;
+                        case Button.A: return KeyCode.Joystick3Button1;
+                        case Button.B: return KeyCode.Joystick3Button2;
+                        case Button.X: return KeyCode.Joystick3Button0;
                         case Button.Y: return KeyCode.Joystick3Button3;
                         case Button.RightShoulder: return KeyCode.Joystick3Button5;
                         case Button.LeftShoulder: return KeyCode.Joystick3Button4;
-                        case Button.Back: return KeyCode.Joystick3Button6;
-                        case Button.Start: return KeyCode.Joystick3Button7;
-                        case Button.LeftStick: return KeyCode.Joystick3Button8;
-                        case Button.RightStick: return KeyCode.Joystick3Button9;
+                        case Button.Back: return KeyCode.Joystick3Button8;
+                        case Button.Start: return KeyCode.Joystick3Button9;
+                        case Button.LeftStick: return KeyCode.Joystick3Button10;
+                        case Button.RightStick: return KeyCode.Joystick3Button11;
                     }
                     break;
                 case Index.Four:
 
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick4Button0;
-                        case Button.B: return KeyCode.Joystick4Button1;
-                        case Button.X: return KeyCode.Joystick4Button2;
+                        case Button.A: return KeyCode.Joystick4Button1;
+                        case Button.B: return KeyCode.Joystick4Button2;
+                        case Button.X: return KeyCode.Joystick4Button0;
                         case Button.Y: return KeyCode.Joystick4Button3;
                         case Button.RightShoulder: return KeyCode.Joystick4Button5;
                         case Button.LeftShoulder: return KeyCode.Joystick4Button4;
-                        case Button.Back: return KeyCode.Joystick4Button6;
-                        case Button.Start: return KeyCode.Joystick4Button7;
-                        case Button.LeftStick: return KeyCode.Joystick4Button8;
-                        case Button.RightStick: return KeyCode.Joystick4Button9;
+                        case Button.Back: return KeyCode.Joystick4Button8;
+                        case Button.Start: return KeyCode.Joystick4Button9;
+                        case Button.LeftStick: return KeyCode.Joystick4Button10;
+                        case Button.RightStick: return KeyCode.Joystick4Button11;
                     }
 
                     break;
                 case Index.Any:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.JoystickButton0;
-                        case Button.B: return KeyCode.JoystickButton1;
-                        case Button.X: return KeyCode.JoystickButton2;
+                        case Button.A: return KeyCode.JoystickButton1;
+                        case Button.B: return KeyCode.JoystickButton2;
+                        case Button.X: return KeyCode.JoystickButton0;
                         case Button.Y: return KeyCode.JoystickButton3;
                         case Button.RightShoulder: return KeyCode.JoystickButton5;
                         case Button.LeftShoulder: return KeyCode.JoystickButton4;
-                        case Button.Back: return KeyCode.JoystickButton6;
-                        case Button.Start: return KeyCode.JoystickButton7;
-                        case Button.LeftStick: return KeyCode.JoystickButton8;
-                        case Button.RightStick: return KeyCode.JoystickButton9;
+                        case Button.Back: return KeyCode.JoystickButton8;
+                        case Button.Start: return KeyCode.JoystickButton9;
+                        case Button.LeftStick: return KeyCode.JoystickButton10;
+                        case Button.RightStick: return KeyCode.JoystickButton11;
                     }
                     break;
             }
