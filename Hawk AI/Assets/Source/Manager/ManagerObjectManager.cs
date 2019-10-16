@@ -10,7 +10,8 @@ public enum EManagerObject
     eSTOCK,
     eTIME,
     eMAP,
-    eOBJECT
+    eOBJECT,
+    eSCENE
 };
 
 public class ManagerObjectManager : SingletonMonoBehaviour<ManagerObjectManager>,IGeneralInterface

@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/kojima/testSceneState/testSceneStateA.unity
+    guid: 580683fa97cad6843a20f39815e7fb77
+  - enabled: 1
+    path: Assets/Scenes/kojima/testSceneState/testSceneStateB.unity
+    guid: ef26fd1f19e890540b0e0c0a533e6939
+  - enabled: 1
+    path: Assets/Scenes/kojima/testSceneState/testSceneStateC.unity
+    guid: 7dc675995ff19c047befdafbd86e81d7
   m_configObjects: {}
