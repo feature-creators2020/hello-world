@@ -25,8 +25,8 @@ public class testGeneralObjectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
             foreach (var obj in gameObjects)
             {
                 ExecuteEvents.Execute<IGeneralInterface>(
@@ -35,6 +35,6 @@ public class testGeneralObjectManager : MonoBehaviour
                      functor: (recieveTarget, y) => recieveTarget.GeneralUpdate());
 
             }
-        }
+        //}
     }
 }
