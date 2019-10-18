@@ -35,7 +35,9 @@ public class CameraMove : MonoBehaviour
         var keyState = GamePad.GetState(playerNo, false);
 
         // ゲームパッドの入力情報取得
-        float inputViewHorizontal = keyState.rightStickAxis.x;
+        float LeftTrigger = keyState.LeftTrigger + 1.0f;
+        float RightTrigger = keyState.RightTrigger + 1.0f;
+        float inputViewHorizontal = (RightTrigger - LeftTrigger) * 0.5f;
 
         //targetPos = this.transform.parent.transform.position;
 
