@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 
-public class MouseMove : MonoBehaviour
+public class MouseMove : GeneralObject
 {
 
     float inputHorizontal;              // コントローラーLスティック横軸情報
@@ -16,14 +16,15 @@ public class MouseMove : MonoBehaviour
     bool isRun;                         // 走る状態切り替え
 
 
-    void Start()
+    public override void GeneralInit()
     {
+        Debug.Log("GeneralInit : MouseMove");
         //targetCamera = transform.GetComponentInChildren<Camera>();
     }
 
-    void Update()
+    public override void GeneralUpdate()
     {
-
+        Debug.Log("GeneralUpdate : MouseMove");
         // ゲームパッドの情報取得
         var playerNo = GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
