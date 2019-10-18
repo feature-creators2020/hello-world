@@ -7,13 +7,15 @@ using GamepadInput;
 public class HumanMove : MonoBehaviour
 {
 
-    float inputHorizontal;
-    float inputVertical;
+    float inputHorizontal;                  // コントローラーLスティック横軸情報
+    float inputVertical;                    // コントローラーLスティック縦軸情報
     //Rigidbody rb;
-    public Camera targetCamera;
-    public GamePad.Index GamePadIndex;
+    public Camera targetCamera;             // 対象のカメラ
+    public GamePad.Index GamePadIndex;      // 対象のコントローラー
 
-    float moveSpeed = 3f;
+    float moveSpeed = 3f;                   // 通常の移動速度
+    float RunRate = 1.5f;                   // 走る時の速度倍率
+    bool isRun;                             // 走る状態切り替え
 
 
     // Start is called before the first frame update
@@ -37,6 +39,10 @@ public class HumanMove : MonoBehaviour
         inputHorizontal = keyState.LeftStickAxis.x;
         inputVertical = keyState.LeftStickAxis.y;
 
+        isRun = keyState.A;
+
+
+        // 仮：キーボードの入力
         if (Input.GetKey(KeyCode.F))
         {
             inputHorizontal = -1;
@@ -68,6 +74,11 @@ public class HumanMove : MonoBehaviour
 
         // 移動量
         Vector3 moveForward = cameraForward * inputVertical + targetCamera.transform.right * inputHorizontal;
+
+        if (isRun)
+        {
+            moveForward *= RunRate;
+        }
 
         this.transform.position += moveForward * moveSpeed * Time.deltaTime;
 
