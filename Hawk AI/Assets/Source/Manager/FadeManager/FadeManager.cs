@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public interface IFadeInterfase
+{
+    void CallFadeIn();
+    void CallFadeOut();
+    void CallFadeStay();
+}
+
 public enum EFadeState
 {
     FadeIn,
@@ -10,7 +18,7 @@ public enum EFadeState
     FadeOut,
 }
 
-public class FadeManager : CStateObjectBase<FadeManager, EFadeState>
+public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterfase
 {
     public float TimePerSpeed;
 
@@ -60,4 +68,19 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>
             yield return null;
         }
     }
+
+    public virtual void CallFadeIn()
+    {
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeIn]);
+    }
+    public virtual void CallFadeOut()
+    {
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeOut]);
+    }
+
+    public virtual void CallFadeStay()
+    {
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeStay]);
+    }
+
 }

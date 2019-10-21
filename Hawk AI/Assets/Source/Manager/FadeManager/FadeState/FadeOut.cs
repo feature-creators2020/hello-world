@@ -18,7 +18,7 @@ public class FadeOut : CStateBase<FadeManager>
     {
         if (Input.anyKeyDown)
         {
-            this.m_cOwner.ChangeState(0, EFadeState.FadeIn);
+            this.m_cOwner.CallFadeStay();
         }
     }
 
@@ -27,20 +27,4 @@ public class FadeOut : CStateBase<FadeManager>
 
     }
 
-    //public virtual IEnumerator FadeOutCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
-    //{
-    //    float lerpVal = 0f;
-
-    //    while (lerpVal <= 1f)
-    //    {//開ける時間補間
-    //        lerpVal += Time.deltaTime / 10f;
-    //        m_cOwner.m_cImageRect.localPosition
-    //            = Vector3.Lerp(_StartAngle, _EndAngle, lerpVal);
-
-    //        Debug.Log("lerpVal : " + lerpVal);
-    //        Debug.Log("m_cOwner.m_cImageRect.localPosition : " + m_cOwner.m_cImageRect.localPosition);
-
-    //        yield return null;
-    //    }
-    //}
 }

@@ -15,7 +15,8 @@ public class FadeStay : CStateBase<FadeManager>
     {
         if (Input.anyKeyDown)
         {
-            this.m_cOwner.ChangeState(0, EFadeState.FadeOut);
+            this.m_cOwner.CallFadeIn();
+            
         }
     }
 

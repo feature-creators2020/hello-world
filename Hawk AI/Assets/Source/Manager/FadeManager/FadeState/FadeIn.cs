@@ -22,29 +22,12 @@ public class FadeIn : CStateBase<FadeManager>
             //m_cOwner.m_cImageRect.localPosition
             //    += new Vector3(0, 100, 0);
 
-            this.m_cOwner.ChangeState(0, EFadeState.FadeStay);
+            this.m_cOwner.ChangeState(0, EFadeState.FadeOut);
         }
     }
 
     public override void Exit()
     {
-
+        m_cOwner.m_cImageRect.localPosition = new Vector3(0f, m_cOwner.m_cImageRect.rect.height, 0f);
     }
-
-    //public virtual IEnumerator FadeInCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
-    //{
-    //    float lerpVal = 0f;
-
-    //    while (lerpVal <= 1f)
-    //    {//開ける時間補間
-    //        lerpVal += Time.deltaTime / 10f;
-    //        m_cOwner.m_cImageRect.localPosition
-    //            = Vector3.Lerp(_StartAngle, _EndAngle, lerpVal);
-
-    //        Debug.Log("lerpVal : " + lerpVal);
-    //        Debug.Log("m_cOwner.m_cImageRect.localPosition : " + m_cOwner.m_cImageRect.localPosition);
-
-    //        yield return null;
-    //    }
-    //}
 }
