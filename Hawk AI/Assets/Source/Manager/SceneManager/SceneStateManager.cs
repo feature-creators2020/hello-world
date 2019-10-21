@@ -9,6 +9,11 @@ public enum ESceneState
     testSceneA,
     testSceneB,
     testSceneC,
+    Title,
+    Tutorial,
+    StageSelect,
+    GameMain,
+    Result,
 }
 
 public interface ISceneInterfase : IEventSystemHandler
@@ -24,32 +29,18 @@ public class SceneStateManager : GeneralManager, ISceneInterfase
     // Start is called before the first frame update
     public override void GeneralInit()
     {
-
+        base.GeneralInit();
     }
 
     public override void GeneralUpdate()
     {
 
-        //foreach (var obj in m_cGameObjects)
-        //{
-        //    ExecuteEvents.Execute<IGeneralInterface>(
-        //         target: obj,
-        //         eventData: null,
-        //         functor: (recieveTarget, y) => recieveTarget.GeneralUpdate());
-
-        //}
+        base.GeneralUpdate();
     }
 
     public override void GeneralRelease()
     {
-        foreach (var obj in m_cGameObjects)
-        {
-            ExecuteEvents.Execute<IGeneralInterface>(
-                 target: obj,
-                 eventData: null,
-                 functor: (recieveTarget, y) => recieveTarget.GeneralUpdate());
-
-        }
+        base.GeneralRelease();
     }
 
     public override void DebugUpdate()

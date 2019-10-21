@@ -98,7 +98,7 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
         {
             for (var j = 0; j < MapData[i].Length; j++)
             {
-                Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
+                //Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
 
                 if(MapData[i][j] != (int)ObjectNo.None)
                 Instantiate(ObjectType[MapData[i][j]], Initpos, Quaternion.identity);
