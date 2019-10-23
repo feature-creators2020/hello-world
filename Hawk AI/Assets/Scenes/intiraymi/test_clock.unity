@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hand: {fileID: 828488520}
+  GameTime: 20
 --- !u!114 &452624215
 MonoBehaviour:
   m_ObjectHideFlags: 0
