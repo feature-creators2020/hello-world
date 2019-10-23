@@ -73,7 +73,6 @@ public class Door : MonoBehaviour, IDoorInterface
 
     public virtual IEnumerator OpenDoorCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
     {
-        isClosing = false;
         float lerpVal = 0f;
 
         while (lerpVal <= 1f)
@@ -88,14 +87,13 @@ public class Door : MonoBehaviour, IDoorInterface
         {//強硬手段
             this.gameObject.transform.rotation = Quaternion.Euler(_EndAngle);
         }
+        isClosing = false;
 
-        //isOpening = false;
     }
 
 
     public virtual IEnumerator CloseDoorCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
     {
-        isOpening = false;
         float lerpVal = 0f;
 
         while (lerpVal <= 1f)
@@ -111,8 +109,8 @@ public class Door : MonoBehaviour, IDoorInterface
             this.gameObject.transform.rotation = Quaternion.Euler(_EndAngle);
         }
 
+        isOpening = false;
 
-        //isClosing = false;
     }
 
 }
