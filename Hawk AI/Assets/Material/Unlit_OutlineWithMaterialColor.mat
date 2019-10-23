@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: skin_mat
+  m_Name: Unlit_OutlineWithMaterialColor
   m_Shader: {fileID: 4800000, guid: 93f359cbbdd37ce4887df3934dbd609a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -19,24 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _FalloffSampler:
-        m_Texture: {fileID: 2800000, guid: 940d3c904d88ec743a6d6e7ac7e7937e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0f83c88893812674fb27a67cc3d624d9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _RimLightSampler:
-        m_Texture: {fileID: 2800000, guid: 8073bf8eba43a72439ddf804cec5b97a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _DepthBias: 0.00012
-    - _EdgeThickness: 1
-    - _OutlineSize: 1.01
+    - _OutlineSize: 0.004
     m_Colors:
     - _Albedo: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DirectionalLight: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.8, g: 0.8, b: 1, a: 1}
