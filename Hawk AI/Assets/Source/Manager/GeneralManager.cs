@@ -68,4 +68,9 @@ public class GeneralManager : MonoBehaviour, IGeneralInterface
     {
         return m_cGameObjects[_ID];
     }
+
+    public virtual List<GameObject> GetGameObjectsList()
+    {
+        return m_cGameObjects;
+    }
 }

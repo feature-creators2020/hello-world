@@ -9,7 +9,7 @@ public enum EManagerObject
     eGAME,
     eSTOCK,
     eTIME,
-    eMAP,
+    //eMAP,
     eOBJECT,
     eSCENE
 };
@@ -93,5 +93,10 @@ public class ManagerObjectManager : SingletonMonoBehaviour<ManagerObjectManager>
     public virtual GameObject GetGameObject(int _ID)
     {
         return m_cGameObjects[_ID];
+    }
+
+    public virtual List<GameObject> GetGameObjectsList()
+    {
+        return m_cGameObjects;
     }
 }

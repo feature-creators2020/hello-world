@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
+public enum EObjectType
+{
+    eTestObject,
+}
 
 public class ObjectManager : GeneralManager
 {
@@ -11,12 +14,16 @@ public class ObjectManager : GeneralManager
     public override void GeneralInit()
     {
         base.GeneralInit();
+
+        GameObject obj = GameObject.Find("Main Camera");
+        obj.GetComponent<DepthTexture>().Initialize();
     }
 
     // Update is called once per frame
     public override void GeneralUpdate()
     {
         base.GeneralUpdate();
+        DebugUpdate();
     }
 
     public override void GeneralRelease()
@@ -32,5 +39,10 @@ public class ObjectManager : GeneralManager
     public override GameObject GetGameObject(int _ID)
     {
         return base.GetGameObject(_ID);
+    }
+
+    public override List<GameObject> GetGameObjectsList()
+    {
+        return base.GetGameObjectsList();
     }
 }
