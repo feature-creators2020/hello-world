@@ -9,6 +9,7 @@ TagManager:
   - LifeCycle
   - ScenePuller
   - Mousetrap
+  - DoorArea
   layers:
   - Default
   - TransparentFX

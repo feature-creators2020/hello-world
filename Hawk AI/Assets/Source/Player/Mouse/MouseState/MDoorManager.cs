@@ -4,9 +4,9 @@ using UnityEngine;
 using GamepadInput;
 
 
-public class DoorManager : CStateBase<MouseStateManager>
+public class MDoorManager : CStateBase<MouseStateManager>
 {
-    public DoorManager(MouseStateManager _cOwner) : base(_cOwner) { }
+    public MDoorManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
     {
@@ -55,14 +55,5 @@ public class DoorManager : CStateBase<MouseStateManager>
     public override void Exit()
     {
         //m_cOwner.EOldState = EMouseState.Door;
-    }
-
-    // ドアに当たらなくなったら状態を元に戻す
-    void OnTriggerExit(Collider other)
-    {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
-        {
-            m_cOwner.ChangeState(0, m_cOwner.EOldState);
-        }
     }
 }

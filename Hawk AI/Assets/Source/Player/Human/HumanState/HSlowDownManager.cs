@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 
-
-public class SlowDownManager : CStateBase<MouseStateManager>
+public class HSlowDownManager : CStateBase<HumanStateManager>
 {
-
-
-    public SlowDownManager(MouseStateManager _cOwner) : base(_cOwner) { }
-
+    public HSlowDownManager(HumanStateManager _cOwner) : base(_cOwner) { }
     public override void Enter()
     {
         // 前の状態が速度低下以外のときは新しく時間を設定する
-        if (m_cOwner.EOldState != EMouseState.SlowDown)
+        if (m_cOwner.EOldState != EHumanState.SlowDown)
         {
-            m_cOwner.m_fSlowTime = 10f;
+            m_cOwner.m_fSlowTime = m_cOwner.m_fLimitSlowTime;
         }
     }
 
@@ -34,23 +30,23 @@ public class SlowDownManager : CStateBase<MouseStateManager>
         // タイマーが過ぎたらnormalに遷移する
         if (m_cOwner.m_fSlowTime <= 0f)
         {
-            m_cOwner.ChangeState(0, EMouseState.Normal);
+            m_cOwner.ChangeState(0, EHumanState.Normal);
         }
 
         // Debug:ステート変更
         if (GamePad.GetButtonDown(GamePad.Button.X, playerNo))
         {
-            m_cOwner.ChangeState(0, EMouseState.Door);
+            m_cOwner.ChangeState(0, EHumanState.Door);
         }
         if (GamePad.GetButtonDown(GamePad.Button.Y, playerNo))
         {
-            m_cOwner.ChangeState(0, EMouseState.Normal);
+            m_cOwner.ChangeState(0, EHumanState.Normal);
         }
     }
 
     public override void Exit()
     {
-        m_cOwner.EOldState = EMouseState.SlowDown;
+        m_cOwner.EOldState = EHumanState.SlowDown;
     }
 
 }

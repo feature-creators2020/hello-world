@@ -4,10 +4,10 @@ using UnityEngine;
 using GamepadInput;
 
 
-public class NormalManager : CStateBase<MouseStateManager>
+public class MNormalManager : CStateBase<MouseStateManager>
 {
 
-    public NormalManager(MouseStateManager _cOwner) : base(_cOwner) { }
+    public MNormalManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
     {
@@ -40,21 +40,4 @@ public class NormalManager : CStateBase<MouseStateManager>
         m_cOwner.EOldState = EMouseState.Normal;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        // トラップに当たる
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap") {
-            // ネズミ捕り
-            if (other.gameObject.tag == "Mousetrap")
-            {
-                m_cOwner.ChangeState(0, EMouseState.SlowDown);
-            }
-        }
-
-        // ドアに当たる
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
-        {
-            m_cOwner.ChangeState(0, EMouseState.Door);
-        }
-    }
 }

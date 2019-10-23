@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 
-public enum EMouseState
+public enum EHumanState
 {
     Normal,
     SlowDown,
-    Door
+    Door,
 }
 
-public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>
+public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>
 {
     [System.NonSerialized]
     public float inputHorizontal;               // コントローラーLスティック横軸情報
@@ -30,6 +30,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public float m_fSlowTime;                   // 速度低下の効果時間経過
     public float m_fLimitSlowTime;              // 速度低下の効果時間
 
+    [System.NonSerialized]
+    public GameObject GDoorData;
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -42,23 +45,23 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     }
 
     [System.NonSerialized]
-    public EMouseState EOldState;        // 前の状態を保持
+    public EHumanState EOldState;        // 前の状態を保持
 
     // Start is called before the first frame update
     void Start()
     {
-        var StateMachine = new CStateMachine<MouseStateManager>();
+        var StateMachine = new CStateMachine<HumanStateManager>();
         m_cStateMachineList.Add(StateMachine);
 
-        var Normal = new MNormalManager(this);
-        var SlowDown = new MSlowDownManager(this);
-        var Door = new MDoorManager(this);
+        var Normal = new HNormalManager(this);
+        var SlowDown = new HSlowDownManager(this);
+        var Door = new HDoorManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
         m_cStateList.Add(Door);
 
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.Normal]);
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EHumanState.Normal]);
     }
 
     // Update is called once per frame
@@ -95,20 +98,25 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter! : " + other);
         // トラップに当たる
         if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
         {
             // ネズミ捕り
             if (other.gameObject.tag == "Mousetrap")
             {
-                ChangeState(0, EMouseState.SlowDown);
+                ChangeState(0, EHumanState.SlowDown);
             }
         }
 
         // ドアに当たる
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
+        if (other.tag == "DoorArea")
         {
-            ChangeState(0, EMouseState.Door);
+            // 対象のドア情報を取得
+            GDoorData = other.gameObject;
+
+            // 状態を切り替える
+            ChangeState(0, EHumanState.Door);
         }
     }
 
@@ -118,6 +126,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             ChangeState(0, EOldState);
         }
-    }
 
+        if (other.tag == "DoorArea")
+        {
+            // 対象のドア情報を消す
+            GDoorData = null;
+
+            // 状態を切り替える
+            ChangeState(0, EHumanState.Normal);
+        }
+    }
 }
