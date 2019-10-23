@@ -58,4 +58,8 @@ public class NormalManager : CStateBase<MouseStateManager>
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+
+    }
 }

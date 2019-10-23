@@ -8,6 +8,7 @@ TagManager:
   - Manager
   - LifeCycle
   - ScenePuller
+  - Mousetrap
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - 
   - 
   - Goal
-  - 
-  - 
-  - 
+  - Door
+  - Gap
+  - Trap
   - 
   - 
   - 
