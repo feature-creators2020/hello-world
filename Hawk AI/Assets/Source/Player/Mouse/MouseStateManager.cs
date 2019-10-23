@@ -110,6 +110,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             ChangeState(0, EMouseState.Door);
         }
+
+        // ゴール地点
+        if (other.gameObject.layer == LayerMask.NameToLayer("Goal"))
+        {
+            //ScoreManager.Instance.GoalMouse();
+            RespawnPoint.Instance.Respawn(this.gameObject);
+        }
+
     }
 
     void OnTriggerExit(Collider other)
