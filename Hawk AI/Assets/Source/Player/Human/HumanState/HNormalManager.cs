@@ -22,6 +22,12 @@ public class HNormalManager : CStateBase<HumanStateManager>
         // 速度設定
         m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
 
+        // アイテム使用
+        if(GamePad.GetButtonDown(GamePad.Button.B, playerNo))
+        {
+            m_cOwner.UseItem();
+        }
+
         // Debug:ステート変更
         if (GamePad.GetButtonDown(GamePad.Button.X, playerNo))
         {

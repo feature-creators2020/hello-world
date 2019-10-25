@@ -33,6 +33,13 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
             m_cOwner.ChangeState(0, EHumanState.Normal);
         }
 
+        // アイテム使用
+        if (GamePad.GetButtonDown(GamePad.Button.B, playerNo))
+        {
+            m_cOwner.UseItem();
+        }
+
+
         // Debug:ステート変更
         if (GamePad.GetButtonDown(GamePad.Button.X, playerNo))
         {

@@ -10,6 +10,7 @@ TagManager:
   - ScenePuller
   - Mousetrap
   - DoorArea
+  - ItemManager
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Door
   - Gap
   - Trap
-  - 
+  - Item
   - 
   - 
   - 

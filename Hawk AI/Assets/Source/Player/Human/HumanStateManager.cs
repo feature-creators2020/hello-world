@@ -32,6 +32,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     [System.NonSerialized]
     public GameObject GDoorData;
+    [System.NonSerialized]
+    public string m_sItemData;                // 現在取得しているアイテム
+    [System.NonSerialized]
+    public bool m_canPut = true;
 
     /*{
         get { return m_fmoveSpeed; }
@@ -62,6 +66,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_cStateList.Add(Door);
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EHumanState.Normal]);
+
+
+        // 初期設定
+        m_sItemData = null;
     }
 
     // Update is called once per frame
@@ -112,11 +120,32 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // ドアに当たる
         if (other.tag == "DoorArea")
         {
+            // アイテム設置不可能
+            m_canPut = false;
+
             // 対象のドア情報を取得
             GDoorData = other.gameObject;
 
             // 状態を切り替える
             ChangeState(0, EHumanState.Door);
+        }
+
+        // アイテム取得
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Item")
+        {
+            if (m_sItemData == null)
+            {
+                // ネズミ捕り
+                if (other.gameObject.tag == "MouseTrapItem")
+                {
+                    m_sItemData = "MouseTrap";
+                    Debug.Log("GetItem");
+                }
+
+                // 取得したのでオブジェクトを消す
+                Destroy(other.gameObject);
+            }
+            Debug.Log("Item : " + m_sItemData);
         }
     }
 
@@ -129,11 +158,32 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         if (other.tag == "DoorArea")
         {
+            // アイテム設置可能にする
+            m_canPut = true;
+
             // 対象のドア情報を消す
             GDoorData = null;
 
             // 状態を切り替える
             ChangeState(0, EHumanState.Normal);
+        }
+    }
+
+
+    // アイテム使用処理
+    public void UseItem()
+    {
+        Debug.Log("UseItem : " + m_sItemData);
+        if(m_sItemData != null)
+        {
+            if (m_canPut) {
+                // プレハブを取得
+                GameObject prefab = (GameObject)Resources.Load("Prefabs/Item/" + m_sItemData);
+                // プレハブからインスタンスを生成
+                Instantiate(prefab, this.transform.position, Quaternion.identity);
+                // 所持アイテム情報を削除
+                m_sItemData = null;
+            }
         }
     }
 }
