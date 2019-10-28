@@ -9,6 +9,7 @@ public interface IGeneralInterface : IEventSystemHandler
     void GeneralUpdate();
     void GeneralRelease();
     GameObject GetGameObject(int _ID);
+    GameObject GetGameObject(string _Str);
     List<GameObject> GetGameObjectsList();
 }
 
@@ -31,6 +32,13 @@ public class GeneralObject : MonoBehaviour, IGeneralInterface
 
 
     public virtual GameObject GetGameObject(int _ID)
+    {
+        Debug.Log("GetGameObject");
+
+        return this.gameObject;
+    }
+
+    public virtual GameObject GetGameObject(string _Str)
     {
         Debug.Log("GetGameObject");
 

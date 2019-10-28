@@ -69,6 +69,22 @@ public class GeneralManager : MonoBehaviour, IGeneralInterface
         return m_cGameObjects[_ID];
     }
 
+    public virtual GameObject GetGameObject(string _Str)
+    {
+        GameObject obj = null;
+
+        foreach(var val in m_cGameObjects)
+        {
+            if(val.name == _Str)
+            {
+                obj = val;
+                break;
+            }
+        }
+
+        return obj;
+    }
+
     public virtual List<GameObject> GetGameObjectsList()
     {
         return m_cGameObjects;
