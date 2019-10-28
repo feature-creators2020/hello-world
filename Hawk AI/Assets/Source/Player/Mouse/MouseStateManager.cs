@@ -7,7 +7,8 @@ public enum EMouseState
 {
     Normal,
     SlowDown,
-    Door
+    Door,
+    Up
 }
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>
@@ -53,10 +54,12 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var Normal = new MNormalManager(this);
         var SlowDown = new MSlowDownManager(this);
         var Door = new MDoorManager(this);
+        var Up = new MUpManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
         m_cStateList.Add(Door);
+        m_cStateList.Add(Up);
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.Normal]);
     }
@@ -69,27 +72,6 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
         // 各状態の処理
         base.Update();
-
-        // ゲームパッドの入力情報取得
-        inputHorizontal = 0f;
-        inputVertical = 0f;
-
-        inputHorizontal = keyState.LeftStickAxis.x;
-        inputVertical = keyState.LeftStickAxis.y;
-
-        // カメラの方向から、x-z平面の単位ベクトルを取得
-        Vector3 cameraForward = Vector3.Scale(targetCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        // 移動量
-        Vector3 moveForward = cameraForward * inputVertical + targetCamera.transform.right * inputHorizontal;
-
-        this.transform.position += moveForward * m_fmoveSpeed * Time.deltaTime;
-
-        // キャラクターの向きを進行方向に
-        if (moveForward != Vector3.zero)
-        {
-            this.transform.rotation = Quaternion.LookRotation(moveForward);
-        }
 
     }
 
@@ -116,6 +98,12 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             //ScoreManager.Instance.GoalMouse();
             RespawnPoint.Instance.Respawn(this.gameObject);
+        }
+
+        // 壁
+        if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        {
+            ChangeState(0, EMouseState.Up);
         }
 
     }

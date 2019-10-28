@@ -36,6 +36,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public string m_sItemData;                // 現在取得しているアイテム
     [System.NonSerialized]
     public bool m_canPut = true;
+    [System.NonSerialized]
+    public ItemManager m_Itemmanager;                    // アイテム管理
 
     /*{
         get { return m_fmoveSpeed; }
@@ -70,6 +72,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         // 初期設定
         m_sItemData = null;
+        var ItemManagerObject = GameObject.FindWithTag("ItemManager").gameObject;
+        m_Itemmanager = ItemManagerObject.GetComponent<ItemManager>();
     }
 
     // Update is called once per frame
@@ -178,9 +182,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         {
             if (m_canPut) {
                 // プレハブを取得
-                GameObject prefab = (GameObject)Resources.Load("Prefabs/Item/" + m_sItemData);
+                //var item = m_Itemmanager;
+                //GameObject prefab;
                 // プレハブからインスタンスを生成
-                Instantiate(prefab, this.transform.position, Quaternion.identity);
+                //Instantiate(prefab, this.transform.position, Quaternion.identity);
                 // 所持アイテム情報を削除
                 m_sItemData = null;
             }

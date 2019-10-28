@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8566625254624156454}
   m_Layer: 11
   m_Name: MouseTrap
-  m_TagString: Item
+  m_TagString: Mousetrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
