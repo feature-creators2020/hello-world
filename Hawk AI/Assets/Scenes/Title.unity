@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 420742802}
   - component: {fileID: 420742801}
   - component: {fileID: 420742800}
+  - component: {fileID: 420742803}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -203,6 +204,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &420742803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420742799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878df53f05602cc4eb09773bda995978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shader: {fileID: 0}
+  _outlineThreshold: 0.01
+  _outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineThick: 1
+  _target: {fileID: 0}
 --- !u!1001 &1199278815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -477,5 +495,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 420742801}
+    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bfbf361e7f477b542828970b99e65244,
+        type: 3}
+    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
