@@ -73,14 +73,14 @@ public class MouseRespawn : MonoBehaviour
         //呼ぶのを遅らせるか関数内で何秒後にリスポーンするかをいれる
         if (other.gameObject.layer == LayerMask.NameToLayer("Goal"))
         {
-            ScoreManager.Instance.GoalMouse();
+            //ScoreManager.Instance.GoalMouse();
             RespawnPoint.Instance.Respawn(this.gameObject);
         }
-        if(other.gameObject.name == "Dead")
-        {
-            ScoreManager.Instance.DeadMouse();
-            RespawnPoint.Instance.Respawn(this.gameObject);
-        }
+        //if(other.gameObject.name == "Dead")
+        //{
+        //    //ScoreManager.Instance.DeadMouse();
+        //    RespawnPoint.Instance.Respawn(this.gameObject);
+        //}
     }
 
 }

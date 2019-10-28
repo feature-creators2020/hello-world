@@ -11,6 +11,7 @@ TagManager:
   - Mousetrap
   - DoorArea
   - ItemManager
+  - Room
   layers:
   - Default
   - TransparentFX
