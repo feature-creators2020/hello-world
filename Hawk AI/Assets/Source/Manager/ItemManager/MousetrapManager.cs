@@ -2,20 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MousetrapManager : GeneralManager
+
+public class MousetrapManager : ItemManager
 {
 
-    public GameObject PrefabObject;
-
-    // Start is called before the first frame update
-    void Start()
+    public override void GeneralInit()
     {
-        
+        base.GeneralInit();
     }
 
     // Update is called once per frame
-    void Update()
+    public override void GeneralUpdate()
     {
-        
+        base.GeneralUpdate();
+        DebugUpdate();
+    }
+
+    public override void GeneralRelease()
+    {
+        base.GeneralRelease();
+    }
+
+    public override void DebugUpdate()
+    {
+        base.DebugUpdate();
+    }
+
+    public override GameObject GetGameObject(int _ID)
+    {
+        return base.GetGameObject(_ID);
+    }
+
+    public override List<GameObject> GetGameObjectsList()
+    {
+        return base.GetGameObjectsList();
     }
 }

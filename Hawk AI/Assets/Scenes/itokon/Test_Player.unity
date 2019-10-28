@@ -680,8 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strTag: Mousetrap
-  MousetrapObject: {fileID: 8566625254624156455, guid: 68b5dfb385e0954478e714fb8188c696,
-    type: 3}
+  PrefabObject: {fileID: 0}
 --- !u!4 &582392762
 Transform:
   m_ObjectHideFlags: 0
@@ -2757,7 +2756,7 @@ GameObject:
   - component: {fileID: 1872292852}
   m_Layer: 12
   m_Name: MouseTrapItem
-  m_TagString: Untagged
+  m_TagString: Mousetrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -51,4 +51,9 @@ public class GeneralObject : MonoBehaviour, IGeneralInterface
 
         return null;
     }
+
+    public virtual void OnDestroy()
+    {
+        GeneralRelease();
+    }
 }

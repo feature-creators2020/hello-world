@@ -43,7 +43,7 @@ public class GeneralManager : MonoBehaviour, IGeneralInterface
             ExecuteEvents.Execute<IGeneralInterface>(
                  target: obj,
                  eventData: null,
-                 functor: (recieveTarget, y) => recieveTarget.GeneralUpdate());
+                 functor: (recieveTarget, y) => recieveTarget.GeneralRelease());
 
         }
     }
@@ -71,10 +71,12 @@ public class GeneralManager : MonoBehaviour, IGeneralInterface
 
     public virtual GameObject GetGameObject(string _Str)
     {
+        Debug.Log(_Str);
         GameObject obj = null;
 
         foreach(var val in m_cGameObjects)
         {
+            Debug.Log(gameObject.name + "->name : " + val.name);
             if(val.name == _Str)
             {
                 obj = val;

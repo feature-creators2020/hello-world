@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
-
+using UnityEngine.EventSystems;
 public enum EHumanState
 {
     Normal,
@@ -72,8 +72,6 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         // 初期設定
         m_sItemData = null;
-        var ItemManagerObject = GameObject.FindWithTag("ItemManager").gameObject;
-        m_Itemmanager = ItemManagerObject.GetComponent<ItemManager>();
     }
 
     // Update is called once per frame
@@ -139,10 +137,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         {
             if (m_sItemData == null)
             {
+                // アイテムマネージャー取得
+                var ItemManagerObject = ManagerObjectManager.Instance.GetGameObject("ItemManager");
+                Debug.Log(ItemManagerObject.name);
+                m_Itemmanager = ItemManagerObject.GetComponent<ItemManager>();
+                Debug.Log(m_Itemmanager.name);
+
                 // ネズミ捕り
-                if (other.gameObject.tag == "MouseTrapItem")
+                if (other.gameObject.tag == "Mousetrap")
                 {
-                    m_sItemData = "MouseTrap";
+                    m_sItemData = "MousetrapManager";
                     Debug.Log("GetItem");
                 }
 
@@ -181,11 +185,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         if(m_sItemData != null)
         {
             if (m_canPut) {
+                Debug.Log("Put!");
                 // プレハブを取得
-                //var item = m_Itemmanager;
-                //GameObject prefab;
+                var item = m_Itemmanager.GetGameObject(m_sItemData);
+                Debug.Log("ItemManager : " + item);
                 // プレハブからインスタンスを生成
-                //Instantiate(prefab, this.transform.position, Quaternion.identity);
+                ExecuteEvents.Execute<IItemInterface>(
+                    target: item,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.Instant(this.transform));
+
                 // 所持アイテム情報を削除
                 m_sItemData = null;
             }
