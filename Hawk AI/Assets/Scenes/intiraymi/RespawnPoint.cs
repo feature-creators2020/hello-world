@@ -12,11 +12,11 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
     {
         //ランダムで生成場所を決定
         int number = Random.Range(0, RespObj.Length);
-        //Debug.Log("singleton");
         //ゴール時、死亡時非アクティブ化する想定のコード
-        Obj.SetActive(true);
+        //Obj.SetActive(true);
         //設定位置に移動
-        Obj.transform.position = RespObj[number].transform.position;
+        Vector3 pos = RespObj[number].transform.position;
+        Obj.transform.position = new Vector3(pos.x, Obj.transform.position.y, pos.z);
 
     }
 }

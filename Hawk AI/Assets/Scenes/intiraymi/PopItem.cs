@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class PopItem : MonoBehaviour
 {
-    public GameObject originItemObj;
+    //出現させるアイテムオブジェクト
+    public GameObject[] originItemObj;
+    //床のオブジェクト
     public GameObject GroundObj;
     //private float m_fNowItemCount = 0;
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(originItemObj, randomItemDropPos(Vector3.zero, 5f, 5f, GroundObj), Quaternion.identity);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(originItemObj, randomItemDropPos(Vector3.zero, 5f, 5f, GroundObj), Quaternion.identity);
+            int number = Random.Range(0, originItemObj.Length);
+            //作成できる範囲にアイテムを生成する(生成するオブジェクト,生成する場所,クォータニオン)
+            Instantiate(originItemObj[number], randomItemDropPos(Vector3.zero, 5f, 5f, GroundObj), Quaternion.identity);
         }
     }
 

@@ -31,13 +31,11 @@ public class ClockHandTurns : MonoBehaviour
             if (m_fHandAngle >= 17f / 18f)
             {
                 float colorchenge = Mathf.Cos(4 * Mathf.PI * m_fNowTime) * 0.3f;
-                Debug.Log(colorchenge);
                 this.gameObject.GetComponent<Image>().color = new Color(1, 0.7f + colorchenge, 0.7f + colorchenge);
             }
             else if (m_fHandAngle >= 5f / 6f)
             {
                 float colorchenge = Mathf.Cos(2 * Mathf.PI* m_fNowTime) * 0.3f;
-                Debug.Log(colorchenge);
                 this.gameObject.GetComponent<Image>().color = new Color(1, 0.7f + colorchenge, 0.7f + colorchenge);
             }
             if (m_fHandAngle >= 1.0f)
