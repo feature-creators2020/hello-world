@@ -2,41 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum RoomObject
-{
-    Area01,
-    Area02,
-    Area03,
-    Area04
-}
-
-
 public class RoomManager : GeneralManager
 {
-    // Start is called before the first frame update
+    public static RoomManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    private bool[] m_bHumanInTheRoom = { false, false, false, false };
+
     public override void GeneralInit()
     {
         base.GeneralInit();
     }
 
-    // Update is called once per frame
     public override void GeneralUpdate()
     {
         base.GeneralUpdate();
     }
 
-    public override void GeneralRelease()
+    public void HumanEnter(int index)
     {
-        base.GeneralRelease();
+        m_bHumanInTheRoom[index] = true;
     }
 
-    public override void DebugUpdate()
+    public void HumanExit(int index)
     {
-        base.DebugUpdate();
+        m_bHumanInTheRoom[index] = false;
     }
 
-    public override GameObject GetGameObject(int _ID)
+    public void FarOffHuman(List<GameObject> RespObj, List<GameObject> RespList)
     {
-        return base.GetGameObject(_ID);
+        for(int i = 0; i < m_bHumanInTheRoom.Length; i++)
+        {
+            if (!m_bHumanInTheRoom[i])  RespList.Add(RespObj[i]);
+        }
     }
 }
