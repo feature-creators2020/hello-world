@@ -12,6 +12,8 @@ TagManager:
   - DoorArea
   - ItemManager
   - Room
+  - Human
+  - Mouse
   layers:
   - Default
   - TransparentFX

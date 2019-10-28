@@ -37,6 +37,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [System.NonSerialized]
     public bool m_canPut = true;
     [System.NonSerialized]
+    public bool m_isInvincible = false;         // アイテムを設置したときにそのアイテムと干渉させない
+    [System.NonSerialized]
     public ItemManager m_Itemmanager;                    // アイテム管理
 
     /*{
@@ -112,10 +114,13 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // トラップに当たる
         if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
         {
-            // ネズミ捕り
-            if (other.gameObject.tag == "Mousetrap")
+            if (m_isInvincible == false)
             {
-                ChangeState(0, EHumanState.SlowDown);
+                // ネズミ捕り
+                if (other.gameObject.tag == "Mousetrap")
+                {
+                    ChangeState(0, EHumanState.SlowDown);
+                }
             }
         }
 
@@ -157,8 +162,43 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        {
+            if (m_isInvincible == false)
+            {
+                // ネズミ捕り
+                if (other.gameObject.tag == "Mousetrap")
+                {
+                    m_fSlowTime = m_fLimitSlowTime; // 無敵状態を解除する
+                }
+            }
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        {
+            if (m_isInvincible == true)
+            {
+                // ネズミ捕り
+                if (other.gameObject.tag == "Mousetrap")
+                {
+                    m_isInvincible = false; // 無敵状態を解除する
+                }
+            }
+            else
+            {
+                // ネズミ捕り
+                if (other.gameObject.tag == "Mousetrap")
+                {
+                    Destroy(other.gameObject); // トラップを削除する
+                }
+            }
+        }
+
         if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
         {
             ChangeState(0, EOldState);
@@ -197,6 +237,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
                 // 所持アイテム情報を削除
                 m_sItemData = null;
+                // 無敵状態にする
+                m_isInvincible = true;
             }
         }
     }

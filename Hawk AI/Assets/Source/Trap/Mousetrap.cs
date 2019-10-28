@@ -5,12 +5,10 @@ using UnityEngine;
 public class Mousetrap : GeneralObject
 {
 
-    bool isRide = false;
-    GameObject TargetObject;
 
     public override void GeneralInit()
     {
-        isRide = false;
+        
     }
 
     public override void GeneralRelease()
@@ -20,26 +18,4 @@ public class Mousetrap : GeneralObject
         mousetrapmanager.GetComponent<MousetrapManager>().Destroy(this.gameObject);
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            if (TargetObject == null)
-            {
-                TargetObject = other.gameObject;
-                isRide = true;
-            }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            if (TargetObject == other.gameObject)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
 }

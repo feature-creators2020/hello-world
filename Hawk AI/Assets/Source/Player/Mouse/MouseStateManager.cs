@@ -108,8 +108,31 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        {
+            // ネズミ捕り
+            if (other.gameObject.tag == "Mousetrap")
+            {
+                m_fSlowTime = m_fLimitSlowTime; // 無敵状態を解除する
+            }
+        }
+    }
+
+
     void OnTriggerExit(Collider other)
     {
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        {
+            // ネズミ捕り
+            if (other.gameObject.tag == "Mousetrap")
+            {
+                Destroy(other.gameObject); // トラップを削除する
+            }
+            
+        }
+
         if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
         {
             ChangeState(0, EOldState);
