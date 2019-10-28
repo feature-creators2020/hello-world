@@ -40,6 +40,12 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public bool m_isInvincible = false;         // アイテムを設置したときにそのアイテムと干渉させない
     [System.NonSerialized]
     public ItemManager m_Itemmanager;                    // アイテム管理
+    [System.NonSerialized]
+    public float m_fActionTime;                    // アクション経過時間
+    public float m_fLimitActionTime = 2f;                // アクション時間
+
+    [System.NonSerialized]
+    public HCatchZone hCatchZone;               // 捕獲判定用
 
     /*{
         get { return m_fmoveSpeed; }
@@ -79,33 +85,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     // Update is called once per frame
     public override void Update()
     {
-        var playerNo = GamePadIndex;
-        var keyState = GamePad.GetState(playerNo, false);
+        hCatchZone = this.transform.Find("CatchZone").GetComponent<HCatchZone>();
 
         // 各状態の処理
-        base.Update();
-
-        // ゲームパッドの入力情報取得
-        inputHorizontal = 0f;
-        inputVertical = 0f;
-
-        inputHorizontal = keyState.LeftStickAxis.x;
-        inputVertical = keyState.LeftStickAxis.y;
-
-        // カメラの方向から、x-z平面の単位ベクトルを取得
-        Vector3 cameraForward = Vector3.Scale(targetCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        // 移動量
-        Vector3 moveForward = cameraForward * inputVertical + targetCamera.transform.right * inputHorizontal;
-
-        this.transform.position += moveForward * m_fmoveSpeed * Time.deltaTime;
-
-        // キャラクターの向きを進行方向に
-        if (moveForward != Vector3.zero)
-        {
-            this.transform.rotation = Quaternion.LookRotation(moveForward);
-        }
-
+        base.Update();        
     }
 
     void OnTriggerEnter(Collider other)

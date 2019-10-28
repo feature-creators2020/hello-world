@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
+using UnityEngine.EventSystems;
 
 public enum EMouseState
 {
     Normal,
     SlowDown,
     Door,
-    Up
+    Up,
+    Catch
 }
 
-public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>
+public interface IMouseInterface : IEventSystemHandler
+{
+    void Catched();
+}
+
+public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
 {
     [System.NonSerialized]
     public float inputHorizontal;               // コントローラーLスティック横軸情報
@@ -55,11 +62,13 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var SlowDown = new MSlowDownManager(this);
         var Door = new MDoorManager(this);
         var Up = new MUpManager(this);
+        var Catch = new MCatchManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
         m_cStateList.Add(Door);
         m_cStateList.Add(Up);
+        m_cStateList.Add(Catch);
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.Normal]);
     }
@@ -101,7 +110,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
 
         // 壁
-        if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             ChangeState(0, EMouseState.Up);
         }
@@ -139,4 +148,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
     }
 
+    public virtual void Catched()
+    {
+        Debug.Log("Catched!");
+        ChangeState(0, EMouseState.Catch);
+    }
 }
