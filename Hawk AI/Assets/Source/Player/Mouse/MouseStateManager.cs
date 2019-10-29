@@ -10,6 +10,7 @@ public enum EMouseState
     SlowDown,
     Door,
     Up,
+    Pipe,
     Catch
 }
 
@@ -62,12 +63,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var SlowDown = new MSlowDownManager(this);
         var Door = new MDoorManager(this);
         var Up = new MUpManager(this);
+        var Pipe = new MPipeMoveManager(this);
         var Catch = new MCatchManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
         m_cStateList.Add(Door);
         m_cStateList.Add(Up);
+        m_cStateList.Add(Pipe);
         m_cStateList.Add(Catch);
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.Normal]);
@@ -86,43 +89,54 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     void OnTriggerEnter(Collider other)
     {
+        var LayerName = LayerMask.LayerToName(other.gameObject.layer);
+        var TagName = other.gameObject.tag;
+
         // トラップに当たる
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        if (LayerName == "Trap")
         {
             // ネズミ捕り
-            if (other.gameObject.tag == "Mousetrap")
+            if (TagName == "Mousetrap")
             {
                 ChangeState(0, EMouseState.SlowDown);
             }
         }
 
         // ドアに当たる
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
+        if (LayerName == "Door")
         {
             ChangeState(0, EMouseState.Door);
         }
 
         // ゴール地点
-        if (other.gameObject.layer == LayerMask.NameToLayer("Goal"))
+        if (LayerName == "Goal")
         {
             //ScoreManager.Instance.GoalMouse();
             RespawnPoint.Instance.Respawn(this.gameObject);
         }
 
         // 壁
-        if(other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        if(LayerName == "Wall")
         {
             ChangeState(0, EMouseState.Up);
+        }
+
+        if(LayerName == "Pipe")
+        {
+            ChangeState(0, EMouseState.Pipe);
         }
 
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        var LayerName = LayerMask.LayerToName(other.gameObject.layer);
+        var TagName = other.gameObject.tag;
+
+        if (LayerName == "Trap")
         {
             // ネズミ捕り
-            if (other.gameObject.tag == "Mousetrap")
+            if (TagName == "Mousetrap")
             {
                 m_fSlowTime = m_fLimitSlowTime; // 無敵状態を解除する
             }
@@ -132,20 +146,29 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     void OnTriggerExit(Collider other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
+        var LayerName = LayerMask.LayerToName(other.gameObject.layer);
+        var TagName = other.gameObject.tag;
+
+        if (LayerName == "Trap")
         {
             // ネズミ捕り
-            if (other.gameObject.tag == "Mousetrap")
+            if (TagName == "Mousetrap")
             {
                 Destroy(other.gameObject); // トラップを削除する
             }
             
         }
 
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
+        if (LayerName == "Door")
         {
             ChangeState(0, EOldState);
         }
+
+        if (LayerName == "Pipe")
+        {
+            ChangeState(0, EOldState);
+        }
+
     }
 
     public virtual void Catched()
