@@ -114,7 +114,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             m_canPut = false;
 
             // 対象のドア情報を取得
-            GDoorData = other.gameObject;
+            GDoorData = other.gameObject.transform.parent.Find("DoorScript").gameObject;
+            Debug.Log(other.gameObject.name);
+            Debug.Log(other.gameObject.transform.parent.Find("DoorScript").gameObject.name);
 
             // 状態を切り替える
             ChangeState(0, EHumanState.Door);

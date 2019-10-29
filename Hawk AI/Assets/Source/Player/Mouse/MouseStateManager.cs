@@ -169,6 +169,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             ChangeState(0, EOldState);
         }
 
+        if (LayerName == "Goal")
+        {
+            ChangeState(0, EMouseState.Normal);      
+        }
+
     }
 
     public virtual void Catched()
