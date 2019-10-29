@@ -909,6 +909,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Human
       objectReference: {fileID: 0}
+    - target: {fileID: 7733803730101025362, guid: 58c35965b4a30b74a8a47292cfcc0dad,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c35965b4a30b74a8a47292cfcc0dad, type: 3}
 --- !u!20 &649564891 stripped

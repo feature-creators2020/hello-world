@@ -22,6 +22,9 @@ public class MCatchManager : CStateBase<MouseStateManager>
         // 速度設定
         //m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
 
+        // リスポーン処理
+        RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
+
         // ゲームパッドの入力情報取得
         m_cOwner.inputHorizontal = 0f;
         m_cOwner.inputVertical = 0f;
