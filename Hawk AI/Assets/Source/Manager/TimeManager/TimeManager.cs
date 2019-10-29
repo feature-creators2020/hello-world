@@ -13,7 +13,7 @@ public interface ITimeManager : IEventSystemHandler
 
     bool IsTimeCounting { get; }
     float ExecuteTime { get; }
-    float EndOfTheTime { get; set; }
+    float EndOfTheTime { get;}
 }
 
 
@@ -21,16 +21,18 @@ public interface ITimeManager : IEventSystemHandler
 /// <summary>
 /// @name : TimeManager
 /// </summary>
-public class TimeManager : GeneralManager
+public class TimeManager : GeneralManager, ITimeManager
 {
+    [SerializeField]
+    private float m_fEndOfTheTime;
+
     private bool m_bTimeCounting = false;
     private float m_fNowCountTime = 0f;
-    private float m_fEndOfTheTime = 0f;
     
     // Start is called before the first frame update
     public override void GeneralInit()
     {
-        m_bTimeCounting = true;
+        //m_bTimeCounting = true;
     }
 
     // Update is called once per frame
@@ -54,17 +56,17 @@ public class TimeManager : GeneralManager
 
     }
 
-    void TimeStart()
+    public void TimeStart()
     {
         m_bTimeCounting = true;
     }
 
-    void TimePause()
+    public void TimePause()
     {
         m_bTimeCounting = false;
     }
 
-    void TimeStop()
+    public void TimeStop()
     {
         if(m_bTimeCounting != false)
         {
@@ -73,7 +75,7 @@ public class TimeManager : GeneralManager
         }
     }
 
-    void TimeEnd()
+    public void TimeEnd()
     {
         if (m_bTimeCounting != false)
         {
@@ -83,20 +85,20 @@ public class TimeManager : GeneralManager
 
     }
 
-    bool IsTimeCounting
+    public bool IsTimeCounting
     {
         get { return m_bTimeCounting; }
     }
 
-    float ExecuteTime
+    public float ExecuteTime
     {
         get { return m_fNowCountTime; }
     }
 
-    float EndOfTheTime
+    public float EndOfTheTime
     {
         get { return m_fEndOfTheTime; }
-        set { m_fEndOfTheTime = value; }
+        //set { m_fEndOfTheTime = value; }
     }
 
 }

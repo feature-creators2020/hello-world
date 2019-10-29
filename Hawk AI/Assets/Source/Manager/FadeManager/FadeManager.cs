@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public interface IFadeInterfase
+public interface IFadeInterfase : IEventSystemHandler
 {
     void CallFadeIn();
     void CallFadeOut();
@@ -43,7 +44,7 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterf
 
         Debug.Log(m_cImageRect.name);
 
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeOut]);
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeStay]);
     }
 
     // Update is called once per frame
@@ -61,10 +62,6 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterf
             lerpVal += Time.deltaTime / TimePerSpeed;
             m_cImageRect.localPosition
                 = Vector3.Lerp(_StartAngle, _EndAngle, lerpVal);
-
-            Debug.Log("lerpVal : " + lerpVal);
-            Debug.Log("m_cImageRect.localPosition : " + m_cImageRect.localPosition);
-
             yield return null;
         }
     }

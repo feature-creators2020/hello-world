@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameMainManager : CStateBase<GameManager>
 {
@@ -10,6 +11,14 @@ public class GameMainManager : CStateBase<GameManager>
     public override void Enter()
     {
         Debug.Log(" NowState : GameMainManager");
+
+        var obj = ManagerObjectManager.Instance.GetGameObject("TimeManager");
+
+        ExecuteEvents.Execute<ITimeManager>(
+        target: obj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.TimeStart());
+
     }
     public override void Execute()
     {

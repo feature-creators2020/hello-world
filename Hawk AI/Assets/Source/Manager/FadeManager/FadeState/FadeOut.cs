@@ -16,10 +16,10 @@ public class FadeOut : CStateBase<FadeManager>
     }
     public override void Execute()
     {
-        if (Input.anyKeyDown)
-        {
-            this.m_cOwner.CallFadeStay();
-        }
+        //if (Input.anyKeyDown)
+        //{
+        //    this.m_cOwner.CallFadeStay();
+        //}
     }
 
     public override void Exit()
