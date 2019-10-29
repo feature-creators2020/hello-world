@@ -43,20 +43,11 @@ public class HDoorManager : CStateBase<HumanStateManager>
         // ドアを開閉する
         if (GamePad.GetButtonDown(GamePad.Button.B, playerNo))
         {
-            Debug.Log("DoorClosing : " + DoorScript.isClosing);
-                ExecuteEvents.Execute<IDoorInterface>(
-                    target: m_cOwner.GDoorData,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Open());
-            
-            Debug.Log("DoorOpening : " + DoorScript.isOpening);
-            if (DoorScript.isClosing)
-            {
-                ExecuteEvents.Execute<IDoorInterface>(
-                    target: m_cOwner.GDoorData,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Close());
-            }
+            //Debug.Log("DoorClosing : " + DoorScript.isClosing);
+            ExecuteEvents.Execute<IDoorInterface>(
+                target: m_cOwner.GDoorData,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.OpenOrClose());
         }
 
         // ゲームパッドの入力情報取得
