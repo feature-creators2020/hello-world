@@ -3,27 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+public enum EDoorState
+{
+    eOpen,
+    eClose,
+}
+
 public interface IDoorInterface : IEventSystemHandler
 {
-    void Open();
-    void Close();
-
+    void OpenOrClose();
 }
 
 /// <summary>
 /// Doorの開閉スクリプト
 /// </summary>
 
-public class Door : MonoBehaviour, IDoorInterface
+public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
 {
     [SerializeField]
-    protected float OpenSpeed;                //扉の開閉速度
+    public float OpenSpeed;                //扉の開閉速度
     [SerializeField]
-    protected float MaxOpenRadian;             //扉の開閉最大角度
-    protected Vector3 StartAngle;
+    public float MaxOpenRadian;             //扉の開閉最大角度
+    public Vector3 StartAngle;
     public bool isOpening {get;set; }        //扉の開フラグ
     public bool isClosing { get; set; }       //扉の閉フラグ
-    public bool isPopEffect { get; set; }     //エフェクト出現フラグ
 
 
     // Start is called before the first frame update
@@ -31,31 +35,47 @@ public class Door : MonoBehaviour, IDoorInterface
     {
         isOpening = false;
         isClosing = false;
-        isPopEffect = false;
         StartAngle = this.gameObject.transform.rotation.eulerAngles;
+
+        var StateMachine = new CStateMachine<Door>();
+        m_cStateMachineList.Add(StateMachine);
+
+        var DoorOpen = new Door_Open(this);
+        var DoorClose = new Door_Close(this);
+
+        m_cStateList.Add(DoorOpen);
+        m_cStateList.Add(DoorClose);
+
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eClose]);
+
     }
 
     public virtual void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            OpenOrClose();
+        }
+    }
+
+    public virtual void OpenOrClose()
+    {
+        if (m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EDoorState.eClose])
         {
             Open();
         }
-
-        if (Input.GetKeyDown(KeyCode.I))
+        else if (m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EDoorState.eOpen])
         {
             Close();
         }
     }
-
 
     //開ける
     public virtual void Open()
     {
         if (isOpening == false)
         {
-            isOpening = true;
-            StartCoroutine(OpenDoorCoroutine(StartAngle, new Vector3(0f, MaxOpenRadian, 0f)));
+            m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eOpen]);
         }
     }
 
@@ -64,53 +84,7 @@ public class Door : MonoBehaviour, IDoorInterface
     {
         if (isClosing == false)
         {
-            isClosing = true;
-            StartCoroutine(CloseDoorCoroutine(new Vector3(0f, MaxOpenRadian, 0f), StartAngle));
+            m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eClose]);
         }
     }
-
-
-
-    public virtual IEnumerator OpenDoorCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
-    {
-        float lerpVal = 0f;
-
-        while (lerpVal <= 1f)
-        {//開ける時間補間
-            this.gameObject.transform.rotation = Quaternion.Euler(
-                Vector3.Lerp(_StartAngle, _EndAngle, lerpVal));
-            lerpVal += Time.deltaTime / OpenSpeed;
-            yield return null;
-        }
-
-        if(_StartAngle != _EndAngle)
-        {//強硬手段
-            this.gameObject.transform.rotation = Quaternion.Euler(_EndAngle);
-        }
-        isClosing = false;
-
-    }
-
-
-    public virtual IEnumerator CloseDoorCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
-    {
-        float lerpVal = 0f;
-
-        while (lerpVal <= 1f)
-        {//閉まる時間補間
-            this.gameObject.transform.rotation = Quaternion.Euler(
-                Vector3.Lerp(_StartAngle, _EndAngle, lerpVal));
-            lerpVal += Time.deltaTime / OpenSpeed;
-            yield return null;
-        }
-
-        if (_StartAngle != _EndAngle)
-        {//強硬手段
-            this.gameObject.transform.rotation = Quaternion.Euler(_EndAngle);
-        }
-
-        isOpening = false;
-
-    }
-
 }
