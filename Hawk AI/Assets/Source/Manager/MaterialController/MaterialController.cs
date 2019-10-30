@@ -10,7 +10,7 @@ public interface ISetMaterial : IEventSystemHandler
     void RevertMaterial(GameObject _Object);
 }
 
-public class MaterialController : GeneralManager,ISetMaterial
+public class MaterialController : GeneralManager, ISetMaterial
 {
     Dictionary<GameObject, List<Shader>> m_cDicShaders
     = new Dictionary<GameObject, List<Shader>>();
@@ -57,6 +57,7 @@ public class MaterialController : GeneralManager,ISetMaterial
             }
         }
 
+
         m_cDicShaders[_Object] = bufShaders;
 
     }
@@ -89,16 +90,16 @@ public class MaterialController : GeneralManager,ISetMaterial
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            SetMaterial(this.gameObject);
+        //if (Input.GetKeyDown(KeyCode.Alpha9))
+        //{
+        //    SetMaterial(this.gameObject);
             
             
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            RevertMaterial(this.gameObject);
-        }
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    RevertMaterial(this.gameObject);
+        //}
 
     }
 

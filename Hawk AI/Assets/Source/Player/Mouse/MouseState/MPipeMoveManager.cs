@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using GamepadInput;
 
 public class MPipeMoveManager : CStateBase<MouseStateManager>
@@ -9,7 +10,11 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
 
     public override void Enter()
     {
-
+        //TODO : Target Object Pulling is Change
+        ExecuteEvents.Execute<ISetMaterial>(
+        target: GameObject.Find("testPermeableModel").gameObject,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.SetMaterial(this.m_cOwner.gameObject));
     }
 
     public override void Execute()
@@ -67,6 +72,11 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
 
     public override void Exit()
     {
+        //TODO : Target Object Pulling is Change
+        ExecuteEvents.Execute<ISetMaterial>(
+        target: GameObject.Find("testPermeableModel").gameObject,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.RevertMaterial(this.m_cOwner.gameObject));
 
     }
 }
