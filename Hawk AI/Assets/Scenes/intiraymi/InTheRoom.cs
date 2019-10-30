@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class InTheRoom : MonoBehaviour
 {
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Debug.Log("InTheRoom.cs Start");
+    }
+
     [SerializeField]
     private int RoomIndex;
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
+        //Debug.Log(other.tag);
         if (other.tag == "Player")
         {
-            Debug.Log("Enter" + RoomIndex);
-            RoomManager.Instance.HumanEnter(RoomIndex);
+            //Debug.Log("Enter" + RoomIndex);
+            RoomManager.Instance.HumanEnter(RoomIndex, other.gameObject);
         }
     }
 
@@ -21,7 +27,8 @@ public class InTheRoom : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            RoomManager.Instance.HumanExit(RoomIndex);
+            //Debug.Log("Exit" + RoomIndex);
+            RoomManager.Instance.HumanExit(RoomIndex, other.gameObject);
         }
     }
 }

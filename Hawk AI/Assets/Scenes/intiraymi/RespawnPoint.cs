@@ -27,7 +27,7 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
         //Obj.SetActive(true);
         //設定位置に移動
         Vector3 pos = RespList[number].transform.position;
-        Obj.transform.position = new Vector3(pos.x, Obj.transform.position.y, pos.z);
+        Obj.transform.position = new Vector3(pos.x, 1, pos.z);
 
     }
 }
