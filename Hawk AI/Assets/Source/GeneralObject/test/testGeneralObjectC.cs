@@ -6,7 +6,7 @@ public class testGeneralObjectC : GeneralObject
 {
     public override void GeneralInit()
     {
-        Debug.Log("testGeneralObjectCInit");
+
     }
 
     public override void GeneralUpdate()
@@ -16,7 +16,6 @@ public class testGeneralObjectC : GeneralObject
 
     public override void GeneralRelease()
     {
-        Debug.Log("testGeneralObjectCRelease");
     }
 
 }

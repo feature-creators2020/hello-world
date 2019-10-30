@@ -21,7 +21,7 @@ public class StockManager : GeneralManager, IStockManager
     // Start is called before the first frame update
     public override void GeneralInit()
     {
-        Debug.Log("testStockManagerAInit");
+
     }
 
     public override void GeneralUpdate()
@@ -40,7 +40,6 @@ public class StockManager : GeneralManager, IStockManager
 
     public override void GeneralRelease()
     {
-        Debug.Log("testStockManagerRelease");
     }
 
     public void PlayerStockPlus(int _ID)

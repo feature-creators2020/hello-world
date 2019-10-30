@@ -9,7 +9,7 @@ public class FadeStay : CStateBase<FadeManager>
     // Start is called before the first frame update
     public override void Enter()
     {
-        Debug.Log(" NowState : FadeStay");
+
     }
     public override void Execute()
     {
