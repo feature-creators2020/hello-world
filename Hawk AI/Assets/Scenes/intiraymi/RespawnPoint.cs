@@ -5,7 +5,8 @@ using UnityEngine;
 /****シングルトン化****/
 public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
 {
-    public List<GameObject> RespObj;
+    [SerializeField]
+    private List<GameObject> RespObj;
 
     //Respawn関数(出現させるオブジェクト)
     public void Respawn(GameObject Obj)
