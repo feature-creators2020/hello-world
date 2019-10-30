@@ -20,10 +20,10 @@ public enum EGameState
     End
 }
 
-public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInterface
+public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInterface, IGeneralInterface
 {
     // Start is called before the first frame update
-    void Start()
+    public virtual void GeneralInit()
     {
         var StateMachine = new CStateMachine<GameManager>();
         m_cStateMachineList.Add(StateMachine);
@@ -40,8 +40,34 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     }
 
     // Update is called once per frame
-    public void Update()
+    public virtual void GeneralUpdate()
     {
         base.Update();
+    }
+
+    public virtual void GeneralRelease()
+    {
+
+    }
+
+    public virtual GameObject GetGameObject(int _ID)
+    {
+        Debug.Log("GetGameObject");
+
+        return this.gameObject;
+    }
+
+    public virtual GameObject GetGameObject(string _Str)
+    {
+        Debug.Log("GetGameObject");
+
+        return this.gameObject;
+    }
+
+    public virtual List<GameObject> GetGameObjectsList()
+    {
+        Debug.Log("GetGameObjectsList");
+
+        return null;
     }
 }

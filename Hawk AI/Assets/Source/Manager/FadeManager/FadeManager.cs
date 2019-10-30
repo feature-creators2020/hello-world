@@ -19,14 +19,14 @@ public enum EFadeState
     FadeOut,
 }
 
-public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterfase
+public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterfase, IGeneralInterface
 {
     public float TimePerSpeed;
 
     public RectTransform m_cImageRect = null;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void GeneralInit()
     {
         var StateMachine = new CStateMachine<FadeManager>();
         m_cStateMachineList.Add(StateMachine);
@@ -42,16 +42,43 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterf
 
         m_cImageRect = this.gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>();
 
-        Debug.Log(m_cImageRect.name);
+
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeStay]);
     }
 
     // Update is called once per frame
-    public void Update()
+    public virtual void GeneralUpdate()
     {
         base.Update();
     }
+
+    public virtual void GeneralRelease()
+    {
+
+    }
+
+    public virtual GameObject GetGameObject(int _ID)
+    {
+        Debug.Log("GetGameObject");
+
+        return this.gameObject;
+    }
+
+    public virtual GameObject GetGameObject(string _Str)
+    {
+        Debug.Log("GetGameObject");
+
+        return this.gameObject;
+    }
+
+    public virtual List<GameObject> GetGameObjectsList()
+    {
+        Debug.Log("GetGameObjectsList");
+
+        return null;
+    }
+
 
     public virtual IEnumerator FadeCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
     {

@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 // Hack : child object list
 public enum EManagerObject
 {
-    eGAME,
+
     eSTOCK,
     eTIME,
-    //eMAP,
+    eMAP,
     eOBJECT,
-    eSCENE
+    eSCENE,
+    eFADE,
+    eGAME,
 };
 
 public class ManagerObjectManager : SingletonMonoBehaviour<ManagerObjectManager>,IGeneralInterface

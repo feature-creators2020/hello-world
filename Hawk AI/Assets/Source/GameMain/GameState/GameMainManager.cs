@@ -12,6 +12,14 @@ public class GameMainManager : CStateBase<GameManager>
     {
         Debug.Log(" NowState : GameMainManager");
 
+        //var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager");
+
+        //ExecuteEvents.Execute<IFadeInterfase>(
+        //target: obj,
+        //eventData: null,
+        //functor: (recieveTarget, y) => recieveTarget.CallFadeStay());
+
+
         var obj = ManagerObjectManager.Instance.GetGameObject("TimeManager");
 
         ExecuteEvents.Execute<ITimeManager>(

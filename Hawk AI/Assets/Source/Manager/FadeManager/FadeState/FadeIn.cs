@@ -19,13 +19,13 @@ public class FadeIn : CStateBase<FadeManager>
     }
     public override void Execute()
     {
-        if (Input.anyKeyDown)
-        {
-            //m_cOwner.m_cImageRect.localPosition
-            //    += new Vector3(0, 100, 0);
+        //if (Input.anyKeyDown)
+        //{
+        //    //m_cOwner.m_cImageRect.localPosition
+        //    //    += new Vector3(0, 100, 0);
 
-            this.m_cOwner.ChangeState(0, EFadeState.FadeOut);
-        }
+        //    this.m_cOwner.ChangeState(0, EFadeState.FadeOut);
+        //}
     }
 
     public override void Exit()
