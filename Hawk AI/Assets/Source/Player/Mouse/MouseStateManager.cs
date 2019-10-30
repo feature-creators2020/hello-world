@@ -39,6 +39,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public float m_fSlowTime;                   // 速度低下の効果時間経過
     public float m_fLimitSlowTime;              // 速度低下の効果時間
 
+    [System.NonSerialized]
+    public GameObject m_GTargetBoxObject;       // 上る段ボールのオブジェクト
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -85,6 +88,23 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // 各状態の処理
         base.Update();
 
+        // レイキャストによる壁の当たり判定処理
+        Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward, Color.red);
+        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Up])
+        {
+            Ray ray = new Ray(this.transform.position, this.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1.5f))
+            {
+                var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
+                if (LayerName == "Box")
+                {
+                    Debug.Log(hit.collider.gameObject.transform.position);
+                    m_GTargetBoxObject = hit.collider.gameObject;
+                    ChangeState(0, EMouseState.Up);
+                }
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -113,12 +133,6 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             //ScoreManager.Instance.GoalMouse();
             RespawnPoint.Instance.Respawn(this.gameObject);
-        }
-
-        // 壁
-        if(LayerName == "Wall")
-        {
-            ChangeState(0, EMouseState.Up);
         }
 
         if(LayerName == "Pipe")
