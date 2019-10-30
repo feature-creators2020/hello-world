@@ -93,18 +93,21 @@ public class DepthTexture : MonoBehaviour
 
         foreach (var obj in m_cGameObjectsList)
         {
-            foreach (var mtr in obj.GetComponent<SkinnedMeshRenderer>().materials)
+            if (obj.GetComponent<SkinnedMeshRenderer>() != null)
             {
-                if (_material != null)
+                foreach (var mtr in obj.GetComponent<SkinnedMeshRenderer>().materials)
                 {
-                    _material.SetFloat("_OutlineThreshold", _outlineThreshold);
-                    _material.SetColor("_OutlineColor", _outlineColor);
-                    _material.SetFloat("_OutlineThick", _outlineThick);
-                    foreach (var uv in obj.GetComponent<SkinnedMeshRenderer>().sharedMesh.uv)
+                    if (_material != null)
                     {
-                        _material.SetColor("_ObjectUV", new Color(uv.x, uv.y,0,0));
+                        _material.SetFloat("_OutlineThreshold", _outlineThreshold);
+                        _material.SetColor("_OutlineColor", _outlineColor);
+                        _material.SetFloat("_OutlineThick", _outlineThick);
+                        foreach (var uv in obj.GetComponent<SkinnedMeshRenderer>().sharedMesh.uv)
+                        {
+                            _material.SetColor("_ObjectUV", new Color(uv.x, uv.y, 0, 0));
+                        }
+                        _material.SetTexture("_MaterialTexture", mtr.GetTexture("_MainTex"));
                     }
-                    _material.SetTexture("_MaterialTexture", mtr.GetTexture("_MainTex"));
                 }
             }
         }
