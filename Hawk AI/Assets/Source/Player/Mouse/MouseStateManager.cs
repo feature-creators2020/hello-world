@@ -94,7 +94,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             Ray ray = new Ray(this.transform.position, this.transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1.5f))
+            if (Physics.Raycast(ray, out hit, 1f))
             {
                 var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
                 if (LayerName == "Box")

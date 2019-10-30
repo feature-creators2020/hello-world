@@ -10,15 +10,17 @@ public class MUpManager : CStateBase<MouseStateManager>
     Vector3 StartPos;   // 上る最初の地点
     Vector3 EndPos;     // 最終地点
 
-    float speed = 1.0f;
+    float speed = 5.0f;
+    float timer = 0f;
 
     public MUpManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
     {
+        timer = 0f;
         StartPos = m_cOwner.transform.position;
         var UpPos = StartPos + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y, 0f);
-        EndPos = UpPos + m_cOwner.transform.forward * 2.0f;
+        EndPos = UpPos + m_cOwner.transform.forward * 1.0f;
         Distance = Vector3.Distance(StartPos, EndPos);
         Debug.Log("StartPos : " + StartPos);
         Debug.Log("EndPos : " + EndPos);
@@ -38,12 +40,11 @@ public class MUpManager : CStateBase<MouseStateManager>
         m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
         m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
-        float presentLocation = (Time.time * speed) / Distance;
+        float presentLocation = (timer * speed) / Distance;
 
         m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
 
-        // 減衰速度増加
-        //DownSpeed += 0.1f;
+        timer += Time.deltaTime;
 
         if(presentLocation >= 1.0f)
         {
