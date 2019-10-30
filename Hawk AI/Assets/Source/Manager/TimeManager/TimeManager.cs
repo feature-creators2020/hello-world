@@ -41,7 +41,7 @@ public class TimeManager : GeneralManager, ITimeManager
         if (m_bTimeCounting == true)
         {
             m_fNowCountTime += Time.deltaTime;
-            Debug.Log("Time : " + m_fNowCountTime);
+            //Debug.Log("Time : " + m_fNowCountTime);
 
             if (m_fNowCountTime >= m_fEndOfTheTime)
             {
