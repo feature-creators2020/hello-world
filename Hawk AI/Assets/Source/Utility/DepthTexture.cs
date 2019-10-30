@@ -32,7 +32,7 @@ public class DepthTexture : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        SetMaterialProperties();
+        //SetMaterialProperties();
 #endif
     }
 
@@ -79,7 +79,7 @@ public class DepthTexture : MonoBehaviour
     }
 
     #region AllSetMaterial
-    private void SetMaterialProperties()
+    public void SetMaterialProperties()
     {
 
         GameObject ManagerObj =
@@ -91,22 +91,26 @@ public class DepthTexture : MonoBehaviour
             functor: (recieveTarget, y) => m_cGameObjectsList = recieveTarget.GetGameObjectsList());
 
 
-        foreach (var obj in m_cGameObjectsList)
+        if (m_cGameObjectsList.Count != 0)
         {
-            if (obj.GetComponent<SkinnedMeshRenderer>() != null)
+
+            foreach (var obj in m_cGameObjectsList)
             {
-                foreach (var mtr in obj.GetComponent<SkinnedMeshRenderer>().materials)
+                if (obj.GetComponent<SkinnedMeshRenderer>() != null)
                 {
-                    if (_material != null)
+                    foreach (var mtr in obj.GetComponent<SkinnedMeshRenderer>().materials)
                     {
-                        _material.SetFloat("_OutlineThreshold", _outlineThreshold);
-                        _material.SetColor("_OutlineColor", _outlineColor);
-                        _material.SetFloat("_OutlineThick", _outlineThick);
-                        foreach (var uv in obj.GetComponent<SkinnedMeshRenderer>().sharedMesh.uv)
+                        if (_material != null)
                         {
-                            _material.SetColor("_ObjectUV", new Color(uv.x, uv.y, 0, 0));
+                            _material.SetFloat("_OutlineThreshold", _outlineThreshold);
+                            _material.SetColor("_OutlineColor", _outlineColor);
+                            _material.SetFloat("_OutlineThick", _outlineThick);
+                            foreach (var uv in obj.GetComponent<SkinnedMeshRenderer>().sharedMesh.uv)
+                            {
+                                _material.SetColor("_ObjectUV", new Color(uv.x, uv.y, 0, 0));
+                            }
+                            _material.SetTexture("_MaterialTexture", mtr.GetTexture("_MainTex"));
                         }
-                        _material.SetTexture("_MaterialTexture", mtr.GetTexture("_MainTex"));
                     }
                 }
             }

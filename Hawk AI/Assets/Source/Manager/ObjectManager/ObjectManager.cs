@@ -24,6 +24,9 @@ public class ObjectManager : GeneralManager
     {
         base.GeneralUpdate();
         DebugUpdate();
+        GameObject obj = GameObject.Find("Main Camera");
+        obj.GetComponent<DepthTexture>().SetMaterialProperties();
+
     }
 
     public override void GeneralRelease()
