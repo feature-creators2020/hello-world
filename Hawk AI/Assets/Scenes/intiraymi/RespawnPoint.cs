@@ -15,6 +15,7 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
         RoomManager.Instance.FarOffHuman(RespObj ,RespList);
         //ランダムで生成場所を決定
         int number;
+        //もしすべての部屋に人間がいる状況が生まれた場合はすべてのリスポーン地からランダム
         if (RespList.Count > 0)
         {
             number = Random.Range(0, RespList.Count);
@@ -27,7 +28,7 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
         //Obj.SetActive(true);
         //設定位置に移動
         Vector3 pos = RespList[number].transform.position;
-        Obj.transform.position = new Vector3(pos.x, 1, pos.z);
+        Obj.transform.position = new Vector3(pos.x, 0.5f, pos.z);
 
     }
 }

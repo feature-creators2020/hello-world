@@ -9,26 +9,28 @@ public class InTheRoom : MonoBehaviour
     {
         //Debug.Log("InTheRoom.cs Start");
     }
-
+    //部屋番号
     [SerializeField]
     private int RoomIndex;
 
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.tag);
+        //Humanタグ持ちであれば(今はPlayer)
         if (other.tag == "Player")
         {
             //Debug.Log("Enter" + RoomIndex);
-            RoomManager.Instance.HumanEnter(RoomIndex, other.gameObject);
+            RoomManager.Instance.HumanEnter(RoomIndex);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+        //Humanタグ持ちであれば(今はPlayer)
         if (other.tag == "Player")
         {
             //Debug.Log("Exit" + RoomIndex);
-            RoomManager.Instance.HumanExit(RoomIndex, other.gameObject);
+            RoomManager.Instance.HumanExit(RoomIndex);
         }
     }
 }
