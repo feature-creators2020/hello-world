@@ -15,8 +15,8 @@ public class ObjectManager : GeneralManager
     {
         base.GeneralInit();
 
-        GameObject obj = GameObject.Find("Main Camera");
-        obj.GetComponent<DepthTexture>().Initialize();
+        //GameObject obj = GameObject.Find("PlayerCamera 3");
+        //obj.GetComponent<DepthTexture>().Initialize();
     }
 
     // Update is called once per frame
@@ -24,8 +24,8 @@ public class ObjectManager : GeneralManager
     {
         base.GeneralUpdate();
         DebugUpdate();
-        GameObject obj = GameObject.Find("Main Camera");
-        obj.GetComponent<DepthTexture>().SetMaterialProperties();
+        //GameObject obj = GameObject.Find("PlayerCamera 3");
+        //obj.GetComponent<DepthTexture>().SetMaterialProperties();
 
     }
 
