@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using GamepadInput;
 
 public class GameMainManager : CStateBase<GameManager>
 {
@@ -42,6 +43,18 @@ public class GameMainManager : CStateBase<GameManager>
             Debug.Log("Counting!");
             this.m_cOwner.ChangeState(0, EGameState.End);
         }
+
+        //if (Input.GetKeyDown(KeyCode.Alpha2) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
+        //{
+        //    ExecuteEvents.Execute<ITimeManager>(
+        //    target: m_cTimerObject,
+        //    eventData: null,
+        //    functor: (recieveTarget, y) => recieveTarget.TimeEnd());
+
+        //    this.m_cOwner.ChangeState(0, EGameState.End);
+
+        //}
+
     }
 
     public override void Exit()

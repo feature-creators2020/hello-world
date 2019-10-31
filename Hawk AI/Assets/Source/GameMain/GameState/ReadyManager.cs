@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using GamepadInput;
 
 public class ReadyManager : CStateBase<GameManager>
 {
@@ -16,12 +17,12 @@ public class ReadyManager : CStateBase<GameManager>
         ExecuteEvents.Execute<IFadeInterfase>(
         target: obj,
         eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+        functor: (recieveTarget, y) => recieveTarget.CallFadeStay());
 
     }
     public override void Execute()
     {
-        if(Input.anyKeyDown)
+        if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
         {
             this.m_cOwner.ChangeState(0, EGameState.Main);
         }

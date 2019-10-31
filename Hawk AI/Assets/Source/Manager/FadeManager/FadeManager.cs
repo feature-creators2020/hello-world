@@ -95,16 +95,19 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterf
 
     public virtual void CallFadeIn()
     {
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeIn]);
+        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EFadeState.FadeIn])
+            m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeIn]);
     }
     public virtual void CallFadeOut()
     {
+        if(m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EFadeState.FadeOut])
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeOut]);
     }
 
     public virtual void CallFadeStay()
     {
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeStay]);
+        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EFadeState.FadeStay])
+            m_cStateMachineList[0].ChangeState(m_cStateList[(int)EFadeState.FadeStay]);
     }
 
 }
