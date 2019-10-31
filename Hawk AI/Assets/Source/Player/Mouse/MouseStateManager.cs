@@ -97,12 +97,12 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         base.Update();
 
         // レイキャストによる壁の当たり判定処理
-        Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward, Color.red);
+        Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Up])
         {
             Ray ray = new Ray(this.transform.position, this.transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1f))
+            if (Physics.Raycast(ray, out hit, 0.5f))
             {
                 var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
                 var TagName = hit.collider.gameObject.tag;

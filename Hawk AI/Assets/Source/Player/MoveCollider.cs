@@ -12,9 +12,10 @@ public class MoveCollider : MonoBehaviour
 
     public void JudgeCollision()
     {
-        var scale = transform.lossyScale.x;
+        var scale = transform.lossyScale.x * 0.5f;
+        var scaley = transform.lossyScale.y * 0.2f;
 
-        var isHit = Physics.BoxCast(this.transform.position, Vector3.one * scale, this.transform.forward, out hit);
+        var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, this.transform.forward, out hit);
     }
 
     void OnDrawGizmos()
@@ -23,12 +24,13 @@ public class MoveCollider : MonoBehaviour
             return;
 
         var scale = transform.lossyScale.x * 0.5f;
+        var scaley = transform.lossyScale.y * 0.2f;
 
-        var isHit = Physics.BoxCast(this.transform.position, Vector3.one * scale, this.transform.forward, out hit, this.transform.rotation);
+        var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, this.transform.forward, out hit, this.transform.rotation);
         if (isHit)
         {
             Gizmos.DrawRay(this.transform.position, this.transform.forward * hit.distance);
-            Gizmos.DrawWireCube(this.transform.position + this.transform.forward * hit.distance, Vector3.one * scale * 2);
+            Gizmos.DrawWireCube(this.transform.position + this.transform.forward * hit.distance, new Vector3(scale, scaley, scale)/*Vector3.one * scale * 2*/);
         }
         else
         {

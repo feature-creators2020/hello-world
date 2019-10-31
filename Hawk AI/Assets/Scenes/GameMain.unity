@@ -4063,17 +4063,22 @@ PrefabInstance:
     - target: {fileID: 3119138605471699372, guid: 58c35965b4a30b74a8a47292cfcc0dad,
         type: 3}
       propertyPath: GamePadIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3119138606266010453, guid: 58c35965b4a30b74a8a47292cfcc0dad,
         type: 3}
       propertyPath: GamePadIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3119138606266010450, guid: 58c35965b4a30b74a8a47292cfcc0dad,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984197283490395065, guid: 58c35965b4a30b74a8a47292cfcc0dad,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c35965b4a30b74a8a47292cfcc0dad, type: 3}
@@ -4204,6 +4209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805150697967503367, guid: b1c2053a5032b4049abfed9e6499e65a,
+        type: 3}
+      propertyPath: isEnable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c2053a5032b4049abfed9e6499e65a, type: 3}
