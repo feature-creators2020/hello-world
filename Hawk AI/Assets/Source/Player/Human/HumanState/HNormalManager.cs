@@ -80,13 +80,27 @@ public class HNormalManager : CStateBase<HumanStateManager>
             // 移動量
             Vector3 moveForward = cameraForward * m_cOwner.inputVertical + m_cOwner.targetCamera.transform.right * m_cOwner.inputHorizontal;
 
-            m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
-
-            // キャラクターの向きを進行方向に
             if (moveForward != Vector3.zero)
             {
                 m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
             }
+
+            // 移動判定
+            if (m_cOwner.IsMove(moveForward))
+            {
+
+            }
+            else
+            {
+                var correctionMove = m_cOwner.hMoveColliderScript.hit.normal;
+                moveForward += correctionMove;
+                if (m_cOwner.IsMove(moveForward))
+                {
+                    moveForward -= correctionMove;
+                }
+            }
+            // 移動処理
+            m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
         }
 
         // Debug:ステート変更

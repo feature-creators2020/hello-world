@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 8630323227638150942}
   - component: {fileID: 2303828207202718224}
   - component: {fileID: 3658964339341815273}
+  - component: {fileID: 805150697967503367}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Mouse
@@ -174,6 +175,7 @@ MonoBehaviour:
   m_fSlowDownRate: 0.5
   m_fDoorSpeed: 2
   m_fLimitSlowTime: 2
+  m_cPipeTransPosObj: []
 --- !u!65 &8630323227638150942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -216,6 +218,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &805150697967503367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3658964339341815254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf17222a44a5e148a64eae67a7cb538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnable: 0
 --- !u!1001 &4483525846019309069
 PrefabInstance:
   m_ObjectHideFlags: 0

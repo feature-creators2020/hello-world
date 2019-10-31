@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 6135736947718602664}
   - component: {fileID: 6135736947718602644}
   - component: {fileID: 9110760294867481874}
+  - component: {fileID: 2968986374280131727}
   m_Layer: 0
   m_Name: Human
   m_TagString: Player
@@ -470,6 +471,9 @@ MonoBehaviour:
   m_fDoorSpeed: 2.5
   m_fLimitSlowTime: 2
   m_fLimitActionTime: 2
+  layermask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &6135736947718602664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -512,6 +516,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &2968986374280131727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135736947718602646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf17222a44a5e148a64eae67a7cb538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnable: 0
 --- !u!1 &6135736948011373774
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6135736948011373773}
   m_Layer: 0
-  m_Name: Player_Human
+  m_Name: Player_Human2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,7 +608,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &198628853351046586
 BoxCollider:

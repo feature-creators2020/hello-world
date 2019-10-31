@@ -46,6 +46,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     [System.NonSerialized]
     public HCatchZone hCatchZone;               // 捕獲判定用
+    [System.NonSerialized]
+    public MoveCollider hMoveColliderScript;    // 移動判定用スクリプト
 
     /*{
         get { return m_fmoveSpeed; }
@@ -60,6 +62,12 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     [System.NonSerialized]
     public EHumanState EOldState;        // 前の状態を保持
+
+    Transform char_trans;
+    public LayerMask layermask;
+    Vector3 char_velocity;
+    Vector3 char_velocity_input;
+    float RayLength;
 
     // Start is called before the first frame update
     void Start()
@@ -82,10 +90,17 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_sItemData = null;
     }
 
+    void Awake()
+    {
+        char_trans = transform;
+        RayLength = 2.5f;
+    }
+    
     // Update is called once per frame
     public override void Update()
     {
         hCatchZone = this.transform.Find("CatchZone").GetComponent<HCatchZone>();
+        hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
 
         // 各状態の処理
         base.Update();        
@@ -226,5 +241,45 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 m_isInvincible = true;
             }
         }
+    }
+
+    public bool IsMove(Vector3 movepos)
+    {
+        hMoveColliderScript.JudgeCollision();
+
+        if(hMoveColliderScript.hit.distance <= 0.5f)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void RayJudge(Vector3 MoveForward)
+    {
+        RaycastHit hit;
+        //**************壁にぶつかった際の移動を制限******************
+        char_velocity = char_velocity_input;
+
+        // メモ:前後と左右もそれぞれ別ける必要があるかもしれない
+        //      進行方向が斜めの可能性があるため、当たったオブジェクトのベクトルが必要・・・？
+        //前後方向                
+        if ((Physics.Raycast(this.transform.position, targetCamera.transform.forward,out hit, RayLength,
+            layermask, QueryTriggerInteraction.Ignore) && char_velocity.z <= 0) ||
+            (Physics.Raycast(this.transform.position, -targetCamera.transform.forward, RayLength, layermask,
+            QueryTriggerInteraction.Ignore) && char_velocity.z >= 0))
+        {
+            MoveForward = new Vector3(char_velocity.x, char_velocity.y, 0);
+        }
+        //左右方向              
+        if ((Physics.Raycast(this.transform.position, targetCamera.transform.right, RayLength,
+          layermask, QueryTriggerInteraction.Ignore) && char_velocity.x <= 0) ||
+          (Physics.Raycast(this.transform.position, -targetCamera.transform.right, RayLength, layermask,
+           QueryTriggerInteraction.Ignore) && char_velocity.x >= 0))
+        {
+            MoveForward = new Vector3(0, char_velocity.y, char_velocity.z);
+        }
+
+        transform.position += MoveForward * m_fmoveSpeed * Time.deltaTime;
     }
 }

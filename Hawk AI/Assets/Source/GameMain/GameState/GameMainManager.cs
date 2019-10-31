@@ -39,6 +39,7 @@ public class GameMainManager : CStateBase<GameManager>
 
         if (m_bCountFlg == false)
         {
+            Debug.Log("Counting!");
             this.m_cOwner.ChangeState(0, EGameState.End);
         }
     }
