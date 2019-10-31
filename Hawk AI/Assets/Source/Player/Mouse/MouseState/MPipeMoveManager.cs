@@ -59,7 +59,6 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
 
     private void MoveLerp()
     {
-        float speed = 3f;
         var StartPos = this.m_cOwner.m_cPipeTransPosObj[m_cPipeCount].transform.position;
         var EndPos = this.m_cOwner.m_cPipeTransPosObj[1 + m_cPipeCount].transform.position;
 
@@ -67,7 +66,7 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         {
             this.m_cOwner.transform.position =
             Vector3.Lerp(StartPos, EndPos, lerpVal);
-            lerpVal += Time.deltaTime / speed; ;
+            lerpVal += Time.deltaTime / this.m_cOwner.m_fPipeSpeed;
 
 
             // キャラクターの向きを進行方向に
@@ -102,8 +101,9 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
     {
         this.m_cOwner.GetComponent<Rigidbody>().useGravity = true;
         this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
     }
 
 }

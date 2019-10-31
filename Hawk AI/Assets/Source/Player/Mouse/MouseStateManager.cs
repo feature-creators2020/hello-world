@@ -47,7 +47,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [System.NonSerialized]
     public MoveCollider hMoveColliderScript;    // 移動判定用スクリプト
 
-
+    public float m_fPipeSpeed;                  // 計算時の速
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -105,11 +105,15 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             if (Physics.Raycast(ray, out hit, 1f))
             {
                 var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
+                var TagName = hit.collider.gameObject.tag;
                 if (LayerName == "Box")
                 {
-                    Debug.Log(hit.collider.gameObject.transform.position);
-                    m_GTargetBoxObject = hit.collider.gameObject;
-                    ChangeState(0, EMouseState.Up);
+                    if (TagName == "CanClimbing")
+                    {
+                        Debug.Log(hit.collider.gameObject.transform.position);
+                        m_GTargetBoxObject = hit.collider.gameObject;
+                        ChangeState(0, EMouseState.Up);
+                    }
                 }
             }
         }
@@ -223,8 +227,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public virtual void Catched()
     {
-        Debug.Log("Catched!");
-        ChangeState(0, EMouseState.Catch);
+        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
+        {
+            Debug.Log("Catched!");
+            ChangeState(0, EMouseState.Catch);
+        }
     }
 
 

@@ -39,6 +39,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [System.NonSerialized]
     public bool m_isInvincible = false;         // アイテムを設置したときにそのアイテムと干渉させない
     [System.NonSerialized]
+    int m_nInTrapCnt;
+    [System.NonSerialized]
     public ItemManager m_Itemmanager;                    // アイテム管理
     [System.NonSerialized]
     public float m_fActionTime;                    // アクション経過時間
@@ -88,6 +90,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         // 初期設定
         m_sItemData = null;
+        m_nInTrapCnt = 0;
     }
 
     void Awake()
@@ -119,6 +122,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 {
                     ChangeState(0, EHumanState.SlowDown);
                 }
+            }
+            else
+            {
+                m_nInTrapCnt++;
             }
         }
 
@@ -186,7 +193,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 // ネズミ捕り
                 if (other.gameObject.tag == "Mousetrap")
                 {
-                    m_isInvincible = false; // 無敵状態を解除する
+                    m_nInTrapCnt--;
+                    if (m_nInTrapCnt <= 0)
+                    {
+                        m_isInvincible = false; // 無敵状態を解除する
+                    }
                 }
             }
             else
@@ -247,7 +258,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         hMoveColliderScript.JudgeCollision();
 
-        if(hMoveColliderScript.hit.distance <= 0.5f)
+        if(hMoveColliderScript.hit.distance <= 0.25f)
         {
             return false;
         }
