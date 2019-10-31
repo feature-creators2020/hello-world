@@ -44,6 +44,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public List<GameObject> m_cPipeTransPosObj = new List<GameObject>();
 
+    [System.NonSerialized]
+    public MoveCollider hMoveColliderScript;    // 移動判定用スクリプト
+
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -86,6 +90,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         var playerNo = GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
+        hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
+
 
         // 各状態の処理
         base.Update();
@@ -124,8 +130,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             }
         }
 
-        // ドアに当たる
-        if (LayerName == "Door")
+        // 隙間
+        if (LayerName == "Gap")
         {
             ChangeState(0, EMouseState.Door);
         }
@@ -198,7 +204,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             
         }
 
-        if (LayerName == "Door")
+        if (LayerName == "Gap")
         {
             ChangeState(0, EOldState);
         }
@@ -219,6 +225,19 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         Debug.Log("Catched!");
         ChangeState(0, EMouseState.Catch);
+    }
+
+
+    public bool IsMove(Vector3 movepos)
+    {
+        hMoveColliderScript.JudgeCollision();
+
+        if (hMoveColliderScript.hit.distance <= 0.25f)
+        {
+            return false;
+        }
+
+        return true;
     }
 
 }

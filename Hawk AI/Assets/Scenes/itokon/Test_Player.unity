@@ -3457,38 +3457,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be4e23a21c9eb344d9424b2a01edc1ef, type: 3}
---- !u!1 &2098479966 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1059628868630818370, guid: 58c35965b4a30b74a8a47292cfcc0dad,
-    type: 3}
-  m_PrefabInstance: {fileID: 3119138606691047816}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &2098479969
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098479966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2098479970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098479966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf17222a44a5e148a64eae67a7cb538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnable: 0
 --- !u!4 &3119138605814636948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6135736948011373773, guid: 0f545b34dbf55fa419b68bc0f36432d4,
@@ -3662,6 +3630,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3658964338663343350, guid: b1c2053a5032b4049abfed9e6499e65a,
+        type: 3}
+      propertyPath: GamePadIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658964339341815277, guid: b1c2053a5032b4049abfed9e6499e65a,
+        type: 3}
+      propertyPath: m_fDoorSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658964339341815277, guid: b1c2053a5032b4049abfed9e6499e65a,
+        type: 3}
+      propertyPath: GamePadIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c2053a5032b4049abfed9e6499e65a, type: 3}
 --- !u!4 &4664088489344973470 stripped
@@ -3774,7 +3757,7 @@ PrefabInstance:
     - target: {fileID: 8566625254624156451, guid: 68b5dfb385e0954478e714fb8188c696,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.55
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8566625254624156451, guid: 68b5dfb385e0954478e714fb8188c696,
         type: 3}
