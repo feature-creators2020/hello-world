@@ -143,7 +143,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // ゴール地点
         if (LayerName == "Goal")
         {
-            //ScoreManager.Instance.GoalMouse();
+            ScoreBoard.Instance.GetCheese();
             RespawnPoint.Instance.Respawn(this.gameObject);
         }
 
