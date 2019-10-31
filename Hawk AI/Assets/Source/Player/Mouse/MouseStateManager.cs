@@ -42,6 +42,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [System.NonSerialized]
     public GameObject m_GTargetBoxObject;       // 上る段ボールのオブジェクト
 
+    public List<GameObject> m_cPipeTransPosObj = new List<GameObject>();
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -137,6 +139,29 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
         if(LayerName == "Pipe")
         {
+
+            if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
+            {
+                if (other.gameObject.name == "Collision_1")
+                {
+
+                    ExecuteEvents.Execute<IPipeInterfase>(
+                    target: other.gameObject.transform.parent.parent.gameObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => m_cPipeTransPosObj = recieveTarget.GetPipeObjects);
+
+                }
+                else if (other.gameObject.name == "Collision_2")
+                {
+
+                    ExecuteEvents.Execute<IPipeInterfase>(
+                    target: other.gameObject.transform.parent.parent.gameObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => m_cPipeTransPosObj = recieveTarget.GetInversePipeObjects);
+
+                }
+            }
+
             ChangeState(0, EMouseState.Pipe);
         }
 
@@ -178,10 +203,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             ChangeState(0, EOldState);
         }
 
-        if (LayerName == "Pipe")
-        {
-            ChangeState(0, EOldState);
-        }
+        //if (LayerName == "Pipe")
+        //{
+        //    ChangeState(0, EOldState);
+        //}
 
         if (LayerName == "Goal")
         {
@@ -195,4 +220,5 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         Debug.Log("Catched!");
         ChangeState(0, EMouseState.Catch);
     }
+
 }

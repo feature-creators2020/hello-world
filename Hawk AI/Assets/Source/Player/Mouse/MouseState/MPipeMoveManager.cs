@@ -8,6 +8,11 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
 {
     public MPipeMoveManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
+    private const int AT_FIRST_POSELEMENT = 1;
+
+    private int m_cPipeCount= AT_FIRST_POSELEMENT;
+    private float lerpVal = 0f;
+
     public override void Enter()
     {
         //TODO : Target Object Pulling is Change
@@ -15,6 +20,9 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         target: GameObject.Find("testPermeableModel").gameObject,
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.SetMaterial(this.m_cOwner.gameObject));
+
+        GravityOff();
+
     }
 
     public override void Execute()
@@ -24,17 +32,6 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
 
-        // 効果時間処理
-        if (m_cOwner.EOldState == EMouseState.SlowDown)
-        {
-            // 経過時間処理
-            m_cOwner.m_fSlowTime -= Time.deltaTime;
-            // タイマーが過ぎてたら前の状態をnormalにする
-            if (m_cOwner.m_fSlowTime <= 0f)
-            {
-                m_cOwner.EOldState = EMouseState.Normal;
-            }
-        }
 
         // ゲームパッドの入力情報取得
         m_cOwner.inputHorizontal = 0f;
@@ -45,29 +42,7 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         m_cOwner.inputHorizontal = 0.0f;
         m_cOwner.inputVertical = 2.0f;
 
-        // カメラの方向から、x-z平面の単位ベクトルを取得
-        Vector3 cameraForward = Vector3.Scale(m_cOwner.targetCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        // 移動量
-        Vector3 moveForward = cameraForward * m_cOwner.inputVertical + m_cOwner.targetCamera.transform.right * m_cOwner.inputHorizontal;
-        m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
-
-        // キャラクターの向きを進行方向に
-        if (moveForward != Vector3.zero)
-        {
-            m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
-        }
-
-
-        // Debug:ステート変更
-        if (GamePad.GetButtonDown(GamePad.Button.X, playerNo))
-        {
-            m_cOwner.ChangeState(0, EMouseState.SlowDown);
-        }
-        if (GamePad.GetButtonDown(GamePad.Button.Y, playerNo))
-        {
-            m_cOwner.ChangeState(0, EMouseState.Door);
-        }
+        MoveLerp();
     }
 
     public override void Exit()
@@ -78,5 +53,57 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.RevertMaterial(this.m_cOwner.gameObject));
 
+        GravityOn();
+
     }
+
+    private void MoveLerp()
+    {
+        float speed = 3f;
+        var StartPos = this.m_cOwner.m_cPipeTransPosObj[m_cPipeCount].transform.position;
+        var EndPos = this.m_cOwner.m_cPipeTransPosObj[1 + m_cPipeCount].transform.position;
+
+        if (lerpVal <= 1f)
+        {
+            this.m_cOwner.transform.position =
+            Vector3.Lerp(StartPos, EndPos, lerpVal);
+            lerpVal += Time.deltaTime / speed; ;
+
+
+            // キャラクターの向きを進行方向に
+            Vector3 moveForward = EndPos - StartPos;
+            m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+
+        }
+        else
+        {
+            lerpVal = 0f;
+            m_cPipeCount++;
+        }
+
+
+        if ((1 + m_cPipeCount) == this.m_cOwner.m_cPipeTransPosObj.Count)
+        {
+            m_cPipeCount = AT_FIRST_POSELEMENT;
+            this.m_cOwner.m_cPipeTransPosObj = null;
+            m_cOwner.ChangeState(0, EMouseState.Normal);
+
+            return;
+        }
+    }
+
+    private void GravityOff()
+    {
+        this.m_cOwner.GetComponent<Rigidbody>().useGravity = false;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void GravityOn()
+    {
+        this.m_cOwner.GetComponent<Rigidbody>().useGravity = true;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+    }
+
 }
