@@ -4365,12 +4365,12 @@ PrefabInstance:
     - target: {fileID: 3658964338663343350, guid: b1c2053a5032b4049abfed9e6499e65a,
         type: 3}
       propertyPath: GamePadIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3658964339341815277, guid: b1c2053a5032b4049abfed9e6499e65a,
         type: 3}
       propertyPath: GamePadIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3658964339341815277, guid: b1c2053a5032b4049abfed9e6499e65a,
         type: 3}
@@ -9664,6 +9664,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717897689533605020, guid: 0f545b34dbf55fa419b68bc0f36432d4,
+        type: 3}
+      propertyPath: GamePadIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288416692890385115, guid: 0f545b34dbf55fa419b68bc0f36432d4,
+        type: 3}
+      propertyPath: GamePadIndex
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f545b34dbf55fa419b68bc0f36432d4, type: 3}
