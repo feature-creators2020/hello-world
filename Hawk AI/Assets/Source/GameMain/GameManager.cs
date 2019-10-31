@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 
 public interface IGameInterface : IEventSystemHandler
 {
-    
+    void ChangeState(EGameState eGameState);
 }
 
 public enum EGameState
@@ -70,4 +70,10 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
 
         return null;
     }
+    public virtual void ChangeState(EGameState eGameState)
+    {
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)eGameState]);
+
+    }
+
 }
