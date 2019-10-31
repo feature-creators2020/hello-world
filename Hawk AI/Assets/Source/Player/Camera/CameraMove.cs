@@ -14,6 +14,8 @@ public class CameraMove : MonoBehaviour
     Vector3 def;
     Vector3 offset;
 
+    bool SwitchInput = false;   // トリガー、スティック操作の切り替え
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +37,19 @@ public class CameraMove : MonoBehaviour
         var keyState = GamePad.GetState(playerNo, false);
 
         // ゲームパッドの入力情報取得
+        if (GamePad.GetButtonDown(GamePad.Button.Start, playerNo))
+        {
+            SwitchInput = !SwitchInput;
+        }
+
         float LeftTrigger = keyState.LeftTrigger + 1.0f;
         float RightTrigger = keyState.RightTrigger + 1.0f;
         float inputViewHorizontal = (RightTrigger - LeftTrigger) * 0.5f;
 
-        //targetPos = this.transform.parent.transform.position;
+        if (SwitchInput)
+        {
+            inputViewHorizontal = keyState.rightStickAxis.x;
+        }
 
         this.transform.RotateAround(targetPos, Vector3.up, inputViewHorizontal * Time.deltaTime * 200f);
 
