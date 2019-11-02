@@ -37,11 +37,6 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         m_cOwner.inputHorizontal = 0f;
         m_cOwner.inputVertical = 0f;
 
-        //m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
-        //m_cOwner.inputVertical = keyState.LeftStickAxis.y;
-        m_cOwner.inputHorizontal = 0.0f;
-        m_cOwner.inputVertical = 2.0f;
-
         MoveLerp();
     }
 

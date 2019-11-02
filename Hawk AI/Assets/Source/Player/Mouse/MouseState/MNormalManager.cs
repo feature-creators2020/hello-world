@@ -61,14 +61,6 @@ public class MNormalManager : CStateBase<MouseStateManager>
 
 
         // Debug:ステート変更
-        if (GamePad.GetButtonDown(GamePad.Button.X, playerNo))
-        {
-            m_cOwner.ChangeState(0, EMouseState.SlowDown);
-        }
-        if (GamePad.GetButtonDown(GamePad.Button.Y, playerNo))
-        {
-            m_cOwner.ChangeState(0, EMouseState.Door);
-        }
     }
 
     public override void Exit()

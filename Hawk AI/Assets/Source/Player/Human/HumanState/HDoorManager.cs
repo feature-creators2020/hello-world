@@ -82,15 +82,6 @@ public class HDoorManager : CStateBase<HumanStateManager>
 
 
         // Debug:ステート変更
-        if (GamePad.GetButtonDown(GamePad.Button.X, playerNo))
-        {
-            m_cOwner.ChangeState(0, EHumanState.Normal);
-        }
-        if (GamePad.GetButtonDown(GamePad.Button.Y, playerNo))
-        {
-            m_cOwner.ChangeState(0, EHumanState.SlowDown);
-        }
-
     }
 
     public override void Exit()
