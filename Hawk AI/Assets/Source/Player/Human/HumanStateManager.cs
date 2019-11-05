@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 using UnityEngine.EventSystems;
+using KeyBoardInput;
+
 public enum EHumanState
 {
     Normal,
@@ -18,6 +20,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public float inputVertical;                 // コントローラーLスティック縦軸情報
     public Camera targetCamera;                 // 対象のカメラ
     public GamePad.Index GamePadIndex;          // 対象のコントローラー
+    public KeyBoard.Index KeyboardIndex;        // 対象のキーボード
 
     [System.NonSerialized]
     public float m_fmoveSpeed;                  // 計算時の速度
@@ -111,7 +114,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter! : " + other);
+        //Debug.Log("OnTriggerEnter! : " + other);
         // トラップに当たる
         if (LayerMask.LayerToName(other.gameObject.layer) == "Trap")
         {
@@ -137,8 +140,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
             // 対象のドア情報を取得
             GDoorData = other.gameObject.transform.parent.Find("DoorScript").gameObject;
-            Debug.Log(other.gameObject.name);
-            Debug.Log(other.gameObject.transform.parent.Find("DoorScript").gameObject.name);
+            //Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.transform.parent.Find("DoorScript").gameObject.name);
 
             // 状態を切り替える
             ChangeState(0, EHumanState.Door);
@@ -151,21 +154,21 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             {
                 // アイテムマネージャー取得
                 var ItemManagerObject = ManagerObjectManager.Instance.GetGameObject("ItemManager");
-                Debug.Log(ItemManagerObject.name);
+                //Debug.Log(ItemManagerObject.name);
                 m_Itemmanager = ItemManagerObject.GetComponent<ItemManager>();
-                Debug.Log(m_Itemmanager.name);
+                //Debug.Log(m_Itemmanager.name);
 
                 // ネズミ捕り
                 if (other.gameObject.tag == "Mousetrap")
                 {
                     m_sItemData = "MousetrapManager";
-                    Debug.Log("GetItem");
+                    //Debug.Log("GetItem");
                 }
 
                 // 取得したのでオブジェクトを消す
                 Destroy(other.gameObject);
             }
-            Debug.Log("Item : " + m_sItemData);
+            //Debug.Log("Item : " + m_sItemData);
         }
     }
 
@@ -232,14 +235,14 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     // アイテム使用処理
     public void UseItem()
     {
-        Debug.Log("UseItem : " + m_sItemData);
+        //Debug.Log("UseItem : " + m_sItemData);
         if(m_sItemData != null)
         {
             if (m_canPut) {
-                Debug.Log("Put!");
+                //Debug.Log("Put!");
                 // プレハブを取得
                 var item = m_Itemmanager.GetGameObject(m_sItemData);
-                Debug.Log("ItemManager : " + item);
+                //Debug.Log("ItemManager : " + item);
                 // プレハブからインスタンスを生成
                 ExecuteEvents.Execute<IItemInterface>(
                     target: item,

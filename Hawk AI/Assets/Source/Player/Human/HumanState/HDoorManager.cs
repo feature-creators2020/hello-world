@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using GamepadInput;
+using KeyBoardInput;
 
 public class HDoorManager : CStateBase<HumanStateManager>
 {
@@ -15,10 +16,12 @@ public class HDoorManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Door");
+        //Debug.Log("State:Door");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
+        var playerKeyNo = (KeyBoard.Index)playerNo;
+        var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
         var DoorScript = m_cOwner.GDoorData.GetComponent<Door>();
 
         // 速度設定
@@ -41,9 +44,9 @@ public class HDoorManager : CStateBase<HumanStateManager>
         }
 
         // ドアを開閉する
-        if (GamePad.GetButtonDown(GamePad.Button.B, playerNo))
+        if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
         {
-            Debug.Log("DoorAction : " + DoorScript.isClosing);
+            //Debug.Log("DoorAction : " + DoorScript.isClosing);
             ExecuteEvents.Execute<IDoorInterface>(
                 target: m_cOwner.GDoorData,
                 eventData: null,
@@ -56,6 +59,8 @@ public class HDoorManager : CStateBase<HumanStateManager>
 
         m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
         m_cOwner.inputVertical = keyState.LeftStickAxis.y;
+        m_cOwner.inputHorizontal += keyboardState.LeftStickAxis.x;
+        m_cOwner.inputVertical += keyboardState.LeftStickAxis.y;
 
         // カメラの方向から、x-z平面の単位ベクトルを取得
         Vector3 cameraForward = Vector3.Scale(m_cOwner.targetCamera.transform.forward, new Vector3(1, 0, 1)).normalized;

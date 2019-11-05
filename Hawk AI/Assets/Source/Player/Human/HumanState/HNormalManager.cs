@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 using UnityEngine.EventSystems;
+using KeyBoardInput;
+
 
 public class HNormalManager : CStateBase<HumanStateManager>
 {
@@ -15,18 +17,21 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Normal");
+        //Debug.Log("State:Normal");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
+        var playerKeyNo = (KeyBoard.Index)playerNo;
+        var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
+
 
         // 捕獲処理
         if (m_cOwner.hCatchZone.isCatch)
         {
-            Debug.Log("in the Zone !!");
-            if (GamePad.GetButtonDown(GamePad.Button.B, playerNo))
+            //Debug.Log("in the Zone !!");
+            if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
             {
-                Debug.Log("Catch!! : " + m_cOwner.hCatchZone.TargetObject.name);
+                //Debug.Log("Catch!! : " + m_cOwner.hCatchZone.TargetObject.name);
                 ExecuteEvents.Execute<IMouseInterface>(
                     target: m_cOwner.hCatchZone.TargetObject,
                     eventData: null,
@@ -36,7 +41,7 @@ public class HNormalManager : CStateBase<HumanStateManager>
         }
 
         // アイテム使用
-        if(GamePad.GetButton(GamePad.Button.B, playerNo))
+        if(GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
         {
             // アイテムを所持しているか
             if (m_cOwner.m_sItemData != null)
@@ -73,6 +78,8 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
             m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
             m_cOwner.inputVertical = keyState.LeftStickAxis.y;
+            m_cOwner.inputHorizontal += keyboardState.LeftStickAxis.x;
+            m_cOwner.inputVertical += keyboardState.LeftStickAxis.y;
 
             // カメラの方向から、x-z平面の単位ベクトルを取得
             Vector3 cameraForward = Vector3.Scale(m_cOwner.targetCamera.transform.forward, new Vector3(1, 0, 1)).normalized;

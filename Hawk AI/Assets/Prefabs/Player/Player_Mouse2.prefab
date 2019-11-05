@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 2533581663403881555}
   GamePadIndex: 4
+  KeyboardIndex: 4
   m_fDefaultSpeed: 3
   m_fSlowDownRate: 0.5
   m_fDoorSpeed: 0.2
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObj: {fileID: 2533581663111355761}
   GamePadIndex: 4
+  KeyboardIndex: 4
 --- !u!1 &2533581663618436498
 GameObject:
   m_ObjectHideFlags: 0

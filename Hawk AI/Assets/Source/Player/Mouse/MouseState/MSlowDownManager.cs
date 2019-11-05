@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
-
+using KeyBoardInput;
 
 public class MSlowDownManager : CStateBase<MouseStateManager>
 {
@@ -20,10 +20,12 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:SlowDown");
+        //Debug.Log("State:SlowDown");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
+        var playerKeyNo = (KeyBoard.Index)playerNo;
+        var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
 
         // 速度設定
         m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed * m_cOwner.m_fSlowDownRate;
@@ -34,6 +36,8 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
 
         m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
         m_cOwner.inputVertical = keyState.LeftStickAxis.y;
+        m_cOwner.inputHorizontal += keyboardState.LeftStickAxis.x;
+        m_cOwner.inputVertical += keyboardState.LeftStickAxis.y;
 
         // カメラの方向から、x-z平面の単位ベクトルを取得
         Vector3 cameraForward = Vector3.Scale(m_cOwner.targetCamera.transform.forward, new Vector3(1, 0, 1)).normalized;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
+using KeyBoardInput;
 
 
 public class CameraMove : MonoBehaviour
@@ -10,6 +11,7 @@ public class CameraMove : MonoBehaviour
     public GameObject targetObj;
     Vector3 targetPos;
     public GamePad.Index GamePadIndex;
+    public KeyBoard.Index KeyboardIndex;
 
     Vector3 def;
     Vector3 offset;
@@ -35,16 +37,20 @@ public class CameraMove : MonoBehaviour
         // ゲームパッドの情報取得
         var playerNo = GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
+        var playerKeyNo = (KeyBoard.Index)playerNo;
+        var keyboardState = KeyBoard.GetState(KeyboardIndex, false);
 
         // ゲームパッドの入力情報取得
         if (GamePad.GetButtonDown(GamePad.Button.Start, playerNo))
         {
             SwitchInput = !SwitchInput;
+            //Debug.Log("Switch Mode " + playerNo);
         }
 
         float LeftTrigger = keyState.LeftTrigger + 1.0f;
         float RightTrigger = keyState.RightTrigger + 1.0f;
         float inputViewHorizontal = (RightTrigger - LeftTrigger) * 0.5f;
+        inputViewHorizontal += keyboardState.rightStickAxis.x;
 
         if (SwitchInput)
         {

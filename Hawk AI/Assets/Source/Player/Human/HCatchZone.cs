@@ -21,7 +21,7 @@ public class HCatchZone : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log("OnTriggerStay");
+        //Debug.Log("OnTriggerStay");
         if(other.tag == "Mouse")
         {
             isCatch = true;
@@ -31,7 +31,7 @@ public class HCatchZone : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit");
+        //Debug.Log("OnTriggerExit");
         isCatch = false;
     }
 

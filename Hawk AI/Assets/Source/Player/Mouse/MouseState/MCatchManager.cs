@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
+using KeyBoardInput;
 
 public class MCatchManager : CStateBase<MouseStateManager>
 {
@@ -14,7 +15,7 @@ public class MCatchManager : CStateBase<MouseStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Catch");
+        //Debug.Log("State:Catch");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);

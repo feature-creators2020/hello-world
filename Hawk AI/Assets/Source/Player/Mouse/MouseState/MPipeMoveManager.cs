@@ -27,7 +27,7 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Pipe");
+        //Debug.Log("State:Pipe");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);

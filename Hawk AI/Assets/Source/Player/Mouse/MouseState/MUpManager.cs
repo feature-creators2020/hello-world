@@ -19,16 +19,19 @@ public class MUpManager : CStateBase<MouseStateManager>
     {
         timer = 0f;
         StartPos = m_cOwner.transform.position;
-        var UpPos = StartPos + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y, 0f);
+        var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
+        var SubPos = TopPos - StartPos;
+        var UpPos = StartPos + new Vector3(0f, SubPos.y, 0f);
         EndPos = UpPos + m_cOwner.transform.forward * 0.5f;
         Distance = Vector3.Distance(StartPos, EndPos);
         Debug.Log("StartPos : " + StartPos);
         Debug.Log("EndPos : " + EndPos);
+        GravityOff();
     }
 
     public override void Execute()
     {
-        Debug.Log("State:Up");
+        //Debug.Log("State:Up");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
@@ -43,6 +46,7 @@ public class MUpManager : CStateBase<MouseStateManager>
         float presentLocation = (timer * speed) / Distance;
 
         m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
+        LookAtPoint();
 
         timer += Time.deltaTime;
 
@@ -57,5 +61,33 @@ public class MUpManager : CStateBase<MouseStateManager>
     public override void Exit()
     {
         //m_cOwner.EOldState = EMouseState.Normal;
+        GravityOn();
+        var fowardVec = Vector3.Scale(m_cOwner.transform.forward, new Vector3(1, 0, 1)).normalized;
+        m_cOwner.transform.rotation = Quaternion.LookRotation(fowardVec);
     }
+
+    private void LookAtPoint()
+    {
+        // キャラクターの向きを進行方向に
+        Vector3 moveForward = EndPos - StartPos;
+        m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+
+    }
+
+    private void GravityOff()
+    {
+        this.m_cOwner.GetComponent<Rigidbody>().useGravity = false;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void GravityOn()
+    {
+        this.m_cOwner.GetComponent<Rigidbody>().useGravity = true;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
+        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
+    }
+
+
 }

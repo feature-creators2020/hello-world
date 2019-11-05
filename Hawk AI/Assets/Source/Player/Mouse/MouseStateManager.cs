@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
 using UnityEngine.EventSystems;
+using KeyBoardInput;
 
 public enum EMouseState
 {
@@ -27,6 +28,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public float inputVertical;                 // コントローラーLスティック縦軸情報
     public Camera targetCamera;                 // 対象のカメラ
     public GamePad.Index GamePadIndex;          // 対象のコントローラー
+    public KeyBoard.Index KeyboardIndex;        // 対象のキーボード
 
     [System.NonSerialized]
     public float m_fmoveSpeed;                  // 計算時の速度
@@ -88,8 +90,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     // Update is called once per frame
     public override void Update()
     {
-        var playerNo = GamePadIndex;
-        var keyState = GamePad.GetState(playerNo, false);
+        //var playerNo = GamePadIndex;
+        //var keyState = GamePad.GetState(playerNo, false);
+        //var playerKeyNo = (KeyBoard.Index)playerNo;
+        //var keyboardState = KeyBoard.GetState(KeyboardIndex, false);
+
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
 
 
@@ -110,7 +115,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 {
                     if (TagName == "CanClimbing")
                     {
-                        Debug.Log(hit.collider.gameObject.transform.position);
+                        //Debug.Log(hit.collider.gameObject.transform.position);
                         m_GTargetBoxObject = hit.collider.gameObject;
                         ChangeState(0, EMouseState.Up);
                     }
@@ -229,7 +234,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
         {
-            Debug.Log("Catched!");
+            //Debug.Log("Catched!");
             ChangeState(0, EMouseState.Catch);
         }
     }
