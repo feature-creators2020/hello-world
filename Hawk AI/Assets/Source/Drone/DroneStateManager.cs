@@ -6,6 +6,7 @@ public enum EDroneState
 {
     Stay,
     Move,
+    TargetMove,
     Around,
     ItemDrop,
     MaxState
@@ -26,11 +27,13 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
 
         var Stay = new DStayManager(this);
         var Move = new DMoveManager(this);
+        var TargetMove = new DTargetMoveManager(this);
         var Around = new DAroundManager(this);
         var ItemDrop = new DItemDropManager(this);
 
         m_cStateList.Add(Stay);
         m_cStateList.Add(Move);
+        m_cStateList.Add(TargetMove);
         m_cStateList.Add(Around);
         m_cStateList.Add(ItemDrop);
 
