@@ -12,7 +12,7 @@ public class LineGrid : MonoBehaviour
     private void OnRenderObject()
     {
         Vector2 stepSize = scale / division;
-        Vector2 halfScale = scale * 0.5f;
+        Vector2 halfScale = stepSize * 0.5f;
         material.SetPass(0);
         GL.PushMatrix();
         GL.MultMatrix(transform.localToWorldMatrix);

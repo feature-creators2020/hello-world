@@ -6,8 +6,18 @@ using System.IO;
 
 public enum ObjectNo
 {
-    None = 0,
-    test = 1,
+    NONE = 0,
+    TEST = 1,
+    PIPE = 2,
+    PIPE_HENOJI = 3,
+    PIPE_LONG = 4,
+    PIPE_SHORT = 5,
+    PIPE_VERTICAL = 6,
+    SEHLF_HORIZON = 7,
+    SEHLF_VERTICAL = 8,
+    CORRUGATED_BOARD_1 = 9,
+    CORRUGATED_BOARD_2 = 10,
+    UNCLIMB_OBJECT = 11,
 }
 
 public partial class MapManager : SingletonMonoBehaviour<MapManager>
@@ -98,10 +108,13 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
         {
             for (var j = 0; j < MapData[i].Length; j++)
             {
-                //Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
+                Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
 
-                if(MapData[i][j] != (int)ObjectNo.None)
-                Instantiate(ObjectType[MapData[i][j]], Initpos, Quaternion.identity);
+                if (MapData[i][j] != (int)ObjectNo.NONE)
+                {
+                    Initpos = new Vector3(j,0, MapData.Count - 1 - i) /*+ ObjectType[MapData[i][j]].transform.position*/;
+                    Instantiate(ObjectType[MapData[i][j]], Initpos, ObjectType[MapData[i][j]].transform.rotation);
+                }
             }
         }
 
@@ -118,7 +131,7 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     /// <param name="objtype">オブジェクトの種類</param>
     public void CreateObject(int vertical, int horizontal, ObjectNo objtype)
     {
-        Vector3 Initpos = new Vector3(-(MapData[0].Length / 2) + horizontal, (MapData.Count / 2) - vertical, 0.0f);
+        Vector3 Initpos = new Vector3(-(MapData[0].Length / 2) + horizontal, 0.0f , (MapData.Count / 2) - vertical);
         Instantiate(ObjectType[(int)objtype - 1], Initpos, Quaternion.identity);
     }
 
@@ -134,4 +147,5 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
         Vector3 InitPos = new Vector3(-(MapData[0].Length / 2) + _horizontal, (MapData.Count / 2) - _vertical, _zpos);
         return InitPos;
     }
+
 }
