@@ -111,6 +111,34 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // 各状態の処理
         base.Update();        
     }
+    
+    public virtual void UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
+    {
+        if(GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
+        {
+            // アイテムを所持しているか
+            if (m_sItemData != null)
+            {
+                // 　アクション時間が経過しているか
+                if (m_fActionTime <= 0f)
+                {
+                    UseItem();
+                    // アクション経過時間を再設定
+                    m_fActionTime = m_fLimitActionTime;
+                }
+                else
+                {
+                    // アクション時間を経過させる
+                    m_fActionTime -= Time.deltaTime;
+                }
+            }
+        }
+        else
+        {
+            // アクション経過時間を再設定
+            m_fActionTime = m_fLimitActionTime;
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {

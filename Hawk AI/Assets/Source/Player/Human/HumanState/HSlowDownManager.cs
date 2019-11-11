@@ -42,30 +42,8 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
         }
 
         // アイテム使用
-        if (GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
-        {
-            // アイテムを所持しているか
-            if (m_cOwner.m_sItemData != null)
-            {
-                // 　アクション時間が経過しているか
-                if (m_cOwner.m_fActionTime <= 0f)
-                {
-                    m_cOwner.UseItem();
-                    // アクション経過時間を再設定
-                    m_cOwner.m_fActionTime = m_cOwner.m_fLimitActionTime;
-                }
-                else
-                {
-                    // アクション時間を経過させる
-                    m_cOwner.m_fActionTime -= Time.deltaTime;
-                }
-            }
-        }
-        else
-        {
-            // アクション経過時間を再設定
-            m_cOwner.m_fActionTime = m_cOwner.m_fLimitActionTime;
-        }
+        this.m_cOwner.UseItem(playerNo, playerKeyNo);
+
 
         // 移動処理。アクションを起こしていないときに処理
         if (m_cOwner.m_fActionTime == m_cOwner.m_fLimitActionTime)
