@@ -1,0 +1,3376 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5786424556831080006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4556679787733272704}
+  m_Layer: 0
+  m_Name: Corrugated_Boards_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4556679787733272704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786424556831080006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1287688688192978752}
+  - {fileID: 1702597575866586270}
+  - {fileID: 7740321676812586550}
+  - {fileID: 8960936178000109665}
+  - {fileID: 6209226049854619798}
+  - {fileID: 1310764599808191632}
+  - {fileID: 951280262769729137}
+  - {fileID: 22411282899606510}
+  - {fileID: 606426655015980948}
+  - {fileID: 7075373533175606036}
+  - {fileID: 9026562540103367799}
+  - {fileID: 2427012822661720397}
+  - {fileID: 550141350712264841}
+  - {fileID: 8045993434169634613}
+  - {fileID: 8968724911048541604}
+  - {fileID: 1777109952732219291}
+  - {fileID: 1287861989584545719}
+  - {fileID: 6371778749600464224}
+  - {fileID: 7143805965639751051}
+  - {fileID: 6501380216603996908}
+  - {fileID: 8099253742755994110}
+  - {fileID: 7510446723250496915}
+  - {fileID: 408694573331022340}
+  - {fileID: 6791792502919602752}
+  - {fileID: 3055963236592579550}
+  - {fileID: 8896265535829755448}
+  - {fileID: 5432223662293566072}
+  - {fileID: 7184232909922088166}
+  - {fileID: 3876966591638411579}
+  - {fileID: 9165411627763441342}
+  - {fileID: 791429850407087758}
+  - {fileID: 7001556526031320719}
+  - {fileID: 3131846709596496297}
+  - {fileID: 8730391361103343393}
+  - {fileID: 2290194417175383395}
+  - {fileID: 8581610696114655738}
+  - {fileID: 6793811846790292596}
+  - {fileID: 7284626202964991325}
+  - {fileID: 8407003326461704052}
+  - {fileID: 7135703077457793158}
+  - {fileID: 3393194897370842988}
+  - {fileID: 5778936380882414159}
+  - {fileID: 5841031695734473761}
+  - {fileID: 7008329148556242341}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &64367729201815134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &1287861989584545719 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 64367729201815134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &64461850758039209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &1287688688192978752 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 64461850758039209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &219283065783047545
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &1310764599808191632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 219283065783047545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &476008018450886007
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &1702597575866586270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 476008018450886007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &689712279781047922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &1777109952732219291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 689712279781047922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1077396102781269130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &2290194417175383395 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1077396102781269130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1257726185354928647
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &22411282899606510 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1257726185354928647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1481737263275457517
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &408694573331022340 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1481737263275457517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1628534057795973472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &550141350712264841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1628534057795973472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1824446480005920381
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &606426655015980948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1824446480005920381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1999722467838334823
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &791429850407087758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1999722467838334823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2019980877135767448
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &951280262769729137 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2019980877135767448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2663326326539329746
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &3876966591638411579 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2663326326539329746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3500901035703619748
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &2427012822661720397 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3500901035703619748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4201089073680554048
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &3131846709596496297 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4201089073680554048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4274830717394373175
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &3055963236592579550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4274830717394373175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4480172864981286533
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &3393194897370842988 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4480172864981286533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4626405032293940680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &5841031695734473761 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4626405032293940680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4686313966126453670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &5778936380882414159 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4686313966126453670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5120684645357681023
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &6209226049854619798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5120684645357681023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5284642932017185929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &6371778749600464224 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5284642932017185929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5404956583779519237
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &6501380216603996908 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5404956583779519237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5725128858164665757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &6793811846790292596 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5725128858164665757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5727033844236262313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &6791792502919602752 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5727033844236262313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6510211783658208145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &5432223662293566072 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6510211783658208145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7015937389042458647
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8099253742755994110 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7015937389042458647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7318460752673525405
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8407003326461704052 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7318460752673525405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7359946985365039123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8581610696114655738 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7359946985365039123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7499440144417330888
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8730391361103343393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7499440144417330888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7660108270032814033
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8896265535829755448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7660108270032814033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7817971266757707166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &9026562540103367799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7817971266757707166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7875817689221332045
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8968724911048541604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7875817689221332045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7881416197757737352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8960936178000109665 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7881416197757737352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7929111527547447127
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &9165411627763441342 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7929111527547447127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8075322659968290662
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7001556526031320719 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8075322659968290662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8104614036551586892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7008329148556242341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8104614036551586892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8221369572175817826
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7143805965639751051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8221369572175817826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8231689069221914991
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7135703077457793158 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8231689069221914991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8252930398547021071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7184232909922088166 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8252930398547021071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8289736040249905917
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7075373533175606036 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8289736040249905917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8368806670545167540
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7284626202964991325 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8368806670545167540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8719459521043307642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7510446723250496915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719459521043307642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8813804171117672415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &7740321676812586550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8813804171117672415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9120587328567826140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4556679787733272704}
+    m_Modifications:
+    - target: {fileID: 2949101273856933881, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Corrugated Board (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d9532ceea7f6d54580da456ef3a95e2, type: 3}
+--- !u!4 &8045993434169634613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241807932282681833, guid: 9d9532ceea7f6d54580da456ef3a95e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 9120587328567826140}
+  m_PrefabAsset: {fileID: 0}
