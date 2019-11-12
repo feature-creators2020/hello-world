@@ -31,8 +31,8 @@ TagManager:
   - Item
   - Pipe
   - Box
-  - 
-  - 
+  - MapColliderBox
+  - Player
   - 
   - 
   - 

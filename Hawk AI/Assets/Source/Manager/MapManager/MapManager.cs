@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.IO;
 
+
+
 public enum ObjectNo
 {
     NONE = 0,
-    TEST = 1,
+    PLAYER = 1,
     PIPE = 2,
     PIPE_HENOJI = 3,
     PIPE_LONG = 4,
@@ -18,17 +20,16 @@ public enum ObjectNo
     CORRUGATED_BOARD_1 = 9,
     CORRUGATED_BOARD_2 = 10,
     UNCLIMB_OBJECT = 11,
+
+    MAP_COLLIDERBOX = 12,
 }
 
 public partial class MapManager : SingletonMonoBehaviour<MapManager>
 {
     public TextAsset CSVMap;
     public GameObject[] ObjectType; // マップチップのNoどおりにゲームオブジェクトをセット
-
     Vector3 Initpos = Vector3.zero; // 配置場所
-
     private List<string[]> stringData = new List<string[]>();
-
     public List<int[]> MapData = new List<int[]>();
 
     protected override void Awake()
@@ -47,6 +48,17 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            for (var i = 0; i < MapData.Count; i++)
+            {
+                for (var j = 0; j < MapData[i].Length; j++)
+                {
+                    //if(MapData[i][j] == (int)ObjectNo.PLAYER)
+                    Debug.Log("MapData[" + i + "][" + j + "] = " + MapData[i][j]);
+                }
+            }
+        }
 
     }
 
@@ -108,12 +120,17 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
         {
             for (var j = 0; j < MapData[i].Length; j++)
             {
-                Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
+                //Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
+
+                Initpos = new Vector3(j, 0, MapData.Count - 1 - i);
 
                 if (MapData[i][j] != (int)ObjectNo.NONE)
-                {
-                    Initpos = new Vector3(j,0, MapData.Count - 1 - i) /*+ ObjectType[MapData[i][j]].transform.position*/;
+                {    
                     Instantiate(ObjectType[MapData[i][j]], Initpos, ObjectType[MapData[i][j]].transform.rotation);
+                }
+                else
+                {
+                    Instantiate(ObjectType[(int)ObjectNo.MAP_COLLIDERBOX], Initpos, ObjectType[(int)ObjectNo.MAP_COLLIDERBOX].transform.rotation);
                 }
             }
         }

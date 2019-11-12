@@ -5,6 +5,11 @@ using GamepadInput;
 using UnityEngine.EventSystems;
 using KeyBoardInput;
 
+public interface IPlayerInterfase : IEventSystemHandler
+{
+    void SetMapPos(Vector2Int vector2Int);
+}
+
 public enum EHumanState
 {
     Normal,
@@ -12,7 +17,7 @@ public enum EHumanState
     Door,
 }
 
-public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>
+public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase
 {
     [System.NonSerialized]
     public float inputHorizontal;               // コントローラーLスティック横軸情報
@@ -65,6 +70,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         set { RunRate = value; }
     }
 
+    public Vector2Int PlayerMapPos = new Vector2Int();
+
+
     [System.NonSerialized]
     public EHumanState EOldState;        // 前の状態を保持
 
@@ -73,6 +81,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     Vector3 char_velocity;
     Vector3 char_velocity_input;
     float RayLength;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +104,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // 初期設定
         m_sItemData = null;
         m_nInTrapCnt = 0;
+
     }
 
     void Awake()
@@ -101,7 +112,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         char_trans = transform;
         RayLength = 2.5f;
     }
-    
+
     // Update is called once per frame
     public override void Update()
     {
@@ -109,12 +120,12 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
 
         // 各状態の処理
-        base.Update();        
+        base.Update();
     }
-    
+
     public virtual void UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
     {
-        if(GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
+        if (GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
         {
             // アイテムを所持しているか
             if (m_sItemData != null)
@@ -138,6 +149,136 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             // アクション経過時間を再設定
             m_fActionTime = m_fLimitActionTime;
         }
+    }
+
+
+    // Hack : make function and optimize
+    bool IsUseItem()
+    {
+        int a, b;
+        float horizon,vertical;
+
+        horizon = Mathf.Abs(this.gameObject.transform.forward.z);
+        vertical = Mathf.Abs(this.gameObject.transform.forward.x);
+
+        if (this.gameObject.transform.forward.x >= 0)
+        {
+            if (this.gameObject.transform.forward.z >= 0)
+            {//右上
+
+                if(horizon >= vertical)
+                {// 右
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (MapManager.Instance.MapData[PlayerMapPos.y].Length <= PlayerMapPos.x + 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
+
+                        if((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                        return true;
+                    }
+                    
+                }
+                else
+                {//　上
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (MapManager.Instance.MapData.Count <= PlayerMapPos.y + 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y + 1][PlayerMapPos.x];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+
+                }
+            }
+            else
+            {//右下
+                if (horizon >= vertical)
+                { //右
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (MapManager.Instance.MapData[PlayerMapPos.y].Length <= PlayerMapPos.x + 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+
+                }
+                else
+                { //　下
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (0 <= PlayerMapPos.y - 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y - 1][PlayerMapPos.x];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+
+                }
+
+            }
+        }
+        else
+        {
+            if (this.gameObject.transform.forward.z >= 0)
+            {//左上
+                if (horizon >= vertical)
+                {//　左
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (0 <= PlayerMapPos.x - 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+
+                }
+                else
+                {　//　上
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (MapManager.Instance.MapData.Count <= PlayerMapPos.y + 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y + 1][PlayerMapPos.x];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+                }
+
+            }
+            else
+            {//左下
+                if (horizon >= vertical)
+                { //　左
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (0 <= PlayerMapPos.x - 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+
+                }
+                else
+                {　//　下
+                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
+                    if (0 <= PlayerMapPos.y - 1)
+                    {
+                        b = MapManager.Instance.MapData[PlayerMapPos.y - 1][PlayerMapPos.x];
+
+                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                            return true;
+                    }
+                }
+            }
+        }
+
+
+        return false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -198,6 +339,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             }
             //Debug.Log("Item : " + m_sItemData);
         }
+
+
     }
 
     void OnTriggerStay(Collider other)
@@ -257,6 +400,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             // 状態を切り替える
             ChangeState(0, EHumanState.Normal);
         }
+
+
     }
 
 
@@ -323,5 +468,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         }
 
         transform.position += MoveForward * m_fmoveSpeed * Time.deltaTime;
+    }
+
+    public void SetMapPos(Vector2Int vector2Int)
+    {
+        PlayerMapPos = vector2Int;
     }
 }
