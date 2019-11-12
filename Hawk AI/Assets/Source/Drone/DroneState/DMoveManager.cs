@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 自由移動状態
 public class DMoveManager : CStateBase<DroneStateManager>
 {
     public DMoveManager(DroneStateManager _cOwner) : base(_cOwner) { }

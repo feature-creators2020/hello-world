@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 待機状態
 public class DStayManager : CStateBase<DroneStateManager>
 {
     public DStayManager(DroneStateManager _cOwner) : base(_cOwner) { }

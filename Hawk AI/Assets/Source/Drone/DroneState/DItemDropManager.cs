@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// アイテムを落とす状態
 public class DItemDropManager : CStateBase<DroneStateManager>
 {
     public DItemDropManager(DroneStateManager _cOwner) : base(_cOwner) { }
