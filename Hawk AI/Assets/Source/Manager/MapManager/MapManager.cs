@@ -22,6 +22,7 @@ public enum ObjectNo
     UNCLIMB_OBJECT = 11,
 
     MAP_COLLIDERBOX = 12,
+    MOUSE_TRAP_LOW = 13,
 }
 
 public partial class MapManager : SingletonMonoBehaviour<MapManager>

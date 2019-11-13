@@ -17,6 +17,14 @@ public enum EHumanState
     Door,
 }
 
+public enum EHumanDirectionalState
+{
+    Forward,
+    Left,
+    Right,
+    Back,
+}
+
 public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase
 {
     [System.NonSerialized]
@@ -81,8 +89,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     Vector3 char_velocity;
     Vector3 char_velocity_input;
     float RayLength;
+    EHumanDirectionalState m_eHumanDirectionalState;
 
-    
 
     // Start is called before the first frame update
     void Start()
@@ -130,17 +138,21 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             // アイテムを所持しているか
             if (m_sItemData != null)
             {
-                // 　アクション時間が経過しているか
-                if (m_fActionTime <= 0f)
+                //　置く場所が適切かどうか
+                if (IsUseItem() == true)
                 {
-                    UseItem();
-                    // アクション経過時間を再設定
-                    m_fActionTime = m_fLimitActionTime;
-                }
-                else
-                {
-                    // アクション時間を経過させる
-                    m_fActionTime -= Time.deltaTime;
+                    // 　アクション時間が経過しているか
+                    if (m_fActionTime <= 0f)
+                    {
+                        UseItem();
+                        // アクション経過時間を再設定
+                        m_fActionTime = m_fLimitActionTime;
+                    }
+                    else
+                    {
+                        // アクション時間を経過させる
+                        m_fActionTime -= Time.deltaTime;
+                    }
                 }
             }
         }
@@ -155,67 +167,35 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     // Hack : make function and optimize
     bool IsUseItem()
     {
-        int a, b;
-        float horizon,vertical;
+        float horizon, vertical;
 
-        horizon = Mathf.Abs(this.gameObject.transform.forward.z);
-        vertical = Mathf.Abs(this.gameObject.transform.forward.x);
+        horizon = Mathf.Abs(this.gameObject.transform.forward.x);
+        vertical = Mathf.Abs(this.gameObject.transform.forward.z);
 
         if (this.gameObject.transform.forward.x >= 0)
         {
             if (this.gameObject.transform.forward.z >= 0)
             {//右上
 
-                if(horizon >= vertical)
+                if (horizon >= vertical)
                 {// 右
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (MapManager.Instance.MapData[PlayerMapPos.y].Length <= PlayerMapPos.x + 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
-
-                        if((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                        return true;
-                    }
-                    
+                    return IsRightSetItem();
                 }
                 else
                 {//　上
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (MapManager.Instance.MapData.Count <= PlayerMapPos.y + 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y + 1][PlayerMapPos.x];
 
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
-
+                    return IsForwardSetItem();
                 }
             }
             else
             {//右下
                 if (horizon >= vertical)
                 { //右
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (MapManager.Instance.MapData[PlayerMapPos.y].Length <= PlayerMapPos.x + 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
-
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
-
+                    return IsRightSetItem();
                 }
                 else
                 { //　下
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (0 <= PlayerMapPos.y - 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y - 1][PlayerMapPos.x];
-
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
-
+                    return IsBackSetItem();
                 }
 
             }
@@ -226,26 +206,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             {//左上
                 if (horizon >= vertical)
                 {//　左
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (0 <= PlayerMapPos.x - 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
-
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
-
+                    return IsLeftSetItem();
                 }
                 else
                 {　//　上
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (MapManager.Instance.MapData.Count <= PlayerMapPos.y + 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y + 1][PlayerMapPos.x];
-
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
+                    return IsForwardSetItem();
                 }
 
             }
@@ -253,26 +218,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             {//左下
                 if (horizon >= vertical)
                 { //　左
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (0 <= PlayerMapPos.x - 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
-
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
-
+                    return IsLeftSetItem();
                 }
                 else
                 {　//　下
-                    a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x];
-                    if (0 <= PlayerMapPos.y - 1)
-                    {
-                        b = MapManager.Instance.MapData[PlayerMapPos.y - 1][PlayerMapPos.x];
-
-                        if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                            return true;
-                    }
+                    return IsBackSetItem();
                 }
             }
         }
@@ -280,6 +230,91 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         return false;
     }
+
+    private bool IsForwardSetItem()
+    {
+        int a, b;
+
+        m_eHumanDirectionalState = EHumanDirectionalState.Forward;
+
+        if (MapManager.Instance.MapData.Count >= PlayerMapPos.y + 1)
+        {
+            a = MapManager.Instance.MapData[PlayerMapPos.y + 1][PlayerMapPos.x];
+            if (MapManager.Instance.MapData.Count >= PlayerMapPos.y + 2)
+            {
+                b = MapManager.Instance.MapData[PlayerMapPos.y + 2][PlayerMapPos.x];
+
+                if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    private bool IsLeftSetItem()
+    {
+        int a, b;
+
+        m_eHumanDirectionalState = EHumanDirectionalState.Left;
+
+        if (0 <= PlayerMapPos.x - 1)
+        {
+            a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x - 1];
+            if (0 <= PlayerMapPos.x - 2)
+            {
+                b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x - 2];
+
+                if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsRightSetItem()
+    {
+        int a, b;
+
+        m_eHumanDirectionalState = EHumanDirectionalState.Right;
+
+        if (MapManager.Instance.MapData[PlayerMapPos.y].Length >= PlayerMapPos.x + 1)
+        {
+            a = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 1];
+            if (MapManager.Instance.MapData[PlayerMapPos.y].Length >= PlayerMapPos.x + 2)
+            {
+                b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 2];
+
+                if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    private bool IsBackSetItem()
+    {
+        int a, b;
+
+        m_eHumanDirectionalState = EHumanDirectionalState.Back;
+
+        if (0 <= PlayerMapPos.y - 1)
+        {
+            a = MapManager.Instance.MapData[PlayerMapPos.y - 1][PlayerMapPos.x];
+            if (0 <= PlayerMapPos.y - 2)
+            {
+                b = MapManager.Instance.MapData[PlayerMapPos.y - 2][PlayerMapPos.x];
+
+                if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -416,11 +451,58 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 // プレハブを取得
                 var item = m_Itemmanager.GetGameObject(m_sItemData);
                 //Debug.Log("ItemManager : " + item);
+
+                Vector2Int[] MapPos = new Vector2Int[2];
+                Vector3 vector3 = Vector3.zero;
+
+                switch (m_eHumanDirectionalState)
+                {
+                    case EHumanDirectionalState.Forward:
+                        vector3 = this.transform.position + new Vector3(0f, 0f, 1.5f);
+                        MapPos[0].x = PlayerMapPos.x;
+                        MapPos[0].y = PlayerMapPos.y + 1;
+                        MapPos[1].x = PlayerMapPos.x;
+                        MapPos[1].y = PlayerMapPos.y + 2;
+                        break;
+                    case EHumanDirectionalState.Left:
+                        vector3 = this.transform.position + new Vector3(-1.5f, 0f, 0f);
+                        MapPos[0].x = PlayerMapPos.x - 1;
+                        MapPos[0].y = PlayerMapPos.y;
+                        MapPos[1].x = PlayerMapPos.x - 2;
+                        MapPos[1].y = PlayerMapPos.y;
+                        break;
+                    case EHumanDirectionalState.Right:
+                        vector3 = this.transform.position + new Vector3(1.5f, 0f, 0f);
+                        MapPos[0].x = PlayerMapPos.x + 1;
+                        MapPos[0].y = PlayerMapPos.y;
+                        MapPos[1].x = PlayerMapPos.x + 2;
+                        MapPos[1].y = PlayerMapPos.y;
+                        break;
+                    case EHumanDirectionalState.Back:
+                        vector3 = this.transform.position + new Vector3(0f, 0f, -1.5f);
+                        MapPos[0].x = PlayerMapPos.x;
+                        MapPos[0].y = PlayerMapPos.y - 1;
+                        MapPos[1].x = PlayerMapPos.x;
+                        MapPos[1].y = PlayerMapPos.y - 2;
+                        break;
+
+                }
+
                 // プレハブからインスタンスを生成
                 ExecuteEvents.Execute<IItemInterface>(
                     target: item,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Instant(this.transform));
+                    functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
+
+                MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
+                MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
+
+                // インスタンスにmapの位置を登録
+                ExecuteEvents.Execute<IMouseTrap>(
+                    target: item,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.SetMapPosition(MapPos));
+
 
                 // 所持アイテム情報を削除
                 m_sItemData = null;

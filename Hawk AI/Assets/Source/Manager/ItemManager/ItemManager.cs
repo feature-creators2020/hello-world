@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public interface IItemInterface : IEventSystemHandler
 {
     void Instant(Transform _transform);
+    void Instant(Vector3 _pos,Quaternion _qua);
+
     void Destroy(GameObject _object);
 
 }
@@ -55,6 +57,13 @@ public class ItemManager : GeneralManager, IItemInterface
         Vector3 setpos = new Vector3(_transform.position.x, 0.55f, _transform.position.z);
         Debug.Log("Position : " + setpos);
         var Object = Instantiate(PrefabObject, setpos, _transform.rotation);
+        m_cGameObjects.Add(Object);
+    }
+    public virtual void Instant(Vector3 _pos, Quaternion _qua)
+    {
+        Vector3 setpos = new Vector3(_pos.x, 0.55f, _pos.z);
+        Debug.Log("Position : " + setpos);
+        var Object = Instantiate(PrefabObject, setpos, _qua);
         m_cGameObjects.Add(Object);
     }
 
