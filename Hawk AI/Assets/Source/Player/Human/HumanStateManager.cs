@@ -531,7 +531,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 ExecuteEvents.Execute<IItemInterface>(
                     target: item,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
+                    functor: (recieveTarget, y) => recieveTarget.Instant(vector3, Quaternion.identity));
 
                 MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
                 MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
