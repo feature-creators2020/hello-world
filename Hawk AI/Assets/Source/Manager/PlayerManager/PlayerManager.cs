@@ -74,25 +74,31 @@ public class PlayerManager : GeneralManager
     {
         Debug.Log(_Str);
         GameObject obj = null;
-        foreach (var val in m_cGameObjects)
+        if (_Str == m_strTag)
         {
-            Debug.Log(gameObject.name + "->name : " + val.name);
-            if (val.name == _Str)
+            foreach (var val in m_cGameObjects)
             {
-                obj = val;
-                break;
+                Debug.Log(gameObject.name + "->name : " + val.name);
+                if (val.name == _Str)
+                {
+                    obj = val;
+                    break;
+                }
             }
         }
-        foreach (var val in m_cGameObjects2)
+        else
         {
-            Debug.Log(gameObject.name + "->name : " + val.name);
-            if (val.name == _Str)
+            foreach (var val in m_cGameObjects2)
             {
-                obj = val;
-                break;
+                Debug.Log(gameObject.name + "->name : " + val.name);
+                if (val.name == _Str)
+                {
+                    obj = val;
+                    break;
+                }
             }
-        }
 
+        }
         return obj;
     }
 
@@ -101,10 +107,12 @@ public class PlayerManager : GeneralManager
         if (strTag == m_strTag)
         {
             return m_cGameObjects;
+            Debug.Log(m_cGameObjects.ToString() + "->tag1");
         }
         else
         {
             return m_cGameObjects2;
+            Debug.Log(m_cGameObjects2.ToString() + "->tag2");
         }
     }
 

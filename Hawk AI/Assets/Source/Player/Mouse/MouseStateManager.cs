@@ -252,4 +252,13 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         return true;
     }
 
+    public CStateBase<MouseStateManager> GetCurrentState()
+    {
+        return m_cStateMachineList[0].GetCurrentState();
+    }
+
+    public CStateBase<MouseStateManager> GetStateBase(EMouseState _state)
+    {
+        return m_cStateList[(int)_state];
+    }
 }

@@ -10,28 +10,40 @@ public class DAroundManager : CStateBase<DroneStateManager>
     public override void Enter()
     {
         Debug.Log("DroneAround");
+        m_cOwner.NowState++;
     }
 
     public override void Execute()
     {
-        DebugMove();
-        // 滑らかに回転して移動したい
-        var target = m_cOwner.m_vTargetPos;
-        // 距離が一定の範囲内に入ると追従状態に移行
-        //if (Vector3.Distance(target, m_cOwner.transform.position) <= m_cOwner.m_fSpeed)
+        //DebugMove();
+        m_cOwner.UpdateTargetPosition();
+        // 追跡可能か
+        if (m_cOwner.IsCanTarget())
         {
-            var position = Vector3.Lerp(m_cOwner.transform.position, target, 0.1f);
-            //var moveFoward = Vector3.Normalize(position);
-            m_cOwner.transform.rotation = Quaternion.LookRotation(position - m_cOwner.transform.position);
-            //m_cOwner.transform.position += m_cOwner.transform.forward * m_cOwner.m_fSpeed * Time.deltaTime;
-            m_cOwner.transform.position = position;
-            //m_cOwner.ChangeState(0, EDroneState.Around);
+            // 滑らかに回転して移動したい
+            var target = m_cOwner.m_vTargetPos;
+            // 距離が一定の範囲内に入ると追従状態に移行
+            //if (Vector3.Distance(target, m_cOwner.transform.position) <= m_cOwner.m_fSpeed)
+            {
+                var position = Vector3.Lerp(m_cOwner.transform.position, target, 0.1f);
+                //var moveFoward = Vector3.Normalize(position);
+                m_cOwner.transform.rotation = Quaternion.LookRotation(position - m_cOwner.transform.position);
+                //m_cOwner.transform.position += m_cOwner.transform.forward * m_cOwner.m_fSpeed * Time.deltaTime;
+                m_cOwner.transform.position = position;
+                //m_cOwner.ChangeState(0, EDroneState.Around);
+            }
+        }
+        else
+        {
+            // 待機状態に遷移
+            m_cOwner.ChangeState(0, EDroneState.Stay);
+            m_cOwner.NowState = (int)EDroneState.Stay;
         }
     }
 
     public override void Exit()
     {
-        
+
     }
 
     void DebugMove()
