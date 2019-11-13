@@ -115,7 +115,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_sItemData = null;
         m_nInTrapCnt = 0;
         //
-        m_cSetItemColliderObj = GameObject.Find("SettingTrapCollider").gameObject;
+        m_cSetItemColliderObj = this.gameObject.transform.GetChild(2).gameObject;
     }
 
     void Awake()
