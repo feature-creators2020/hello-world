@@ -75,6 +75,7 @@ public class MouseRespawn : MonoBehaviour
         {
             ScoreBoard.Instance.GetCheese();
             RespawnPoint.Instance.Respawn(this.gameObject);
+            ShiftOtherGoal.Instance.Shift(other.gameObject);
         }
         //if(other.gameObject.name == "Dead")
         //{
