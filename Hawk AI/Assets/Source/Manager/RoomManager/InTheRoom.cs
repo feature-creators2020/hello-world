@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class InTheRoom : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Debug.Log("InTheRoom.cs Start");
-    }
     //部屋番号
     [SerializeField]
     private int RoomIndex;
@@ -17,20 +12,26 @@ public class InTheRoom : MonoBehaviour
     {
         //Debug.Log(other.tag);
         //Humanタグ持ちであれば(今はPlayer)
-        if (other.tag == "Player")
+        if (other.tag == "Human")
         {
-            //Debug.Log("Enter" + RoomIndex);
             RoomManager.Instance.HumanEnter(RoomIndex);
+        }
+        if(other.tag == "Mouse")
+        {
+            RoomManager.Instance.MouseEnter(RoomIndex);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         //Humanタグ持ちであれば(今はPlayer)
-        if (other.tag == "Player")
+        if (other.tag == "Human")
         {
-            //Debug.Log("Exit" + RoomIndex);
             RoomManager.Instance.HumanExit(RoomIndex);
+        }
+        if (other.tag == "Mouse")
+        {
+            RoomManager.Instance.MouseExit(RoomIndex);
         }
     }
 }

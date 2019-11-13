@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8566625254624156452}
   - component: {fileID: 8566625254624156453}
   - component: {fileID: 8566625254624156454}
+  - component: {fileID: 7397773149014346134}
   m_Layer: 11
   m_Name: MouseTrap
   m_TagString: Mousetrap
@@ -124,6 +125,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.97914124, y: 2, z: 0.93866295}
   m_Center: {x: 0, y: 1, z: 0.0012267162}
+--- !u!114 &7397773149014346134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566625254624156455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cf6feb0b91b244a7ed382ade938c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7233641345066665301
 PrefabInstance:
   m_ObjectHideFlags: 0
