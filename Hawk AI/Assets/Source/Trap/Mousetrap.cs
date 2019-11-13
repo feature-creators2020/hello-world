@@ -25,20 +25,21 @@ public class Mousetrap : GeneralObject, IMouseTrap
         // Map から消す
         for (int i = 0; i < m_cTrapWidth; i++)
         {
+            if(MapManager.Instance != null)
             MapManager.Instance.MapData[m_cTrapPos[i].y][m_cTrapPos[i].x]
                 = (int)ObjectNo.NONE;
                 
         }
 
-        var itemmanager = ManagerObjectManager.Instance.GetGameObject("ItemManager");
-        var mousetrapmanager = itemmanager.GetComponent<ItemManager>().GetGameObject("MousetrapManager");
-        mousetrapmanager.GetComponent<MousetrapManager>().Destroy(this.gameObject);
+        //var itemmanager = ManagerObjectManager.Instance.GetGameObject("ItemManager");
+        //var mousetrapmanager = itemmanager.GetComponent<ItemManager>().GetGameObject("MousetrapManager");
+        //mousetrapmanager.GetComponent<MousetrapManager>().Destroy(this.gameObject);
     }
 
-    public override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
+    //public override void OnDestroy()
+    //{
+    //    base.OnDestroy();
+    //}
 
     public void SetMapPosition(Vector2Int[] _mappos)
     {

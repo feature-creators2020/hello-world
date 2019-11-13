@@ -46,7 +46,7 @@ public class PlayerMapHundller : MonoBehaviour
             m_cPlayerPos.x = (int)other.gameObject.transform.position.x;
             m_cPlayerPos.y = (int)other.gameObject.transform.position.z;
             MapManager.Instance.MapData[m_cPlayerPos.y][m_cPlayerPos.x] = (int)ObjectNo.NONE;
-            Debug.Log("csv[" + m_cPlayerPos.y + "][" + m_cPlayerPos.x + "] = " + MapManager.Instance.MapData[m_cPlayerPos.y][m_cPlayerPos.x]);
+            //Debug.Log("csv[" + m_cPlayerPos.y + "][" + m_cPlayerPos.x + "] = " + MapManager.Instance.MapData[m_cPlayerPos.y][m_cPlayerPos.x]);
 
             //ExecuteEvents.Execute<IPlayerInterfase>(
             //target: m_cPlayerObj,

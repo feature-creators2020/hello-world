@@ -89,7 +89,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     Vector3 char_velocity;
     Vector3 char_velocity_input;
     float RayLength;
-    EHumanDirectionalState m_eHumanDirectionalState;
+    EHumanDirectionalState m_eHumanDirectionalState; //人の向き
+
+    private GameObject m_cSetItemColliderObj; 
 
 
     // Start is called before the first frame update
@@ -112,7 +114,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // 初期設定
         m_sItemData = null;
         m_nInTrapCnt = 0;
-
+        //
+        m_cSetItemColliderObj = GameObject.Find("SettingTrapCollider").gameObject;
     }
 
     void Awake()
@@ -245,7 +248,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 b = MapManager.Instance.MapData[PlayerMapPos.y + 2][PlayerMapPos.x];
 
                 if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                    return true;
+                {
+                    bool bReturnFlg = false;
+                    ExecuteEvents.Execute<ISettingTrapCollider>(
+                    target: m_cSetItemColliderObj,
+                    eventData: null,
+                    functor: (recieveTarget, y) => bReturnFlg = recieveTarget.GetHitFlg());
+
+                    if (bReturnFlg == false)
+                        return true;
+                }
             }
         }
         return false;
@@ -265,7 +277,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x - 2];
 
                 if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                    return true;
+                {
+                    bool bReturnFlg = false;
+                    ExecuteEvents.Execute<ISettingTrapCollider>(
+                    target: m_cSetItemColliderObj,
+                    eventData: null,
+                    functor: (recieveTarget, y) => bReturnFlg = recieveTarget.GetHitFlg());
+
+                    if (bReturnFlg == false)
+                        return true;
+                }
             }
         }
 
@@ -286,7 +307,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 b = MapManager.Instance.MapData[PlayerMapPos.y][PlayerMapPos.x + 2];
 
                 if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
+                {
+                    bool bReturnFlg = false;
+                    ExecuteEvents.Execute<ISettingTrapCollider>(
+                    target: m_cSetItemColliderObj,
+                    eventData: null,
+                    functor: (recieveTarget, y) => bReturnFlg = recieveTarget.GetHitFlg());
+              
+                    if(bReturnFlg == false)
                     return true;
+                }
             }
         }
 
@@ -308,7 +338,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 b = MapManager.Instance.MapData[PlayerMapPos.y - 2][PlayerMapPos.x];
 
                 if ((a == (int)ObjectNo.NONE) && (b == (int)ObjectNo.NONE))
-                    return true;
+                {
+                    bool bReturnFlg = false;
+                    ExecuteEvents.Execute<ISettingTrapCollider>(
+                    target: m_cSetItemColliderObj,
+                    eventData: null,
+                    functor: (recieveTarget, y) => bReturnFlg = recieveTarget.GetHitFlg());
+
+                    if (bReturnFlg == false)
+                        return true;
+                }
             }
         }
 

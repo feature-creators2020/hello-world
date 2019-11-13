@@ -23,7 +23,15 @@ public enum ObjectNo
 
     MAP_COLLIDERBOX = 12,
     MOUSE_TRAP_LOW = 13,
+    NUM_OBJECT_TYPE,
 }
+
+public enum EObjectDataTable
+{
+    Spase,
+    Width,
+    Height,
+};
 
 public partial class MapManager : SingletonMonoBehaviour<MapManager>
 {
@@ -31,13 +39,21 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     public GameObject[] ObjectType; // マップチップのNoどおりにゲームオブジェクトをセット
     Vector3 Initpos = Vector3.zero; // 配置場所
     private List<string[]> stringData = new List<string[]>();
+    public List<int[]> InitMapData = new List<int[]>();
     public List<int[]> MapData = new List<int[]>();
 
     protected override void Awake()
     {
         base.Awake();
-        MapData = CsvRead(CSVMap);
-        MapCreate();
+        // read CSV file
+        InitMapData = CsvRead(CSVMap);
+
+        // Instantiate objects
+        MapCreate(InitMapData);
+
+        // setting use map
+        MapData = InitMapData;
+
     }
 
     // Start is called before the first frame update
@@ -51,12 +67,12 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            for (var i = 0; i < MapData.Count; i++)
+            for (var i = 0; i < InitMapData.Count; i++)
             {
-                for (var j = 0; j < MapData[i].Length; j++)
+                for (var j = 0; j < InitMapData[i].Length; j++)
                 {
                     //if(MapData[i][j] == (int)ObjectNo.PLAYER)
-                    Debug.Log("MapData[" + i + "][" + j + "] = " + MapData[i][j]);
+                    Debug.Log("InitMapData[" + i + "][" + j + "] = " + InitMapData[i][j]);
                 }
             }
         }
@@ -114,23 +130,23 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     /// <summary>
     /// マップをCSVデータから生成
     /// </summary>
-    private void MapCreate()
+    private void MapCreate(List<int[]> maplist)
     {
         //MapDataをもとにマップを生成 and 仕分け
-        for (var i = 0; i < MapData.Count; i++)
+        for (var i = 0; i < maplist.Count; i++)
         {
-            for (var j = 0; j < MapData[i].Length; j++)
+            for (var j = 0; j < maplist[i].Length; j++)
             {
                 //Debug.Log("csv[" + i + "][" + j + "] = " + MapData[i][j]);
 
-                Initpos = new Vector3(j, 0, MapData.Count - 1 - i);
+                Initpos = new Vector3(j, 0, maplist.Count - 1 - i);
 
-                if (MapData[i][j] != (int)ObjectNo.NONE)
+                if (maplist[i][j] != (int)ObjectNo.NONE)
                 {    
-                    Instantiate(ObjectType[MapData[i][j]], Initpos, ObjectType[MapData[i][j]].transform.rotation);
+                    Instantiate(ObjectType[maplist[i][j]], Initpos, ObjectType[maplist[i][j]].transform.rotation);
                 }
                 else
-                {
+                {//当たり判定用のボックス生成
                     Instantiate(ObjectType[(int)ObjectNo.MAP_COLLIDERBOX], Initpos, ObjectType[(int)ObjectNo.MAP_COLLIDERBOX].transform.rotation);
                 }
             }
@@ -149,7 +165,7 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     /// <param name="objtype">オブジェクトの種類</param>
     public void CreateObject(int vertical, int horizontal, ObjectNo objtype)
     {
-        Vector3 Initpos = new Vector3(-(MapData[0].Length / 2) + horizontal, 0.0f , (MapData.Count / 2) - vertical);
+        Vector3 Initpos = new Vector3(-(InitMapData[0].Length / 2) + horizontal, 0.0f , (InitMapData.Count / 2) - vertical);
         Instantiate(ObjectType[(int)objtype - 1], Initpos, Quaternion.identity);
     }
 
@@ -162,7 +178,7 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     /// <returns></returns>
     public Vector3 CreatePosition(float _horizontal, float _vertical, float _zpos)
     {
-        Vector3 InitPos = new Vector3(-(MapData[0].Length / 2) + _horizontal, (MapData.Count / 2) - _vertical, _zpos);
+        Vector3 InitPos = new Vector3(-(InitMapData[0].Length / 2) + _horizontal, (InitMapData.Count / 2) - _vertical, _zpos);
         return InitPos;
     }
 
