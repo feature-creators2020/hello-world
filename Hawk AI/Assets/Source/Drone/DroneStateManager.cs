@@ -52,15 +52,16 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         StateTime = 0f;
         NowState = 0;
 
-        var managerobject = ManagerObjectManager.Instance;
-        m_PlayerManager = managerobject.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
-        m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
         m_vTargetPos = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
     }
 
     // Update is called once per frame
     void Update()
     {
+        var managerobject = ManagerObjectManager.Instance;
+        m_PlayerManager = managerobject.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
+
         base.Update();
 
         // 状態遷移処理
@@ -85,7 +86,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     {
         float TDistance = 0;
         // ターゲット情報を初期化
-        m_gTarget = m_PlayerManager.GetGameObject(0, "Mouse"); ;
+        m_gTarget = m_PlayerManager.GetGameObject(0, "Mouse");
 
         var MouseList = m_PlayerManager.GetGameObjectsList("Mouse");
         for (int i = 0; i < MouseList.Count; i++)
