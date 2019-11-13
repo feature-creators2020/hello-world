@@ -14,7 +14,7 @@ public class EndManager : CStateBase<GameManager>
     {
         Debug.Log(" NowState : EndManager");
 
-        var obj = GameObject.Find("FadeManager");
+        var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager");
         ExecuteEvents.Execute<IFadeInterfase>(
         target: obj,
         eventData: null,

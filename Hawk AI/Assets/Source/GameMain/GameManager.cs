@@ -42,7 +42,7 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     // Update is called once per frame
     public virtual void GeneralUpdate()
     {
-        base.Update();
+        //base.Update();
     }
 
     public virtual void GeneralRelease()
