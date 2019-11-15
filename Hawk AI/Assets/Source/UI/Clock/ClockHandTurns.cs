@@ -85,7 +85,7 @@ public class ClockHandTurns : GeneralObject
                 m_fHandAngle = 0;
                 m_bTimeFlag = false;
             }
-            Debug.Log(m_fEndTime - m_fNowTime);
+            //Debug.Log(m_fEndTime - m_fNowTime);
         }
     }
 
