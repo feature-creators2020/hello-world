@@ -86,8 +86,8 @@ GameObject:
   - component: {fileID: 2682445437655778003}
   - component: {fileID: 2682445437655778000}
   m_Layer: 0
-  m_Name: rail_straight
-  m_TagString: Untagged
+  m_Name: rail_straight_horizon
+  m_TagString: Rail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68ed0f1d6bccb04f90c63b6cc1fcda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fSpeed: 0
+  m_fSpeed: 0.2
 --- !u!1 &2682445438292667516
 GameObject:
   m_ObjectHideFlags: 0
