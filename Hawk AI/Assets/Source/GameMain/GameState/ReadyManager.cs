@@ -30,24 +30,25 @@ public class ReadyManager : CStateBase<GameManager>
         //}
 
         m_fStartTime -= Time.deltaTime;
+        CountDownAnimation.Instance.SetCount3(m_fStartTime);
 
         if (m_fStartTime <= 0)
         {
             this.m_cOwner.ChangeState(0, EGameState.Main);
+            CountDownAnimation.Instance.SetCount3(5.0f);
         }
-        else if(m_fStartTime <= 1)
-        {
-            Debug.Log("1");
-        }
-        else if (m_fStartTime <= 2)
-        {
-            Debug.Log("2");
-        }
-        else if (m_fStartTime <= 3)
-        {
-            Debug.Log("3");
-        }
-
+        //else if(m_fStartTime <= 1)
+        //{
+        //    Debug.Log("1");
+        //}
+        //else if (m_fStartTime <= 2)
+        //{
+        //    Debug.Log("2");
+        //}
+        //else if (m_fStartTime <= 3)
+        //{
+        //    Debug.Log("3");
+        //}
     }
 
     public override void Exit()

@@ -12,16 +12,16 @@ public class TutorialScenePuller : GeneralObject
 
     public override void GeneralUpdate()
     {
-        if (Input.anyKeyDown)
-        {
-            GameObject gameObject
-                 = ManagerObjectManager.Instance.GetGameObject((int)EManagerObject.eSCENE);
+        //if (Input.anyKeyDown)
+        //{
+        //    GameObject gameObject
+        //         = ManagerObjectManager.Instance.GetGameObject((int)EManagerObject.eSCENE);
 
-            ExecuteEvents.Execute<ISceneInterfase>(
-               target: gameObject,
-               eventData: null,
-               functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.StageSelect));
-        }
+        //    ExecuteEvents.Execute<ISceneInterfase>(
+        //       target: gameObject,
+        //       eventData: null,
+        //       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.StageSelect));
+        //}
     }
 
     public override void GeneralRelease()
