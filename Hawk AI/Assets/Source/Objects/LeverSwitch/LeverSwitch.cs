@@ -22,14 +22,20 @@ public interface ILeverSwitch : IEventSystemHandler
 
 public class LeverSwitch : MonoBehaviour, ILeverSwitch
 {
+    private GameObject m_cMeshObj;
     private ELeverSwitchState m_eLeverSwitchState;
     private bool m_bActivation;
     [SerializeField]
     private string m_sTag;
+    [SerializeField]
+    private float m_fBendLeverRadian;
+    [SerializeField]
+    private float m_fBenddingSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_cMeshObj = this.gameObject.transform.parent.GetChild(1).gameObject;
         m_eLeverSwitchState = ELeverSwitchState.ActiveCorrect;
         m_bActivation = false;
     }
@@ -40,7 +46,8 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
         if(m_bActivation == true)
         {
             // コントローラー対応
-            if (GamePad.GetButton(GamePad.Button.B, GamePad.Index.One) || KeyBoard.GetButton(KeyBoard.Button.B, KeyBoard.Index.Three))
+            if (GamePad.GetButton(GamePad.Button.B, GamePad.Index.One) || KeyBoard.GetButton(KeyBoard.Button.B, KeyBoard.Index.Three) 
+                || Input.GetKeyDown(KeyCode.Alpha4))
             {
                 if (GetState() == ELeverSwitchState.ActiveCorrect)
                 {
@@ -55,6 +62,18 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
                             eventData: null,
                             functor: (recieveTarget, y) => recieveTarget.ChangeState(ERailState.Inverse));
                     }
+
+                    Vector3 startRot = new Vector3(
+                        m_cMeshObj.transform.rotation.x,
+                        m_cMeshObj.transform.rotation.y,
+                        m_fBendLeverRadian);
+
+                    Vector3 endRot = new Vector3(
+                         m_cMeshObj.transform.rotation.x,
+                         m_cMeshObj.transform.rotation.y,
+                         -m_fBendLeverRadian);
+
+                    StartCoroutine(ActivateSwitching(startRot, endRot));
 
                     ChangeState(ELeverSwitchState.ActiveInverse);
                 }
@@ -71,6 +90,19 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
                             eventData: null,
                             functor: (recieveTarget, y) => recieveTarget.ChangeState(ERailState.Correct));
                     }
+
+
+                    Vector3 startRot = new Vector3(
+                        m_cMeshObj.transform.rotation.x,
+                        m_cMeshObj.transform.rotation.y,
+                        -m_fBendLeverRadian);
+
+                    Vector3 endRot = new Vector3(
+                         m_cMeshObj.transform.rotation.x,
+                         m_cMeshObj.transform.rotation.y,
+                         m_fBendLeverRadian);
+
+                    StartCoroutine(ActivateSwitching(startRot, endRot));
 
                     ChangeState(ELeverSwitchState.ActiveCorrect);
                 }
@@ -98,6 +130,24 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
     public ELeverSwitchState GetState()
     {
         return m_eLeverSwitchState;
+    }
+
+    IEnumerator ActivateSwitching(Vector3 _StartAngle, Vector3 _EndAngle)
+    {
+        float lerpVal = 0f;
+
+        while (lerpVal <= 1f)
+        {//
+            m_cMeshObj.transform.rotation = Quaternion.Euler(
+                Vector3.Lerp(_StartAngle, _EndAngle, lerpVal));
+            lerpVal += Time.deltaTime / m_fBenddingSpeed;
+            yield return null;
+        }
+
+        if (_StartAngle != _EndAngle)
+        {//強硬手段
+            m_cMeshObj.transform.rotation = Quaternion.Euler(_EndAngle);
+        }
     }
 
 }

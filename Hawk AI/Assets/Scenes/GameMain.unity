@@ -10414,7 +10414,7 @@ PrefabInstance:
     - target: {fileID: 2682445437655778001, guid: b0c0d38314069b548a416d28ac9c48d5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2682445437655778001, guid: b0c0d38314069b548a416d28ac9c48d5,
         type: 3}
@@ -10629,6 +10629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Rail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533690857484477649, guid: 9de951782a557fe4d9b7fa6b25ba2b35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7533690857484477651, guid: 9de951782a557fe4d9b7fa6b25ba2b35,
         type: 3}
