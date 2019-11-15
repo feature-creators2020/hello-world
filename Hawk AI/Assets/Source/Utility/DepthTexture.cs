@@ -26,14 +26,14 @@ public class DepthTexture : MonoBehaviour
 
     private void Awake()
     {
-        //Initialize();
+        Initialize();
     }
 
     private void Update()
     {
-#if UNITY_EDITOR
-        //SetMaterialProperties();
-#endif
+//#if UNITY_EDITOR
+        OldSetMaterialProperties();
+//#endif
     }
 
     public void Initialize()
@@ -44,12 +44,13 @@ public class DepthTexture : MonoBehaviour
         // CAUT : Check To Inspector!
         if (camera.allowMSAA || camera.allowHDR)
         {
+            Debug.LogError("camera.allowMSAA || camera.allowHDR" + camera.allowMSAA + camera.allowHDR);
             return;
         }
 
         _material = new Material(_shader);
 
-        SetMaterialProperties();
+        OldSetMaterialProperties();
 
         var commandBuffer = new CommandBuffer();
         int tempTextureIdentifier = Shader.PropertyToID("_PostEffectTempTexture");
