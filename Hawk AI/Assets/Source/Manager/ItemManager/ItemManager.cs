@@ -10,6 +10,7 @@ public interface IItemInterface : IEventSystemHandler
 
     void Destroy(GameObject _object);
 
+    GameObject GetPrefab();
 }
 
 
@@ -73,5 +74,8 @@ public class ItemManager : GeneralManager, IItemInterface
         m_cGameObjects.Remove(_object);
     }
 
-
+    public virtual GameObject GetPrefab()
+    {
+        return PrefabObject;
+    }
 }

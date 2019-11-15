@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum EDroneState
 {
@@ -26,6 +27,9 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
 
     public GameObject m_gTarget;                    // 目標のオブジェクト
     public Vector3 m_vTargetPos;                    // 目標地点の位置情報
+
+    public GameObject m_gItemInfo;                  // ドロップするアイテム情報
+    public GameObject m_gDropObject;                // ドロップボックスのプレハブ
 
     public float m_fSpeed = 3f;                          // 移動速度
 
@@ -95,14 +99,6 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
             var targetObj = m_PlayerManager.GetGameObject(i, "Mouse");
             Debug.Log("TargetTestObject : " + targetObj.name + i);
             float nDis = Vector3.Distance(targetObj.transform.position, this.transform.position);
-            //if (m_gTarget == null)
-            //{
-            //    // ターゲット情報が入っていないとき
-            //    m_gTarget = m_PlayerManager.GetGameObject(i, "Mouse");
-            //    TDistance = nDis;
-            //}
-            //else
-            //{
             if (TDistance == 0)
             {
                 TDistance = nDis;
@@ -126,7 +122,6 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                     TDistance = 0;
                 }
             }
-            //}
 
         }
     }
@@ -150,5 +145,31 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
             }
         }
         return false;
+    }
+
+    public void SelectItem()
+    {
+        m_gItemInfo = null;
+        var r_num = Random.Range(0, m_ItemManager.GetGameObjectsList().Count);
+        m_gItemInfo = m_ItemManager.GetGameObject(r_num);
+        //if (m_gItemInfo.GetComponent<MousetrapManager>() != null)
+        //{
+        //    m_gItemInfo = m_gItemInfo.GetComponent<MousetrapManager>().GetPrefab();
+        //}
+        //else
+        //{
+        //    // 他のアイテムのマネージャーを取得する
+        //}
+        ExecuteEvents.Execute<IItemInterface>(
+        target: m_gItemInfo,
+        eventData: null,
+        functor: (recieveTarget, y) => m_gItemInfo = recieveTarget.GetPrefab());
+    }
+
+    public void CreateDropBox()
+    {
+        m_gDropObject.GetComponent<DropItem>().SetItem(m_gItemInfo);
+        var thisPos = this.gameObject.transform.position;
+        Instantiate(m_gDropObject, new Vector3(thisPos.x, thisPos.y - 1f, thisPos.z), this.gameObject.transform.rotation);
     }
 }
