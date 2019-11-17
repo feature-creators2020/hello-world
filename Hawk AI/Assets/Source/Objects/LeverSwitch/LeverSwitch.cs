@@ -31,6 +31,8 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
     private float m_fBendLeverRadian;
     [SerializeField]
     private float m_fBenddingSpeed;
+    [SerializeField]
+    private GameObject ExclamationMark;
 
     // Start is called before the first frame update
     void Start()
@@ -113,13 +115,19 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == m_sTag)
+        {
             m_bActivation = true;
+            ExclamationMark.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == m_sTag)
+        {
             m_bActivation = false;
+            ExclamationMark.SetActive(false);
+        }
     }
 
     public void ChangeState(ELeverSwitchState _eLeverSwitchState)
