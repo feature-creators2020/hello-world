@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2531450550845851750}
   - component: {fileID: 2531450550845851751}
   - component: {fileID: 3331373748961978559}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DropItem
-  m_TagString: Untagged
+  m_TagString: DropItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059b6d0cac8fcd34f911e92decc52e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gItemInfo: {fileID: 8566625254624156455, guid: 68b5dfb385e0954478e714fb8188c696,
+  m_gItemInfo: {fileID: 2197343328128090213, guid: 492f3867995b7ce43bbee1f14573a5cb,
     type: 3}
 --- !u!1 &2531450552190084103
 GameObject:
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531450552190084102}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: danboru
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 089b197bcc953eb4ca270a92829540b7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 089b197bcc953eb4ca270a92829540b7,
         type: 3}

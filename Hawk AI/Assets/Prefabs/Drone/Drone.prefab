@@ -402,6 +402,9 @@ MonoBehaviour:
   NowState: 0
   m_gTarget: {fileID: 0}
   m_vTargetPos: {x: 0, y: 0, z: 0}
+  m_gItemInfo: {fileID: 0}
+  m_gDropObject: {fileID: 2531450550845851748, guid: 9324c17948810044cb42fff169aa2a84,
+    type: 3}
   m_fSpeed: 6
 --- !u!1 &8419196865325161627
 GameObject:

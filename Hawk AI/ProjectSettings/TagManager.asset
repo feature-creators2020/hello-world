@@ -16,6 +16,8 @@ TagManager:
   - Mouse
   - CanClimbing
   - Rail
+  - DropItem
+  - DronePoint
   layers:
   - Default
   - TransparentFX

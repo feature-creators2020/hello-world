@@ -19,11 +19,14 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     //[System.NonSerialized]
     public float StateTime;                 // 状態遷移する時間
     public int NowState;                           // 今の状態
+    public int NowPoint;                            // 現在の巡回地点
 
     [System.NonSerialized]
     public PlayerManager m_PlayerManager;           // 目標とするプレイヤーの情報を取得する
     [System.NonSerialized]
     public ItemManager m_ItemManager;               // ランダムにアイテムをドロップするときに使う
+    [System.NonSerialized]
+    public DronePointManager m_DronePointManager;   // 巡回する地点の情報を取得する
 
     public GameObject m_gTarget;                    // 目標のオブジェクト
     public Vector3 m_vTargetPos;                    // 目標地点の位置情報
@@ -32,6 +35,8 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     public GameObject m_gDropObject;                // ドロップボックスのプレハブ
 
     public float m_fSpeed = 3f;                          // 移動速度
+
+    public bool isReverse = false;                  // 巡回経路の逆順をする場合使用
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +60,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
 
         StateTime = 0f;
         NowState = 0;
+        NowPoint = 0;
 
         m_vTargetPos = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
     }
@@ -65,6 +71,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         var managerobject = ManagerObjectManager.Instance;
         m_PlayerManager = managerobject.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
         m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
+        m_DronePointManager = managerobject.GetGameObject("DronePointManager").GetComponent<DronePointManager>();
 
         base.Update();
 
@@ -126,6 +133,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         }
     }
 
+    // 追跡するターゲットの位置更新
     public void UpdateTargetPosition()
     {
         Debug.Log("TargetObject : " + m_gTarget.name);
@@ -147,29 +155,88 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         return false;
     }
 
+    // ドロップするアイテムをランダムで選ぶ
     public void SelectItem()
     {
         m_gItemInfo = null;
         var r_num = Random.Range(0, m_ItemManager.GetGameObjectsList().Count);
         m_gItemInfo = m_ItemManager.GetGameObject(r_num);
-        //if (m_gItemInfo.GetComponent<MousetrapManager>() != null)
-        //{
-        //    m_gItemInfo = m_gItemInfo.GetComponent<MousetrapManager>().GetPrefab();
-        //}
-        //else
-        //{
-        //    // 他のアイテムのマネージャーを取得する
-        //}
+
+        // 対象のゲームオブジェクトマネージャーからプレハブ情報を取得
         ExecuteEvents.Execute<IItemInterface>(
         target: m_gItemInfo,
         eventData: null,
         functor: (recieveTarget, y) => m_gItemInfo = recieveTarget.GetPrefab());
     }
 
+    // ドロップアイテムを生成する
     public void CreateDropBox()
     {
         m_gDropObject.GetComponent<DropItem>().SetItem(m_gItemInfo);
         var thisPos = this.gameObject.transform.position;
         Instantiate(m_gDropObject, new Vector3(thisPos.x, thisPos.y - 1f, thisPos.z), this.gameObject.transform.rotation);
+    }
+
+    // 巡回地点の取得(指定)
+    public GameObject GetPoint(int PointNo)
+    {
+        return m_DronePointManager.GetGameObject(PointNo);
+    }
+
+    // 巡回地点の取得(現在)
+    public GameObject GetCurrentPoint()
+    {
+        return m_DronePointManager.GetGameObject(NowPoint);
+    }
+
+    public void SelectPoint()
+    {
+        // 前の目標が巡回地点じゃないとき
+        if(m_gTarget == null || m_gTarget.tag != "DronePoint")
+        {
+            var posDistance = Vector3.Distance(this.transform.position, m_DronePointManager.GetGameObject(0).transform.position);
+            // 最短の巡回地点を取得
+            for(int i=0;i< m_DronePointManager.GetGameObjectsList().Count; i++)
+            {
+                var testDistance = Vector3.Distance(this.transform.position, m_DronePointManager.GetGameObject(i).transform.position);
+                if(posDistance >= testDistance)
+                {
+                    posDistance = testDistance;
+                    NowPoint = i;
+                    m_gTarget = GetCurrentPoint();
+                    m_vTargetPos = m_gTarget.transform.position;
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("ListCount : " + m_DronePointManager.GetGameObjectsList().Count);
+            // 巡回で次の地点を取得する
+            if (isReverse)
+            {
+                var nextPoint = NowPoint - 1;
+                if (nextPoint <= 0)
+                {
+                    nextPoint = m_DronePointManager.GetGameObjectsList().Count - 1;
+                }
+                m_gTarget = GetPoint(nextPoint);
+                NowPoint = nextPoint;
+                m_vTargetPos = m_gTarget.transform.position;
+            }
+            else
+            {
+                var nextPoint = NowPoint + 1;
+                if(nextPoint >= m_DronePointManager.GetGameObjectsList().Count)
+                {
+                    nextPoint = 0;
+                }
+                m_gTarget = GetPoint(nextPoint);
+                Debug.Log("currentPoint : " + GetCurrentPoint().name);  
+                Debug.Log("nextPosint : " + GetPoint(nextPoint).name);
+                NowPoint = nextPoint;
+                m_vTargetPos = m_gTarget.transform.position;
+            }
+            
+        }
     }
 }

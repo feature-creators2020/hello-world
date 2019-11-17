@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class MousetrapManager : GeneralManager
+public class DropItemManager : GeneralManager
 {
     [SerializeField]
     protected GameObject PrefabObject;
