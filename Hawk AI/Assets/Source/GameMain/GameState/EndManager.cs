@@ -18,21 +18,21 @@ public class EndManager : CStateBase<GameManager>
         ExecuteEvents.Execute<IFadeInterfase>(
         target: obj,
         eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+        functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
     }
     public override void Execute()
     {
-        if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B,GamePad.Index.Any)))
-        {
-            var Object = ManagerObjectManager.Instance.GetGameObject("SceneManager");
+        //if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B,GamePad.Index.Any)))
+        //{
+        //    var Object = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
-            ExecuteEvents.Execute<ISceneInterfase>(
-             target: Object,
-             eventData: null,
-             functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.GameMain));
+        //    ExecuteEvents.Execute<ISceneInterfase>(
+        //     target: Object,
+        //     eventData: null,
+        //     functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.GameMain));
 
-            //            this.m_cOwner.ChangeState(0, EGameState.Ready);
-        }
+        //    //            this.m_cOwner.ChangeState(0, EGameState.Ready);
+        //}
     }
 
     public override void Exit()

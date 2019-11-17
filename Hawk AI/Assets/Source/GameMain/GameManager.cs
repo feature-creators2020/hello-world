@@ -22,6 +22,9 @@ public enum EGameState
 
 public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInterface, IGeneralInterface
 {
+    [SerializeField]
+    private EGameState NowManagerState;
+
     // Start is called before the first frame update
     public virtual void GeneralInit()
     {
@@ -36,7 +39,7 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
         m_cStateList.Add(GameMain);
         m_cStateList.Add(End);
 
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EGameState.Ready]);
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)NowManagerState]);
     }
 
     // Update is called once per frame

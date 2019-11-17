@@ -12,16 +12,16 @@ public class ResultScenePuller : GeneralObject
 
     public override void GeneralUpdate()
     {
-        if (Input.anyKeyDown)
-        {
-            GameObject gameObject
-                 = ManagerObjectManager.Instance.GetGameObject((int)EManagerObject.eSCENE);
+        //if (Input.anyKeyDown)
+        //{
+        //    GameObject gameObject
+        //         = ManagerObjectManager.Instance.GetGameObject((int)EManagerObject.eSCENE);
 
-            ExecuteEvents.Execute<ISceneInterfase>(
-               target: gameObject,
-               eventData: null,
-               functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
-        }
+        //    ExecuteEvents.Execute<ISceneInterfase>(
+        //       target: gameObject,
+        //       eventData: null,
+        //       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+        //}
     }
 
     public override void GeneralRelease()
