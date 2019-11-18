@@ -486,10 +486,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         if(m_sItemData != null)
         {
             if (m_canPut) {
-                //Debug.Log("Put!");
+                Debug.Log("Put!");
                 // プレハブを取得
-                var item = m_Itemmanager.GetGameObject(m_sItemData);
-                //Debug.Log("ItemManager : " + item);
+                var item = ManagerObjectManager.Instance.GetGameObject(m_sItemData);
+                Debug.Log("ItemManager : " + item);
 
                 Vector2Int[] MapPos = new Vector2Int[2];
                 Vector3 vector3 = Vector3.zero;

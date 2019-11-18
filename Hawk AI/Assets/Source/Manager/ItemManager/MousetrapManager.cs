@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MousetrapManager : GeneralManager
+public class MousetrapManager : GeneralManager, IItemInterface
 {
     [SerializeField]
     protected GameObject PrefabObject;
