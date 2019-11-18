@@ -8,27 +8,37 @@ using System.IO;
 
 public enum ObjectNo
 {
-    NONE = 0,
-    PLAYER = 1,
-    PIPE = 2,
-    PIPE_HENOJI = 3,
-    PIPE_LONG = 4,
-    PIPE_SHORT = 5,
-    PIPE_VERTICAL = 6,
-    SEHLF_HORIZON = 7,
-    SEHLF_VERTICAL = 8,
-    CORRUGATED_BOARD_1 = 9,
-    CORRUGATED_BOARD_2 = 10,
-    UNCLIMB_OBJECT = 11,
-    MAP_COLLIDERBOX = 12,
-    MOUSE_TRAP_LOW = 13,
-    RAIL_STRAIGHT_HORIZON = 14,
-    RAIL_STRAIGHT_VERTICAL = 15,
-    RAIL_END = 16,
-    RAIL_BEND = 17,
-    LEVER_SWITCH = 18,
+    NONE,
+    PLAYER,
+    SEHLF_HORIZON,
+    SEHLF_VERTICAL,
+    CORRUGATED_BOARD_1,
+    CORRUGATED_BOARD_2,
+    UNCLIMB_OBJECT,
+    MAP_COLLIDERBOX,
+    MOUSE_TRAP_LOW,
+    RAIL_STRAIGHT_HORIZON,
+    RAIL_STRAIGHT_VERTICAL, //10
+    RAIL_END,
+    RAIL_BEND,
+    LEVER_SWITCH,
 
     NUM_OBJECT_TYPE,
+}
+
+public enum PipeObjectNo
+{
+    NONE,
+    PIPE_HENOJI_̚,
+    PIPE_HENOJI_I̚,
+    PIPE_HENOJI_IL,
+    PIPE_HENOJI_L,
+    PIPE_LONG_VERTICAL,
+    PIPE_LONG_HORIZONTAL,
+    PIPE,
+    PIPE_SHORT_VERTICAL,
+    PIPE_SHORT_HORIZONTAL,
+    PIPE_SLOPE,
 }
 
 public enum EObjectDataTable
@@ -41,20 +51,25 @@ public enum EObjectDataTable
 public partial class MapManager : SingletonMonoBehaviour<MapManager>
 {
     public TextAsset CSVMap;
+    public TextAsset CSVPipeMap;
     public GameObject[] ObjectType; // マップチップのNoどおりにゲームオブジェクトをセット
+    public GameObject[] PipeObjectType; // マップチップのNoどおりにゲームオブジェクトをセット
     Vector3 Initpos = Vector3.zero; // 配置場所
     private List<string[]> stringData = new List<string[]>();
     public List<int[]> InitMapData = new List<int[]>();
     public List<int[]> MapData = new List<int[]>();
+    public List<int[]> MapPipeData = new List<int[]>();
 
     protected override void Awake()
     {
         base.Awake();
         // read CSV file
         InitMapData = CsvRead(CSVMap);
+        MapPipeData = CsvRead(CSVPipeMap);
 
         // Instantiate objects
         MapCreate(InitMapData);
+        PipeCreate(MapPipeData);
 
         // setting use map
         MapData = InitMapData;
@@ -93,6 +108,7 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
     {
         List<int[]> mapData = new List<int[]>();
         StringReader reader = new StringReader(csv.text);
+        stringData = new List<string[]>();
 
         // CSV読み込み
         while (reader.Peek() != -1)
@@ -160,6 +176,30 @@ public partial class MapManager : SingletonMonoBehaviour<MapManager>
 
     }
 
+    /// <summary>
+    /// PipeをCSVデータから生成
+    /// </summary>
+    private void PipeCreate(List<int[]> maplist)
+    {
+        for (var i = 0; i < maplist.Count; i++)
+        {
+            for (var j = 0; j < maplist[i].Length; j++)
+            {
+
+                if (maplist[i][j] != (int)PipeObjectNo.NONE)
+                {
+                    Initpos = new Vector3(j, PipeObjectType[maplist[i][j]].gameObject.transform.position.y, maplist.Count - 1 - i);
+                    Instantiate(PipeObjectType[maplist[i][j]], Initpos, PipeObjectType[maplist[i][j]].transform.rotation);
+                }
+                //else
+                //{//当たり判定用のボックス生成
+                //    Instantiate(ObjectType[(int)ObjectNo.MAP_COLLIDERBOX], Initpos, ObjectType[(int)ObjectNo.MAP_COLLIDERBOX].transform.rotation);
+                //}
+            }
+        }
+
+
+    }
 
     /// <summary>
     /// 追加でオブジェクトを作る用

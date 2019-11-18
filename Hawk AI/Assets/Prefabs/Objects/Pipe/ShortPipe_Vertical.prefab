@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7644504482752530051}
   - component: {fileID: 7644504482752530048}
   m_Layer: 0
-  m_Name: ShortPipe
+  m_Name: ShortPipe_Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
