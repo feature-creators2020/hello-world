@@ -25,9 +25,19 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     [SerializeField]
     private EGameState NowManagerState;
 
+    private static bool m_bHumanWin = true;
+
+    public static bool IsHumanWin
+    {
+        get { return m_bHumanWin; }
+        set { m_bHumanWin = value; }
+    }
+
     // Start is called before the first frame update
     public virtual void GeneralInit()
     {
+        
+
         var StateMachine = new CStateMachine<GameManager>();
         m_cStateMachineList.Add(StateMachine);
 
@@ -38,6 +48,8 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
         m_cStateList.Add(Ready);
         m_cStateList.Add(GameMain);
         m_cStateList.Add(End);
+
+        
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)NowManagerState]);
     }
@@ -79,4 +91,8 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
 
     }
 
+    //public static bool GetIsHumanWin()
+    //{
+    //    return IsHumanWin;
+    //}
 }

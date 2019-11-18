@@ -88,21 +88,56 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
             this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
 
 
+        //勝ったほうの関数を呼ぶ
+        if(GameManager.IsHumanWin)
+        {
+            HawkAIWin();
+        }
+        else
+        {
+            MouseWin();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            HawkAIWin();
-        }
+        //if(Input.GetKeyDown(KeyCode.H))
+        //{
+        //    HawkAIWin();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            MouseWin();
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    MouseWin();
+        //}
 
+        if (GameManager.IsHumanWin)
+        {
+            ExecuteEvents.Execute<IEffectControllerInterface>(
+            target: m_cEffectController,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
+
+            ExecuteEvents.Execute<IEffectControllerInterface>(
+            target: m_cEffectController,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
+
+        }
+        else
+        {
+            ExecuteEvents.Execute<IEffectControllerInterface>(
+            target: m_cEffectController,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
+
+            ExecuteEvents.Execute<IEffectControllerInterface>(
+            target: m_cEffectController,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
+
+        }
     }
 
     public void HawkAIWin()
