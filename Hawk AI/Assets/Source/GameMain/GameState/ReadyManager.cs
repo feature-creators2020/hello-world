@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using GamepadInput;
 
 public class ReadyManager : CStateBase<GameManager>
@@ -29,14 +30,22 @@ public class ReadyManager : CStateBase<GameManager>
         //    this.m_cOwner.ChangeState(0, EGameState.Main);
         //}
 
-        m_fStartTime -= Time.deltaTime;
-        CountDownAnimation.Instance.SetCount3(m_fStartTime);
+        if(SceneManager.GetActiveScene().name == "GameMain")
+        {
+            m_fStartTime -= Time.deltaTime;
+            CountDownAnimation.Instance.SetCount3(m_fStartTime);
 
-        if (m_fStartTime <= 0)
+            if (m_fStartTime <= 0)
+            {
+                this.m_cOwner.ChangeState(0, EGameState.Main);
+                CountDownAnimation.Instance.SetCount3(5.0f);
+            }
+        }
+        else
         {
             this.m_cOwner.ChangeState(0, EGameState.Main);
-            CountDownAnimation.Instance.SetCount3(5.0f);
         }
+        
         //else if(m_fStartTime <= 1)
         //{
         //    Debug.Log("1");

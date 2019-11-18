@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ClockHandTurns : GeneralObject
 {
@@ -56,7 +57,7 @@ public class ClockHandTurns : GeneralObject
         m_fEndTime = GameTime;
 
 
-        if (m_bTimeFlag)
+        if (m_bTimeFlag && SceneManager.GetActiveScene().name == "GameMain")
         {
             //m_fNowTime += Time.deltaTime;
             m_fHandAngle = (m_fNowTime / m_fEndTime);
