@@ -31,6 +31,10 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private Sprite m_cWinSprite;
     [SerializeField]
     private Sprite m_cLoseSprite;
+    [SerializeField]
+    private Color m_cLeftBackColor;
+    [SerializeField]
+    private Color m_cRightBackColor;
 
     private GameObject m_cEffectController = null;
     private List<Image> m_cImageList = new List<Image>();
@@ -117,7 +121,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         //Left
         GameObject ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eLeftBack).gameObject;
-        m_cImageList[(int)EResultImage.eLeftBack].color = Color.green;
+        m_cImageList[(int)EResultImage.eLeftBack].color = m_cLeftBackColor;
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
         m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
@@ -126,7 +130,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         //Right
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
-        m_cImageList[(int)EResultImage.eRightBack].color = Color.red;
+        m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
 
@@ -150,13 +154,13 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         //Left
         GameObject ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eLeftBack).gameObject;
-        m_cImageList[(int)EResultImage.eLeftBack].color = Color.red;
+        m_cImageList[(int)EResultImage.eLeftBack].color = m_cLeftBackColor;
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
 
         //Right
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
-        m_cImageList[(int)EResultImage.eRightBack].color = Color.green;
+        m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
     }
