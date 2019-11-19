@@ -38,6 +38,12 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
 
     public bool isReverse = false;                  // 巡回経路の逆順をする場合使用
 
+    public float m_fItemDropTime = 20f;                   // アイテムを落とす間隔
+    [System.NonSerialized]
+    public float m_fItemDropCount;                  // アイテムを落とす間隔の処理
+    [System.NonSerialized]
+    public bool m_bCanDropItem;                     // アイテムを落とす判定
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +67,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         StateTime = 0f;
         NowState = 0;
         NowPoint = 0;
+        m_fItemDropCount = 0f;
 
         m_vTargetPos = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
     }
@@ -73,6 +80,17 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
         m_DronePointManager = managerobject.GetGameObject("DronePointManager").GetComponent<DronePointManager>();
 
+        // アイテムのドロップ間隔処理
+        if (!m_bCanDropItem)
+        {
+            m_fItemDropCount -= Time.deltaTime;
+            if(m_fItemDropCount <= 0f)
+            {
+                m_bCanDropItem = true;
+                m_fItemDropCount = m_fItemDropTime;
+            }
+        }
+
         base.Update();
 
         // 状態遷移処理
@@ -82,9 +100,9 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
             if (StateTime >= 10.0f)
             {
                 NowState++;
-                if (NowState >= (int)EDroneState.MaxState)
+                if (NowState >= (int)EDroneState.ItemDrop)
                 {
-                    NowState = 0;
+                    NowState = (int)EDroneState.Move;
                 }
                 m_cStateMachineList[0].ChangeState(m_cStateList[NowState]);
                 StateTime = 0f;

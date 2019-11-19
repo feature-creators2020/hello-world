@@ -25,8 +25,10 @@ public class DMoveManager : CStateBase<DroneStateManager>
         // 距離が一定の範囲内に入ると追従状態に移行
         if (Vector3.Distance(target, m_cOwner.transform.position) <= m_cOwner.m_fSpeed * 0.1f)
         {
-            Debug.Log("SelectPoint");
-            m_cOwner.SelectPoint();
+            // アイテムを落とす状態に遷移する
+            m_cOwner.ChangeState(0, EDroneState.ItemDrop);
+            //Debug.Log("SelectPoint");
+            //m_cOwner.SelectPoint();
         }
 
     }
