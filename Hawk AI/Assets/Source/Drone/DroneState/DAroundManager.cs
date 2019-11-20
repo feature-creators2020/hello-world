@@ -21,17 +21,10 @@ public class DAroundManager : CStateBase<DroneStateManager>
         if (m_cOwner.IsCanTarget())
         {
             // 滑らかに回転して移動したい
-            var target = m_cOwner.m_vTargetPos;
-            // 距離が一定の範囲内に入ると追従状態に移行
-            //if (Vector3.Distance(target, m_cOwner.transform.position) <= m_cOwner.m_fSpeed)
-            {
-                var position = Vector3.Lerp(m_cOwner.transform.position, target, 0.1f);
-                //var moveFoward = Vector3.Normalize(position);
-                m_cOwner.transform.rotation = Quaternion.LookRotation(position - m_cOwner.transform.position);
-                //m_cOwner.transform.position += m_cOwner.transform.forward * m_cOwner.m_fSpeed * Time.deltaTime;
-                m_cOwner.transform.position = position;
-                //m_cOwner.ChangeState(0, EDroneState.Around);
-            }
+            var target = new Vector3(m_cOwner.m_vTargetPos.x, m_cOwner.transform.position.y, m_cOwner.m_vTargetPos.z);
+            var distance = Vector3.Distance(target, m_cOwner.transform.position);
+            m_cOwner.transform.rotation = Quaternion.Slerp(m_cOwner.transform.rotation, Quaternion.LookRotation(target - m_cOwner.transform.position), 0.1f);
+            m_cOwner.transform.position = Vector3.Lerp(m_cOwner.transform.position, target, 0.1f);
         }
         else
         {

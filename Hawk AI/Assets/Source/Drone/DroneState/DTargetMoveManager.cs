@@ -25,7 +25,8 @@ public class DTargetMoveManager : CStateBase<DroneStateManager>
             //float t = 0;
             //Quaternion.Slerp(m_cOwner.transform.rotation, Quaternion.LookRotation(target - m_cOwner.transform.position), t);
             //target - m_cOwner.transform.position
-            m_cOwner.transform.rotation = Quaternion.LookRotation(target - m_cOwner.transform.position);
+            m_cOwner.transform.rotation = Quaternion.Slerp(m_cOwner.transform.rotation, Quaternion.LookRotation(target - m_cOwner.transform.position), 0.1f);
+            //m_cOwner.transform.rotation = Quaternion.LookRotation(target - m_cOwner.transform.position);
             m_cOwner.transform.position += m_cOwner.transform.forward * m_cOwner.m_fSpeed * Time.deltaTime;
             // 距離が一定の範囲内に入ると追従状態に移行
             if (Vector3.Distance(target, m_cOwner.transform.position) <= m_cOwner.m_fSpeed)
