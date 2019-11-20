@@ -49,7 +49,7 @@ public class ReadyPlayer : SingletonMonoBehaviour<ReadyPlayer>
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
 
-        Invoke("ChangeScene", 2.0f);
+        Invoke("ChangeScene", 1.0f);
     }
 
     private void ChangeScene()
