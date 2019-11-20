@@ -42,11 +42,11 @@ public class DepthTexture : MonoBehaviour
         camera.depthTextureMode |= DepthTextureMode.Depth;
 
         // CAUT : Check To Inspector!
-        if (camera.allowMSAA || camera.allowHDR)
-        {
-            Debug.LogError("camera.allowMSAA || camera.allowHDR" + camera.allowMSAA + camera.allowHDR);
-            return;
-        }
+        //if (camera.allowMSAA || camera.allowHDR)
+        //{
+        //    Debug.LogError("camera.allowMSAA || camera.allowHDR" + camera.allowMSAA + camera.allowHDR);
+        //    return;
+        //}
 
         _material = new Material(_shader);
 
