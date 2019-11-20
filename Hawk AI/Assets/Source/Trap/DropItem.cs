@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DropItem : GeneralObject
 {
@@ -11,6 +12,7 @@ public class DropItem : GeneralObject
     Ray ray;
     bool isGround = false;
     Rigidbody m_crigidbody;
+    GameObject m_gPointObject;
 
     public override void GeneralInit()
     {
@@ -56,8 +58,8 @@ public class DropItem : GeneralObject
     void HitCheck()
     {
         ray = new Ray(this.transform.position, -this.transform.up);
-        Debug.DrawLine(this.transform.position, this.transform.position - this.transform.up * 0.5f, Color.red);
-        if (Physics.Raycast(ray, out hit, 0.5f))
+        Debug.DrawLine(this.transform.position, this.transform.position - this.transform.up , Color.red);
+        if (Physics.Raycast(ray, out hit, 1.0f))
         {
             var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
             var TagName = hit.collider.gameObject.tag;
@@ -85,6 +87,16 @@ public class DropItem : GeneralObject
     void CreateItem()
     {
         Debug.Log("Instantiate : " + m_gItemInfo.name);
-        Instantiate(m_gItemInfo, this.gameObject.transform.position, this.transform.rotation);
+        var item = Instantiate(m_gItemInfo, this.gameObject.transform.position, this.transform.rotation);
+        ExecuteEvents.Execute<IItemObjectInterface>(
+            target: item.transform.GetChild(0).gameObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.SetPoint(m_gPointObject));
+
+    }
+
+    public void SetPoint(GameObject _point)
+    {
+        m_gPointObject = _point;
     }
 }

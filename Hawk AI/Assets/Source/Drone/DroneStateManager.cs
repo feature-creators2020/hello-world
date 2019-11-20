@@ -192,7 +192,8 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     {
         m_gDropObject.GetComponent<DropItem>().SetItem(m_gItemInfo);
         var thisPos = this.gameObject.transform.position;
-        Instantiate(m_gDropObject, new Vector3(thisPos.x, thisPos.y - 1f, thisPos.z), this.gameObject.transform.rotation);
+        var drop = Instantiate(m_gDropObject, new Vector3(thisPos.x, thisPos.y - 1f, thisPos.z), this.gameObject.transform.rotation);
+        drop.GetComponent<DropItem>().SetPoint(m_gTarget);
     }
 
     // 巡回地点の取得(指定)

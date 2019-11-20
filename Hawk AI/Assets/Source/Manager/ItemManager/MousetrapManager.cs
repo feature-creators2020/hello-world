@@ -67,4 +67,9 @@ public class MousetrapManager : GeneralManager, IItemInterface
     {
         return PrefabObject;
     }
+
+    public virtual string GetTag()
+    {
+        return m_strTag;
+    }
 }

@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour
+public interface IItemObjectInterface : IEventSystemHandler
+{
+    void SetPoint(GameObject _point);
+}
+
+
+public class Item : MonoBehaviour, IItemObjectInterface
 {
     bool isLimitScale = false;
     Vector3 keepScale;
+    GameObject m_gPointObject;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +39,52 @@ public class Item : MonoBehaviour
         if (this.transform.localScale.x >= keepScale.x)
         {
             isLimitScale = true;
+            ExecuteEvents.Execute<IDronePointInterface>(
+                        target: m_gPointObject,
+                        eventData: null,
+                        functor: (recieveTarget, y) => recieveTarget.SetItem(this.gameObject));
         }
+    }
+
+    public void SetPoint(GameObject _point)
+    {
+        m_gPointObject = _point;
+    }
+
+    void OnEnable()
+    {
+        //ExecuteEvents.Execute<IDronePointInterface>(
+        //            target: m_gPointObject,
+        //            eventData: null,
+        //            functor: (recieveTarget, y) => recieveTarget.SetItem(this.gameObject));
+
+        // アイテムマネージャーから自身のアイテムマネージャーを取得し、リストに追加する
+        var manager = ManagerObjectManager.Instance.GetGameObject("ItemManager");
+        var itemmanager = manager.GetComponent<ItemManager>();
+        string managertag = null;
+        foreach (var val in itemmanager.GetGameObjectsList())
+        {
+
+            ExecuteEvents.Execute<IItemInterface>(
+                target: val,
+                eventData: null,
+                functor: (recieveTarget, y) => managertag = recieveTarget.GetTag());
+            if(managertag == this.gameObject.transform.parent.gameObject.tag)
+            {
+                ExecuteEvents.Execute<IGeneralInterface>(
+                    target: val,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.GetGameObjectsList().Add(this.gameObject.transform.parent.gameObject));
+            }
+        }
+
+    }
+
+    void OnDestroy()
+    {
+        ExecuteEvents.Execute<IDronePointInterface>(
+                    target: m_gPointObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.DelItem());
     }
 }

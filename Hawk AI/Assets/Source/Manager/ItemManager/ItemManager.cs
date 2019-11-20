@@ -11,6 +11,8 @@ public interface IItemInterface : IEventSystemHandler
     void Destroy(GameObject _object);
 
     GameObject GetPrefab();
+
+    string GetTag();
 }
 
 
@@ -77,5 +79,10 @@ public class ItemManager : GeneralManager, IItemInterface
     public virtual GameObject GetPrefab()
     {
         return PrefabObject;
+    }
+
+    public virtual string GetTag()
+    {
+        return m_strTag;
     }
 }
