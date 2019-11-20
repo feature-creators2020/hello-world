@@ -5,17 +5,61 @@ using GamepadInput;
 using UnityEngine.EventSystems;
 using KeyBoardInput;
 
-public class ReadyPlayer : MonoBehaviour
+public class ReadyPlayer : SingletonMonoBehaviour<ReadyPlayer>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private List<GameObject> GameReady;
+
+    private void Update()
     {
-        
+        if (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.One) || KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.One))
+        {
+            GameReady[0].SetActive(true);
+            CheckReady();
+        }
+        if (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.Two) || KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.Two))
+        {
+            GameReady[1].SetActive(true);
+            CheckReady();
+        }
+        if (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.Three) || KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.Three))
+        {
+            GameReady[2].SetActive(true);
+            CheckReady();
+        }
+        if (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.Four) || KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.Four))
+        {
+            GameReady[3].SetActive(true);
+            CheckReady();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CheckReady()
     {
-        
+        for(int i = 0; i < 4; i++)
+        {
+            if (!GameReady[i].activeSelf)
+            {
+                return;
+            }
+        }
+        var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager");
+        ExecuteEvents.Execute<IFadeInterfase>(
+        target: obj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+
+        Invoke("ChangeScene", 2.0f);
+    }
+
+    private void ChangeScene()
+    {
+        GameObject gameObject
+                 = ManagerObjectManager.Instance.GetGameObject((int)EManagerObject.eSCENE);
+
+        ExecuteEvents.Execute<ISceneInterfase>(
+           target: gameObject,
+           eventData: null,
+           functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.GameMain));
     }
 }
