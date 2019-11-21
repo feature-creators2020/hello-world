@@ -14,7 +14,8 @@ public enum EResultChildObj
 {
     eBackScreen,
     eFont,
-    eEffects
+    eEffects,
+    eFloorSpotLights,
 }
 
 public enum EResultImage
@@ -33,6 +34,12 @@ public enum ESpotLightImage
     eRightSpotLightImage
 }
 
+public enum EFloorSpotLightObject
+{
+    eLeft,
+    eRight,
+}
+
 public class ResultManager : MonoBehaviour, IResultManagerInterfase
 {
     [SerializeField]
@@ -47,6 +54,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private GameObject m_cEffectController = null;
     private List<Image> m_cImageList = new List<Image>();
     private List<GameObject> m_cSpotLightList = new List<GameObject>();
+    private List<GameObject> m_cFloorSpotLightList = new List<GameObject>();
 
 
 
@@ -98,7 +106,20 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList.Add(ImgaeObj.GetComponent<Image>());
 
 
-        foreach(var val in m_cImageList)
+        //LeftFloorSpotLight
+        ImgaeObj = this.gameObject.transform.GetChild((int)EResultChildObj.eFloorSpotLights).
+                    transform.GetChild((int)EFloorSpotLightObject.eLeft).gameObject;
+        m_cFloorSpotLightList.Add(ImgaeObj);
+        ImgaeObj.SetActive(false);
+
+        //RightFloorSpotLight
+        ImgaeObj = this.gameObject.transform.GetChild((int)EResultChildObj.eFloorSpotLights).
+                    transform.GetChild((int)EFloorSpotLightObject.eRight).gameObject;
+        m_cFloorSpotLightList.Add(ImgaeObj);
+        ImgaeObj.SetActive(false);
+
+
+        foreach (var val in m_cImageList)
         {
             val.sprite = null;
             val.color = Color.clear;
@@ -171,6 +192,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
         m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Left].SetActive(true);
+        m_cFloorSpotLightList[(int)EFloorSpotLightObject.eLeft].SetActive(true);
 
         ExecuteEvents.Execute<IEffectControllerInterface>(
         target: m_cEffectController,
@@ -213,6 +235,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
         m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Right].SetActive(true);
+        m_cFloorSpotLightList[(int)EFloorSpotLightObject.eRight].SetActive(true);
 
         ExecuteEvents.Execute<IEffectControllerInterface>(
         target: m_cEffectController,
