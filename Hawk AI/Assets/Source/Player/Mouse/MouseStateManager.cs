@@ -12,12 +12,15 @@ public enum EMouseState
     Door,
     Up,
     Pipe,
-    Catch
+    Catch,
+    Rail
 }
 
 public interface IMouseInterface : IEventSystemHandler
 {
     void Catched();
+
+    void ChangeUpState(GameObject _Target);
 }
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
@@ -76,6 +79,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var Up = new MUpManager(this);
         var Pipe = new MPipeMoveManager(this);
         var Catch = new MCatchManager(this);
+        var Rail = new MRailManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
@@ -83,6 +87,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_cStateList.Add(Up);
         m_cStateList.Add(Pipe);
         m_cStateList.Add(Catch);
+        m_cStateList.Add(Rail);
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.Normal]);
     }
@@ -111,13 +116,39 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             {
                 var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
                 var TagName = hit.collider.gameObject.tag;
-                if (LayerName == "Box")
+                if (LayerName == "Box" || LayerName == "Rail")
                 {
                     if (TagName == "CanClimbing")
                     {
                         //Debug.Log(hit.collider.gameObject.transform.position);
                         m_GTargetBoxObject = hit.collider.gameObject;
                         ChangeState(0, EMouseState.Up);
+                        return;
+                    }
+                }
+            }
+
+            Ray Downray = new Ray(transform.position, -transform.up);
+            RaycastHit Downhit;
+            Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
+            if (Physics.Raycast(Downray, out Downhit, 1f))
+            {
+                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+                Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+                Debug.Log("DownHitTag : " + Downhit.collider.tag);
+
+                var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
+                var TagName = Downhit.collider.gameObject.tag;
+                if (LayerName == "Rail")
+                {
+                    m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
+                    ChangeState(0, EMouseState.Rail);
+                }
+                else
+                {
+                    if (CheckCurrentState(EMouseState.Rail))
+                    {
+                        ChangeState(0, EOldState);
                     }
                 }
             }
@@ -260,5 +291,29 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public CStateBase<MouseStateManager> GetStateBase(EMouseState _state)
     {
         return m_cStateList[(int)_state];
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Rail")
+        {
+            m_GTargetBoxObject = other.gameObject.transform.root.gameObject;
+            ChangeState(0, EMouseState.Rail);
+        }
+    }
+
+    public bool CheckCurrentState(EMouseState _state)
+    {
+        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)_state])
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void ChangeUpState(GameObject _Target)
+    {
+        m_GTargetBoxObject = _Target;
+        ChangeState(0, EMouseState.Up);
     }
 }

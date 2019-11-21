@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
-using UnityEngine.EventSystems;
 using KeyBoardInput;
+using UnityEngine.EventSystems;
 
-
-public class HNormalManager : CStateBase<HumanStateManager>
+public class HRailManager : CStateBase<HumanStateManager>
 {
-    public HNormalManager(HumanStateManager _cOwner) : base(_cOwner) { }
+
+    Rail targetRail;
+
+    public HRailManager(HumanStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
     {
@@ -17,13 +19,24 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Normal");
+        Debug.Log("State:Rail");
+
+        if(m_cOwner.m_GTargetBoxObject != null)
+        {
+            targetRail = m_cOwner.m_GTargetBoxObject.GetComponent<Rail>();
+        }
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
         var playerKeyNo = (KeyBoard.Index)playerNo;
         var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
 
+        // ゲームパッドの入力情報取得
+        m_cOwner.inputHorizontal = 0f;
+        m_cOwner.inputVertical = 0f;
+
+        m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
+        m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
         // 捕獲処理
         if (m_cOwner.hCatchZone.isCatch)
@@ -39,9 +52,6 @@ public class HNormalManager : CStateBase<HumanStateManager>
                 //m_cOwner.hCatchZone.TargetObject;
             }
         }
-
-        // アイテム使用
-        this.m_cOwner.UseItem(playerNo, playerKeyNo);
 
 
         // 移動処理。アクションを起こしていないときに処理
@@ -71,29 +81,55 @@ public class HNormalManager : CStateBase<HumanStateManager>
             }
 
             // 移動判定
-            if (m_cOwner.IsMove(moveForward))
-            {
+            //if (m_cOwner.IsMove(moveForward))
+            //{
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
+                Vector3 railmove = Vector3.zero;
+                ExecuteEvents.Execute<IRailInterfase>(
+                    target: m_cOwner.m_GTargetBoxObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => railmove = recieveTarget.GetMove());
+            Debug.Log(m_cOwner.m_GTargetBoxObject.name);
+                Debug.Log(railmove);
+                moveForward += railmove;
+
                 var correctionMove = m_cOwner.hMoveColliderScript.hit.normal;
                 moveForward += correctionMove;
                 if (m_cOwner.IsMove(moveForward))
                 {
                     moveForward -= correctionMove;
                 }
-            }
+            //}
             // 移動処理
             m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
-        }
 
-        // Debug:ステート変更
+
+            // 接地判定
+            Ray Downray = new Ray(m_cOwner.transform.position, -m_cOwner.transform.up);
+            RaycastHit Downhit;
+            Debug.DrawLine(m_cOwner.transform.position, m_cOwner.transform.position - m_cOwner.transform.up, Color.red);
+            if (Physics.Raycast(Downray, out Downhit, 1f))
+            {
+                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+                Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+                Debug.Log("DownHitTag : " + Downhit.collider.tag);
+
+                var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
+                var TagName = Downhit.collider.gameObject.tag;
+                if (LayerName != "Rail")
+                {
+                    m_cOwner.ChangeState(0, m_cOwner.EOldState);
+                }
+            }
+
+        }
     }
 
     public override void Exit()
     {
-        m_cOwner.EOldState = EHumanState.Normal;
+        
     }
-
 }

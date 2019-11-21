@@ -42,7 +42,7 @@ public class SettingTrapCollider : MonoBehaviour,ISettingTrapCollider
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("MapColliderBox"))
         {
-            Debug.Log("OnTriggerEnter : " + other.gameObject.name);
+            //Debug.Log("OnTriggerEnter : " + other.gameObject.name);
             bHitFlg = true;
         }
     }
@@ -51,7 +51,7 @@ public class SettingTrapCollider : MonoBehaviour,ISettingTrapCollider
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("MapColliderBox"))
         {
-            Debug.Log("OnTriggerExit : " + other.gameObject.name);
+            //Debug.Log("OnTriggerExit : " + other.gameObject.name);
 
             bHitFlg = false;
         }

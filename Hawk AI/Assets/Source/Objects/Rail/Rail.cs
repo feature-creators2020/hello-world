@@ -68,4 +68,21 @@ public class Rail : MonoBehaviour,IRailInterfase
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Human")
+        {
+            ExecuteEvents.Execute<IHumanInterface>(
+                   target: other.gameObject,
+                   eventData: null,
+                   functor: (recieveTarget, y) => recieveTarget.ChangeUpState(this.gameObject));
+        }
+        if(other.tag == "Mouse")
+        {
+            ExecuteEvents.Execute<IMouseInterface>(
+                   target: other.gameObject,
+                   eventData: null,
+                   functor: (recieveTarget, y) => recieveTarget.ChangeUpState(this.gameObject));
+        }
+    }
 }

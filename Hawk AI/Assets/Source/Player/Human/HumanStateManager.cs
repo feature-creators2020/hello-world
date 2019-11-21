@@ -15,6 +15,8 @@ public enum EHumanState
     Normal,
     SlowDown,
     Door,
+    Up,
+    Rail
 }
 
 public enum EHumanDirectionalState
@@ -25,7 +27,12 @@ public enum EHumanDirectionalState
     Back,
 }
 
-public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase
+public interface IHumanInterface : IEventSystemHandler
+{
+    void ChangeUpState(GameObject _Target);
+}
+
+public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase, IHumanInterface
 {
     [System.NonSerialized]
     public float inputHorizontal;               // コントローラーLスティック横軸情報
@@ -91,7 +98,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     float RayLength;
     EHumanDirectionalState m_eHumanDirectionalState; //人の向き
 
-    private GameObject m_cSetItemColliderObj; 
+    private GameObject m_cSetItemColliderObj;
+
+    [System.NonSerialized]
+    public GameObject m_GTargetBoxObject;
 
 
     // Start is called before the first frame update
@@ -103,10 +113,14 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         var Normal = new HNormalManager(this);
         var SlowDown = new HSlowDownManager(this);
         var Door = new HDoorManager(this);
+        var Up = new HUpManager(this);
+        var Rail = new HRailManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
         m_cStateList.Add(Door);
+        m_cStateList.Add(Up);
+        m_cStateList.Add(Rail);
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EHumanState.Normal]);
 
@@ -132,6 +146,61 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         // 各状態の処理
         base.Update();
+
+        //var startpos = this.transform.position /*+ new Vector3(0f, -0.8f)*/;
+        //Debug.DrawLine(startpos, startpos + this.transform.forward, Color.red);
+        //if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EHumanState.Up])
+        //{
+        //    Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit, 0.5f))
+        //    {
+        //        Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
+        //        Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
+        //        Debug.Log("HitTag : " + hit.collider.tag);
+        //        var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
+        //        var TagName = hit.collider.gameObject.tag;
+        //        if (LayerName == "Rail")
+        //        {
+        //            if (TagName == "CanClimbing")
+        //            {
+        //                Debug.Log("ChangeState");
+        //                m_GTargetBoxObject = hit.collider.gameObject.transform.root.gameObject;
+        //                ChangeState(0, EHumanState.Up);
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
+        // レールの上に乗っている
+        //if (!CheckCurrentState(EHumanState.Up))
+        //{
+        //    Ray Downray = new Ray(transform.position, -transform.up);
+        //    RaycastHit Downhit;
+        //    Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
+        //    if (Physics.Raycast(Downray, out Downhit, 1f))
+        //    {
+        //        Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+        //        Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+        //        Debug.Log("DownHitTag : " + Downhit.collider.tag);
+
+        //        var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
+        //        var TagName = Downhit.collider.gameObject.tag;
+        //        if (LayerName == "Rail")
+        //        {
+        //            m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
+        //            ChangeState(0, EHumanState.Rail);
+        //        }
+        //        else
+        //        {
+        //            if (CheckCurrentState(EHumanState.Rail))
+        //            {
+        //                ChangeState(0, EOldState);
+        //            }
+        //        }
+        //    }
+        //}
+
     }
 
     public virtual void UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
@@ -486,10 +555,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         if(m_sItemData != null)
         {
             if (m_canPut) {
-                Debug.Log("Put!");
+                //Debug.Log("Put!");
                 // プレハブを取得
                 var item = ManagerObjectManager.Instance.GetGameObject(m_sItemData);
-                Debug.Log("ItemManager : " + item);
+                //Debug.Log("ItemManager : " + item);
 
                 Vector2Int[] MapPos = new Vector2Int[2];
                 Vector3 vector3 = Vector3.zero;
@@ -594,5 +663,29 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public void SetMapPos(Vector2Int vector2Int)
     {
         PlayerMapPos = vector2Int;
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Rail")
+        {
+            m_GTargetBoxObject = other.gameObject.transform.root.gameObject;
+            ChangeState(0, EHumanState.Rail);
+        }
+    }
+
+    public bool CheckCurrentState(EHumanState _state)
+    {
+        if(m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)_state])
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void ChangeUpState(GameObject _Target)
+    {
+        m_GTargetBoxObject = _Target;
+        ChangeState(0, EHumanState.Up);
     }
 }
