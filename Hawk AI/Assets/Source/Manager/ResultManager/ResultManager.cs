@@ -43,8 +43,6 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private Color m_cLeftBackColor;
     [SerializeField]
     private Color m_cRightBackColor;
-    [SerializeField]
-    private GameObject m_cSpotLightSprite;
 
     private GameObject m_cEffectController = null;
     private List<Image> m_cImageList = new List<Image>();
@@ -165,17 +163,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
     public void HawkAIWin()
     {
-        //Hack : Fix Some Playing
-
-        ExecuteEvents.Execute<IEffectControllerInterface>(
-        target: m_cEffectController,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
-
-        ExecuteEvents.Execute<IEffectControllerInterface>(
-        target: m_cEffectController,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
+        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
 
         //Left
         GameObject ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eLeftBack).gameObject;
@@ -183,31 +171,30 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
         m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Left].SetActive(true);
-        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
 
-    
+        ExecuteEvents.Execute<IEffectControllerInterface>(
+        target: m_cEffectController,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
+
+
         //Right
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
         m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
 
+        ExecuteEvents.Execute<IEffectControllerInterface>(
+        target: m_cEffectController,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
+
+
     }
 
     public void MouseWin()
     {
-        //Hack : Fix Some Playing
-
-        ExecuteEvents.Execute<IEffectControllerInterface>(
-        target: m_cEffectController,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
-
-        ExecuteEvents.Execute<IEffectControllerInterface>(
-        target: m_cEffectController,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
-
+        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
 
         //Left
         GameObject ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eLeftBack).gameObject;
@@ -215,11 +202,22 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
 
+        ExecuteEvents.Execute<IEffectControllerInterface>(
+        target: m_cEffectController,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
+
         //Right
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
         m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
         m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Right].SetActive(true);
+
+        ExecuteEvents.Execute<IEffectControllerInterface>(
+        target: m_cEffectController,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
+
     }
 }
