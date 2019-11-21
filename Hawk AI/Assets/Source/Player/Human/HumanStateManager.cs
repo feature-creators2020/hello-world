@@ -406,6 +406,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 {
                     m_sItemData = "MousetrapManager";
                     //Debug.Log("GetItem");
+                    ItemHolderManager.Instance.HoldItem(other.gameObject.tag);
                 }
 
                 // 取得したのでオブジェクトを消す
@@ -545,6 +546,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
                 // 所持アイテム情報を削除
                 m_sItemData = null;
+                ItemHolderManager.Instance.ReleaseItem();
                 // 無敵状態にする
                 m_isInvincible = true;
             }
@@ -595,4 +597,5 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         PlayerMapPos = vector2Int;
     }
+
 }
