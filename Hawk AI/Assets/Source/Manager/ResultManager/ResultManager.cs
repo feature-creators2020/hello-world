@@ -25,6 +25,14 @@ public enum EResultImage
     eRightFont
 }
 
+public enum ESpotLightImage
+{
+    eListPullNo_Left,
+    eListPullNo_Right,
+    eLeftSpotLightImage,
+    eRightSpotLightImage
+}
+
 public class ResultManager : MonoBehaviour, IResultManagerInterfase
 {
     [SerializeField]
@@ -35,9 +43,12 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private Color m_cLeftBackColor;
     [SerializeField]
     private Color m_cRightBackColor;
+    [SerializeField]
+    private GameObject m_cSpotLightSprite;
 
     private GameObject m_cEffectController = null;
     private List<Image> m_cImageList = new List<Image>();
+    private List<GameObject> m_cSpotLightList = new List<GameObject>();
 
 
 
@@ -65,6 +76,18 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList.Add(ImgaeObj.GetComponent<Image>());
         ImageRectTrans = ImgaeObj.GetComponent<RectTransform>();
         ImageRectTrans.localPosition += new Vector3(CanvasRectTrans.sizeDelta.x / 2, 0, 0);
+
+        //LeftSpotLight
+        ImgaeObj = this.gameObject.transform.GetChild((int)EResultChildObj.eBackScreen).
+                    transform.GetChild((int)ESpotLightImage.eLeftSpotLightImage).gameObject;
+        m_cSpotLightList.Add(ImgaeObj);
+        ImgaeObj.SetActive(false);
+
+        //RightSpotLight
+        ImgaeObj = this.gameObject.transform.GetChild((int)EResultChildObj.eBackScreen).
+                    transform.GetChild((int)ESpotLightImage.eRightSpotLightImage).gameObject;
+        m_cSpotLightList.Add(ImgaeObj);
+        ImgaeObj.SetActive(false);
 
         //LeftFont
         ImgaeObj = this.gameObject.transform.GetChild((int)EResultChildObj.eFont).
@@ -159,16 +182,15 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eLeftBack].color = m_cLeftBackColor;
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
+        m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Left].SetActive(true);
         m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
 
     
-
         //Right
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
         m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
-
 
     }
 
@@ -198,5 +220,6 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cWinSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
+        m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Right].SetActive(true);
     }
 }
