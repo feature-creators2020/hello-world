@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public interface IDroneInterfase : IEventSystemHandler
+{
+    void ChangeMoveState();
+}
+
+
 public enum EDroneState
 {
     Stay,
@@ -13,7 +19,7 @@ public enum EDroneState
     MaxState
 }
 
-public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState>
+public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState>, IDroneInterfase
 {
 
     //[System.NonSerialized]
@@ -192,8 +198,10 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     {
         m_gDropObject.GetComponent<DropItem>().SetItem(m_gItemInfo);
         var thisPos = this.gameObject.transform.position;
-        var drop = Instantiate(m_gDropObject, new Vector3(thisPos.x, thisPos.y - 1f, thisPos.z), this.gameObject.transform.rotation);
-        drop.GetComponent<DropItem>().SetPoint(m_gTarget);
+        var drop = Instantiate(m_gDropObject, new Vector3(thisPos.x, thisPos.y - 1f, thisPos.z), this.gameObject.transform.rotation).GetComponent<DropItem>();
+        drop.SetPoint(m_gTarget);
+        // 自身のステートを変えてもらうために渡しておく
+        drop.SetDroneObject(this.gameObject);
     }
 
     // 巡回地点の取得(指定)
@@ -256,6 +264,14 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                 m_vTargetPos = m_gTarget.transform.position;
             }
             
+        }
+    }
+
+    public void ChangeMoveState()
+    {
+        if (NowState == (int)EDroneState.Move)
+        {
+            ChangeState(0, EDroneState.Move);
         }
     }
 }

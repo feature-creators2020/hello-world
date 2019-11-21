@@ -36,9 +36,9 @@ public class DTargetMoveManager : CStateBase<DroneStateManager>
         }
         else
         {
-            // 待機状態に遷移
-            m_cOwner.ChangeState(0, EDroneState.Stay);
-            m_cOwner.NowState = (int)EDroneState.Stay;
+            // 待機状態に遷移→移動状態
+            m_cOwner.ChangeState(0, EDroneState.Move);
+            m_cOwner.NowState = (int)EDroneState.Move;
         }
     }
 

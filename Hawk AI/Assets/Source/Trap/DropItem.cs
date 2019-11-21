@@ -13,6 +13,7 @@ public class DropItem : GeneralObject
     bool isGround = false;
     Rigidbody m_crigidbody;
     GameObject m_gPointObject;
+    GameObject m_gDroneObject;  // このオブジェクトが消えるタイミングでドローンのステートを切り替えるため
 
     public override void GeneralInit()
     {
@@ -89,14 +90,22 @@ public class DropItem : GeneralObject
         Debug.Log("Instantiate : " + m_gItemInfo.name);
         var item = Instantiate(m_gItemInfo, this.gameObject.transform.position, this.transform.rotation);
         ExecuteEvents.Execute<IItemObjectInterface>(
-            target: item.transform.GetChild(0).gameObject,
+            target: item.transform.Find("ItemImage").gameObject,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.SetPoint(m_gPointObject));
-
+        ExecuteEvents.Execute<IDroneInterfase>(
+            target: m_gDroneObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeMoveState());
     }
 
     public void SetPoint(GameObject _point)
     {
         m_gPointObject = _point;
+    }
+
+    public void SetDroneObject(GameObject _drone)
+    {
+        m_gDroneObject = _drone;
     }
 }
