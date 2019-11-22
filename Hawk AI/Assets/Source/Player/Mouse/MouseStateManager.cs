@@ -107,9 +107,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         base.Update();
 
         // レイキャストによる壁の当たり判定処理
-        Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Up])
         {
+            Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
             Ray ray = new Ray(this.transform.position, this.transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 0.5f))
@@ -121,7 +121,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     if (TagName == "CanClimbing")
                     {
                         //Debug.Log(hit.collider.gameObject.transform.position);
-                        m_GTargetBoxObject = hit.collider.gameObject;
+                        if (LayerName == "Rail")
+                        {
+                            m_GTargetBoxObject = hit.collider.gameObject.transform.root.gameObject;
+                        }
+                        else
+                        {
+                            m_GTargetBoxObject = hit.collider.gameObject;
+                        }
                         ChangeState(0, EMouseState.Up);
                         return;
                     }
@@ -141,8 +148,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 var TagName = Downhit.collider.gameObject.tag;
                 if (LayerName == "Rail")
                 {
-                    m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
-                    ChangeState(0, EMouseState.Rail);
+                    if (TagName == "Rail")
+                    {
+                        m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
+                        ChangeState(0, EMouseState.Rail);
+                    }
                 }
                 else
                 {
@@ -152,6 +162,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     }
                 }
             }
+
         }
     }
 
@@ -316,4 +327,20 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_GTargetBoxObject = _Target;
         ChangeState(0, EMouseState.Up);
     }
+
+    public void GravityOff()
+    {
+        this.GetComponent<Rigidbody>().useGravity = false;
+        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void GravityOn()
+    {
+        this.GetComponent<Rigidbody>().useGravity = true;
+        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
+        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
+        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
+    }
+
 }

@@ -8,23 +8,16 @@ using UnityEngine.EventSystems;
 public class HRailManager : CStateBase<HumanStateManager>
 {
 
-    Rail targetRail;
-
     public HRailManager(HumanStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
     {
-
+        m_cOwner.GravityOff();
     }
 
     public override void Execute()
     {
         Debug.Log("State:Rail");
-
-        if(m_cOwner.m_GTargetBoxObject != null)
-        {
-            targetRail = m_cOwner.m_GTargetBoxObject.GetComponent<Rail>();
-        }
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
@@ -106,12 +99,19 @@ public class HRailManager : CStateBase<HumanStateManager>
             // 移動処理
             m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
 
+            var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
+            var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y, 0f);
+            Debug.Log("TargetRail : " + m_cOwner.m_GTargetBoxObject.name);
+            Debug.Log("TopPos : " + TopPos);
+            Debug.Log("UpPos : " + UpPos);
+            m_cOwner.transform.position = new Vector3(m_cOwner.transform.position.x, UpPos.y, m_cOwner.transform.position.z);
+
 
             // 接地判定
             Ray Downray = new Ray(m_cOwner.transform.position, -m_cOwner.transform.up);
             RaycastHit Downhit;
             Debug.DrawLine(m_cOwner.transform.position, m_cOwner.transform.position - m_cOwner.transform.up, Color.red);
-            if (Physics.Raycast(Downray, out Downhit, 1f))
+            if (Physics.Raycast(Downray, out Downhit))
             {
                 Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
                 Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
@@ -130,6 +130,6 @@ public class HRailManager : CStateBase<HumanStateManager>
 
     public override void Exit()
     {
-        
+        m_cOwner.GravityOn();
     }
 }

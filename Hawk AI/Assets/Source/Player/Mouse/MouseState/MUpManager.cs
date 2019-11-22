@@ -26,24 +26,24 @@ public class MUpManager : CStateBase<MouseStateManager>
         Distance = Vector3.Distance(StartPos, EndPos);
         Debug.Log("StartPos : " + StartPos);
         Debug.Log("EndPos : " + EndPos);
-        GravityOff();
+        m_cOwner.GravityOff();
     }
 
     public override void Execute()
     {
         //Debug.Log("State:Up");
 
-        var playerNo = m_cOwner.GamePadIndex;
-        var keyState = GamePad.GetState(playerNo, false);
+        //var playerNo = m_cOwner.GamePadIndex;
+        //var keyState = GamePad.GetState(playerNo, false);
 
-        // ゲームパッドの入力情報取得
-        m_cOwner.inputHorizontal = 0f;
-        m_cOwner.inputVertical = 0f;
+        //// ゲームパッドの入力情報取得
+        //m_cOwner.inputHorizontal = 0f;
+        //m_cOwner.inputVertical = 0f;
 
-        m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
-        m_cOwner.inputVertical = keyState.LeftStickAxis.y;
+        //m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
+        //m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
-        float presentLocation = (timer * speed) / Distance;
+        float presentLocation = (timer * speed);// / Distance;
 
         m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
         LookAtPoint();
@@ -55,13 +55,12 @@ public class MUpManager : CStateBase<MouseStateManager>
             m_cOwner.ChangeState(0, m_cOwner.EOldState);
         }
 
-        // Debug:ステート変更
     }
 
     public override void Exit()
     {
         //m_cOwner.EOldState = EMouseState.Normal;
-        GravityOn();
+        m_cOwner.GravityOn();
         var fowardVec = Vector3.Scale(m_cOwner.transform.forward, new Vector3(1, 0, 1)).normalized;
         m_cOwner.transform.rotation = Quaternion.LookRotation(fowardVec);
     }
@@ -73,21 +72,5 @@ public class MUpManager : CStateBase<MouseStateManager>
         m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
 
     }
-
-    private void GravityOff()
-    {
-        this.m_cOwner.GetComponent<Rigidbody>().useGravity = false;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    private void GravityOn()
-    {
-        this.m_cOwner.GetComponent<Rigidbody>().useGravity = true;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
-    }
-
 
 }

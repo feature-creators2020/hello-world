@@ -11,7 +11,7 @@ public class MRailManager : CStateBase<MouseStateManager>
 
     public override void Enter()
     {
-
+        m_cOwner.GravityOff();
     }
 
     public override void Execute()
@@ -66,12 +66,15 @@ public class MRailManager : CStateBase<MouseStateManager>
         // 移動処理
         m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
 
+        var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
+        var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y / 2f, 0f);
+        m_cOwner.transform.position = new Vector3(m_cOwner.transform.position.x, UpPos.y, m_cOwner.transform.position.z);
 
         // 接地判定
         Ray Downray = new Ray(m_cOwner.transform.position, -m_cOwner.transform.up);
         RaycastHit Downhit;
         Debug.DrawLine(m_cOwner.transform.position, m_cOwner.transform.position - m_cOwner.transform.up, Color.red);
-        if (Physics.Raycast(Downray, out Downhit, 1f))
+        if (Physics.BoxCast(m_cOwner.transform.position, m_cOwner.transform.lossyScale * 0.5f, -m_cOwner.transform.up, out Downhit))
         {
             Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
             Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
@@ -85,4 +88,10 @@ public class MRailManager : CStateBase<MouseStateManager>
             }
         }
     }
+
+    public override void Exit()
+    {
+        m_cOwner.GravityOn();
+    }
+
 }

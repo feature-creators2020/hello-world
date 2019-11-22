@@ -18,40 +18,43 @@ public class HUpManager : CStateBase<HumanStateManager>
     {
         timer = 0f;
         StartPos = m_cOwner.transform.position;
-        var BottomPos = m_cOwner.transform.localScale / 2f;
-        var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f + BottomPos.y, 0f);
+        //var BottomPos = m_cOwner.transform.localScale / 2f;
+        //var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f + BottomPos.y, 0f);
+        //var SubPos = TopPos - StartPos;
+        //Debug.Log("SubPos : " + SubPos);
+        //var UpPos = StartPos + new Vector3(0f, SubPos.y, 0f);
+        var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
         var SubPos = TopPos - StartPos;
-        Debug.Log("SubPos : " + SubPos);
         var UpPos = StartPos + new Vector3(0f, SubPos.y, 0f);
         EndPos = UpPos + m_cOwner.transform.forward * 0.5f;
         Distance = Vector3.Distance(StartPos, EndPos);
         Debug.Log("StartPos : " + StartPos);
         Debug.Log("EndPos : " + EndPos);
-        GravityOff();
+        m_cOwner.GravityOff();
     }
 
     public override void Execute()
     {
         Debug.Log("State:Up");
 
-        var playerNo = m_cOwner.GamePadIndex;
-        var keyState = GamePad.GetState(playerNo, false);
+        //var playerNo = m_cOwner.GamePadIndex;
+        //var keyState = GamePad.GetState(playerNo, false);
 
-        // ゲームパッドの入力情報取得
-        m_cOwner.inputHorizontal = 0f;
-        m_cOwner.inputVertical = 0f;
+        //// ゲームパッドの入力情報取得
+        //m_cOwner.inputHorizontal = 0f;
+        //m_cOwner.inputVertical = 0f;
 
-        m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
-        m_cOwner.inputVertical = keyState.LeftStickAxis.y;
+        //m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
+        //m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
-        float presentLocation = (timer * speed) / Distance;
+        float presentLocation = (timer * speed);// / Distance;
 
         m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
         //LookAtPoint();
 
         timer += Time.deltaTime;
 
-        if (timer >= 1.0f)
+        if (presentLocation >= 1.0f)
         {
             m_cOwner.ChangeState(0, EHumanState.Normal);
         }
@@ -61,7 +64,7 @@ public class HUpManager : CStateBase<HumanStateManager>
 
     public override void Exit()
     {
-        GravityOn();
+        m_cOwner.GravityOn();
         var fowardVec = Vector3.Scale(m_cOwner.transform.forward, new Vector3(1, 0, 1)).normalized;
         m_cOwner.transform.rotation = Quaternion.LookRotation(fowardVec);
     }
@@ -74,18 +77,4 @@ public class HUpManager : CStateBase<HumanStateManager>
 
     }
 
-    private void GravityOff()
-    {
-        this.m_cOwner.GetComponent<Rigidbody>().useGravity = false;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    private void GravityOn()
-    {
-        this.m_cOwner.GetComponent<Rigidbody>().useGravity = true;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
-        this.m_cOwner.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
-    }
 }

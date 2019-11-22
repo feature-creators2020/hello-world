@@ -149,57 +149,57 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         //var startpos = this.transform.position /*+ new Vector3(0f, -0.8f)*/;
         //Debug.DrawLine(startpos, startpos + this.transform.forward, Color.red);
-        //if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EHumanState.Up])
-        //{
-        //    Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
-        //    RaycastHit hit;
-        //    if (Physics.Raycast(ray, out hit, 0.5f))
-        //    {
-        //        Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
-        //        Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
-        //        Debug.Log("HitTag : " + hit.collider.tag);
-        //        var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
-        //        var TagName = hit.collider.gameObject.tag;
-        //        if (LayerName == "Rail")
-        //        {
-        //            if (TagName == "CanClimbing")
-        //            {
-        //                Debug.Log("ChangeState");
-        //                m_GTargetBoxObject = hit.collider.gameObject.transform.root.gameObject;
-        //                ChangeState(0, EHumanState.Up);
-        //                return;
-        //            }
-        //        }
-        //    }
-        //}
-        // レールの上に乗っている
-        //if (!CheckCurrentState(EHumanState.Up))
-        //{
-        //    Ray Downray = new Ray(transform.position, -transform.up);
-        //    RaycastHit Downhit;
-        //    Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
-        //    if (Physics.Raycast(Downray, out Downhit, 1f))
-        //    {
-        //        Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
-        //        Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
-        //        Debug.Log("DownHitTag : " + Downhit.collider.tag);
+        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EHumanState.Up])
+        {
+            Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
+            Debug.DrawLine(transform.position, transform.position + transform.forward, Color.red);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1f))
+            {
+                Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
+                Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
+                Debug.Log("HitTag : " + hit.collider.tag);
+                var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
+                var TagName = hit.collider.gameObject.tag;
+                Debug.Log("LayerName : " + LayerName);
+                if (LayerName == "Rail")
+                {
+                    if (TagName == "CanClimbing")
+                    {
+                        Debug.Log("ChangeState");
+                        m_GTargetBoxObject = hit.collider.gameObject.transform.root.gameObject;
+                        ChangeState(0, EHumanState.Up);
+                        return;
+                    }
+                }
+            }
 
-        //        var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
-        //        var TagName = Downhit.collider.gameObject.tag;
-        //        if (LayerName == "Rail")
-        //        {
-        //            m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
-        //            ChangeState(0, EHumanState.Rail);
-        //        }
-        //        else
-        //        {
-        //            if (CheckCurrentState(EHumanState.Rail))
-        //            {
-        //                ChangeState(0, EOldState);
-        //            }
-        //        }
-        //    }
-        //}
+            Ray Downray = new Ray(transform.position, -transform.up);
+            RaycastHit Downhit;
+            Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
+            if (Physics.Raycast(Downray, out Downhit))
+            {
+                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+                Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+                Debug.Log("DownHitTag : " + Downhit.collider.tag);
+
+                var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
+                var TagName = Downhit.collider.gameObject.tag;
+                if (LayerName == "Rail")
+                {
+                    m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
+                    ChangeState(0, EHumanState.Rail);
+                }
+                else
+                {
+                    if (CheckCurrentState(EHumanState.Rail))
+                    {
+                        ChangeState(0, EOldState);
+                    }
+                }
+            }
+
+        }
 
     }
 
@@ -688,4 +688,20 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_GTargetBoxObject = _Target;
         ChangeState(0, EHumanState.Up);
     }
+
+    public void GravityOff()
+    {
+        this.GetComponent<Rigidbody>().useGravity = false;
+        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void GravityOn()
+    {
+        this.GetComponent<Rigidbody>().useGravity = true;
+        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
+        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
+        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
+    }
+
 }
