@@ -611,7 +611,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.SetMapPosition(MapPos));
 
-                ItemHolderManager.Instance.ReleaseItem(item);
+                ItemHolderManager.Instance.ReleaseItem(vector3);
                 // 所持アイテム情報を削除
                 m_sItemData = null;
                 // 無敵状態にする

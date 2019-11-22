@@ -38,10 +38,28 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
-    public void ReleaseItem(GameObject ItemObj)
+    public void ReleaseItem(Vector3 ItemPos)
     {
-        Debug.Log(ItemObj.transform.position);
-        
-        //ItemList[0].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        //Debug.Log(ItemPos);
+        float TDistance = 0;
+        PlayerManager c_PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        var HumanList = c_PlayerManager.GetGameObjectsList("Human");
+        for (int i = 0; i < HumanList.Count; i++)
+        {
+            var targetObj = c_PlayerManager.GetGameObject(i, "Human");
+            float nDis = Vector3.Distance(targetObj.transform.position, ItemPos);
+            if (TDistance == 0)
+            {
+                TDistance = nDis;
+                index = i;
+            }
+            if (nDis <= TDistance)
+            {
+                TDistance = nDis;
+                index = i;
+            }
+        }
+
+        ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 }
