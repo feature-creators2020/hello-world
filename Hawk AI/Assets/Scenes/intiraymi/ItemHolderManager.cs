@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using GamepadInput;
+using KeyBoardInput;
 
 public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
 {
     [SerializeField]
     private List<GameObject> ItemList;
+    [SerializeField]
+    private List<GameObject> CircleList;
     private int index = 0;
 
     public void HoldItem(GameObject ItemObj)
@@ -33,7 +36,7 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
 
         if (ItemObj.tag == "Mousetrap")
         {
-            ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("MouseTrap");
+            ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("Trap");
         }
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
@@ -61,5 +64,17 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         }
 
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+    }
+
+    public void UsingFromHolder(float Time, GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
+    {
+        if(playerNo == GamePad.Index.One || playerKeyNo == KeyBoard.Index.One)
+        {
+            CircleList[0].GetComponent<Image>().fillAmount = Time;
+        }
+        if (playerNo == GamePad.Index.Three || playerKeyNo == KeyBoard.Index.Three)
+        {
+            CircleList[1].GetComponent<Image>().fillAmount = Time;
+        }
     }
 }
