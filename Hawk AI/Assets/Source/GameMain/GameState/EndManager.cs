@@ -33,6 +33,18 @@ public class EndManager : CStateBase<GameManager>
 
         //    //            this.m_cOwner.ChangeState(0, EGameState.Ready);
         //}
+        var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager").GetComponent<FadeManager>();
+        if(obj.m_flerpVal >= 1)
+        {
+            var gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
+
+            ExecuteEvents.Execute<ISceneInterfase>(
+               target: gameObject,
+               eventData: null,
+               functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Result));
+        }
+        
+        
     }
 
     public override void Exit()

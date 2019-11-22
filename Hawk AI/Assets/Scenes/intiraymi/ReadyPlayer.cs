@@ -54,7 +54,7 @@ public class ReadyPlayer : SingletonMonoBehaviour<ReadyPlayer>
 
     private void ChangeScene()
     {
-        GameObject gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
+        var gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
         ExecuteEvents.Execute<ISceneInterfase>(
            target: gameObject,

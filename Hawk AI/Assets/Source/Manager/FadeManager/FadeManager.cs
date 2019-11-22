@@ -25,6 +25,8 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterf
 
     public RectTransform m_cImageRect = null;
 
+    public float m_flerpVal = 0f;
+
     // Start is called before the first frame update
     public virtual void GeneralInit()
     {
@@ -82,13 +84,13 @@ public class FadeManager : CStateObjectBase<FadeManager, EFadeState>,IFadeInterf
 
     public virtual IEnumerator FadeCoroutine(Vector3 _StartAngle, Vector3 _EndAngle)
     {
-        float lerpVal = 0f;
+        m_flerpVal = 0f;
 
-        while (lerpVal <= 1f)
+        while (m_flerpVal <= 1f)
         {//開ける時間補間
-            lerpVal += Time.deltaTime / TimePerSpeed;
+            m_flerpVal += Time.deltaTime / TimePerSpeed;
             m_cImageRect.localPosition
-                = Vector3.Lerp(_StartAngle, _EndAngle, lerpVal);
+                = Vector3.Lerp(_StartAngle, _EndAngle, m_flerpVal);
             yield return null;
         }
     }

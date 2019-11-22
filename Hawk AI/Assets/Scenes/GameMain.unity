@@ -3306,11 +3306,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6619068139502802490, guid: fa0330958704abe45a312ee6649e26d1,
-        type: 3}
-      propertyPath: m_TagString
-      value: CanClimbing
-      objectReference: {fileID: 0}
     - target: {fileID: 6889745238291303691, guid: fa0330958704abe45a312ee6649e26d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3442,6 +3437,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 658200472824895027, guid: fa0330958704abe45a312ee6649e26d1,
+        type: 3}
+      propertyPath: m_TagString
+      value: CanClimbing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619068139502802490, guid: fa0330958704abe45a312ee6649e26d1,
         type: 3}
       propertyPath: m_TagString
       value: CanClimbing
@@ -9530,7 +9530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8595a36b19a294a90f0b5889251563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item:
+  ItemList:
   - {fileID: 919747430}
   - {fileID: 1242208477}
 --- !u!1001 &1910623674
@@ -12121,11 +12121,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6619068139502802490, guid: fa0330958704abe45a312ee6649e26d1,
-        type: 3}
-      propertyPath: m_TagString
-      value: CanClimbing
-      objectReference: {fileID: 0}
     - target: {fileID: 6889745238291303691, guid: fa0330958704abe45a312ee6649e26d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12242,6 +12237,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 658200472824895027, guid: fa0330958704abe45a312ee6649e26d1,
+        type: 3}
+      propertyPath: m_TagString
+      value: CanClimbing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619068139502802490, guid: fa0330958704abe45a312ee6649e26d1,
         type: 3}
       propertyPath: m_TagString
       value: CanClimbing
