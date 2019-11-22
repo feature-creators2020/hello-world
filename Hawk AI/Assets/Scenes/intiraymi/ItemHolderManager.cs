@@ -2,24 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
 {
     [SerializeField]
-    private List<GameObject> Item;
+    private List<GameObject> ItemList;
+    private int index = 0;
 
-    public void HoldItem(string Data_tag)
+    public void HoldItem(GameObject ItemObj)
     {
-        //Debug.Log(Data);
-        if(Data_tag == "Mousetrap")
+        float TDistance = 0;
+        PlayerManager c_PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        var HumanList = c_PlayerManager.GetGameObjectsList("Human");
+        for (int i = 0; i < HumanList.Count; i++)
         {
-            Item[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("MouseTrap");
+            var targetObj = c_PlayerManager.GetGameObject(i, "Human");
+            float nDis = Vector3.Distance(targetObj.transform.position, ItemObj.transform.position);
+            if (TDistance == 0)
+            {
+                TDistance = nDis;
+                index = i;
+            }
+            if (nDis <= TDistance)
+            {
+                TDistance = nDis;
+                index = i;
+            }
         }
-        Item[0].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+
+        if (ItemObj.tag == "Mousetrap")
+        {
+            ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("MouseTrap");
+        }
+        ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
-    public void ReleaseItem()
+    public void ReleaseItem(GameObject ItemObj)
     {
-        Item[0].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        Debug.Log(ItemObj.transform.position);
+        
+        //ItemList[0].GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 }
