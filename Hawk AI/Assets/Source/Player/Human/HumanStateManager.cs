@@ -219,11 +219,14 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                         UseItem();
                         // アクション経過時間を再設定
                         m_fActionTime = m_fLimitActionTime;
+                        ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
                     }
                     else
                     {
                         // アクション時間を経過させる
                         m_fActionTime -= Time.deltaTime;
+                        float TimeParLimitTime = (m_fLimitActionTime - m_fActionTime) / m_fLimitActionTime;
+                        ItemHolderManager.Instance.UsingFromHolder(TimeParLimitTime, playerNo, playerKeyNo);
                     }
                 }
             }
@@ -232,6 +235,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         {
             // アクション経過時間を再設定
             m_fActionTime = m_fLimitActionTime;
+            ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
         }
     }
 
