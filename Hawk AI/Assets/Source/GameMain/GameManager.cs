@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// @name : GameManager
@@ -91,8 +92,5 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
 
     }
 
-    //public static bool GetIsHumanWin()
-    //{
-    //    return IsHumanWin;
-    //}
+
 }

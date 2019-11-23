@@ -25,27 +25,13 @@ public class ReadyManager : CStateBase<GameManager>
     }
     public override void Execute()
     {
+
+        #region debug
         //if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
         //{
         //    this.m_cOwner.ChangeState(0, EGameState.Main);
         //}
 
-        if(SceneManager.GetActiveScene().name == "GameMain")
-        {
-            m_fStartTime -= Time.deltaTime;
-            CountDownAnimation.Instance.SetCount3(m_fStartTime);
-
-            if (m_fStartTime <= 0)
-            {
-                this.m_cOwner.ChangeState(0, EGameState.Main);
-                CountDownAnimation.Instance.SetCount3(5.0f);
-            }
-        }
-        else
-        {
-            this.m_cOwner.ChangeState(0, EGameState.Main);
-        }
-        
         //else if(m_fStartTime <= 1)
         //{
         //    Debug.Log("1");
@@ -58,6 +44,11 @@ public class ReadyManager : CStateBase<GameManager>
         //{
         //    Debug.Log("3");
         //}
+
+        #endregion //debug
+
+        SwitchingUpdate();
+
     }
 
     public override void Exit()
@@ -68,6 +59,52 @@ public class ReadyManager : CStateBase<GameManager>
         //target: obj,
         //eventData: null,
         //functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
+
+    }
+
+    public void SwitchingUpdate()
+    {
+
+        switch(SceneManager.GetActiveScene().name)
+        {
+            //case "Title":
+
+            //    if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
+            //    {
+            //        this.m_cOwner.ChangeState(0, EGameState.Main);
+            //    }
+
+
+            //    break;
+
+
+            case "GameMain":
+
+                m_fStartTime -= Time.deltaTime;
+                CountDownAnimation.Instance.SetCount3(m_fStartTime);
+
+                if (m_fStartTime <= 0)
+                {
+                    this.m_cOwner.ChangeState(0, EGameState.Main);
+                    CountDownAnimation.Instance.SetCount3(5.0f);
+                }
+
+                break;
+
+            case "Result":
+
+
+
+
+                break;
+
+            default:
+
+                this.m_cOwner.ChangeState(0, EGameState.Main);
+
+                break;
+
+        }
 
     }
 }

@@ -33,22 +33,68 @@ public class EndManager : CStateBase<GameManager>
 
         //    //            this.m_cOwner.ChangeState(0, EGameState.Ready);
         //}
-        var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager").GetComponent<FadeManager>();
-        if(obj.m_flerpVal >= 1)
-        {
-            var gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
-            ExecuteEvents.Execute<ISceneInterfase>(
-               target: gameObject,
-               eventData: null,
-               functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Result));
-        }
-        
-        
+
+        SwitchingUpdate();
     }
 
     public override void Exit()
     {
+
+    }
+
+    private void SwitchingUpdate()
+    {
+        GameObject gameObject = new GameObject();
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Title":
+
+
+
+                gameObject
+                 = ManagerObjectManager.Instance.GetGameObject("SceneManager");
+
+                ExecuteEvents.Execute<ISceneInterfase>(
+                   target: gameObject,
+                   eventData: null,
+                   functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Tutorial));
+
+
+                break;
+
+
+            case "GameMain":
+
+                var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager").GetComponent<FadeManager>();
+                if (obj.m_flerpVal >= 1)
+                {
+                    gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
+
+                    ExecuteEvents.Execute<ISceneInterfase>(
+                       target: gameObject,
+                       eventData: null,
+                       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Result));
+                }
+
+                break;
+
+            case "Result":
+
+
+
+
+                break;
+
+            default:
+
+                this.m_cOwner.ChangeState(0, EGameState.Main);
+
+                break;
+
+        }
+
 
     }
 }

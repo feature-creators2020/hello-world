@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using GamepadInput;
+using UnityEngine.SceneManagement;
 
 public class GameMainManager : CStateBase<GameManager>
 {
@@ -32,20 +33,9 @@ public class GameMainManager : CStateBase<GameManager>
     public override void Execute()
     {
 
-        ExecuteEvents.Execute<ITimeManager>(
-        target: m_cTimerObject,
-        eventData: null,
-        functor: (recieveTarget, y) => m_bCountFlg = recieveTarget.IsTimeCounting);
+        SwitchingUpdate();
 
-
-        if (m_bCountFlg == false)
-        {
-            Debug.Log("Counting!");
-            //人間側勝利
-            GameManager.IsHumanWin = true;
-            this.m_cOwner.ChangeState(0, EGameState.End);
-        }
-
+        #region debug
         //if (Input.GetKeyDown(KeyCode.Alpha2) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
         //{
         //    ExecuteEvents.Execute<ITimeManager>(
@@ -56,11 +46,62 @@ public class GameMainManager : CStateBase<GameManager>
         //    this.m_cOwner.ChangeState(0, EGameState.End);
 
         //}
-
+        #endregion //debug
     }
 
     public override void Exit()
     {
+
+    }
+
+    public void SwitchingUpdate()
+    {
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Title":
+
+                if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
+                {
+                    this.m_cOwner.ChangeState(0, EGameState.End);
+                }
+
+
+                break;
+
+
+            case "GameMain":
+
+                ExecuteEvents.Execute<ITimeManager>(
+                target: m_cTimerObject,
+                eventData: null,
+                functor: (recieveTarget, y) => m_bCountFlg = recieveTarget.IsTimeCounting);
+
+
+                if (m_bCountFlg == false)
+                {
+                    Debug.Log("Counting!");
+                    //人間側勝利
+                    GameManager.IsHumanWin = true;
+                    this.m_cOwner.ChangeState(0, EGameState.End);
+                }
+
+                break;
+
+            case "Result":
+
+
+
+
+                break;
+
+            default:
+
+                this.m_cOwner.ChangeState(0, EGameState.Main);
+
+                break;
+
+        }
 
     }
 
