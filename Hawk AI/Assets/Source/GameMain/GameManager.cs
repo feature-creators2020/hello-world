@@ -12,6 +12,8 @@ using UnityEngine.SceneManagement;
 public interface IGameInterface : IEventSystemHandler
 {
     void ChangeState(EGameState eGameState);
+
+    EGameState GetGameState();
 }
 
 public enum EGameState
@@ -92,5 +94,21 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
 
     }
 
+    public virtual EGameState GetGameState()
+    {
+        if(m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EGameState.Ready])
+        {
+            return EGameState.Ready;
+        }
+        else if (m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EGameState.Main])
+        {
+            return EGameState.Main;
+        }
+        else
+        {
+            return EGameState.End;
+        }
+
+    }
 
 }
