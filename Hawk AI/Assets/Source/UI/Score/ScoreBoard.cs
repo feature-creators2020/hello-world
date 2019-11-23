@@ -20,6 +20,9 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
 
             var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
             //ネズミ側勝利
+
+            GameManager.IsHumanWin = false;
+
             ExecuteEvents.Execute<IGameInterface>(
             target: obj,
             eventData: null,
