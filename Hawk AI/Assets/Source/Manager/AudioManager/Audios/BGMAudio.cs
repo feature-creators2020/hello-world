@@ -5,14 +5,12 @@ using UnityEngine.SceneManagement;
 
 
 //HACK : サウンドの追加ごとに列挙型を追加するので、あまりよくない
-//public enum BGMAudioType
-//{
-//    AREA_1,         //エリア１
-//    AREA_2,         //エリア２
-//    AREA_3,         //エリア３
-//    StageSelect,    //ステージセレクト
-//    Title,          //タイトル
-//}
+public enum BGMAudioType
+{
+    Title,
+    Main,
+    Result
+}
 
 
 /// <summary>
