@@ -19,7 +19,7 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
             RemainingCheese = 0;
 
             var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
-
+            //ネズミ側勝利
             ExecuteEvents.Execute<IGameInterface>(
             target: obj,
             eventData: null,
