@@ -16,7 +16,8 @@ public enum EHumanState
     SlowDown,
     Door,
     Up,
-    Rail
+    Rail,
+    ForcedWait,
 }
 
 public enum EHumanDirectionalState
@@ -115,15 +116,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         var Door = new HDoorManager(this);
         var Up = new HUpManager(this);
         var Rail = new HRailManager(this);
+        var ForcedWait = new HForcedWaitManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
         m_cStateList.Add(Door);
         m_cStateList.Add(Up);
         m_cStateList.Add(Rail);
+        m_cStateList.Add(ForcedWait);
 
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EHumanState.Normal]);
-
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EHumanState.ForcedWait]);
 
         // 初期設定
         m_sItemData = null;
@@ -146,6 +148,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         // 各状態の処理
         base.Update();
+
+        if(m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EHumanState.ForcedWait])
+        {
+            return;
+        }
 
         //var startpos = this.transform.position /*+ new Vector3(0f, -0.8f)*/;
         //Debug.DrawLine(startpos, startpos + this.transform.forward, Color.red);
