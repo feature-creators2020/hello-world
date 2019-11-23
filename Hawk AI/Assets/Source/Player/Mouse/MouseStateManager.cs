@@ -13,7 +13,8 @@ public enum EMouseState
     Up,
     Pipe,
     Catch,
-    Rail
+    Rail,
+    ForcedWait
 }
 
 public interface IMouseInterface : IEventSystemHandler
@@ -80,6 +81,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var Pipe = new MPipeMoveManager(this);
         var Catch = new MCatchManager(this);
         var Rail = new MRailManager(this);
+        var ForcedWait = new MForcedWaitManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
@@ -88,8 +90,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_cStateList.Add(Pipe);
         m_cStateList.Add(Catch);
         m_cStateList.Add(Rail);
+        m_cStateList.Add(ForcedWait);
 
-        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.Normal]);
+        m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.ForcedWait]);
+        EOldState = EMouseState.ForcedWait;
     }
 
     // Update is called once per frame
@@ -105,6 +109,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
         // 各状態の処理
         base.Update();
+
+        if(m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EMouseState.ForcedWait])
+        {
+            return;
+        }
 
         // レイキャストによる壁の当たり判定処理
         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Up])
