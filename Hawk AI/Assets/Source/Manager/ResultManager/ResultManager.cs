@@ -14,8 +14,11 @@ public enum EResultChildObj
 {
     eBackScreen,
     eFont,
-    eEffects,
+    eWinEffects,
     eFloorSpotLights,
+    ePlayerModel,
+    eFloorModel,
+    eLoseEffects,
 }
 
 public enum EResultImage
@@ -127,7 +130,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
 
         m_cEffectController = 
-            this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
+            this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
 
 
         //勝ったほうの関数を呼ぶ
@@ -154,39 +157,40 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         //    MouseWin();
         //}
 
-        if (GameManager.IsHumanWin)
-        {
-            ExecuteEvents.Execute<IEffectControllerInterface>(
-            target: m_cEffectController,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
+        //if (GameManager.IsHumanWin)
+        //{
+        //    ExecuteEvents.Execute<IEffectControllerInterface>(
+        //    target: m_cEffectController,
+        //    eventData: null,
+        //    functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
 
-            ExecuteEvents.Execute<IEffectControllerInterface>(
-            target: m_cEffectController,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
+        //    ExecuteEvents.Execute<IEffectControllerInterface>(
+        //    target: m_cEffectController,
+        //    eventData: null,
+        //    functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
 
-        }
-        else
-        {
-            ExecuteEvents.Execute<IEffectControllerInterface>(
-            target: m_cEffectController,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
+        //}
+        //else
+        //{
+        //    ExecuteEvents.Execute<IEffectControllerInterface>(
+        //    target: m_cEffectController,
+        //    eventData: null,
+        //    functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
 
-            ExecuteEvents.Execute<IEffectControllerInterface>(
-            target: m_cEffectController,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
+        //    ExecuteEvents.Execute<IEffectControllerInterface>(
+        //    target: m_cEffectController,
+        //    eventData: null,
+        //    functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
 
-        }
+        //}
     }
 
     public void HawkAIWin()
     {
-        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
+        GameObject LoseEffectObj = gameObject.transform.GetChild((int)EResultChildObj.eLoseEffects).gameObject;
+        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
 
-        //Left
+        //Left is Winner
         GameObject ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eLeftBack).gameObject;
         m_cImageList[(int)EResultImage.eLeftBack].color = m_cLeftBackColor;
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cWinSprite;
@@ -199,8 +203,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
 
-
-        //Right
+        //Right is Loser
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
         m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cLoseSprite;
@@ -211,14 +214,24 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
 
+        ExecuteEvents.Execute<ILoseEffectInterface>(
+        target: LoseEffectObj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight,ELoseEffectsType.eWind));
+
+        ExecuteEvents.Execute<ILoseEffectInterface>(
+        target: LoseEffectObj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight, ELoseEffectsType.eGaan));
 
     }
 
     public void MouseWin()
     {
-        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eEffects).gameObject;
+        GameObject LoseEffectObj = gameObject.transform.GetChild((int)EResultChildObj.eLoseEffects).gameObject;
+        m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
 
-        //Left
+        //Left is Loser
         GameObject ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eLeftBack).gameObject;
         m_cImageList[(int)EResultImage.eLeftBack].color = m_cLeftBackColor;
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cLoseSprite;
@@ -229,7 +242,18 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
 
-        //Right
+        ExecuteEvents.Execute<ILoseEffectInterface>(
+        target: LoseEffectObj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eLeft, ELoseEffectsType.eWind));
+
+        ExecuteEvents.Execute<ILoseEffectInterface>(
+        target: LoseEffectObj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eLeft, ELoseEffectsType.eGaan));
+
+
+        //Right is Winner
         ImgaeObj = this.gameObject.transform.GetChild(0).transform.GetChild((int)EResultImage.eRightBack).gameObject;
         m_cImageList[(int)EResultImage.eRightBack].color = m_cRightBackColor;
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cWinSprite;
