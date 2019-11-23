@@ -23,7 +23,7 @@ public class BGMAudio : AudioManager
     {
         base.Start();
 
-        base.Play(0);
+        //base.Play(0);
     }
 
     public override void Play(int _id)

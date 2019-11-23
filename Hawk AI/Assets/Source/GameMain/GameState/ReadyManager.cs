@@ -91,12 +91,12 @@ public class ReadyManager : CStateBase<GameManager>
 
                 break;
 
-            case "Result":
+            //case "Result":
 
 
 
 
-                break;
+            //    break;
 
             default:
 

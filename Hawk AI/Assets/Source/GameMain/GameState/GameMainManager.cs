@@ -9,15 +9,18 @@ public class GameMainManager : CStateBase<GameManager>
 {
     public GameMainManager(GameManager _cOwner) : base(_cOwner) { }
 
+    private GameObject m_cBGMAudioObj = null;
     private GameObject m_cTimerObject = null;
     private bool m_bCountFlg = false;
 
     // Start is called before the first frame update
     public override void Enter()
     {
+
         Debug.Log(" NowState : GameMainManager");
 
         m_cTimerObject = ManagerObjectManager.Instance.GetGameObject("TimeManager");
+        m_cBGMAudioObj = ManagerObjectManager.Instance.GetGameObject("BGMAudio");
 
         ExecuteEvents.Execute<ITimeManager>(
         target: m_cTimerObject,
@@ -29,6 +32,7 @@ public class GameMainManager : CStateBase<GameManager>
         eventData: null,
         functor: (recieveTarget, y) =>  m_bCountFlg = recieveTarget.IsTimeCounting);
 
+        SwitchingStart();
     }
     public override void Execute()
     {
@@ -53,6 +57,58 @@ public class GameMainManager : CStateBase<GameManager>
     {
 
     }
+
+    public void SwitchingStart()
+    {
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Title":
+
+                ExecuteEvents.Execute<IAudioInterface>(
+                target: m_cBGMAudioObj,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Play((int)BGMAudioType.Title));
+
+                break;
+
+            case "Tutorial":
+
+                ExecuteEvents.Execute<IAudioInterface>(
+                target: m_cBGMAudioObj,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Play((int)BGMAudioType.Main));
+
+                break;
+
+
+            case "GameMain":
+
+                ExecuteEvents.Execute<IAudioInterface>(
+                target: m_cBGMAudioObj,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Play((int)BGMAudioType.Main));
+
+                break;
+
+            case "Result":
+
+                ExecuteEvents.Execute<IAudioInterface>(
+                target: m_cBGMAudioObj,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Play((int)BGMAudioType.Result));
+
+
+
+                break;
+
+            default:
+
+                this.m_cOwner.ChangeState(0, EGameState.Main);
+
+                break;
+        }
+    }
+
 
     public void SwitchingUpdate()
     {
