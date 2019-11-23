@@ -22,6 +22,10 @@ public enum ObjectNo
     RAIL_END,
     RAIL_BEND,
     LEVER_SWITCH,
+    DOOR,
+    RAIL_TESTBOX,
+    RAIL_ARM,
+    RAIL_TUNNEL,
 
     NUM_OBJECT_TYPE,
 }
