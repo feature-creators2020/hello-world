@@ -37,7 +37,8 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
     // Start is called before the first frame update
     void Start()
     {
-        m_cMeshObj = this.gameObject.transform.parent.GetChild(1).gameObject;
+        m_cMeshObj = this.gameObject.transform.parent.GetChild(1)
+            .gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
         m_eLeverSwitchState = ELeverSwitchState.ActiveCorrect;
         m_bActivation = false;
     }
@@ -66,14 +67,14 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
                     }
 
                     Vector3 startRot = new Vector3(
-                        m_cMeshObj.transform.rotation.x,
+                        m_fBendLeverRadian,
                         m_cMeshObj.transform.rotation.y,
-                        m_fBendLeverRadian);
+                        m_cMeshObj.transform.rotation.z);
 
                     Vector3 endRot = new Vector3(
-                         m_cMeshObj.transform.rotation.x,
+                         -m_fBendLeverRadian,
                          m_cMeshObj.transform.rotation.y,
-                         -m_fBendLeverRadian);
+                         m_cMeshObj.transform.rotation.z);
 
                     StartCoroutine(ActivateSwitching(startRot, endRot));
 
@@ -95,14 +96,16 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
 
 
                     Vector3 startRot = new Vector3(
-                        m_cMeshObj.transform.rotation.x,
+                        -m_fBendLeverRadian,
                         m_cMeshObj.transform.rotation.y,
-                        -m_fBendLeverRadian);
+                        m_cMeshObj.transform.rotation.z
+                        );
 
                     Vector3 endRot = new Vector3(
-                         m_cMeshObj.transform.rotation.x,
+                        m_fBendLeverRadian,
                          m_cMeshObj.transform.rotation.y,
-                         m_fBendLeverRadian);
+                         m_cMeshObj.transform.rotation.z
+                         );
 
                     StartCoroutine(ActivateSwitching(startRot, endRot));
 
