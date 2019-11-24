@@ -138,7 +138,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                         {
                             m_GTargetBoxObject = hit.collider.gameObject;
                         }
-                        ChangeState(0, EMouseState.Up);
+                        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
+                        {
+                            ChangeState(0, EMouseState.Up);
+                        }
                         return;
                     }
                 }
@@ -324,7 +327,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public bool CheckCurrentState(EMouseState _state)
     {
-        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)_state])
+        if (m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)_state])
         {
             return true;
         }
