@@ -204,9 +204,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             ScoreBoard.Instance.GetCheese();
             RespawnPoint.Instance.Respawn(this.gameObject);
+            ShiftOtherGoal.Instance.Shift(other.gameObject);
         }
 
-        if(LayerName == "Pipe")
+        if (LayerName == "Pipe")
         {
 
             if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
