@@ -37,7 +37,7 @@ public abstract class EffectController : MonoBehaviour,IEffectControllerInterfac
     public virtual void Start()
     {
         particle = this.gameObject.GetComponent<ParticleSystem>();
-        particle.Stop();
+        this.Stop();
     }
 
 

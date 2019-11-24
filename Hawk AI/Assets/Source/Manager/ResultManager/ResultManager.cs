@@ -131,10 +131,10 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         m_cEffectController = 
             this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
-
+        m_cEffectController.GetComponent<ResultFontEffect>().CallStart();
 
         //勝ったほうの関数を呼ぶ
-        if(GameManager.IsHumanWin)
+        if (GameManager.IsHumanWin)
         {
             HawkAIWin();
         }

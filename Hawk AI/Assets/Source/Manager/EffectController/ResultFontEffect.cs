@@ -11,9 +11,11 @@ public enum EResultFontEffect
 public class ResultFontEffect : EffectController
 {
     // Start is called before the first frame update
-    public override void Start()
+    public virtual void CallStart()
     {
         particles = new List<ParticleSystem>();
+
+        //base.Start();
 
         for(int i = 0; i < this.gameObject.transform.childCount;i++)
         {
@@ -30,7 +32,11 @@ public class ResultFontEffect : EffectController
 
     }
 
+    public override void Start()
+    {
 
+
+    }
     public override void Update()
     {
 
