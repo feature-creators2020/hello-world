@@ -26,7 +26,7 @@ public class MaterialController : GeneralManager, ISetMaterial
         List<Shader> bufShaders = new List<Shader>();
 
         // 子のコンポーネントをすべて取得し、ループで回す
-        var SkinnedMeshRend = _Object.GetComponentsInChildren<SkinnedMeshRenderer>();
+        var SkinnedMeshRend = _Object.GetComponentsInChildren<MeshRenderer>();
 
         //マテリアルに変更
         foreach (var child in SkinnedMeshRend)
@@ -66,7 +66,7 @@ public class MaterialController : GeneralManager, ISetMaterial
     {
 
         // 子のコンポーネントをすべて取得し、ループで回す
-        var SkinnedMeshRend = _Object.GetComponentsInChildren<SkinnedMeshRenderer>();
+        var SkinnedMeshRend = _Object.GetComponentsInChildren<MeshRenderer>();
 
         List<Shader> Shaders = m_cDicShaders[_Object];
 
