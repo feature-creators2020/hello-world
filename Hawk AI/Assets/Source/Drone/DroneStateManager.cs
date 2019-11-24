@@ -128,7 +128,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         {
             // 現在のオブジェクト情報
             var targetObj = m_PlayerManager.GetGameObject(i, "Mouse");
-            Debug.Log("TargetTestObject : " + targetObj.name + i);
+            //Debug.Log("TargetTestObject : " + targetObj.name + i);
             float nDis = Vector3.Distance(targetObj.transform.position, this.transform.position);
             if (TDistance == 0)
             {
@@ -160,7 +160,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     // 追跡するターゲットの位置更新
     public void UpdateTargetPosition()
     {
-        Debug.Log("TargetObject : " + m_gTarget.name);
+        //Debug.Log("TargetObject : " + m_gTarget.name);
         var target = m_gTarget.transform.position;
         m_vTargetPos = new Vector3(target.x, this.transform.position.y, target.z);
     }
@@ -258,8 +258,8 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                     nextPoint = 0;
                 }
                 m_gTarget = GetPoint(nextPoint);
-                Debug.Log("currentPoint : " + GetCurrentPoint().name);  
-                Debug.Log("nextPosint : " + GetPoint(nextPoint).name);
+                //Debug.Log("currentPoint : " + GetCurrentPoint().name);  
+                //Debug.Log("nextPosint : " + GetPoint(nextPoint).name);
                 NowPoint = nextPoint;
                 m_vTargetPos = m_gTarget.transform.position;
             }

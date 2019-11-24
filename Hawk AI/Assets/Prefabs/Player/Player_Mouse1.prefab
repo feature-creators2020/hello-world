@@ -192,12 +192,12 @@ MonoBehaviour:
   targetCamera: {fileID: 3658964338663343348}
   GamePadIndex: 2
   KeyboardIndex: 2
-  m_fDefaultSpeed: 3
+  m_fDefaultSpeed: 4
   m_fSlowDownRate: 0.5
   m_fDoorSpeed: 0.2
   m_fLimitSlowTime: 2
   m_cPipeTransPosObj: []
-  m_fPipeSpeed: 0.5
+  m_fPipeSpeed: 0.25
 --- !u!65 &8630323227638150942
 BoxCollider:
   m_ObjectHideFlags: 0
