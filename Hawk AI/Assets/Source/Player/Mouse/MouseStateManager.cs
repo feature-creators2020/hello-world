@@ -132,7 +132,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                         //Debug.Log(hit.collider.gameObject.transform.position);
                         if (LayerName == "Rail")
                         {
-                            m_GTargetBoxObject = hit.collider.gameObject.transform.root.gameObject;
+                            m_GTargetBoxObject = hit.collider.gameObject.transform.parent.gameObject.transform.parent.gameObject;
                         }
                         else
                         {
@@ -149,7 +149,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
             if (Physics.Raycast(Downray, out Downhit, 1f))
             {
-                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.gameObject.transform.gameObject.name);
                 Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
                 Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
@@ -159,7 +159,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 {
                     if (TagName == "Rail")
                     {
-                        m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
+                        m_GTargetBoxObject = Downhit.collider.gameObject.transform.parent.gameObject.transform.parent.gameObject;
                         ChangeState(0, EMouseState.Rail);
                     }
                 }
@@ -317,7 +317,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         if (other.gameObject.tag == "Rail")
         {
-            m_GTargetBoxObject = other.gameObject.transform.root.gameObject;
+            m_GTargetBoxObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
             ChangeState(0, EMouseState.Rail);
         }
     }

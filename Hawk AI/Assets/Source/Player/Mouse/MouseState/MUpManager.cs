@@ -24,6 +24,7 @@ public class MUpManager : CStateBase<MouseStateManager>
         var UpPos = StartPos + new Vector3(0f, SubPos.y, 0f);
         EndPos = UpPos + m_cOwner.transform.forward * 0.5f;
         Distance = Vector3.Distance(StartPos, EndPos);
+        Debug.Log(m_cOwner.m_GTargetBoxObject.name + ".lossyScale : " + m_cOwner.m_GTargetBoxObject.transform.localScale);
         Debug.Log("StartPos : " + StartPos);
         Debug.Log("EndPos : " + EndPos);
         m_cOwner.GravityOff();
