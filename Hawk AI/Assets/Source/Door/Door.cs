@@ -52,10 +52,10 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
 
     public virtual void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            OpenOrClose();
-        }
+        //if(Input.GetKeyDown(KeyCode.I))
+        //{
+        //    OpenOrClose();
+        //}
     }
 
     public virtual void OpenOrClose()
