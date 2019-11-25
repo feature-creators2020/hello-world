@@ -152,7 +152,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
             if (Physics.Raycast(Downray, out Downhit, 1f))
             {
-                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.gameObject.transform.gameObject.name);
+                //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.gameObject.transform.gameObject.name);
                 Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
                 Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
