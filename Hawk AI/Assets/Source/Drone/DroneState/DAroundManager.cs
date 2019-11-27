@@ -18,7 +18,7 @@ public class DAroundManager : CStateBase<DroneStateManager>
         //DebugMove();
         m_cOwner.UpdateTargetPosition();
         // 追跡可能か
-        if (m_cOwner.IsCanTarget())
+        if (m_cOwner.IsCanTarget(m_cOwner.m_gTarget))
         {
             // 滑らかに回転して移動したい
             var target = new Vector3(m_cOwner.m_vTargetPos.x, m_cOwner.transform.position.y, m_cOwner.m_vTargetPos.z);

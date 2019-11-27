@@ -33,6 +33,8 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     public ItemManager m_ItemManager;               // ランダムにアイテムをドロップするときに使う
     [System.NonSerialized]
     public DronePointManager m_DronePointManager;   // 巡回する地点の情報を取得する
+    [System.NonSerialized]
+    public TimeManager m_TimeManager;               // 昼夜の状態を取得する
 
     public GameObject m_gTarget;                    // 目標のオブジェクト
     public Vector3 m_vTargetPos;                    // 目標地点の位置情報
@@ -49,6 +51,10 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     public float m_fItemDropCount;                  // アイテムを落とす間隔の処理
     [System.NonSerialized]
     public bool m_bCanDropItem;                     // アイテムを落とす判定
+    [System.NonSerialized]
+    public bool m_bIsNight = false;                 // 夜状態か
+    [System.NonSerialized]
+    public List<bool> m_bCheckResult_list;                   // ターゲット切り替えの時、対象にターゲットできたか
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +80,8 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         NowState = 0;
         NowPoint = 0;
         m_fItemDropCount = 0f;
+        m_bIsNight = false;
+        m_bCheckResult_list = new List<bool>();
 
         m_vTargetPos = new Vector3(Random.Range(-100f, 100f), 0f, Random.Range(-100f, 100f));
     }
@@ -85,6 +93,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         m_PlayerManager = managerobject.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
         m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
         m_DronePointManager = managerobject.GetGameObject("DronePointManager").GetComponent<DronePointManager>();
+        m_TimeManager = managerobject.GetGameObject("TimeManager").GetComponent<TimeManager>();
 
         // アイテムのドロップ間隔処理
         if (!m_bCanDropItem)
@@ -95,6 +104,13 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                 m_bCanDropItem = true;
                 m_fItemDropCount = m_fItemDropTime;
             }
+        }
+
+        // 昼夜状態取得
+        if (false) // タイムマネージャーから昼夜の状態を取得し、判定する
+        {
+            // 夜状態に切り替える
+            m_bIsNight = true;
         }
 
         base.Update();
@@ -117,15 +133,21 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     }
 
     // 追従するターゲットを設定する
-    public void ChangeTarget()
+    public bool ChangeTarget()
     {
         float TDistance = 0;
         // ターゲット情報を初期化
-        m_gTarget = m_PlayerManager.GetGameObject(0, "Mouse");
+        var gTarget = m_PlayerManager.GetGameObject(0, "Mouse");
 
         var MouseList = m_PlayerManager.GetGameObjectsList("Mouse");
         for (int i = 0; i < MouseList.Count; i++)
         {
+            // リストの情報がないとき
+            if (m_bCheckResult_list.Count < MouseList.Count)
+            {
+                m_bCheckResult_list.Add(false);
+            }
+
             // 現在のオブジェクト情報
             var targetObj = m_PlayerManager.GetGameObject(i, "Mouse");
             //Debug.Log("TargetTestObject : " + targetObj.name + i);
@@ -140,21 +162,34 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                 // 現在のターゲットの方が距離が短いとき
                 TDistance = nDis;
                 // 更新前のターゲット情報
-                var OldTarget = m_gTarget;
-                m_gTarget = targetObj;
-                if (IsCanTarget())
+                var OldTarget = gTarget;
+                gTarget = targetObj;
+                if (IsCanTarget(gTarget))
                 {
                     // 追跡
+                    m_bCheckResult_list[i] = true;
                 }
                 else
                 {
                     // 別の目標を追跡
-                    m_gTarget = OldTarget;
+                    gTarget = OldTarget;
                     TDistance = 0;
+                    m_bCheckResult_list[i] = false;
                 }
             }
 
         }
+
+        // 判定結果を取得(全てfalseの場合のみreturn false)
+        foreach(var val in m_bCheckResult_list)
+        {
+            if (val)
+            {
+                m_gTarget = gTarget;
+                return true;
+            }
+        }
+        return false;
     }
 
     // 追跡するターゲットの位置更新
@@ -165,15 +200,31 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         m_vTargetPos = new Vector3(target.x, this.transform.position.y, target.z);
     }
 
-    public bool IsCanTarget()
+    public bool IsCanTarget(GameObject TargetObject)
     {
-        if (m_gTarget != null) {
-            var TargetScript = m_gTarget.GetComponent<MouseStateManager>();
+        if (TargetObject != null) {
+            var TargetScript = TargetObject.GetComponent<MouseStateManager>();
             // パイプ、リスポーン時は追跡しない
             if (TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Pipe) &&
                 TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Catch))
             {
-                return true;
+                // 昼の時、同じエリアに存在しているか
+                if (m_bIsNight)
+                {
+                    return true;
+                }
+                else
+                {
+                    // 同じエリアに存在しているか
+                    if (true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
         return false;
@@ -238,33 +289,45 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         else
         {
             Debug.Log("ListCount : " + m_DronePointManager.GetGameObjectsList().Count);
-            // 巡回で次の地点を取得する
-            if (isReverse)
+            if (CheckDistance(m_gTarget.transform.position))
             {
-                var nextPoint = NowPoint - 1;
-                if (nextPoint <= 0)
+                // 巡回で次の地点を取得する
+                if (isReverse)
                 {
-                    nextPoint = m_DronePointManager.GetGameObjectsList().Count - 1;
+                    var nextPoint = NowPoint - 1;
+                    if (nextPoint <= 0)
+                    {
+                        nextPoint = m_DronePointManager.GetGameObjectsList().Count - 1;
+                    }
+                    m_gTarget = GetPoint(nextPoint);
+                    NowPoint = nextPoint;
+                    m_vTargetPos = m_gTarget.transform.position;
                 }
-                m_gTarget = GetPoint(nextPoint);
-                NowPoint = nextPoint;
-                m_vTargetPos = m_gTarget.transform.position;
-            }
-            else
-            {
-                var nextPoint = NowPoint + 1;
-                if(nextPoint >= m_DronePointManager.GetGameObjectsList().Count)
+                else
                 {
-                    nextPoint = 0;
+                    var nextPoint = NowPoint + 1;
+                    if (nextPoint >= m_DronePointManager.GetGameObjectsList().Count)
+                    {
+                        nextPoint = 0;
+                    }
+                    m_gTarget = GetPoint(nextPoint);
+                    //Debug.Log("currentPoint : " + GetCurrentPoint().name);  
+                    //Debug.Log("nextPosint : " + GetPoint(nextPoint).name);
+                    NowPoint = nextPoint;
+                    m_vTargetPos = m_gTarget.transform.position;
                 }
-                m_gTarget = GetPoint(nextPoint);
-                //Debug.Log("currentPoint : " + GetCurrentPoint().name);  
-                //Debug.Log("nextPosint : " + GetPoint(nextPoint).name);
-                NowPoint = nextPoint;
-                m_vTargetPos = m_gTarget.transform.position;
             }
-            
         }
+    }
+
+    public bool CheckDistance(Vector3 target)
+    {
+        var testTarget = new Vector3(target.x, this.transform.position.y, target.z);
+        if(Vector3.Distance(testTarget, transform.position) <= m_fSpeed * 0.5f)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void ChangeMoveState()

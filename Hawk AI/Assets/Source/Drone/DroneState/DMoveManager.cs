@@ -24,7 +24,7 @@ public class DMoveManager : CStateBase<DroneStateManager>
         //m_cOwner.transform.rotation = Quaternion.LookRotation(target - m_cOwner.transform.position);
         m_cOwner.transform.position += m_cOwner.transform.forward * m_cOwner.m_fSpeed * Time.deltaTime;
         // 距離が一定の範囲内に入ると追従状態に移行
-        if (Vector3.Distance(target, m_cOwner.transform.position) <= m_cOwner.m_fSpeed * 0.5f)
+        if (m_cOwner.CheckDistance(target))
         {
             // アイテムを落とす状態に遷移する
             m_cOwner.ChangeState(0, EDroneState.ItemDrop);
