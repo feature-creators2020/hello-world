@@ -147,42 +147,6 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.H))
-        //{
-        //    HawkAIWin();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    MouseWin();
-        //}
-
-        //if (GameManager.IsHumanWin)
-        //{
-        //    ExecuteEvents.Execute<IEffectControllerInterface>(
-        //    target: m_cEffectController,
-        //    eventData: null,
-        //    functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
-
-        //    ExecuteEvents.Execute<IEffectControllerInterface>(
-        //    target: m_cEffectController,
-        //    eventData: null,
-        //    functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eLeft));
-
-        //}
-        //else
-        //{
-        //    ExecuteEvents.Execute<IEffectControllerInterface>(
-        //    target: m_cEffectController,
-        //    eventData: null,
-        //    functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
-
-        //    ExecuteEvents.Execute<IEffectControllerInterface>(
-        //    target: m_cEffectController,
-        //    eventData: null,
-        //    functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
-
-        //}
     }
 
     public void HawkAIWin()
@@ -198,6 +162,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cSpotLightList[(int)ESpotLightImage.eListPullNo_Left].SetActive(true);
         m_cFloorSpotLightList[(int)EFloorSpotLightObject.eLeft].SetActive(true);
 
+        // Back Light Effects
         ExecuteEvents.Execute<IEffectControllerInterface>(
         target: m_cEffectController,
         eventData: null,

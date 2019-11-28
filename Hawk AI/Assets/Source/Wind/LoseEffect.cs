@@ -146,8 +146,40 @@ public class LoseEffect : MonoBehaviour, ILoseEffectInterface
 
                 obj = m_cEffectsObj.transform.GetChild((int)ELoseEffectsComponents.eParticleObjects).gameObject;
 
-                if (obj.transform.GetChild(0).GetComponent<ParticleSystem>().isPlaying == false)
-                    obj.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+                if (obj.transform.GetChild(0).GetComponent<ParticleSystem>() != null)
+                {
+                    if (obj.transform.GetChild(0).GetComponent<ParticleSystem>().isPlaying == false)
+                        obj.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+                }
+                else
+                {
+                    GameObject ParticleObject = new GameObject();
+
+                    switch(_Side)
+                    {
+                        case ELoseSide.eLeft:
+
+                            ParticleObject
+                            = gameObject.transform.GetChild((int)_Type).gameObject.transform.GetChild((int)ELoseSide.eRight).gameObject
+                            .transform.GetChild((int)ELoseEffectsComponents.eParticleObjects).gameObject;
+
+                            ParticleObject.SetActive(false);
+
+                            break;
+
+                        case ELoseSide.eRight:
+
+                            ParticleObject
+                            = gameObject.transform.GetChild((int)_Type).gameObject.transform.GetChild((int)ELoseSide.eLeft).gameObject
+                            .transform.GetChild((int)ELoseEffectsComponents.eParticleObjects).gameObject;
+
+                            ParticleObject.SetActive(false);
+
+
+                            break;
+
+                    }
+                }
 
                 obj = this.gameObject.transform.GetChild((int)ELoseEffectsType.eGaan).
                 gameObject.transform.GetChild((int)ELoseSide.eLeft).gameObject;
@@ -164,6 +196,7 @@ public class LoseEffect : MonoBehaviour, ILoseEffectInterface
                 }
 
                 m_cGaanSprtieObjects[(int)_Side].SetActive(true);
+
                 //sprobj = m_cEffectsObj.transform.GetChild((int)ELoseEffectsComponents.eSpriteObjects).gameObject;
 
 
