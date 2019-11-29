@@ -34,7 +34,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     [System.NonSerialized]
     public DronePointManager m_DronePointManager;   // 巡回する地点の情報を取得する
     [System.NonSerialized]
-    public TimeManager m_TimeManager;               // 昼夜の状態を取得する
+    public TimeZoneManager m_TimeZoneManager;           // 昼夜の状態を取得する
 
     public GameObject m_gTarget;                    // 目標のオブジェクト
     public Vector3 m_vTargetPos;                    // 目標地点の位置情報
@@ -94,7 +94,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         m_PlayerManager = managerobject.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
         m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
         m_DronePointManager = managerobject.GetGameObject("DronePointManager").GetComponent<DronePointManager>();
-        m_TimeManager = managerobject.GetGameObject("TimeManager").GetComponent<TimeManager>();
+        m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
 
         // アイテムのドロップ間隔処理
         if (!m_bCanDropItem)
@@ -108,10 +108,14 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         }
 
         // 昼夜状態取得
-        if (false) // タイムマネージャーから昼夜の状態を取得し、判定する
+        if (m_TimeZoneManager.TimeZoneStatus == ETimeZone.eEvenning) // タイムマネージャーから昼夜の状態を取得し、判定する
         {
             // 夜状態に切り替える
             m_bIsNight = true;
+        }
+        else
+        {
+            m_bIsNight = false;
         }
 
         base.Update();

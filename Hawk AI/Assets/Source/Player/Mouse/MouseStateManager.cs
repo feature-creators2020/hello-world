@@ -62,7 +62,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [System.NonSerialized]
     public float m_fNightSpeedRate = 1.5f;      // 夜状態の移動速度倍率
     [System.NonSerialized]
-    public TimeManager m_TimeManager;           // 昼夜の状態を取得する
+    public TimeZoneManager m_TimeZoneManager;           // 昼夜の状態を取得する
 
     public Rigidbody m_rb;                      // rigidbodyで移動する
 
@@ -114,7 +114,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         // マネージャー取得
         var managerobject = ManagerObjectManager.Instance;
-        m_TimeManager = managerobject.GetGameObject("TimeManager").GetComponent<TimeManager>();
+        m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
 
         // 移動判定用コライダー取得
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
@@ -122,11 +122,16 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_rb = this.gameObject.GetComponent<Rigidbody>();
 
         // 昼夜状態取得
-        if (false) // タイムマネージャーから昼夜の状態を取得し、判定する
+        if (m_TimeZoneManager.TimeZoneStatus == ETimeZone.eEvenning) // タイムマネージャーから昼夜の状態を取得し、判定する
         {
             // 夜状態に切り替える
             m_bIsNight = true;
         }
+        else
+        {
+            m_bIsNight = false;
+        }
+        Debug.Log("isNight : " + m_bIsNight);
         // 速度設定
         SetMoveSpeed(m_bIsNight);
 

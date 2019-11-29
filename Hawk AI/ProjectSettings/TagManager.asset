@@ -18,6 +18,7 @@ TagManager:
   - Rail
   - DropItem
   - DronePoint
+  - Drone
   layers:
   - Default
   - TransparentFX
