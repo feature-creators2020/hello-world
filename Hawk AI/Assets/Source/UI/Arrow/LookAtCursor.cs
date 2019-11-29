@@ -41,9 +41,7 @@ public class LookAtCursor : MonoBehaviour
         {
             List_ItemCursor[i].transform.LookAt(List_Item[i].transform);
         }
-        GameObject Look = new GameObject();
-        Look.transform.position = new Vector3(Drone.transform.position.x, CursorHeight, Drone.transform.position.z);
-        DroneCursor.transform.LookAt(Look.transform);
+        DroneCursor.transform.LookAt(Drone.transform);
     }
 
     public void SetCheeseActive()
