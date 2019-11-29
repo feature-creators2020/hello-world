@@ -494,6 +494,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     m_sItemData = "MousetrapManager";
                     //Debug.Log("GetItem");
                 }
+                CursorManager.Instance.GetItem(other.gameObject);
                 ItemHolderManager.Instance.HoldItem(other.gameObject);
                 // 取得したのでオブジェクトを消す
                 Destroy(other.gameObject);

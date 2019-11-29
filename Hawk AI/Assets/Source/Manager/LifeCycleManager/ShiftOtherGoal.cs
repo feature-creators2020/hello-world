@@ -21,6 +21,7 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
             GoalObj[Numbers[index]].SetActive(false);
             Numbers.RemoveAt(index);
         }
+        CursorManager.Instance.SetCheeseActive();
     }
 
     public void Shift(GameObject Cheese)
@@ -44,17 +45,18 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
                 Numbers.RemoveAt(index);
             }
         }
+        CursorManager.Instance.SetCheeseActive();
     }
 
-    public List<Transform> GetGoalTransform()
+    public List<GameObject> GetGoalObj()
     {
-        List<Transform> GoalTrans = new List<Transform>();
+        List<GameObject> GoalObj = new List<GameObject>();
 
         for(int i =0; i < Numbers.Count; i++)
         {
-            GoalTrans.Add(GoalObj[Numbers[i]].transform);
+            GoalObj.Add(this.GoalObj[Numbers[i]]);
         }
 
-        return GoalTrans;
+        return GoalObj;
     }
 }
