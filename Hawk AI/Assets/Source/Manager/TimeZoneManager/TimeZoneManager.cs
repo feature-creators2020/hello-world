@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public interface IETimeZone : IEventSystemHandler
+{
+    ETimeZone TimeZoneStatus { get; set; }
+}
+
+
 public enum ETimeZone
 {
     eMooning,
@@ -10,8 +16,9 @@ public enum ETimeZone
 }
 
 
-public class TimeZoneManager : GeneralManager
+public class TimeZoneManager : GeneralManager, IETimeZone
 {
+    [SerializeField]
     private GameObject m_cTimeManager = null;
 
     public ETimeZone TimeZoneStatus
@@ -45,7 +52,7 @@ public class TimeZoneManager : GeneralManager
     private void Stating()
     {
         // Hack : Call func At Once
-        m_cTimeManager = ManagerObjectManager.Instance.GetGameObject("TimeManager");
+       // m_cTimeManager = ManagerObjectManager.Instance.GetGameObject("TimeManager");
 
         float NowTime = 0f;
         float EndTime = 0f;
