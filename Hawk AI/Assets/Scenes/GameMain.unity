@@ -25338,6 +25338,21 @@ PrefabInstance:
       propertyPath: m_cTimeManager
       value: 
       objectReference: {fileID: 1206838095}
+    - target: {fileID: 8977317483250597719, guid: 5d1b067ec7e429e48a7cb0e4ef6485b7,
+        type: 3}
+      propertyPath: m_fLerpRotationX
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977317483250597719, guid: 5d1b067ec7e429e48a7cb0e4ef6485b7,
+        type: 3}
+      propertyPath: m_cDirectionaLight
+      value: 
+      objectReference: {fileID: 705507993}
+    - target: {fileID: 8977317483250597719, guid: 5d1b067ec7e429e48a7cb0e4ef6485b7,
+        type: 3}
+      propertyPath: m_fLerpRotationTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d1b067ec7e429e48a7cb0e4ef6485b7, type: 3}
 --- !u!1 &466529113

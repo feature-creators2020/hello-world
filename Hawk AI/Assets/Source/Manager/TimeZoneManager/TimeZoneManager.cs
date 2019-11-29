@@ -21,12 +21,22 @@ public class TimeZoneManager : GeneralManager, IETimeZone
     [SerializeField]
     private GameObject m_cTimeManager = null;
 
+    [SerializeField]
+    private GameObject m_cDirectionaLight = null;
+
+    [SerializeField]
+    private float m_fLerpRotationX;
+
+    [SerializeField]
+    private float m_fLerpRotationTime;
+
     public ETimeZone TimeZoneStatus
     {
         get { return m_eTimeZone; }
         set { m_eTimeZone = value; }
     }
 
+    private bool m_bCoroutineFlg = false;
     private ETimeZone m_eTimeZone = ETimeZone.eMooning;
 
     public override void GeneralInit()
@@ -51,9 +61,6 @@ public class TimeZoneManager : GeneralManager, IETimeZone
 
     private void Stating()
     {
-        // Hack : Call func At Once
-       // m_cTimeManager = ManagerObjectManager.Instance.GetGameObject("TimeManager");
-
         float NowTime = 0f;
         float EndTime = 0f;
 
@@ -72,7 +79,36 @@ public class TimeZoneManager : GeneralManager, IETimeZone
 
         if (NowTime >= (EndTime / 2))
         {
+            if (m_bCoroutineFlg != true)
+            {
+                m_bCoroutineFlg = true;
+                StartCoroutine(LightingCoroutine());
+            }
+
             m_eTimeZone = ETimeZone.eEvenning;
+        }
+    }
+
+    IEnumerator LightingCoroutine()
+    {
+        float lerpVal = 0f;
+        Vector3 Start = m_cDirectionaLight.transform.position;
+        Vector3 End = new Vector3(
+            m_fLerpRotationX,
+            m_cDirectionaLight.transform.position.y,
+            m_cDirectionaLight.transform.position.z);
+
+        while (lerpVal <= 1f)
+        {//閉まる時間補間
+            m_cDirectionaLight.transform.rotation = Quaternion.Euler(
+                Vector3.Lerp(Start, End, lerpVal));
+            lerpVal += Time.deltaTime / m_fLerpRotationTime;
+            yield return null;
+        }
+
+        if (Start != End)
+        {//強硬手段
+            m_cDirectionaLight.transform.rotation = Quaternion.Euler(End);
         }
     }
 }
