@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using GamepadInput;
+using KeyBoardInput;
 
 /// <summary>
 /// @name : GameManager
@@ -42,7 +44,7 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     // Start is called before the first frame update
     public virtual void GeneralInit()
     {
-        
+
 
         var StateMachine = new CStateMachine<GameManager>();
         m_cStateMachineList.Add(StateMachine);
@@ -55,7 +57,7 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
         m_cStateList.Add(GameMain);
         m_cStateList.Add(End);
 
-        
+
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)NowManagerState]);
     }
@@ -64,6 +66,8 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     public virtual void GeneralUpdate()
     {
         //base.Update();
+        this.DebugUpdate();
+
     }
 
     public virtual void GeneralRelease()
@@ -99,7 +103,7 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
 
     public virtual EGameState GetGameState()
     {
-        if(m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EGameState.Ready])
+        if (m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)EGameState.Ready])
         {
             return EGameState.Ready;
         }
@@ -114,4 +118,40 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
 
     }
 
+    private void DebugUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ExecuteEvents.Execute<ISceneInterfase>(
+            target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+
+#if UNITY_EDITOR
+
+
+
+#elif UNITY_STANDALONE_WIN
+            System.Diagnostics.Process.Start(Application.dataPath.Replace("_Data", ".exe"));
+            Application.Quit();
+#endif
+        }
+
+
+        if (Input.GetKey(KeyCode.Escape)) Quit();
+
+    }
+
+    private void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+    UnityEngine.Application.Quit();
+#endif
+    }
 }
