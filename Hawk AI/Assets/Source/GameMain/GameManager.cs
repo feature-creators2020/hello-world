@@ -28,6 +28,9 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     [SerializeField]
     private EGameState NowManagerState;
 
+    [SerializeField]
+    public float ResultStatingTime;
+
     private static bool m_bHumanWin = false;
 
     public static bool IsHumanWin

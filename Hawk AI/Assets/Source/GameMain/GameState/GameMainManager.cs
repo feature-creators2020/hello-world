@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using GamepadInput;
+using KeyBoardInput;
 using UnityEngine.SceneManagement;
 
 public class GameMainManager : CStateBase<GameManager>
@@ -146,7 +147,29 @@ public class GameMainManager : CStateBase<GameManager>
 
             case "Result":
 
+                float NowTimeCount = 0f;
 
+                ExecuteEvents.Execute<ITimeManager>(
+                target: m_cTimerObject,
+                eventData: null,
+                functor: (recieveTarget, y) => NowTimeCount = recieveTarget.ExecuteTime);
+
+
+                if(NowTimeCount >= this.m_cOwner.ResultStatingTime)
+                {
+                    ExecuteEvents.Execute<ISceneInterfase>(
+                    target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+                }
+
+                if ((KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.Any)) || (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.Any)))
+                {
+                    ExecuteEvents.Execute<ISceneInterfase>(
+                    target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+                }
 
 
                 break;

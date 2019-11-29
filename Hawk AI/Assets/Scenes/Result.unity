@@ -9556,6 +9556,11 @@ PrefabInstance:
       propertyPath: NowManagerState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6585850675462987236, guid: eb425763a181bc4469154e35d1f84715,
+        type: 3}
+      propertyPath: ResultStatingTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb425763a181bc4469154e35d1f84715, type: 3}
 --- !u!1001 &704629211
