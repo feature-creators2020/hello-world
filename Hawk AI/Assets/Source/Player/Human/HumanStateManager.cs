@@ -646,7 +646,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public bool IsMove(Vector3 movepos)
     {
-        hMoveColliderScript.JudgeCollision();
+        hMoveColliderScript.JudgeCollision(movepos);
 
         if(hMoveColliderScript.hit.distance <= 0.25f)
         {
@@ -726,6 +726,28 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
         this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
         this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
+    }
+
+    public void Move(Vector3 _moveForward)
+    {
+        // 移動判定
+        for (int i = 0; i < 3; i++)
+        {
+            if (IsMove(_moveForward))
+            {
+                Debug.Log("moving");
+                break;
+            }
+            else
+            {
+                var correctionMove = hMoveColliderScript.hit.normal;
+                var a = -Vector3.Dot(_moveForward, correctionMove);
+                _moveForward = _moveForward + a * correctionMove;
+            }
+        }
+        // 移動処理
+        transform.position += _moveForward * m_fmoveSpeed * Time.deltaTime;
+
     }
 
 }

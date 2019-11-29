@@ -72,18 +72,8 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
                 m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
             }
 
-            // 移動判定
-            if (m_cOwner.IsMove(moveForward))
-            {
-
-            }
-            else
-            {
-                moveForward += m_cOwner.hMoveColliderScript.hit.normal * m_cOwner.m_fmoveSpeed;
-            }
             // 移動処理
-            m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
-
+            m_cOwner.Move(moveForward);
         }
 
         // 経過時間処理

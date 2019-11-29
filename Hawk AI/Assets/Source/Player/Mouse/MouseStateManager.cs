@@ -47,6 +47,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     [System.NonSerialized]
     public GameObject m_GTargetBoxObject;       // 上る段ボールのオブジェクト
+    [System.NonSerialized]
+    public Vector3 m_TargetBoxNomal;            // 上る段の面の法線ベクトル
 
     public List<GameObject> m_cPipeTransPosObj = new List<GameObject>();
 
@@ -54,6 +56,17 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public MoveCollider hMoveColliderScript;    // 移動判定用スクリプト
 
     public float m_fPipeSpeed;                  // 計算時の速
+
+    [System.NonSerialized]
+    public bool m_bIsNight = false;             // 夜状態か
+    [System.NonSerialized]
+    public float m_fNightSpeedRate = 1.5f;      // 夜状態の移動速度倍率
+    [System.NonSerialized]
+    public TimeManager m_TimeManager;           // 昼夜の状態を取得する
+
+    public Rigidbody m_rb;                      // rigidbodyで移動する
+
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -99,13 +112,23 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     // Update is called once per frame
     public override void Update()
     {
-        //var playerNo = GamePadIndex;
-        //var keyState = GamePad.GetState(playerNo, false);
-        //var playerKeyNo = (KeyBoard.Index)playerNo;
-        //var keyboardState = KeyBoard.GetState(KeyboardIndex, false);
+        // マネージャー取得
+        var managerobject = ManagerObjectManager.Instance;
+        m_TimeManager = managerobject.GetGameObject("TimeManager").GetComponent<TimeManager>();
 
+        // 移動判定用コライダー取得
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
+        // 移動用rigidbody
+        m_rb = this.gameObject.GetComponent<Rigidbody>();
 
+        // 昼夜状態取得
+        if (false) // タイムマネージャーから昼夜の状態を取得し、判定する
+        {
+            // 夜状態に切り替える
+            m_bIsNight = true;
+        }
+        // 速度設定
+        SetMoveSpeed(m_bIsNight);
 
         // 各状態の処理
         base.Update();
@@ -138,6 +161,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                         {
                             m_GTargetBoxObject = hit.collider.gameObject;
                         }
+                        m_TargetBoxNomal = hit.normal;
                         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
                         {
                             ChangeState(0, EMouseState.Up);
@@ -297,7 +321,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public bool IsMove(Vector3 movepos)
     {
-        hMoveColliderScript.JudgeCollision();
+        hMoveColliderScript.JudgeCollision(movepos);
 
         if (hMoveColliderScript.hit.distance <= 0.25f)
         {
@@ -307,6 +331,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         return true;
     }
 
+
     public CStateBase<MouseStateManager> GetCurrentState()
     {
         return m_cStateMachineList[0].GetCurrentState();
@@ -315,6 +340,19 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public CStateBase<MouseStateManager> GetStateBase(EMouseState _state)
     {
         return m_cStateList[(int)_state];
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        // 壁ずり処理
+        foreach (var val in other.contacts)
+        {
+            if (val.otherCollider.gameObject == this.gameObject)
+            {
+                var a = -Vector3.Dot(m_rb.velocity, val.normal);
+                m_rb.velocity = m_rb.velocity + a * val.normal;
+            }
+        }
     }
 
     void OnCollisionStay(Collision other)
@@ -343,17 +381,52 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public void GravityOff()
     {
-        this.GetComponent<Rigidbody>().useGravity = false;
-        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        m_rb.useGravity = false;
+        m_rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public void GravityOn()
     {
-        this.GetComponent<Rigidbody>().useGravity = true;
-        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
-        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionZ;
-        this.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezeRotation;
+        m_rb.useGravity = true;
+        m_rb.constraints = RigidbodyConstraints.None;
+        m_rb.constraints |= RigidbodyConstraints.FreezePositionX;
+        m_rb.constraints |= RigidbodyConstraints.FreezePositionZ;
+        m_rb.constraints |= RigidbodyConstraints.FreezeRotation;
     }
 
+    public void SetMoveSpeed(bool isnight)
+    {
+        if (isnight)
+        {
+            // 夜状態。速度倍率を掛ける
+            m_fmoveSpeed = m_fDefaultSpeed * m_fNightSpeedRate;
+        }
+        else
+        {
+            // 昼状態。
+            m_fmoveSpeed = m_fDefaultSpeed;
+        }
+    }
+
+    public void Move(Vector3 _moveForward)
+    {
+        // 移動判定
+        for (int i = 0; i < 3; i++)
+        {
+            if (IsMove(_moveForward))
+            {
+                Debug.Log("moving");
+                break;
+            }
+            else
+            {
+                var correctionMove = hMoveColliderScript.hit.normal;
+                var a = -Vector3.Dot(_moveForward, correctionMove);
+                _moveForward = _moveForward + a * correctionMove;
+            }
+        }
+        // 移動処理
+        transform.position += _moveForward * m_fmoveSpeed * Time.deltaTime;
+
+    }
 }

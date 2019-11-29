@@ -65,7 +65,7 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
             }
         }
         // 移動処理
-        m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
+        m_cOwner.m_rb.velocity = moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
 
         // 経過時間処理
         m_cOwner.m_fSlowTime -= Time.deltaTime;
