@@ -56,15 +56,8 @@ public class MRailManager : CStateBase<MouseStateManager>
         Debug.Log(railmove);
         moveForward += railmove;
 
-        var correctionMove = m_cOwner.hMoveColliderScript.hit.normal;
-        moveForward += correctionMove;
-        if (m_cOwner.IsMove(moveForward))
-        {
-            moveForward -= correctionMove;
-        }
-
         // 移動処理
-        m_cOwner.transform.position += moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
+        m_cOwner.Move(moveForward);
 
         var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
         var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y / 2f, 0f);

@@ -10,13 +10,14 @@ public class MoveCollider : MonoBehaviour
     [System.NonSerialized]
     public RaycastHit hit;
 
-    public void JudgeCollision()
+    public void JudgeCollision(Vector3 _vec)
     {
         var scale = transform.lossyScale.x * 0.5f;
         var scaley = transform.lossyScale.y * 0.2f;
 
-        var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, this.transform.forward, out hit);
+        var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, _vec, out hit);
     }
+
 
     void OnDrawGizmos()
     {

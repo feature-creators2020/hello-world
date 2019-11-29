@@ -89,6 +89,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     // Update is called once per frame
     void Update()
     {
+        // マネージャー取得
         var managerobject = ManagerObjectManager.Instance;
         m_PlayerManager = managerobject.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
         m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
