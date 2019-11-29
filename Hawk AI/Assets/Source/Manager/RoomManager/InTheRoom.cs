@@ -20,6 +20,10 @@ public class InTheRoom : MonoBehaviour
         {
             RoomManager.Instance.MouseEnter(RoomIndex);
         }
+        if(other.tag == "Drone")
+        {
+            RoomManager.Instance.DrawnEnter(RoomIndex);
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -32,6 +36,10 @@ public class InTheRoom : MonoBehaviour
         if (other.tag == "Mouse")
         {
             RoomManager.Instance.MouseExit(RoomIndex);
+        }
+        if (other.tag == "Drone")
+        {
+            RoomManager.Instance.DrawnExit(RoomIndex);
         }
     }
 }

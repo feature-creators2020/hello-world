@@ -11,7 +11,7 @@ public interface IETimeZone : IEventSystemHandler
 
 public enum ETimeZone
 {
-    eMooning,
+    eMorning,
     eEvenning
 }
 
@@ -37,7 +37,7 @@ public class TimeZoneManager : GeneralManager, IETimeZone
     }
 
     private bool m_bCoroutineFlg = false;
-    private ETimeZone m_eTimeZone = ETimeZone.eMooning;
+    private ETimeZone m_eTimeZone = ETimeZone.eMorning;
 
     public override void GeneralInit()
     {
