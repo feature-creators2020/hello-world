@@ -6,7 +6,7 @@ public class RoomManager : GeneralManager
 {
     //インスタンス
     public static RoomManager Instance;
-    //人間がいる部屋の番号が入るリスト
+    //部屋の番号が入るリスト
     private List<int> List_InHuman = new List<int>();
     private List<int> List_InMouse = new List<int>();
     private List<int> List_InDrone = new List<int>();
