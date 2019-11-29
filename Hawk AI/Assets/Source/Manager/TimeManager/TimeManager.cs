@@ -49,11 +49,33 @@ public class TimeManager : GeneralManager, ITimeManager
                 Debug.Log("TimeUp!");
             }
         }
+
+        DebugUpdate();
+
     }
 
     public override void GeneralRelease()
     {
 
+    }
+
+    public override void DebugUpdate()
+    {
+        if (m_bTimeCounting == true)
+        {
+            if(Input.GetKey(KeyCode.Alpha8))
+            {
+                m_fNowCountTime += 3f;
+                Debug.Log("Forward Track Skipping Time : " + m_fNowCountTime);
+            }
+
+            if (Input.GetKey(KeyCode.Alpha7))
+            {
+                m_fNowCountTime -= 3f;
+                Debug.Log("ReWind Track Time : " + m_fNowCountTime);
+            }
+
+        }
     }
 
     public void TimeStart()
