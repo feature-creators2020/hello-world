@@ -646,7 +646,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public bool IsMove(Vector3 movepos)
     {
-        hMoveColliderScript.JudgeCollision();
+        hMoveColliderScript.JudgeCollision(movepos);
 
         if(hMoveColliderScript.hit.distance <= 0.25f)
         {
