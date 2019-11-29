@@ -97,6 +97,7 @@ public class DropItem : GeneralObject
             target: m_gDroneObject,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.ChangeMoveState());
+        CursorManager.Instance.SetItem(item);
     }
 
     public void SetPoint(GameObject _point)
