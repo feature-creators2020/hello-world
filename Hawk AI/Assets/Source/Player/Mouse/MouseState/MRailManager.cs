@@ -56,10 +56,12 @@ public class MRailManager : CStateBase<MouseStateManager>
         Debug.Log(railmove);
         //moveForward += railmove;
 
+        // ベルトコンベアの移動量
+        m_cOwner.transform.position += railmove;
+
         // 移動処理
         m_cOwner.Move(moveForward);
 
-        m_cOwner.transform.position += railmove;
 
         //var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
         //var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y / 2f, 0f);
@@ -77,7 +79,7 @@ public class MRailManager : CStateBase<MouseStateManager>
 
             var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
             var TagName = Downhit.collider.gameObject.tag;
-            if (LayerName != "Rail")
+            if (TagName != "Rail")
             {
                 m_cOwner.ChangeState(0, m_cOwner.EOldState);
             }

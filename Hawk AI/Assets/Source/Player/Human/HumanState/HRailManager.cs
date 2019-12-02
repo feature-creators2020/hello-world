@@ -12,7 +12,7 @@ public class HRailManager : CStateBase<HumanStateManager>
 
     public override void Enter()
     {
-        m_cOwner.GravityOff();
+        //m_cOwner.GravityOff();
     }
 
     public override void Execute()
@@ -80,39 +80,42 @@ public class HRailManager : CStateBase<HumanStateManager>
             //}
             //else
             //{
-                Vector3 railmove = Vector3.zero;
-                ExecuteEvents.Execute<IRailInterfase>(
+            Vector3 railmove = Vector3.zero;
+            ExecuteEvents.Execute<IRailInterfase>(
                     target: m_cOwner.m_GTargetBoxObject,
                     eventData: null,
                     functor: (recieveTarget, y) => railmove = recieveTarget.GetMove());
-            Debug.Log(m_cOwner.m_GTargetBoxObject.name);
-                Debug.Log(railmove);
-                moveForward += railmove;
+            Debug.Log("RailObject : " + m_cOwner.m_GTargetBoxObject.name);
+            Debug.Log(railmove);
+
+            // ベルトコンベアの移動量
+            m_cOwner.transform.position += railmove;
 
             // 移動処理
             m_cOwner.Move(moveForward);
 
-            var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
-            var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y, 0f);
-            Debug.Log("TargetRail : " + m_cOwner.m_GTargetBoxObject.name);
-            Debug.Log("TopPos : " + TopPos);
-            Debug.Log("UpPos : " + UpPos);
-            m_cOwner.transform.position = new Vector3(m_cOwner.transform.position.x, UpPos.y, m_cOwner.transform.position.z);
+
+            //var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
+            //var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y, 0f);
+            //Debug.Log("TargetRail : " + m_cOwner.m_GTargetBoxObject.name);
+            //Debug.Log("TopPos : " + TopPos);
+            //Debug.Log("UpPos : " + UpPos);
+            //m_cOwner.transform.position = new Vector3(m_cOwner.transform.position.x, UpPos.y, m_cOwner.transform.position.z);
 
 
             // 接地判定
             Ray Downray = new Ray(m_cOwner.transform.position, -m_cOwner.transform.up);
             RaycastHit Downhit;
             Debug.DrawLine(m_cOwner.transform.position, m_cOwner.transform.position - m_cOwner.transform.up, Color.red);
-            if (Physics.Raycast(Downray, out Downhit))
+            if (Physics.BoxCast(m_cOwner.transform.position, m_cOwner.transform.lossyScale * 0.5f, -m_cOwner.transform.up, out Downhit))
             {
-                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+                //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.parent.gameObject.name);
                 Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
                 Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
                 var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
                 var TagName = Downhit.collider.gameObject.tag;
-                if (LayerName != "Rail")
+                if (TagName != "Rail")
                 {
                     m_cOwner.ChangeState(0, m_cOwner.EOldState);
                 }
@@ -123,6 +126,6 @@ public class HRailManager : CStateBase<HumanStateManager>
 
     public override void Exit()
     {
-        m_cOwner.GravityOn();
+        //m_cOwner.GravityOn();
     }
 }

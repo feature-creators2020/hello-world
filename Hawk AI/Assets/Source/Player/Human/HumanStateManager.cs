@@ -75,6 +75,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [System.NonSerialized]
     public MoveCollider hMoveColliderScript;    // 移動判定用スクリプト
 
+    [System.NonSerialized]
+    public Vector3 m_TargetBoxNomal;            // 上る段の面の法線ベクトル
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -161,7 +164,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
             Debug.DrawLine(transform.position, transform.position + transform.forward, Color.red);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1f))
+            // 正面方向にボックスキャスト(ベルトコンベアの側面に当たっているか)
+            if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, transform.forward, out hit, transform.rotation, 0.5f))
             {
                 Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
                 Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
@@ -174,19 +178,21 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     if (TagName == "CanClimbing")
                     {
                         Debug.Log("ChangeState");
-                        m_GTargetBoxObject = hit.collider.gameObject.transform.root.gameObject;
+                        m_GTargetBoxObject = hit.collider.gameObject;
+                        m_TargetBoxNomal = hit.normal;
                         ChangeState(0, EHumanState.Up);
                         return;
                     }
                 }
             }
 
+            // 下に向けてボックスキャスト(ベルトコンベアに当たっているか)
             Ray Downray = new Ray(transform.position, -transform.up);
             RaycastHit Downhit;
             Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
-            if (Physics.Raycast(Downray, out Downhit))
+            if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, -transform.up, out Downhit))
             {
-                Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+                //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.parent.gameObject.name);
                 Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
                 Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
@@ -194,14 +200,17 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 var TagName = Downhit.collider.gameObject.tag;
                 if (LayerName == "Rail")
                 {
-                    m_GTargetBoxObject = Downhit.collider.gameObject.transform.root.gameObject;
-                    ChangeState(0, EHumanState.Rail);
+                    if (TagName == "Rail")
+                    {
+                        m_GTargetBoxObject = Downhit.collider.gameObject.transform.parent.parent.gameObject;
+                        ChangeState(0, EHumanState.Rail);
+                    }
                 }
                 else
                 {
                     if (CheckCurrentState(EHumanState.Rail))
                     {
-                        ChangeState(0, EOldState);
+                        ChangeState(0, EHumanState.Normal);
                     }
                 }
             }
@@ -693,14 +702,14 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         if (other.gameObject.tag == "Rail")
         {
-            m_GTargetBoxObject = other.gameObject.transform.root.gameObject;
+            m_GTargetBoxObject = other.gameObject.transform.parent.parent.gameObject;
             ChangeState(0, EHumanState.Rail);
         }
     }
 
     public bool CheckCurrentState(EHumanState _state)
     {
-        if(m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)_state])
+        if(m_cStateMachineList[0].GetCurrentState() == m_cStateList[(int)_state])
         {
             return true;
         }
