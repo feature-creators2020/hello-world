@@ -22,8 +22,12 @@ public class InTheRoom : MonoBehaviour
         }
         if(other.tag == "Drone")
         {
-            RoomManager.Instance.DrawnEnter(RoomIndex);
+            RoomManager.Instance.DroneEnter(RoomIndex);
         }
+        //if(other.tag == "Respawn")
+        //{
+        //    RespawnPoint.Instance.RespInit(other.gameObject, RoomIndex);
+        //}
     }
 
     void OnTriggerExit(Collider other)
@@ -39,7 +43,7 @@ public class InTheRoom : MonoBehaviour
         }
         if (other.tag == "Drone")
         {
-            RoomManager.Instance.DrawnExit(RoomIndex);
+            RoomManager.Instance.DroneExit(RoomIndex);
         }
     }
 }

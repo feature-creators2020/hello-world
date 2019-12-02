@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 6232627324307472801}
   m_Layer: 0
   m_Name: Point04
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6232627324307472803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: 4.5}
+  m_LocalPosition: {x: 6, y: 0, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6232627325885646409}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 6232627324822296636}
   m_Layer: 0
   m_Name: Point02
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6232627324822296638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: 17}
+  m_LocalPosition: {x: 10, y: 0, z: 17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6232627325885646409}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 6232627325024587915}
   m_Layer: 0
   m_Name: Point03
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -447,7 +447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6232627325024587917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35, y: 1, z: 2}
+  m_LocalPosition: {x: 35, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6232627325885646409}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 6232627325302855814}
   m_Layer: 0
   m_Name: Point01
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,7 +540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6232627325302855816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 60, y: 1, z: 30}
+  m_LocalPosition: {x: 60, y: 0, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6232627325885646409}
@@ -747,11 +747,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e415979714a581541bfae41db442d881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespObj:
+  List_RespObj:
   - {fileID: 6232627325302855816}
   - {fileID: 6232627324822296638}
   - {fileID: 6232627325024587917}
-  - {fileID: 6232627325024587917}
+  - {fileID: 6232627324307472803}
+  List_RoomIndex: 00000000010000000200000003000000
 --- !u!1 &6288585244505159481
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +859,7 @@ GameObject:
   - component: {fileID: 7089151397140594227}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Untagged
+  m_TagString: LifeCycle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

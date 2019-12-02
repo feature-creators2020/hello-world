@@ -6,14 +6,16 @@ using UnityEngine;
 public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
 {
     [SerializeField]
-    private List<GameObject> RespObj;
+    private List<GameObject> List_RespObj;
+    [SerializeField]
+    private List<int> List_RoomIndex;
 
     //Respawn関数(出現させるオブジェクト)
     public void Respawn(GameObject Obj)
     {
         //人間がいない空間にあるリスポーン地の配列を作成
-        List<GameObject> RespList = new List<GameObject>();
-        RoomManager.Instance.FarOffHuman(RespObj ,RespList);
+        List<int> RespList = new List<int>();
+        RoomManager.Instance.FarOffHuman(List_RoomIndex, RespList);
         //ランダムで生成場所を決定
         int number;
         Vector3 pos;
@@ -22,14 +24,27 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
         {
             number = Random.Range(0, RespList.Count);
             //設定位置に移動
-            pos = RespList[number].transform.position;
+            pos = List_RespObj[RespList[number]].transform.position;
         }
         else
         {
-            number = Random.Range(0, RespObj.Count);
+            number = Random.Range(0, List_RespObj.Count);
             //設定位置に移動
-            pos = RespObj[number].transform.position;
+            pos = List_RespObj[number].transform.position;
         }
-        Obj.transform.position = new Vector3(pos.x, 0.5f, pos.z);
+        Obj.transform.position = pos;
     }
+
+    //public void RespInit(GameObject Obj,int RoomIndex)
+    //{
+    //    for(int i = 0;i < List_RespObj.Count; i++)
+    //    {
+    //        if(List_RespObj[i] == Obj)
+    //        {
+    //            List_RoomIndex.RemoveAt(i);
+    //            List_RoomIndex.Insert(i, RoomIndex);
+    //            break;
+    //        }
+    //    }
+    //}
 }
