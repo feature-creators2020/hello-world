@@ -207,6 +207,9 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
 
     public bool IsCanTarget(GameObject TargetObject)
     {
+        // ルームマネージャー取得
+        var room = RoomManager.Instance;
+
         if (TargetObject != null) {
             var TargetScript = TargetObject.GetComponent<MouseStateManager>();
             // パイプ、リスポーン時は追跡しない
@@ -221,7 +224,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                 else
                 {
                     // 同じエリアに存在しているか
-                    if (true)
+                    if (true/*room.GetDroneIn()*/)
                     {
                         return true;
                     }

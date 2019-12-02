@@ -10,7 +10,8 @@ public class DropItem : GeneralObject
 
     RaycastHit hit;
     Ray ray;
-    bool isGround = false;
+    bool isGround = false;      // 地面に接地している
+    bool isInstanced = false;   // アイテムを生成したか
     Rigidbody m_crigidbody;
     GameObject m_gPointObject;
     GameObject m_gDroneObject;  // このオブジェクトが消えるタイミングでドローンのステートを切り替えるため
@@ -32,23 +33,29 @@ public class DropItem : GeneralObject
     {
         Debug.Log("GeneralUpdate");
 
-        if (isGround == false)
+        if (isInstanced)
         {
-            HitCheck();
+            Destroy(this.gameObject);
         }
         else
         {
-
-            // 着地時の処理
-            this.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
-            // 一定のサイズより小さくなると消す
-            if (this.transform.localScale.x <= 0.1f)
+            if (isGround == false)
             {
-                CreateItem();
-                Destroy(this.gameObject);
+                HitCheck();
+            }
+            else
+            {
+
+                // 着地時の処理
+                this.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+                // 一定のサイズより小さくなると消す
+                if (this.transform.localScale.x <= 0.1f)
+                {
+                    CreateItem();
+
+                }
             }
         }
-
     }
 
     public void SetItem(GameObject item)
@@ -97,6 +104,7 @@ public class DropItem : GeneralObject
             target: m_gDroneObject,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.ChangeMoveState());
+        isInstanced = true;
         CursorManager.Instance.SetItem(item);
     }
 
