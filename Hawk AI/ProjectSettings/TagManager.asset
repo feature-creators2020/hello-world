@@ -19,6 +19,7 @@ TagManager:
   - DropItem
   - DronePoint
   - Drone
+  - RoomSpotLight
   layers:
   - Default
   - TransparentFX
