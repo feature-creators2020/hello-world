@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3305208988947036620}
   m_Layer: 9
   m_Name: DoorCollision
-  m_TagString: Untagged
+  m_TagString: DoorArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035980822664632417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 4, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 942874221091255817}
   m_RootOrder: 1
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.77824986, z: 1}
-  m_Center: {x: 0, y: 0.11087507, z: 0}
+  m_Size: {x: 1.7989285, y: 1.994566, z: 0.2696106}
+  m_Center: {x: 0.91969097, y: 0.48292422, z: -0.08566171}
 --- !u!1 &2137093695797653585
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 66184651168459405}
   m_Layer: 0
   m_Name: DoorAreaCollision(Back)
-  m_TagString: Untagged
+  m_TagString: DoorArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8545329464323250911}
   m_Layer: 0
   m_Name: DoorAreaCollision(Front)
-  m_TagString: Untagged
+  m_TagString: DoorArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,6 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942874221091255817}
   - component: {fileID: 5424222013319957262}
+  - component: {fileID: 5049969024516319317}
   m_Layer: 0
   m_Name: DoorScript
   m_TagString: Untagged
@@ -345,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6528611340282739806}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 2, z: 0}
+  m_LocalPosition: {x: -1, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8043841764833059514}
@@ -368,6 +369,22 @@ MonoBehaviour:
   OpenSpeed: 1
   MaxOpenRadian: 90
   StartAngle: {x: 0, y: 0, z: 0}
+--- !u!54 &5049969024516319317
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528611340282739806}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6855088981794027337
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +479,7 @@ GameObject:
   - component: {fileID: 8043841764833059511}
   m_Layer: 10
   m_Name: DoorMesh
-  m_TagString: Untagged
+  m_TagString: DoorArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -476,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 8043841764833059510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.9, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 4, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2251778020587038041}
   m_Father: {fileID: 942874221091255817}
@@ -539,8 +556,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.8348811, y: 1.0481308, z: 0.25463384}
+  m_Center: {x: 0.0016180277, y: -1.0074886, z: -0.09695989}
 --- !u!1001 &6504702970524257859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,17 +628,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 27d57f36998581041b2024f0c387c3a4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 500.0003
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 27d57f36998581041b2024f0c387c3a4,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 17.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 27d57f36998581041b2024f0c387c3a4,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 25.000015
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27d57f36998581041b2024f0c387c3a4, type: 3}

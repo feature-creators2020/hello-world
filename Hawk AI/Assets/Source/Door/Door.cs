@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using GamepadInput;
+using KeyBoardInput;
+
 
 
 public enum EDoorState
@@ -30,6 +33,12 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
     public bool isClosing { get; set; }       //扉の閉フラグ
 
 
+    private List<GameObject> HumanObject_List = new List<GameObject>();
+
+    private GamePad.Index GamePadIndex;          // 対象のコントローラー
+    private KeyBoard.Index KeyboardIndex;        // 対象のキーボード
+
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -56,6 +65,26 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         //{
         //    OpenOrClose();
         //}
+
+        foreach(var val in HumanObject_List)
+        {
+            // 人が入っているか探す
+            if(val.tag == "Human")
+            {
+                var human = val.GetComponent<HumanStateManager>();
+
+                var playerNo = human.GamePadIndex;
+                var keyState = GamePad.GetState(playerNo, false);
+                var playerKeyNo = (KeyBoard.Index)playerNo;
+                var keyboardState = KeyBoard.GetState(human.KeyboardIndex, false);
+
+                // 開閉させる処理
+                if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
+                {
+                    OpenOrClose();
+                }
+            }
+        }
     }
 
     public virtual void OpenOrClose()
@@ -85,6 +114,45 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         if (isClosing == false)
         {
             m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eClose]);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("DoorEnter : " + other.gameObject.name);
+        // 人の時処理をする
+        if(other.tag == "Human")
+        {
+            foreach (var val in HumanObject_List)
+            {
+                if (val == other.gameObject)
+                {
+                    return;
+                }
+            }
+            // 人の情報を入れる
+            HumanObject_List.Add(other.gameObject);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("DoorExit : " + other.gameObject.name);
+        // 人の時処理をする
+        if (other.tag == "Human")
+        {
+            // 人の情報を消す
+            //HumanObject_List.Remove(other.gameObject);
+
+            foreach (var val in HumanObject_List)
+            {
+                if (val == other.gameObject)
+                {
+                    // 人の情報を消す
+                    HumanObject_List.Remove(other.gameObject);
+                    return;
+                }
+            }
         }
     }
 }

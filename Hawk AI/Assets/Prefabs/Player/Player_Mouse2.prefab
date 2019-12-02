@@ -55,9 +55,10 @@ MonoBehaviour:
   m_fDefaultSpeed: 4
   m_fSlowDownRate: 0.5
   m_fDoorSpeed: 0.2
-  m_fLimitSlowTime: 2
+  m_fLimitSlowTime: 0.5
   m_cPipeTransPosObj: []
   m_fPipeSpeed: 0.25
+  m_rb: {fileID: 0}
 --- !u!65 &7362056044338792377
 BoxCollider:
   m_ObjectHideFlags: 0
