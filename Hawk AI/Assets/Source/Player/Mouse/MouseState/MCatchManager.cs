@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using GamepadInput;
 using KeyBoardInput;
 
@@ -10,6 +11,10 @@ public class MCatchManager : CStateBase<MouseStateManager>
 
     public override void Enter()
     {
+        ExecuteEvents.Execute<IFadeInterfase>(
+        target: this.m_cOwner.targetCamera.gameObject,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
 
     }
 
@@ -23,10 +28,14 @@ public class MCatchManager : CStateBase<MouseStateManager>
         // 速度設定
         //m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
 
-        // リスポーン処理
-        RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
+        if (this.m_cOwner.targetCamera.gameObject.GetComponent<FadeEffect>().IsCompleteFlg)
+        {
+            // リスポーン処理
+            RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
+            m_cOwner.ChangeState(0, EMouseState.Normal);
 
-        m_cOwner.ChangeState(0, EMouseState.Normal);
+        }
+
         //// ゲームパッドの入力情報取得
         //m_cOwner.inputHorizontal = 0f;
         //m_cOwner.inputVertical = 0f;
@@ -54,6 +63,10 @@ public class MCatchManager : CStateBase<MouseStateManager>
 
     public override void Exit()
     {
-        
+        ExecuteEvents.Execute<IFadeInterfase>(
+        target: this.m_cOwner.targetCamera.gameObject,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
+
     }
 }

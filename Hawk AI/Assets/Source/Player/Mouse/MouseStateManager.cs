@@ -231,9 +231,21 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // ゴール地点
         if (LayerName == "Goal")
         {
+            ExecuteEvents.Execute<IFadeInterfase>(
+            target: this.targetCamera.gameObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+
             ScoreBoard.Instance.GetCheese();
             RespawnPoint.Instance.Respawn(this.gameObject);
             ShiftOtherGoal.Instance.Shift(other.gameObject);
+
+
+            ExecuteEvents.Execute<IFadeInterfase>(
+            target: this.targetCamera.gameObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
+
         }
 
         if (LayerName == "Pipe")
@@ -310,6 +322,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
         if (LayerName == "Goal")
         {
+
             ChangeState(0, EMouseState.Normal);      
         }
 

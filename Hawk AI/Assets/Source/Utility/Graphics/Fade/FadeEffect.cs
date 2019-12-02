@@ -9,18 +9,44 @@ public class FadeEffect : PostEffect,IFadeInterfase
     [SerializeField]
     private float m_fSpeed;
 
+    public bool IsCompleteFlg
+    {
+        get { return m_bCompleteFlg; }
+        set { m_bCompleteFlg = value;}
+    }
+
+    private bool m_bCompleteFlg = false;
+
     private Vector2 m_cTopUV = new Vector2();
     private Vector2 m_cUnderUV = new Vector2();
 
     private void Start()
     {
-        Init();
+        m_cTopUV[1] = 2f;
+        m_cUnderUV[1] = 1f;
+
+        m_cMaterial.SetVector("_TopUV", m_cTopUV);
+        m_cMaterial.SetVector("_UnderUV", m_cUnderUV);
+
+
     }
 
-    private void Init()
+    private void InitFadeInPos()
+    {
+        m_cTopUV[1] = 1f;
+        m_cUnderUV[1] = 0f;
+    }
+
+    private void InitFadeOutPos()
     {
         m_cTopUV[1] = 2f;
         m_cUnderUV[1] = 1f;
+    }
+
+    private void InitFadeStayPos()
+    {
+        m_cTopUV[1] = 1f;
+        m_cUnderUV[1] = 0f;
     }
 
     private void Update()
@@ -48,7 +74,6 @@ public class FadeEffect : PostEffect,IFadeInterfase
 
                 if (m_cTopUV[1] <= 0f)
                 {
-                    Init();
                     CallFadeStay();
                 }
 
@@ -76,16 +101,22 @@ public class FadeEffect : PostEffect,IFadeInterfase
 
     public void CallFadeIn()
     {
+        InitFadeInPos();
+        m_bCompleteFlg = false;
         m_eFadeState = EFadeState.FadeIn;
     }
     public void CallFadeOut()
     {
+        InitFadeOutPos();
+        m_bCompleteFlg = false;
         m_eFadeState = EFadeState.FadeOut;
 
     }
 
     public void CallFadeStay()
     {
+        InitFadeStayPos();
+        m_bCompleteFlg = true;
         m_eFadeState = EFadeState.FadeStay;
     }
 
