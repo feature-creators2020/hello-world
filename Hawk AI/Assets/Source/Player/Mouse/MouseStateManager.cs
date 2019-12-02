@@ -292,7 +292,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             // ネズミ捕り
             if (TagName == "Mousetrap")
             {
-                Destroy(other.gameObject); // トラップを削除する
+                //Destroy(other.gameObject); // トラップを削除する
+                ChangeState(0, EOldState);
             }
             
         }

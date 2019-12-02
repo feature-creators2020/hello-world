@@ -7,10 +7,13 @@ using KeyBoardInput;
 public class MSlowDownManager : CStateBase<MouseStateManager>
 {
 
+    float DefaultSlowDownRate;
+
     public MSlowDownManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
     {
+        DefaultSlowDownRate = m_cOwner.m_fSlowDownRate;
         // 前の状態が速度低下以外のときは新しく時間を設定する
         if (m_cOwner.EOldState != EMouseState.SlowDown)
         {
@@ -29,6 +32,14 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
 
         // 速度設定
         m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed * m_cOwner.m_fSlowDownRate;
+        if(m_cOwner.m_fSlowDownRate <= 0.0f)
+        {
+            m_cOwner.m_fSlowDownRate = 0f;
+        }
+        else
+        {
+            m_cOwner.m_fSlowDownRate -= 0.01f;
+        }
 
         // ゲームパッドの入力情報取得
         m_cOwner.inputHorizontal = 0f;
@@ -50,22 +61,8 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
             m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
         }
 
-        // 移動判定
-        if (m_cOwner.IsMove(moveForward))
-        {
-
-        }
-        else
-        {
-            var correctionMove = m_cOwner.hMoveColliderScript.hit.normal;
-            moveForward += correctionMove;
-            if (m_cOwner.IsMove(moveForward))
-            {
-                moveForward -= correctionMove;
-            }
-        }
         // 移動処理
-        m_cOwner.m_rb.velocity = moveForward * m_cOwner.m_fmoveSpeed * Time.deltaTime;
+        m_cOwner.Move(moveForward * m_cOwner.m_fSlowDownRate);
 
         // 経過時間処理
         m_cOwner.m_fSlowTime -= Time.deltaTime;
@@ -80,7 +77,8 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
 
     public override void Exit()
     {
-        m_cOwner.EOldState = EMouseState.SlowDown;
+        m_cOwner.m_fSlowDownRate = DefaultSlowDownRate;
+        //m_cOwner.EOldState = EMouseState.SlowDown;
     }
 
 }

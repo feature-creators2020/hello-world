@@ -462,20 +462,20 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             }
         }
 
-        // ドアに当たる
-        if (other.tag == "DoorArea")
-        {
-            // アイテム設置不可能
-            m_canPut = false;
+        //// ドアに当たる
+        //if (other.tag == "DoorArea")
+        //{
+        //    // アイテム設置不可能
+        //    m_canPut = false;
 
-            // 対象のドア情報を取得
-            GDoorData = other.gameObject.transform.parent.Find("DoorScript").gameObject;
-            //Debug.Log(other.gameObject.name);
-            //Debug.Log(other.gameObject.transform.parent.Find("DoorScript").gameObject.name);
+        //    // 対象のドア情報を取得
+        //    GDoorData = other.gameObject.transform.parent.Find("DoorScript").gameObject;
+        //    //Debug.Log(other.gameObject.name);
+        //    //Debug.Log(other.gameObject.transform.parent.Find("DoorScript").gameObject.name);
 
-            // 状態を切り替える
-            ChangeState(0, EHumanState.Door);
-        }
+        //    // 状態を切り替える
+        //    ChangeState(0, EHumanState.Door);
+        //}
 
         // アイテム取得
         if (LayerMask.LayerToName(other.gameObject.layer) == "Item")
@@ -541,7 +541,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 // ネズミ捕り
                 if (other.gameObject.tag == "Mousetrap")
                 {
-                    Destroy(other.gameObject); // トラップを削除する
+                    //Destroy(other.gameObject); // トラップを削除する
                 }
             }
         }
@@ -551,17 +551,17 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             ChangeState(0, EOldState);
         }
 
-        if (other.tag == "DoorArea")
-        {
-            // アイテム設置可能にする
-            m_canPut = true;
+        //if (other.tag == "DoorArea")
+        //{
+        //    // アイテム設置可能にする
+        //    m_canPut = true;
 
-            // 対象のドア情報を消す
-            GDoorData = null;
+        //    // 対象のドア情報を消す
+        //    GDoorData = null;
 
-            // 状態を切り替える
-            ChangeState(0, EHumanState.Normal);
-        }
+        //    // 状態を切り替える
+        //    ChangeState(0, EHumanState.Normal);
+        //}
 
 
     }
