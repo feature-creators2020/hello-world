@@ -11,7 +11,7 @@ public class MRailManager : CStateBase<MouseStateManager>
 
     public override void Enter()
     {
-        m_cOwner.GravityOff();
+        //m_cOwner.GravityOff();
     }
 
     public override void Execute()
@@ -54,14 +54,16 @@ public class MRailManager : CStateBase<MouseStateManager>
             functor: (recieveTarget, y) => railmove = recieveTarget.GetMove());
         Debug.Log(m_cOwner.m_GTargetBoxObject.name);
         Debug.Log(railmove);
-        moveForward += railmove;
+        //moveForward += railmove;
 
         // 移動処理
         m_cOwner.Move(moveForward);
 
-        var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
-        var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y / 2f, 0f);
-        m_cOwner.transform.position = new Vector3(m_cOwner.transform.position.x, UpPos.y, m_cOwner.transform.position.z);
+        m_cOwner.transform.position += railmove;
+
+        //var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
+        //var UpPos = TopPos + new Vector3(0f, m_cOwner.transform.localScale.y / 2f, 0f);
+        //m_cOwner.transform.position = new Vector3(m_cOwner.transform.position.x, UpPos.y, m_cOwner.transform.position.z);
 
         // 接地判定
         Ray Downray = new Ray(m_cOwner.transform.position, -m_cOwner.transform.up);
@@ -84,7 +86,7 @@ public class MRailManager : CStateBase<MouseStateManager>
 
     public override void Exit()
     {
-        m_cOwner.GravityOn();
+        //m_cOwner.GravityOn();
     }
 
 }

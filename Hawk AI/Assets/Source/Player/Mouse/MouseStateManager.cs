@@ -158,14 +158,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     if (TagName == "CanClimbing")
                     {
                         //Debug.Log(hit.collider.gameObject.transform.position);
-                        if (LayerName == "Rail")
-                        {
-                            m_GTargetBoxObject = hit.collider.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-                        }
-                        else
-                        {
+                        //if (LayerName == "Rail")
+                        //{
+                        //    m_GTargetBoxObject = hit.collider.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                        //}
+                        //else
+                        //{
                             m_GTargetBoxObject = hit.collider.gameObject;
-                        }
+                        //}
                         m_TargetBoxNomal = hit.normal;
                         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
                         {
@@ -179,7 +179,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             Ray Downray = new Ray(transform.position, -transform.up);
             RaycastHit Downhit;
             Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
-            if (Physics.Raycast(Downray, out Downhit, 1f))
+            if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, -transform.up, out Downhit))
             {
                 //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.gameObject.transform.gameObject.name);
                 Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
@@ -191,7 +191,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 {
                     if (TagName == "Rail")
                     {
-                        m_GTargetBoxObject = Downhit.collider.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                        m_GTargetBoxObject = Downhit.collider.gameObject.transform.parent.parent.gameObject;
                         ChangeState(0, EMouseState.Rail);
                     }
                 }
@@ -199,7 +199,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 {
                     if (CheckCurrentState(EMouseState.Rail))
                     {
-                        ChangeState(0, EOldState);
+                        ChangeState(0, EMouseState.Normal);
                     }
                 }
             }

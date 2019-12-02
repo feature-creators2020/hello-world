@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2682445437117399591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6936459487822822918}
   m_Father: {fileID: 2682445437655778003}
@@ -137,8 +137,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0392019, y: 0.6275181, z: 0.056863844}
-  m_Center: {x: -0.000000059604645, y: -0.08759698, z: 0.2321189}
+  m_Size: {x: 1.0392019, y: 0.6787356, z: 0.056863844}
+  m_Center: {x: -0.000000059604645, y: -0.061988235, z: 0.2321189}
 --- !u!65 &3639002236826846749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -150,8 +150,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.035935, y: 0.62567395, z: 0.05005324}
-  m_Center: {x: -0.0016333461, y: -0.08604929, z: -0.23146445}
+  m_Size: {x: 1.035935, y: 0.67549706, z: 0.05005324}
+  m_Center: {x: -0.0016333461, y: -0.061137736, z: -0.23146445}
 --- !u!1 &3612151550750964702
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,9 +196,9 @@ GameObject:
   - component: {fileID: 6086626451010971490}
   - component: {fileID: 3782339117225971675}
   - component: {fileID: 4209102625299101393}
-  m_Layer: 14
+  m_Layer: 19
   m_Name: Collider (2)
-  m_TagString: CanClimbing
+  m_TagString: Rail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,8 +228,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.6757567, z: 0.38485777}
-  m_Center: {x: 0, y: -0.059936404, z: 0.0017376989}
+  m_Size: {x: 1, y: 0.6725321, z: 0.41302317}
+  m_Center: {x: 0, y: -0.06154871, z: 0.0033477023}
 --- !u!65 &3782339117225971675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -329,17 +329,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 41728ae4570e8344b9b32eaf83251180,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 41728ae4570e8344b9b32eaf83251180,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 41728ae4570e8344b9b32eaf83251180,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41728ae4570e8344b9b32eaf83251180, type: 3}

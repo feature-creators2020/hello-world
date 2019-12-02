@@ -27,6 +27,12 @@ public class Rail : MonoBehaviour,IRailInterfase
     [SerializeField]
     float m_fSpeed;
 
+    [SerializeField]
+    bool m_isblend;     // 斜めのベルトか
+
+    [SerializeField]
+    bool m_bReverse;    // 逆向きか
+
     ERailState m_eRailState;
 
     // Start is called before the first frame update
@@ -43,21 +49,43 @@ public class Rail : MonoBehaviour,IRailInterfase
 
     public Vector3 GetMove()
     {
-        switch(m_eRailState)
+        if (m_isblend)
         {
-            case ERailState.Correct:
+            switch (m_eRailState)
+            {
+                case ERailState.Correct:
 
-                return Vector3.forward + new Vector3(0f,0f, m_fSpeed);
+                    return (-this.transform.forward + this.transform.right) * m_fSpeed;
 
-            case ERailState.Inverse:
+                case ERailState.Inverse:
 
-                return -Vector3.forward + new Vector3(0f, 0f, -m_fSpeed);
+                    return -(-this.transform.forward + this.transform.right) * m_fSpeed;
 
-            case ERailState.Stop:
-            default:
+                case ERailState.Stop:
+                default:
 
-                return Vector3.zero;
+                    return Vector3.zero;
 
+            }
+        }
+        else
+        {
+            switch (m_eRailState)
+            {
+                case ERailState.Correct:
+
+                    return this.transform.right * m_fSpeed;
+
+                case ERailState.Inverse:
+
+                    return -this.transform.right * m_fSpeed;
+
+                case ERailState.Stop:
+                default:
+
+                    return Vector3.zero;
+
+            }
         }
     }
 
