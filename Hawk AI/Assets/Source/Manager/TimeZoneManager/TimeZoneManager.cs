@@ -25,6 +25,9 @@ public class TimeZoneManager : GeneralManager, IETimeZone
     private GameObject m_cDirectionaLight = null;
 
     [SerializeField]
+    private GameObject m_cRoomLightManager = null;
+
+    [SerializeField]
     private float m_fLerpRotationX;
 
     [SerializeField]
@@ -61,6 +64,7 @@ public class TimeZoneManager : GeneralManager, IETimeZone
 
     private void Stating()
     {
+        bool RoomSpotLightOnFlg = false;
         float NowTime = 0f;
         float EndTime = 0f;
 
@@ -85,6 +89,18 @@ public class TimeZoneManager : GeneralManager, IETimeZone
                 StartCoroutine(LightingCoroutine());
             }
 
+            ExecuteEvents.Execute<IRoomSpotLightManager>(
+            target: m_cRoomLightManager,
+            eventData: null,
+            functor: (recieveTarget, y) => RoomSpotLightOnFlg = recieveTarget.IsLightOn());
+
+            if(RoomSpotLightOnFlg == false)
+            ExecuteEvents.Execute<IRoomSpotLightManager>(
+            target: m_cRoomLightManager,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.LightOn());
+
+            
             m_eTimeZone = ETimeZone.eEvenning;
         }
     }
@@ -99,7 +115,7 @@ public class TimeZoneManager : GeneralManager, IETimeZone
             m_cDirectionaLight.transform.position.z);
 
         while (lerpVal <= 1f)
-        {//閉まる時間補間
+        {//時間補間
             m_cDirectionaLight.transform.rotation = Quaternion.Euler(
                 Vector3.Lerp(Start, End, lerpVal));
             lerpVal += Time.deltaTime / m_fLerpRotationTime;
