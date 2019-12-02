@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 5790661398209976126}
   - component: {fileID: 138706322678001779}
   - component: {fileID: 6288416692890385115}
-  - component: {fileID: 751500705}
+  - component: {fileID: 739008707655557303}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -726,7 +726,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 10485559
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -753,7 +753,7 @@ MonoBehaviour:
   targetObj: {fileID: 2346980615210769290}
   GamePadIndex: 3
   KeyboardIndex: 3
---- !u!114 &751500705
+--- !u!114 &739008707655557303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,14 +762,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6911648788855305424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878df53f05602cc4eb09773bda995978, type: 3}
+  m_Script: {fileID: 11500000, guid: fc2fe578d07d4e74ba677ad96b20ff69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shader: {fileID: 4800000, guid: d6dc47b91168af84ab61e889f9c35a67, type: 3}
-  _outlineThreshold: 0.000001
-  _outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  _outlineThick: 1.5
-  _target: {fileID: 1031363500803571349}
+  m_cMaterial: {fileID: 2100000, guid: f27854ee463afdc49b3ff7651fd58509, type: 2}
+  m_fSpeed: 0.1
 --- !u!1 &8358906543319544813
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,21 +916,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 56628f3a996a88648be2e6cec831867a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 56628f3a996a88648be2e6cec831867a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 56628f3a996a88648be2e6cec831867a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56628f3a996a88648be2e6cec831867a, type: 3}
@@ -1117,12 +1099,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d453e7709def9e24aba30a241226b6d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3538c7c1bc858b64fae72ee2fdb57584, type: 3}
---- !u!1 &1031363500803571349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4214470490016819149, guid: 3538c7c1bc858b64fae72ee2fdb57584,
-    type: 3}
-  m_PrefabInstance: {fileID: 5463731425777641126}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1056558132765183420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3538c7c1bc858b64fae72ee2fdb57584,

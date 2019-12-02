@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PostEffect : MonoBehaviour
+[RequireComponent(typeof(Camera))]
+public abstract class PostEffect : MonoBehaviour
 {
-    public Material monoTone;
+    [SerializeField]
+    protected Material m_cMaterial;
 
-    void OnRenderImage(RenderTexture src, RenderTexture dest)
+    protected virtual void Awake()
     {
-        Graphics.Blit(src, dest, monoTone);
     }
+
+    protected virtual void OnRenderImage(RenderTexture src, RenderTexture dest)
+    {
+        UpdateMaterial();
+        Graphics.Blit(src, dest, m_cMaterial);
+    }
+
+    protected abstract void UpdateMaterial();
 }

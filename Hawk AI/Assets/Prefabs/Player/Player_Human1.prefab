@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 3119138606266010452}
   - component: {fileID: 3119138606266010451}
   - component: {fileID: 3119138606266010453}
-  - component: {fileID: 633972903}
+  - component: {fileID: 5734928044407179281}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -515,7 +515,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 6291255
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -542,7 +542,7 @@ MonoBehaviour:
   targetObj: {fileID: 3119138605471699349}
   GamePadIndex: 1
   KeyboardIndex: 1
---- !u!114 &633972903
+--- !u!114 &5734928044407179281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,14 +551,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3119138606266010449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878df53f05602cc4eb09773bda995978, type: 3}
+  m_Script: {fileID: 11500000, guid: fc2fe578d07d4e74ba677ad96b20ff69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shader: {fileID: 4800000, guid: d6dc47b91168af84ab61e889f9c35a67, type: 3}
-  _outlineThreshold: 0.000001
-  _outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  _outlineThick: 1.5
-  _target: {fileID: 3635737623973517860}
+  m_cMaterial: {fileID: 2100000, guid: f27854ee463afdc49b3ff7651fd58509, type: 2}
+  m_fSpeed: 0.1
 --- !u!1 &3910767275076517830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,12 +1099,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d453e7709def9e24aba30a241226b6d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3538c7c1bc858b64fae72ee2fdb57584, type: 3}
---- !u!1 &3635737623973517860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4214470490016819149, guid: 3538c7c1bc858b64fae72ee2fdb57584,
-    type: 3}
-  m_PrefabInstance: {fileID: 8644533521992942103}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3642631164012865805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3538c7c1bc858b64fae72ee2fdb57584,

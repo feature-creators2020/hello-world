@@ -42,10 +42,10 @@ TagManager:
   - Shelf
   - Rail
   - Particle
-  - 
-  - 
-  - 
-  - 
+  - 1PlayerFadeCanvas
+  - 2PlayerFadeCanvas
+  - 3PlayerFadeCanvas
+  - 4PlayerFadeCanvas
   - 
   - 
   - 
