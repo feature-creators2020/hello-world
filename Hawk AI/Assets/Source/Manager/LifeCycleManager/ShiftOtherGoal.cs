@@ -21,7 +21,7 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
             GoalObj[Numbers[index]].SetActive(false);
             Numbers.RemoveAt(index);
         }
-        CursorManager.Instance.SetCheeseActive();
+        //CursorManager.Instance.SetCheeseActive();
     }
 
     public void Shift(GameObject Cheese)
@@ -45,7 +45,7 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
                 Numbers.RemoveAt(index);
             }
         }
-        CursorManager.Instance.SetCheeseActive();
+        //CursorManager.Instance.SetCheeseActive();
     }
 
     public List<GameObject> GetGoalObj()

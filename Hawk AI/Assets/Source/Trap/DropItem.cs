@@ -105,7 +105,7 @@ public class DropItem : GeneralObject
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.ChangeMoveState());
         isInstanced = true;
-        CursorManager.Instance.SetItem(item);
+        //CursorManager.Instance.SetItem(item);
     }
 
     public void SetPoint(GameObject _point)
