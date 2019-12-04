@@ -80,13 +80,21 @@ public class RoomManager : GeneralManager
     //ネズミがいる部屋番号を読み取り
     public int GetMouse01In()
     {
-        return List_Mouse01[0];
+        if(List_Mouse01.Count > 0)
+        {
+            return List_Mouse01[0];
+        }
+        return 0;
     }
 
     //ネズミ2がいる部屋番号を読み取り
     public int GetMouse02In()
     {
-        return List_Mouse02[0];
+        if(List_Mouse02.Count > 0)
+        {
+            return List_Mouse02[0];
+        }
+        return 0;
     }
 
     //ホークドローンが入ってきたときに部屋番号をリストに追加
