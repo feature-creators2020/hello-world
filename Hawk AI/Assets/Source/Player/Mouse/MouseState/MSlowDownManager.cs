@@ -31,7 +31,7 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
         var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
 
         // 速度設定
-        m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed * m_cOwner.m_fSlowDownRate;
+        m_cOwner.m_fmoveSpeed *= m_cOwner.m_fSlowDownRate;
         if(m_cOwner.m_fSlowDownRate <= 0.0f)
         {
             m_cOwner.m_fSlowDownRate = 0f;

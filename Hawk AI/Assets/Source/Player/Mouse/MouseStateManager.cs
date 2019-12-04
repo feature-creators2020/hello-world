@@ -438,6 +438,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             // 昼状態。
             m_fmoveSpeed = m_fDefaultSpeed;
         }
+        Debug.Log("MouseSpeed : " + m_fmoveSpeed);
     }
 
     public void Move(Vector3 _moveForward)

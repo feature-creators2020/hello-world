@@ -25,7 +25,7 @@ public class MRailManager : CStateBase<MouseStateManager>
 
 
         // 速度設定
-        m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
+        //m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
 
         // ゲームパッドの入力情報取得
         m_cOwner.inputHorizontal = 0f;
