@@ -29,8 +29,9 @@ public class CameraMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        // 前回の移動処理
         transform.position += targetObj.transform.position - targetPos;
         targetPos = targetObj.transform.position;
 
@@ -57,7 +58,6 @@ public class CameraMove : MonoBehaviour
             inputViewHorizontal = keyState.rightStickAxis.x;
         }
 
-        this.transform.RotateAround(targetPos, Vector3.up, inputViewHorizontal * Time.deltaTime * 200f);
-
+        this.transform.RotateAround(targetObj.transform.position, Vector3.up, inputViewHorizontal * Time.deltaTime * 200f);
     }
 }
