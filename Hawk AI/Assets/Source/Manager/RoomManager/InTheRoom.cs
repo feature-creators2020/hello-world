@@ -18,7 +18,9 @@ public class InTheRoom : MonoBehaviour
         }
         if(other.tag == "Mouse")
         {
-            RoomManager.Instance.MouseEnter(RoomIndex);
+            if (other.transform.parent.name == "Player_Mouse") RoomManager.Instance.Mouse01Enter(RoomIndex);
+            else if (other.transform.parent.name == "Player_Mouse2") RoomManager.Instance.Mouse02Enter(RoomIndex);
+            //Debug.Log(other.transform.parent.name);
         }
         if(other.tag == "Drone")
         {
@@ -28,6 +30,7 @@ public class InTheRoom : MonoBehaviour
         //{
         //    RespawnPoint.Instance.RespInit(other.gameObject, RoomIndex);
         //}
+        //Debug.Log(other.name);
     }
 
     void OnTriggerExit(Collider other)
@@ -39,7 +42,8 @@ public class InTheRoom : MonoBehaviour
         }
         if (other.tag == "Mouse")
         {
-            RoomManager.Instance.MouseExit(RoomIndex);
+            if (other.transform.parent.name == "Player_Mouse") RoomManager.Instance.Mouse01Exit(RoomIndex);
+            else if (other.transform.parent.name == "Player_Mouse2") RoomManager.Instance.Mouse02Exit(RoomIndex);
         }
         if (other.tag == "Drone")
         {

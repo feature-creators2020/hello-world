@@ -8,7 +8,8 @@ public class RoomManager : GeneralManager
     public static RoomManager Instance;
     //部屋の番号が入るリスト
     private List<int> List_Human = new List<int>();
-    private List<int> List_Mouse = new List<int>();
+    private List<int> List_Mouse01 = new List<int>();
+    private List<int> List_Mouse02 = new List<int>();
     private List<int> List_Drone = new List<int>();
 
     void Awake()
@@ -52,30 +53,41 @@ public class RoomManager : GeneralManager
     }
 
     //ネズミが入ってきたときに部屋番号をリストに追加
-    public void MouseEnter(int index)
+    public void Mouse01Enter(int index)
     {
-        List_Mouse.Add(index);
+        List_Mouse01.Add(index);
+        Debug.Log(index);
     }
 
     //ネズミが出て行ったときに部屋番号をリストから（1つのみ）除外
-    public void MouseExit(int index)
+    public void Mouse01Exit(int index)
     {
-        List_Mouse.Remove(index);
+        List_Mouse01.Remove(index);
     }
 
-    //
-    //public void FarOffMouse(List<GameObject> RespObj, List<GameObject> RespList)
-    //{
-    //    //オブジェリストにある分だけ
-    //    for (int i = 0; i < RespObj.Count; i++)
-    //    {
-    //        //指定した数値がリストになければ入れ込み
-    //        if (!List_InHuman.Contains(i))
-    //        {
-    //            RespList.Add(RespObj[i]);
-    //        }
-    //    }
-    //}
+    //ネズミが入ってきたときに部屋番号をリストに追加
+    public void Mouse02Enter(int index)
+    {
+        List_Mouse02.Add(index);
+    }
+
+    //ネズミが出て行ったときに部屋番号をリストから（1つのみ）除外
+    public void Mouse02Exit(int index)
+    {
+        List_Mouse01.Remove(index);
+    }
+
+    //ネズミがいる部屋番号を読み取り
+    public int GetMouse01In()
+    {
+        return List_Mouse01[0];
+    }
+
+    //ネズミ2がいる部屋番号を読み取り
+    public int GetMouse02In()
+    {
+        return List_Mouse02[0];
+    }
 
     //ホークドローンが入ってきたときに部屋番号をリストに追加
     public void DroneEnter(int index)
