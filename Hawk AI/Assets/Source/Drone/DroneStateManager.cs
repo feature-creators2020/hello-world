@@ -55,6 +55,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     public bool m_bIsNight = false;                 // 夜状態か
     [System.NonSerialized]
     public List<bool> m_bCheckResult_list;                   // ターゲット切り替えの時、対象にターゲットできたか
+    public int m_nTargetNum;                        // どちらのネズミを追跡しているか
 
     // Start is called before the first frame update
     void Start()
@@ -169,8 +170,9 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                 // 更新前のターゲット情報
                 var OldTarget = gTarget;
                 gTarget = targetObj;
-                if (IsCanTarget(gTarget))
+                if (IsCanTarget(gTarget, i))
                 {
+                    m_nTargetNum = i;
                     // 追跡
                     m_bCheckResult_list[i] = true;
                 }
@@ -210,26 +212,62 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         // ルームマネージャー取得
         var room = RoomManager.Instance;
 
-        if (TargetObject != null) {
-            var TargetScript = TargetObject.GetComponent<MouseStateManager>();
-            // パイプ、リスポーン時は追跡しない
-            if (TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Pipe) &&
-                TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Catch))
+        Debug.Log("DroneTargetObject : " + TargetObject.name);
+        if (!ReferenceEquals(TargetObject, null))
+        {
+            if (TargetObject.tag == "Mouse")
             {
-                // 昼の時、同じエリアに存在しているか
-                if (m_bIsNight)
+                var TargetScript = TargetObject.GetComponent<MouseStateManager>();
+                // パイプ、リスポーン時は追跡しない
+                if (TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Pipe) &&
+                    TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Catch))
                 {
                     return true;
                 }
-                else
+            }
+        }
+        return false;
+    }
+
+    public bool IsCanTarget(GameObject TargetObject, int _num)
+    {
+        // ルームマネージャー取得
+        var room = RoomManager.Instance;
+
+        Debug.Log("DroneTargetObject : " + TargetObject.name);
+        if (!ReferenceEquals(TargetObject, null)) {
+            if (TargetObject.tag == "Mouse")
+            {
+                var TargetScript = TargetObject.GetComponent<MouseStateManager>();
+                // パイプ、リスポーン時は追跡しない
+                if (TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Pipe) &&
+                    TargetScript.GetCurrentState() != TargetScript.GetStateBase(EMouseState.Catch))
                 {
-                    // 同じエリアに存在しているか
-                    if (true/*room.GetDroneIn()*/)
+                    // 昼の時、同じエリアに存在しているか
+                    if (m_bIsNight)
                     {
                         return true;
                     }
                     else
                     {
+                        bool result = false;    // 同じエリアにいるか
+                        switch (_num)
+                        {
+                            case 0:
+                                result = (room.GetDroneIn() == room.GetMouse01In());
+                                break;
+                            case 1:
+                                result = (room.GetDroneIn() == room.GetMouse02In());
+                                break;
+                            default:
+                                result = false;
+                                break;
+                        }
+                        if (result)
+                        {
+                            return true;
+                        }
+                        // 同じエリアに存在していなかったため、falseを返す
                         return false;
                     }
                 }

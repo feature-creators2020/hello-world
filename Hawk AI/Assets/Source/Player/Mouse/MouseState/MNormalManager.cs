@@ -44,7 +44,12 @@ public class MNormalManager : CStateBase<MouseStateManager>
 
         if (moveForward != Vector3.zero)
         {
+            m_cOwner.PlayAnimation(EMouseAnimation.Run);
             m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+        }
+        else
+        {
+            m_cOwner.PlayAnimation(EMouseAnimation.Wait);
         }
 
         // 移動処理

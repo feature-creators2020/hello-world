@@ -17,6 +17,12 @@ public enum EMouseState
     ForcedWait
 }
 
+public enum EMouseAnimation
+{
+    Wait,
+    Run
+}
+
 public interface IMouseInterface : IEventSystemHandler
 {
     void Catched();
@@ -67,6 +73,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public Rigidbody m_rb;                      // rigidbodyで移動する
 
 
+    private string[] AnimationString = { "Mouse_Wait", "Mouse_Run" };          // アニメーション名
+    private int m_nAnimationNo;                                      // 再生中アニメーション番号
+    private Animation m_cAnimation;                                  // アニメーション      
+
+
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -104,6 +115,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_cStateList.Add(Catch);
         m_cStateList.Add(Rail);
         m_cStateList.Add(ForcedWait);
+
+        m_cAnimation = this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.ForcedWait]);
         EOldState = EMouseState.ForcedWait;
@@ -448,4 +461,13 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         transform.position += _moveForward * m_fmoveSpeed * Time.deltaTime;
 
     }
+
+    public void PlayAnimation(EMouseAnimation anim)
+    {
+        m_nAnimationNo = (int)anim;
+        m_cAnimation.Play(AnimationString[m_nAnimationNo]);
+    }
+
+    public Animation GetAnimation { get { return m_cAnimation; } }
+
 }
