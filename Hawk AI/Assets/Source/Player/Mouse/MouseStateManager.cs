@@ -229,7 +229,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         if (LayerName == "Trap")
         {
             // ネズミ捕り
-            if (TagName == "Mousetrap")
+            if ((TagName == "Mousetrap") && (TagName == "MouseGetTrap"))
             {
                 ChangeState(0, EMouseState.SlowDown);
             }
