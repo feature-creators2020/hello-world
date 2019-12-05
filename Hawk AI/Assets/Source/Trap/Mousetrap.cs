@@ -88,18 +88,18 @@ public class Mousetrap : GeneralObject, IMouseTrap
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Mouse")
+        m_Mesh.enabled = true;
+        if (other.tag == "Mouse")
         {
-            m_Mesh.enabled = true;
             MouseObject = other.gameObject;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Mouse")
+        m_Mesh.enabled = false;
+        if (other.tag == "Mouse")
         {
-            m_Mesh.enabled = false;
             MouseObject = null;
         }
     }
