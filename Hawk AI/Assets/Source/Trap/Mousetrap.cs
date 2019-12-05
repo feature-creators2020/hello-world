@@ -23,8 +23,16 @@ public class Mousetrap : GeneralObject, IMouseTrap
 
     public override void GeneralInit()
     {
-        m_fLifeTime = 5f;
+        // 生成時には呼ばれない
     }
+    void OnEnable()
+    {
+        m_fLifeTime = 5f;
+        // 実際にあるメッシュのコンポーネントを取得
+        m_Mesh = this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>();
+        m_Mesh.enabled = false;
+    }
+
 
     public override void GeneralUpdate()
     {
@@ -82,6 +90,7 @@ public class Mousetrap : GeneralObject, IMouseTrap
     {
         if(other.tag == "Mouse")
         {
+            m_Mesh.enabled = true;
             MouseObject = other.gameObject;
         }
     }
@@ -90,6 +99,7 @@ public class Mousetrap : GeneralObject, IMouseTrap
     {
         if(other.tag == "Mouse")
         {
+            m_Mesh.enabled = false;
             MouseObject = null;
         }
     }

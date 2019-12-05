@@ -503,6 +503,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     m_sItemData = "MousetrapManager";
                     //Debug.Log("GetItem");
                 }
+                if(other.gameObject.tag == "MouseGetTrap")
+                {
+                    m_sItemData = "MouseGetTrapManager";
+                }
                 //CursorManager.Instance.GetItem(other.gameObject);
                 ItemHolderManager.Instance.HoldItem(other.gameObject);
                 // 取得したのでオブジェクトを消す

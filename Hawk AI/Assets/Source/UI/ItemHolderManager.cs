@@ -38,6 +38,10 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         {
             ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("Trap");
         }
+        if (ItemObj.tag == "MouseGetTrap")
+        {
+            ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("Trap");
+        }
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 

@@ -14,12 +14,16 @@ public class MouseGetTrap : GeneralObject
 
     public override void GeneralInit()
     {
+        // 生成時には呼ばれない
+    }
+
+    void OnEnable()
+    {
         m_fLifeTime = 1f;
         // 実際にあるメッシュのコンポーネントを取得
         m_Mesh = this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>();
         m_Mesh.enabled = false;
     }
-
     public override void GeneralUpdate()
     {
 
@@ -34,7 +38,11 @@ public class MouseGetTrap : GeneralObject
                 m_fLifeTime -= Time.deltaTime;
                 if (m_fLifeTime <= 0f)
                 {
-                    mouse.Catched();
+                    ExecuteEvents.Execute<IMouseInterface>(
+                        target: MouseObject,
+                        eventData: null,
+                        functor: (recieveTarget, y) => recieveTarget.Catched());
+
                     Destroy(this.gameObject);
                 }
             }

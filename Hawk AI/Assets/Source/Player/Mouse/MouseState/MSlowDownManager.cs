@@ -23,7 +23,7 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
 
     public override void Execute()
     {
-        //Debug.Log("State:SlowDown");
+        Debug.Log("State:SlowDown");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
@@ -31,14 +31,14 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
         var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
 
         // 速度設定
-        m_cOwner.m_fmoveSpeed *= m_cOwner.m_fSlowDownRate;
+        //m_cOwner.m_fmoveSpeed *= m_cOwner.m_fSlowDownRate;
         if(m_cOwner.m_fSlowDownRate <= 0.0f)
         {
             m_cOwner.m_fSlowDownRate = 0f;
         }
         else
         {
-            m_cOwner.m_fSlowDownRate -= 0.01f;
+            m_cOwner.m_fSlowDownRate -= 0.05f;
         }
 
         // ゲームパッドの入力情報取得

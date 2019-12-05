@@ -14,7 +14,8 @@ public enum EMouseState
     Pipe,
     Catch,
     Rail,
-    ForcedWait
+    ForcedWait,
+    GetCheese
 }
 
 public enum EMouseAnimation
@@ -106,6 +107,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var Catch = new MCatchManager(this);
         var Rail = new MRailManager(this);
         var ForcedWait = new MForcedWaitManager(this);
+        var GetCheese = new MGetCheeseManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
@@ -115,6 +117,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_cStateList.Add(Catch);
         m_cStateList.Add(Rail);
         m_cStateList.Add(ForcedWait);
+        m_cStateList.Add(GetCheese);
 
         m_cAnimation = this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
 
@@ -229,7 +232,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         if (LayerName == "Trap")
         {
             // ネズミ捕り
-            if ((TagName == "Mousetrap") && (TagName == "MouseGetTrap"))
+            if ((TagName == "Mousetrap") || (TagName == "MouseGetTrap"))
             {
                 ChangeState(0, EMouseState.SlowDown);
             }
@@ -244,21 +247,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // ゴール地点
         if (LayerName == "Goal")
         {
-            ExecuteEvents.Execute<IFadeInterfase>(
-            target: this.targetCamera.gameObject,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
-
-            ScoreBoard.Instance.GetCheese();
-            RespawnPoint.Instance.Respawn(this.gameObject);
-            ShiftOtherGoal.Instance.Shift(other.gameObject);
-
-
-            ExecuteEvents.Execute<IFadeInterfase>(
-            target: this.targetCamera.gameObject,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
-
+            m_GTargetBoxObject = other.gameObject;
+            ChangeState(0, EMouseState.GetCheese);
         }
 
         if (LayerName == "Pipe")
@@ -299,7 +289,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         if (LayerName == "Trap")
         {
             // ネズミ捕り
-            if (TagName == "Mousetrap")
+            if ((TagName == "Mousetrap") || (TagName == "MouseGetTrap"))
             {
                 m_fSlowTime = m_fLimitSlowTime; // 無敵状態を解除する
             }

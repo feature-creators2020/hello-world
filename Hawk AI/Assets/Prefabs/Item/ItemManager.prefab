@@ -150,9 +150,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6331883058491885357}
+  - component: {fileID: 5317646374164453225}
   m_Layer: 0
   m_Name: MouseGetTrapManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +172,21 @@ Transform:
   m_Father: {fileID: 2155407267622530696}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5317646374164453225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3402059205315415436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5adf1028e206c27449623d984afd8184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: MouseGetTrap
+  PrefabObject: {fileID: 7125950684898621665, guid: cbfbc9e940ad7c0438adde90e8a7ebd2,
+    type: 3}
 --- !u!1 &5343133839236643720
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4024330969192546773}
+  - component: {fileID: 7185387231145207357}
   m_Layer: 0
   m_Name: MouseGetTrapItemManager
   m_TagString: ItemManager
@@ -201,6 +218,21 @@ Transform:
   m_Father: {fileID: 2155407267622530696}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7185387231145207357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343133839236643720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb31fba777477e64e88d6fac7426037c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: MouseGetTrap
+  PrefabObject: {fileID: 4206914249966406601, guid: 8057ba74dd1a965439af206d53970770,
+    type: 3}
 --- !u!1 &8649600907228492702
 GameObject:
   m_ObjectHideFlags: 0
