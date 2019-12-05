@@ -17,7 +17,7 @@ public class HRailManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Rail");
+        //Debug.Log("State:Rail");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
@@ -85,8 +85,8 @@ public class HRailManager : CStateBase<HumanStateManager>
                     target: m_cOwner.m_GTargetBoxObject,
                     eventData: null,
                     functor: (recieveTarget, y) => railmove = recieveTarget.GetMove());
-            Debug.Log("RailObject : " + m_cOwner.m_GTargetBoxObject.name);
-            Debug.Log(railmove);
+            //Debug.Log("RailObject : " + m_cOwner.m_GTargetBoxObject.name);
+            //Debug.Log(railmove);
 
             // ベルトコンベアの移動量
             m_cOwner.transform.position += railmove;
@@ -110,8 +110,8 @@ public class HRailManager : CStateBase<HumanStateManager>
             if (Physics.BoxCast(m_cOwner.transform.position, m_cOwner.transform.lossyScale * 0.5f, -m_cOwner.transform.up, out Downhit))
             {
                 //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.parent.gameObject.name);
-                Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
-                Debug.Log("DownHitTag : " + Downhit.collider.tag);
+                //Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+                //Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
                 var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
                 var TagName = Downhit.collider.gameObject.tag;

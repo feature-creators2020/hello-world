@@ -167,17 +167,17 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             // 正面方向にボックスキャスト(ベルトコンベアの側面に当たっているか)
             if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, transform.forward, out hit, transform.rotation, 0.5f))
             {
-                Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
-                Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
-                Debug.Log("HitTag : " + hit.collider.tag);
+                //Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
+                //Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
+                //Debug.Log("HitTag : " + hit.collider.tag);
                 var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
                 var TagName = hit.collider.gameObject.tag;
-                Debug.Log("LayerName : " + LayerName);
+                //Debug.Log("LayerName : " + LayerName);
                 if (LayerName == "Rail")
                 {
                     if (TagName == "CanClimbing")
                     {
-                        Debug.Log("ChangeState");
+                        //Debug.Log("ChangeState");
                         m_GTargetBoxObject = hit.collider.gameObject;
                         m_TargetBoxNomal = hit.normal;
                         ChangeState(0, EHumanState.Up);
@@ -193,8 +193,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, -transform.up, out Downhit))
             {
                 //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.parent.gameObject.name);
-                Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
-                Debug.Log("DownHitTag : " + Downhit.collider.tag);
+                //Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+                //Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
                 var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
                 var TagName = Downhit.collider.gameObject.tag;
@@ -319,13 +319,13 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         //    }
         //}
         bool bReturnFlg = false;
-        Debug.Log("m_cSetItemCollider : " + m_cSetItemColliderObj.name);
+        //Debug.Log("m_cSetItemCollider : " + m_cSetItemColliderObj.name);
 
         ExecuteEvents.Execute<ISettingTrapCollider>(
                 target: m_cSetItemColliderObj,
                 eventData: null,
                 functor: (recieveTarget, y) => bReturnFlg = recieveTarget.GetHitFlg());
-        Debug.Log("HitFlag : " + bReturnFlg);
+        //Debug.Log("HitFlag : " + bReturnFlg);
 
         return !bReturnFlg;
     }
@@ -748,7 +748,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         {
             if (IsMove(_moveForward))
             {
-                Debug.Log("moving");
+                //Debug.Log("moving");
                 break;
             }
             else

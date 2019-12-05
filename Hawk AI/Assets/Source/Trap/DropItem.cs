@@ -26,12 +26,12 @@ public class DropItem : GeneralObject
         var dropitemmanager = ManagerObjectManager.Instance.GetGameObject("DropItemManager");
         dropitemmanager.GetComponent<DropItemManager>().GetGameObjectsList().Add(this.gameObject);
         m_crigidbody = this.gameObject.GetComponent<Rigidbody>();
-        Debug.Log(m_crigidbody);
+        //Debug.Log(m_crigidbody);
     }
 
     public override void GeneralUpdate()
     {
-        Debug.Log("GeneralUpdate");
+        //Debug.Log("GeneralUpdate");
 
         if (isInstanced)
         {
@@ -74,7 +74,7 @@ public class DropItem : GeneralObject
 
             if (TagName != "Room")
             {
-                Debug.Log("otherobject : " + hit.collider.gameObject.name);
+                //Debug.Log("otherobject : " + hit.collider.gameObject.name);
                 if (m_gItemInfo != null)
                 {
                     isGround = true;
@@ -94,7 +94,7 @@ public class DropItem : GeneralObject
 
     void CreateItem()
     {
-        Debug.Log("Instantiate : " + m_gItemInfo.name);
+        //Debug.Log("Instantiate : " + m_gItemInfo.name);
         var item = Instantiate(m_gItemInfo, this.gameObject.transform.position, this.transform.rotation);
         ExecuteEvents.Execute<IItemObjectInterface>(
             target: item.transform.Find("ItemImage").gameObject,

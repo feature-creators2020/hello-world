@@ -17,7 +17,7 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Normal");
+        //Debug.Log("State:Normal");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);

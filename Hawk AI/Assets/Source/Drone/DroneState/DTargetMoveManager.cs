@@ -9,7 +9,7 @@ public class DTargetMoveManager : CStateBase<DroneStateManager>
 
     public override void Enter()
     {
-        Debug.Log("DroneTargetMove");
+        //Debug.Log("DroneTargetMove");
         // ターゲットできたかで判定をする
         if (m_cOwner.ChangeTarget())
         {

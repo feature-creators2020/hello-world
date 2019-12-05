@@ -119,7 +119,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("DoorEnter : " + other.gameObject.name);
+        //Debug.Log("DoorEnter : " + other.gameObject.name);
         // 人の時処理をする
         if(other.tag == "Human")
         {
@@ -137,7 +137,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("DoorExit : " + other.gameObject.name);
+        //Debug.Log("DoorExit : " + other.gameObject.name);
         // 人の時処理をする
         if (other.tag == "Human")
         {

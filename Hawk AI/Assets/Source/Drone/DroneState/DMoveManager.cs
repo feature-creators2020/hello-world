@@ -9,7 +9,7 @@ public class DMoveManager : CStateBase<DroneStateManager>
 
     public override void Enter()
     {
-        Debug.Log("DroneMove");
+        //Debug.Log("DroneMove");
         m_cOwner.SelectPoint();
     }
 

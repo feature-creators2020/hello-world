@@ -58,14 +58,14 @@ public class ItemManager : GeneralManager, IItemInterface
     public virtual void Instant(Transform _transform)
     {
         Vector3 setpos = new Vector3(_transform.position.x, 0.55f, _transform.position.z);
-        Debug.Log("Position : " + setpos);
+        //Debug.Log("Position : " + setpos);
         var Object = Instantiate(PrefabObject, setpos, _transform.rotation);
         m_cGameObjects.Add(Object);
     }
     public virtual void Instant(Vector3 _pos, Quaternion _qua)
     {
         Vector3 setpos = new Vector3(_pos.x, 0.55f, _pos.z);
-        Debug.Log("Position : " + setpos);
+        //Debug.Log("Position : " + setpos);
         var Object = Instantiate(PrefabObject, setpos, _qua);
         m_cGameObjects.Add(Object);
     }

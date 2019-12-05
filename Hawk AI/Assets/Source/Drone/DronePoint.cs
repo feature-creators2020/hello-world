@@ -26,7 +26,7 @@ public class DronePoint : MonoBehaviour, IDronePointInterface
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.gameObject.name + ".ItemInfo : " + m_gItemObject);
+        //Debug.Log(this.gameObject.name + ".ItemInfo : " + m_gItemObject);
     }
 
     public GameObject GetGameObject()

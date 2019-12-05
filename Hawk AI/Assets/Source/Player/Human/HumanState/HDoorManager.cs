@@ -16,7 +16,7 @@ public class HDoorManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:Door");
+        //Debug.Log("State:Door");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
@@ -46,7 +46,7 @@ public class HDoorManager : CStateBase<HumanStateManager>
         // ドアを開閉する
         if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
         {
-            Debug.Log(m_cOwner.GDoorData.name + ".DoorAction : " + DoorScript.isClosing);
+            //Debug.Log(m_cOwner.GDoorData.name + ".DoorAction : " + DoorScript.isClosing);
             ExecuteEvents.Execute<IDoorInterface>(
                 target: m_cOwner.GDoorData,
                 eventData: null,

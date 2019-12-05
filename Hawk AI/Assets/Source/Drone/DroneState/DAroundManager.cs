@@ -9,7 +9,7 @@ public class DAroundManager : CStateBase<DroneStateManager>
 
     public override void Enter()
     {
-        Debug.Log("DroneAround");
+        //Debug.Log("DroneAround");
         m_cOwner.NowState++;
     }
 

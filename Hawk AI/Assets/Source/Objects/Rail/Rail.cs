@@ -92,7 +92,7 @@ public class Rail : MonoBehaviour,IRailInterfase
     public void ChangeState(ERailState _eRailState)
     {
         m_eRailState = _eRailState;
-        Debug.Log("m_eRailState : " + m_eRailState);
+        //Debug.Log("m_eRailState : " + m_eRailState);
 
     }
 

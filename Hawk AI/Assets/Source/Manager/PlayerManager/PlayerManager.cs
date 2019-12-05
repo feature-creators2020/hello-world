@@ -72,13 +72,13 @@ public class PlayerManager : GeneralManager
 
     public override GameObject GetGameObject(string _Str)
     {
-        Debug.Log(_Str);
+        //Debug.Log(_Str);
         GameObject obj = null;
         if (_Str == m_strTag)
         {
             foreach (var val in m_cGameObjects)
             {
-                Debug.Log(gameObject.name + "->name : " + val.name);
+                //Debug.Log(gameObject.name + "->name : " + val.name);
                 if (val.name == _Str)
                 {
                     obj = val;
@@ -90,7 +90,7 @@ public class PlayerManager : GeneralManager
         {
             foreach (var val in m_cGameObjects2)
             {
-                Debug.Log(gameObject.name + "->name : " + val.name);
+                //Debug.Log(gameObject.name + "->name : " + val.name);
                 if (val.name == _Str)
                 {
                     obj = val;
@@ -107,12 +107,12 @@ public class PlayerManager : GeneralManager
         if (strTag == m_strTag)
         {
             return m_cGameObjects;
-            Debug.Log(m_cGameObjects.ToString() + "->tag1");
+            //Debug.Log(m_cGameObjects.ToString() + "->tag1");
         }
         else
         {
             return m_cGameObjects2;
-            Debug.Log(m_cGameObjects2.ToString() + "->tag2");
+            //Debug.Log(m_cGameObjects2.ToString() + "->tag2");
         }
     }
 

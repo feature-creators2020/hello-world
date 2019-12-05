@@ -9,7 +9,7 @@ public class DStayManager : CStateBase<DroneStateManager>
 
     public override void Enter()
     {
-        Debug.Log("DroneStay");
+        //Debug.Log("DroneStay");
     }
 
     public override void Execute()

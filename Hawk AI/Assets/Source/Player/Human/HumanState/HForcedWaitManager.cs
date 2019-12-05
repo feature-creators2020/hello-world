@@ -14,7 +14,7 @@ public class HForcedWaitManager : CStateBase<HumanStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:ForcedWait");
+        //Debug.Log("State:ForcedWait");
 
         EGameState eGameState = 0;
         ExecuteEvents.Execute<IGameInterface>(

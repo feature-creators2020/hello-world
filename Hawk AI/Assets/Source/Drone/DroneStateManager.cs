@@ -212,7 +212,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         // ルームマネージャー取得
         var room = RoomManager.Instance;
 
-        Debug.Log("DroneTargetObject : " + TargetObject.name);
+        //Debug.Log("DroneTargetObject : " + TargetObject.name);
         if (!ReferenceEquals(TargetObject, null))
         {
             if (TargetObject.tag == "Mouse")
@@ -234,7 +234,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         // ルームマネージャー取得
         var room = RoomManager.Instance;
 
-        Debug.Log("DroneTargetObject : " + TargetObject.name);
+        //Debug.Log("DroneTargetObject : " + TargetObject.name);
         if (!ReferenceEquals(TargetObject, null)) {
             if (TargetObject.tag == "Mouse")
             {
@@ -334,7 +334,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         }
         else
         {
-            Debug.Log("ListCount : " + m_DronePointManager.GetGameObjectsList().Count);
+            //Debug.Log("ListCount : " + m_DronePointManager.GetGameObjectsList().Count);
             if (CheckDistance(m_gTarget.transform.position))
             {
                 // 巡回で次の地点を取得する

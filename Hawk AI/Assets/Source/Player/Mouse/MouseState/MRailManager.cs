@@ -52,8 +52,8 @@ public class MRailManager : CStateBase<MouseStateManager>
             target: m_cOwner.m_GTargetBoxObject,
             eventData: null,
             functor: (recieveTarget, y) => railmove = recieveTarget.GetMove());
-        Debug.Log(m_cOwner.m_GTargetBoxObject.name);
-        Debug.Log(railmove);
+        //Debug.Log(m_cOwner.m_GTargetBoxObject.name);
+        //Debug.Log(railmove);
         //moveForward += railmove;
 
         // ベルトコンベアの移動量
@@ -73,9 +73,9 @@ public class MRailManager : CStateBase<MouseStateManager>
         Debug.DrawLine(m_cOwner.transform.position, m_cOwner.transform.position - m_cOwner.transform.up, Color.red);
         if (Physics.BoxCast(m_cOwner.transform.position, m_cOwner.transform.lossyScale * 0.5f, -m_cOwner.transform.up, out Downhit))
         {
-            Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
-            Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
-            Debug.Log("DownHitTag : " + Downhit.collider.tag);
+            //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.root.gameObject.name);
+            //Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+            //Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
             var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
             var TagName = Downhit.collider.gameObject.tag;

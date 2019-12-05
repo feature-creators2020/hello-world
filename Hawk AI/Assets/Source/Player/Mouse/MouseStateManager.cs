@@ -147,7 +147,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             m_bIsNight = false;
         }
-        Debug.Log("isNight : " + m_bIsNight);
+        //Debug.Log("isNight : " + m_bIsNight);
         // 速度設定
         SetMoveSpeed(m_bIsNight);
 
@@ -198,8 +198,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, -transform.up, out Downhit))
             {
                 //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.gameObject.transform.gameObject.name);
-                Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
-                Debug.Log("DownHitTag : " + Downhit.collider.tag);
+                //Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
+                //Debug.Log("DownHitTag : " + Downhit.collider.tag);
 
                 var LayerName = LayerMask.LayerToName(Downhit.collider.gameObject.layer);
                 var TagName = Downhit.collider.gameObject.tag;
@@ -428,7 +428,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             // 昼状態。
             m_fmoveSpeed = m_fDefaultSpeed;
         }
-        Debug.Log("MouseSpeed : " + m_fmoveSpeed);
+        //Debug.Log("MouseSpeed : " + m_fmoveSpeed);
     }
 
     public void Move(Vector3 _moveForward)
@@ -438,7 +438,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         {
             if (IsMove(_moveForward))
             {
-                Debug.Log("moving");
+                //Debug.Log("moving");
                 break;
             }
             else
