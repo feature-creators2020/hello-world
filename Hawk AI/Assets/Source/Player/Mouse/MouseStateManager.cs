@@ -345,7 +345,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         hMoveColliderScript.JudgeCollision(movepos);
 
-        if (hMoveColliderScript.hit.distance <= 0.25f)
+        if (hMoveColliderScript.hit.distance < 0.2f)
         {
             return false;
         }

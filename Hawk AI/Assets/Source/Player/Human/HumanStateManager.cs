@@ -661,7 +661,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         hMoveColliderScript.JudgeCollision(movepos);
 
-        if(hMoveColliderScript.hit.distance <= 0.25f)
+        if(hMoveColliderScript.hit.distance < 0.2f)
         {
             return false;
         }
