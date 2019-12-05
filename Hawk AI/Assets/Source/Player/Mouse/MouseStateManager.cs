@@ -323,11 +323,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         //    ChangeState(0, EOldState);
         //}
 
-        if (LayerName == "Goal")
-        {
+        //if (LayerName == "Goal")
+        //{
 
-            ChangeState(0, EMouseState.Normal);      
-        }
+        //    ChangeState(0, EMouseState.Normal);      
+        //}
 
     }
 

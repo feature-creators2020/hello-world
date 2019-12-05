@@ -9,32 +9,42 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
 {
     public MGetCheeseManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
+    float m_fEffectTime;    // チーズを取ったときにする演出の長さ
+    bool m_isFadeOut;       // フェードアウトを一回だけ処理入れる
+
     public override void Enter()
     {
-        ExecuteEvents.Execute<IFadeInterfase>(
-        target: this.m_cOwner.targetCamera.gameObject,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
-
+        m_fEffectTime = 5f;
+        m_isFadeOut = false;
     }
 
     public override void Execute()
     {
-        Debug.Log("MouseState : Catch");
-
-        var playerNo = m_cOwner.GamePadIndex;
-        var keyState = GamePad.GetState(playerNo, false);
-
-        // 速度設定
-        //m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
-
-        if (this.m_cOwner.targetCamera.gameObject.GetComponent<FadeEffect>().IsCompleteFlg)
+        //Debug.Log("MouseState : GetCheese");
+        // チーズを取得したときに流す演出の後にリスポーンなどの処理を入れる
+        if(m_fEffectTime <= 0f)
         {
-            // リスポーン処理
-            RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
-            m_cOwner.ChangeState(0, EMouseState.Normal);
+            if (!m_isFadeOut)
+            {
+                ExecuteEvents.Execute<IFadeInterfase>(
+                    target: this.m_cOwner.targetCamera.gameObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+                m_isFadeOut = true;
+            }
+            if (this.m_cOwner.targetCamera.gameObject.GetComponent<FadeEffect>().IsCompleteFlg)
+            {
+                // リスポーン処理
+                Respawn();
+                m_cOwner.ChangeState(0, EMouseState.Normal);
 
+            }
         }
+        else
+        {
+            m_fEffectTime -= Time.deltaTime;
+        }
+
 
     }
 
@@ -44,6 +54,9 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
         target: this.m_cOwner.targetCamera.gameObject,
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
+
+        m_fEffectTime = 5f;
+        m_isFadeOut = false;
 
     }
 
