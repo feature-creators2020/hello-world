@@ -56,7 +56,7 @@ public class ClockHandTurns : GeneralObject
             {
                 Color color = Hand.GetComponent<Image>().color;
                 Hand.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a - 0.01f);
-                CountDownAnimation.Instance.SetCount10(m_fEndTime - m_fNowTime);
+                CountDownAnimation.Instance.SetCount10(m_fEndTime - m_fNowTime - 1);
             }
             if (m_fHandAngle >= 17f / 18f)
             {
