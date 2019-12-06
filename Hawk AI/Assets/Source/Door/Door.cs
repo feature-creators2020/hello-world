@@ -33,10 +33,11 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
     public bool isClosing { get; set; }       //扉の閉フラグ
 
 
-    private List<GameObject> HumanObject_List = new List<GameObject>();
 
     private GamePad.Index GamePadIndex;          // 対象のコントローラー
     private KeyBoard.Index KeyboardIndex;        // 対象のキーボード
+
+    DoorAreaCollision m_sDoorAreaCollision;      // ドアエリアスクリプト
 
 
     // Start is called before the first frame update
@@ -44,7 +45,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
     {
         isOpening = false;
         isClosing = false;
-        StartAngle = this.gameObject.transform.rotation.eulerAngles;
+        StartAngle = this.gameObject.transform.parent.rotation.eulerAngles;
 
         var StateMachine = new CStateMachine<Door>();
         m_cStateMachineList.Add(StateMachine);
@@ -57,6 +58,8 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eClose]);
 
+        m_sDoorAreaCollision = this.transform.parent.GetChild(0).gameObject.GetComponent<DoorAreaCollision>();
+
     }
 
     public virtual void Update()
@@ -66,23 +69,20 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         //    OpenOrClose();
         //}
 
-        foreach(var val in HumanObject_List)
+        // 対象の人が入っていないとき処理をしない
+        if (!ReferenceEquals(m_sDoorAreaCollision.GetTargetHuman(), null))
         {
-            // 人が入っているか探す
-            if(val.tag == "Human")
+            var human = m_sDoorAreaCollision.GetTargetHuman().GetComponent<HumanStateManager>();
+
+            var playerNo = human.GamePadIndex;
+            var keyState = GamePad.GetState(playerNo, false);
+            var playerKeyNo = (KeyBoard.Index)playerNo;
+            var keyboardState = KeyBoard.GetState(human.KeyboardIndex, false);
+
+            // 開閉させる処理
+            if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
             {
-                var human = val.GetComponent<HumanStateManager>();
-
-                var playerNo = human.GamePadIndex;
-                var keyState = GamePad.GetState(playerNo, false);
-                var playerKeyNo = (KeyBoard.Index)playerNo;
-                var keyboardState = KeyBoard.GetState(human.KeyboardIndex, false);
-
-                // 開閉させる処理
-                if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
-                {
-                    OpenOrClose();
-                }
+                OpenOrClose();
             }
         }
     }
@@ -105,6 +105,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         if (isOpening == false)
         {
             m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eOpen]);
+            ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>().Play((int)SEAudioType.eSE_DoorOpen);
         }
     }
 
@@ -114,45 +115,8 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         if (isClosing == false)
         {
             m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eClose]);
+            ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>().Play((int)SEAudioType.eSE_DoorClose);
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log("DoorEnter : " + other.gameObject.name);
-        // 人の時処理をする
-        if(other.tag == "Human")
-        {
-            foreach (var val in HumanObject_List)
-            {
-                if (val == other.gameObject)
-                {
-                    return;
-                }
-            }
-            // 人の情報を入れる
-            HumanObject_List.Add(other.gameObject);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        //Debug.Log("DoorExit : " + other.gameObject.name);
-        // 人の時処理をする
-        if (other.tag == "Human")
-        {
-            // 人の情報を消す
-            //HumanObject_List.Remove(other.gameObject);
-
-            foreach (var val in HumanObject_List)
-            {
-                if (val == other.gameObject)
-                {
-                    // 人の情報を消す
-                    HumanObject_List.Remove(other.gameObject);
-                    return;
-                }
-            }
-        }
-    }
 }

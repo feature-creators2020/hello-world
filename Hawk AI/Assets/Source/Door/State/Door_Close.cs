@@ -10,7 +10,7 @@ public class Door_Close : CStateBase<Door>
     public override void Enter()
     {
         this.m_cOwner.isClosing = true;
-        this.m_cOwner.StartCoroutine(CloseDoorCoroutine(new Vector3(0f, this.m_cOwner.MaxOpenRadian, 0f), this.m_cOwner.StartAngle));
+        this.m_cOwner.StartCoroutine(CloseDoorCoroutine(this.m_cOwner.StartAngle + new Vector3(0f, this.m_cOwner.MaxOpenRadian, 0f), this.m_cOwner.StartAngle));
     }
     public override void Execute()
     {

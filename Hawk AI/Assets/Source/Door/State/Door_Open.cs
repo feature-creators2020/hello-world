@@ -10,7 +10,7 @@ public class Door_Open : CStateBase<Door>
     public override void Enter()
     {
         this.m_cOwner.isOpening = true;
-        this.m_cOwner.StartCoroutine(OpenDoorCoroutine(this.m_cOwner.StartAngle, new Vector3(0f, this.m_cOwner.MaxOpenRadian, 0f)));
+        this.m_cOwner.StartCoroutine(OpenDoorCoroutine(this.m_cOwner.StartAngle, this.m_cOwner.StartAngle + new Vector3(0f, this.m_cOwner.MaxOpenRadian, 0f)));
 
     }
     public override void Execute()
