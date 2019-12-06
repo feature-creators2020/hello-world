@@ -15,6 +15,7 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
         {
             m_cOwner.m_fSlowTime = m_cOwner.m_fLimitSlowTime;
         }
+        m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Debuff);    // デバフSE
     }
 
     public override void Execute()
@@ -37,6 +38,7 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
                     target: m_cOwner.hCatchZone.TargetObject,
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.Catched());
+                m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
                 //m_cOwner.hCatchZone.TargetObject;
             }
         }

@@ -43,6 +43,7 @@ public class HRailManager : CStateBase<HumanStateManager>
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.Catched());
                 //m_cOwner.hCatchZone.TargetObject;
+                m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
             }
         }
 

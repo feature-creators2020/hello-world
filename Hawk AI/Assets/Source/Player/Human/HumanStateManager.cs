@@ -107,6 +107,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [System.NonSerialized]
     public GameObject m_GTargetBoxObject;
 
+    public SEAudio m_SEAudio;           // se
+
 
     // Start is called before the first frame update
     void Start()
@@ -148,6 +150,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         hCatchZone = this.transform.Find("CatchZone").GetComponent<HCatchZone>();
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
+        // se取得
+        m_SEAudio = ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>();
 
         // 各状態の処理
         base.Update();
@@ -233,6 +237,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     if (m_fActionTime <= 0f)
                     {
                         UseItem();
+                        m_SEAudio.Play((int)SEAudioType.eSE_FallOutItem);   // 設置SE
                         // アクション経過時間を再設定
                         m_fActionTime = m_fLimitActionTime;
                         ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
@@ -511,6 +516,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 ItemHolderManager.Instance.HoldItem(other.gameObject);
                 // 取得したのでオブジェクトを消す
                 Destroy(other.gameObject);
+                m_SEAudio.Play((int)SEAudioType.eSE_GetTrap);   // アイテム取得SE
             }
             //Debug.Log("Item : " + m_sItemData);
         }

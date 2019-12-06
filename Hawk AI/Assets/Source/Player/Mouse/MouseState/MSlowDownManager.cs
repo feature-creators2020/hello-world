@@ -19,6 +19,7 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
         {
             m_cOwner.m_fSlowTime = m_cOwner.m_fLimitSlowTime;
         }
+        m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Debuff);   // デバフSE
     }
 
     public override void Execute()

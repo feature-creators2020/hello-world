@@ -73,6 +73,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public Rigidbody m_rb;                      // rigidbodyで移動する
 
+    public SEAudio m_SEAudio;           // se
+
 
     private string[] AnimationString = { "Mouse_Wait", "Mouse_Run" };          // アニメーション名
     private int m_nAnimationNo;                                      // 再生中アニメーション番号
@@ -131,6 +133,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // マネージャー取得
         var managerobject = ManagerObjectManager.Instance;
         m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
+        // se取得
+        m_SEAudio = managerobject.GetGameObject("SEAudio").GetComponent<SEAudio>();
+
 
         // 移動判定用コライダー取得
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
