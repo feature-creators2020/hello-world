@@ -730,9 +730,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 15099877}
+  - component: {fileID: 15099878}
   m_Layer: 0
   m_Name: Rail2
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,6 +767,19 @@ Transform:
   m_Father: {fileID: 107653895}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &15099878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15099876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &16488654
 GameObject:
   m_ObjectHideFlags: 0
@@ -9534,9 +9548,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 181936944}
+  - component: {fileID: 181936945}
   m_Layer: 0
   m_Name: Rail1
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9570,6 +9585,19 @@ Transform:
   m_Father: {fileID: 107653895}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &181936945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181936943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &182171011
 GameObject:
   m_ObjectHideFlags: 0
@@ -17158,6 +17186,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 625261335}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
 --- !u!4 &305249583 stripped
@@ -17856,6 +17892,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 181936943}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
 --- !u!4 &321773396 stripped
@@ -18545,6 +18589,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 398598342}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1426766950}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
 --- !u!4 &334456129 stripped
@@ -21639,9 +21695,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 398598343}
+  - component: {fileID: 398598344}
   m_Layer: 0
   m_Name: Rail1
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21674,6 +21731,19 @@ Transform:
   m_Father: {fileID: 2037903497}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398598344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398598342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &399946308
 GameObject:
   m_ObjectHideFlags: 0
@@ -25003,9 +25073,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453824821}
+  - component: {fileID: 453824822}
   m_Layer: 0
   m_Name: Rail4
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25039,6 +25110,19 @@ Transform:
   m_Father: {fileID: 107653895}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &453824822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453824820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1001 &454214275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30268,9 +30352,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 536494503}
+  - component: {fileID: 536494504}
   m_Layer: 0
   m_Name: Rail1
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30304,6 +30389,19 @@ Transform:
   m_Father: {fileID: 600352408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &536494504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536494502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &537207578
 GameObject:
   m_ObjectHideFlags: 0
@@ -36031,9 +36129,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 625261336}
+  - component: {fileID: 625261337}
   m_Layer: 0
   m_Name: Rail3
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36067,6 +36166,19 @@ Transform:
   m_Father: {fileID: 107653895}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &625261337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625261335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &625675221
 GameObject:
   m_ObjectHideFlags: 0
@@ -61314,6 +61426,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 453824820}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
 --- !u!4 &1089220413 stripped
@@ -75508,9 +75628,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1363089365}
+  - component: {fileID: 1363089366}
   m_Layer: 0
   m_Name: Rail2
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75543,6 +75664,19 @@ Transform:
   m_Father: {fileID: 600352408}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1363089366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363089364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &1363654050
 GameObject:
   m_ObjectHideFlags: 0
@@ -78899,9 +79033,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426766951}
+  - component: {fileID: 1426766952}
   m_Layer: 0
   m_Name: Rail2
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78932,6 +79067,19 @@ Transform:
   m_Father: {fileID: 2037903497}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1426766952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426766950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3dd5c85b29493469030cfac02f3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strTag: 
 --- !u!1 &1428924002
 GameObject:
   m_ObjectHideFlags: 0
@@ -94413,6 +94561,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742890433, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
+      propertyPath: RailObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 15099876}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3b9d90f6b552f45b24dee2a26d116f, type: 3}
 --- !u!4 &1728046070 stripped

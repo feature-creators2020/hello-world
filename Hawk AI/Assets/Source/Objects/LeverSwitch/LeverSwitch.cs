@@ -33,6 +33,8 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
     private float m_fBenddingSpeed;
     [SerializeField]
     private GameObject ExclamationMark;
+    [SerializeField]
+    private List<GameObject> RailObjects = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -50,20 +52,20 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
         {
             // コントローラー対応
             if (GamePad.GetButton(GamePad.Button.B, GamePad.Index.One) || KeyBoard.GetButton(KeyBoard.Button.B, KeyBoard.Index.Three) 
-                || Input.GetKeyDown(KeyCode.Alpha4))
+                || Input.GetKeyDown(KeyCode.X))
             {
                 if (GetState() == ELeverSwitchState.ActiveCorrect)
                 {
                     // Correct To Inverse
-                    var RailManager = ManagerObjectManager.Instance.GetGameObject("RailManager").
-                        GetComponent<RailManager>().GetGameObjectsList();
+                    //var RailManager = ManagerObjectManager.Instance.GetGameObject("RailManager").
+                    //    GetComponent<RailManager>().GetGameObjectsList();
 
-                    foreach (var val in RailManager)
+                    foreach (var val in RailObjects)
                     {
-                        ExecuteEvents.Execute<IRailInterfase>(
+                        ExecuteEvents.Execute<IRailManager>(
                             target: val,
                             eventData: null,
-                            functor: (recieveTarget, y) => recieveTarget.ChangeState(ERailState.Inverse));
+                            functor: (recieveTarget, y) => recieveTarget.ChangeFloatingDirection());
                     }
 
                     Vector3 startRot = new Vector3(
@@ -83,17 +85,24 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
                 else
                 {
                     //  Inverse To Correct
-                    var RailManager = ManagerObjectManager.Instance.GetGameObject("RailManager").
-                        GetComponent<RailManager>().GetGameObjectsList();
+                    //var RailManager = ManagerObjectManager.Instance.GetGameObject("RailManager").
+                    //    GetComponent<RailManager>().GetGameObjectsList();
 
-                    foreach (var val in RailManager)
+                    //foreach (var val in RailManager)
+                    //{
+                    //    ExecuteEvents.Execute<IRailInterfase>(
+                    //        target: val,
+                    //        eventData: null,
+                    //        functor: (recieveTarget, y) => recieveTarget.ChangeState(ERailState.Correct));
+                    //}
+
+                    foreach (var val in RailObjects)
                     {
-                        ExecuteEvents.Execute<IRailInterfase>(
+                        ExecuteEvents.Execute<IRailManager>(
                             target: val,
                             eventData: null,
-                            functor: (recieveTarget, y) => recieveTarget.ChangeState(ERailState.Correct));
+                            functor: (recieveTarget, y) => recieveTarget.ChangeFloatingDirection());
                     }
-
 
                     Vector3 startRot = new Vector3(
                         -m_fBendLeverRadian,
