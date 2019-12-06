@@ -466,4 +466,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public Animation GetAnimation { get { return m_cAnimation; } }
 
+    // アニメーションイベント用関数
+    public void MouseRunEvent()
+    {
+        m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseRunning);
+    }
 }

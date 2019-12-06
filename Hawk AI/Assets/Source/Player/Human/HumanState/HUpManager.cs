@@ -27,6 +27,7 @@ public class HUpManager : CStateBase<HumanStateManager>
         //Debug.Log("StartPos : " + StartPos);
         //Debug.Log("EndPos : " + EndPos);
         m_cOwner.GravityOff();
+        m_cOwner.PlayAnimation(EHumanAnimation.Jump);   // ジャンプアニメーション
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Jump);    // ジャンプSE
     }
 

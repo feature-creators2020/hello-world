@@ -28,6 +28,16 @@ public enum EHumanDirectionalState
     Back,
 }
 
+public enum EHumanAnimation
+{
+    Wait,
+    Run,
+    Catch,
+    Put,
+    Jump
+}
+
+
 public interface IHumanInterface : IEventSystemHandler
 {
     void ChangeUpState(GameObject _Target);
@@ -107,6 +117,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [System.NonSerialized]
     public GameObject m_GTargetBoxObject;
 
+    public string[] AnimationString = { "Human4_Wait", "Human4_Run", "Human4_Catch", "Human4_Put", "Human4_Jump" };          // アニメーション名
+    private int m_nAnimationNo;                                      // 再生中アニメーション番号
+    private Animation m_cAnimation;                                  // アニメーション      
+
     public SEAudio m_SEAudio;           // se
 
 
@@ -129,6 +143,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_cStateList.Add(Up);
         m_cStateList.Add(Rail);
         m_cStateList.Add(ForcedWait);
+
+        m_cAnimation = this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Animation>();
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EHumanState.ForcedWait]);
 
@@ -769,4 +785,43 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     }
 
+
+    public void PlayAnimation(EHumanAnimation anim)
+    {
+        m_nAnimationNo = (int)anim;
+        m_cAnimation.Play(AnimationString[m_nAnimationNo]);
+    }
+
+    public Animation GetAnimation { get { return m_cAnimation; } }
+
+
+    // アニメーションイベント用関数
+    public void OnFootEvent()
+    {
+        m_SEAudio.MultiplePlay((int)SEAudioType.eSE_HumanRunning);
+    }
+
+    public void OnCatchEvent()
+    {
+        m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+    }
+
+    public void OnEndCatchEvent()
+    {
+        ChangeState(0, EOldState);
+    }
+
+    public void PutingEvent()
+    {
+        ExecuteEvents.Execute<IMouseInterface>(
+            target: hCatchZone.TargetObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.Catched());
+        m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
+    }
+
+    public void OnEndPutEvent()
+    {
+        ChangeState(0, EOldState);
+    }
 }

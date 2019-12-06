@@ -71,7 +71,12 @@ public class HRailManager : CStateBase<HumanStateManager>
 
             if (moveForward != Vector3.zero)
             {
+                m_cOwner.PlayAnimation(EHumanAnimation.Run);    // 走るアニメーション
                 m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+            }
+            else
+            {
+                m_cOwner.PlayAnimation(EHumanAnimation.Wait);   // 待機アニメーション
             }
 
             // 移動判定

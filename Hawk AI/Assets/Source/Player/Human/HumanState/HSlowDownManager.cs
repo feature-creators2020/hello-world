@@ -71,7 +71,12 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
             // キャラクターの向きを進行方向に
             if (moveForward != Vector3.zero)
             {
+                m_cOwner.PlayAnimation(EHumanAnimation.Run);    // 走るアニメーション
                 m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+            }
+            else
+            {
+                m_cOwner.PlayAnimation(EHumanAnimation.Wait);   // 待機アニメーション
             }
 
             // 移動処理
