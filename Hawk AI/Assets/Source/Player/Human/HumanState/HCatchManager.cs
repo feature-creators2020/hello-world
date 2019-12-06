@@ -2,54 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GamepadInput;
-using UnityEngine.EventSystems;
 using KeyBoardInput;
 
 
-public class HNormalManager : CStateBase<HumanStateManager>
+public class HCatchManager : CStateBase<HumanStateManager>
 {
-    public HNormalManager(HumanStateManager _cOwner) : base(_cOwner) { }
+    public HCatchManager(HumanStateManager _cOwner) : base(_cOwner) { }
+
+
+    float DefaultSlowDownRate;
+
 
     public override void Enter()
     {
-
+        m_cOwner.PlayAnimation(EHumanAnimation.Catch);
+        DefaultSlowDownRate = m_cOwner.m_fSlowDownRate;
+        m_cOwner.m_fSlowDownRate = 1f;
     }
 
     public override void Execute()
     {
-        //Debug.Log("State:Normal");
-
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);
         var playerKeyNo = (KeyBoard.Index)playerNo;
         var keyboardState = KeyBoard.GetState(m_cOwner.KeyboardIndex, false);
 
-
-        // 捕獲処理
-        if (m_cOwner.hCatchZone.isCatch)
-        {
-            //Debug.Log("in the Zone !!");
-            if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
-            {
-                m_cOwner.PlayAnimation(EHumanAnimation.Catch);
-                m_cOwner.ChangeState(0, EHumanState.Catch);
-                return;
-                ////Debug.Log("Catch!! : " + m_cOwner.hCatchZone.TargetObject.name);
-                //ExecuteEvents.Execute<IMouseInterface>(
-                //    target: m_cOwner.hCatchZone.TargetObject,
-                //    eventData: null,
-                //    functor: (recieveTarget, y) => recieveTarget.Catched());
-                ////m_cOwner.hCatchZone.TargetObject;
-                //m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
-            }
-        }
-
-        // アイテム使用
-        if(this.m_cOwner.UseItem(playerNo, playerKeyNo))
-        {
-            return;
-        }
-
+        //if (m_cOwner.m_fSlowDownRate <= 0.0f)
+        //{
+        //    m_cOwner.m_fSlowDownRate = 0f;
+        //}
+        //else
+        //{
+        //    m_cOwner.m_fSlowDownRate -= 0.1f;
+        //}
 
         // 移動処理。アクションを起こしていないときに処理
         if (m_cOwner.m_fActionTime == m_cOwner.m_fLimitActionTime)
@@ -72,18 +57,14 @@ public class HNormalManager : CStateBase<HumanStateManager>
             // 移動量
             Vector3 moveForward = cameraForward * m_cOwner.inputVertical + m_cOwner.targetCamera.transform.right * m_cOwner.inputHorizontal;
 
+            // キャラクターの向きを進行方向に
             if (moveForward != Vector3.zero)
             {
-                m_cOwner.PlayAnimation(EHumanAnimation.Run);    // 走るアニメーション
                 m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
-            }
-            else
-            {
-                m_cOwner.PlayAnimation(EHumanAnimation.Wait);   // 待機アニメーション
             }
 
             // 移動処理
-            m_cOwner.Move(moveForward);
+            m_cOwner.Move(moveForward * m_cOwner.m_fSlowDownRate);
         }
 
         // Debug:ステート変更
@@ -91,7 +72,8 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
     public override void Exit()
     {
-        m_cOwner.EOldState = EHumanState.Normal;
+        m_cOwner.m_fSlowDownRate = DefaultSlowDownRate;
     }
 
 }
+

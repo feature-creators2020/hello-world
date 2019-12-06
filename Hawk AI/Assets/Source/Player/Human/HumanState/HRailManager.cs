@@ -37,13 +37,16 @@ public class HRailManager : CStateBase<HumanStateManager>
             //Debug.Log("in the Zone !!");
             if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
             {
+                m_cOwner.PlayAnimation(EHumanAnimation.Catch);
+                m_cOwner.ChangeState(0, EHumanState.Catch);
+                return;
                 //Debug.Log("Catch!! : " + m_cOwner.hCatchZone.TargetObject.name);
-                ExecuteEvents.Execute<IMouseInterface>(
-                    target: m_cOwner.hCatchZone.TargetObject,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Catched());
-                //m_cOwner.hCatchZone.TargetObject;
-                m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
+                //ExecuteEvents.Execute<IMouseInterface>(
+                //    target: m_cOwner.hCatchZone.TargetObject,
+                //    eventData: null,
+                //    functor: (recieveTarget, y) => recieveTarget.Catched());
+                ////m_cOwner.hCatchZone.TargetObject;
+                //m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
             }
         }
 

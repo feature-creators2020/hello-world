@@ -18,6 +18,8 @@ public enum EHumanState
     Up,
     Rail,
     ForcedWait,
+    Catch,
+    Put
 }
 
 public enum EHumanDirectionalState
@@ -78,7 +80,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public ItemManager m_Itemmanager;                    // アイテム管理
     [System.NonSerialized]
     public float m_fActionTime;                    // アクション経過時間
-    public float m_fLimitActionTime = 2f;                // アクション時間
+    [System.NonSerialized]
+    public float m_fLimitActionTime = 0.5f;                // アクション時間
 
     [System.NonSerialized]
     public HCatchZone hCatchZone;               // 捕獲判定用
@@ -136,6 +139,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         var Up = new HUpManager(this);
         var Rail = new HRailManager(this);
         var ForcedWait = new HForcedWaitManager(this);
+        var Catch = new HCatchManager(this);
+        var Put = new HPutManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
@@ -143,6 +148,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_cStateList.Add(Up);
         m_cStateList.Add(Rail);
         m_cStateList.Add(ForcedWait);
+        m_cStateList.Add(Catch);
+        m_cStateList.Add(Put);
 
         m_cAnimation = this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Animation>();
 
@@ -239,7 +246,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     }
 
-    public virtual void UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
+    public virtual bool UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
     {
         if (GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
         {
@@ -249,21 +256,30 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 //　置く場所が適切かどうか
                 if (IsUseItem() == true)
                 {
-                    // 　アクション時間が経過しているか
-                    if (m_fActionTime <= 0f)
+                    if (CheckCurrentState(EHumanState.Put))
                     {
-                        UseItem();
-                        m_SEAudio.Play((int)SEAudioType.eSE_FallOutItem);   // 設置SE
-                        // アクション経過時間を再設定
-                        m_fActionTime = m_fLimitActionTime;
-                        ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
+                        // 　アクション時間が経過しているか
+                        if (m_fActionTime <= 0f)
+                        {
+                            //UseItem();
+                            //m_SEAudio.Play((int)SEAudioType.eSE_FallOutItem);   // 設置SE
+                            // アクション経過時間を再設定
+                            m_fActionTime = m_fLimitActionTime;
+                            ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
+                        }
+                        else
+                        {
+                            // アクション時間を経過させる
+                            m_fActionTime -= Time.deltaTime;
+                            float TimeParLimitTime = (m_fLimitActionTime - m_fActionTime) / m_fLimitActionTime;
+                            ItemHolderManager.Instance.UsingFromHolder(TimeParLimitTime, playerNo, playerKeyNo);
+                        }
                     }
                     else
                     {
-                        // アクション時間を経過させる
-                        m_fActionTime -= Time.deltaTime;
-                        float TimeParLimitTime = (m_fLimitActionTime - m_fActionTime) / m_fLimitActionTime;
-                        ItemHolderManager.Instance.UsingFromHolder(TimeParLimitTime, playerNo, playerKeyNo);
+                        PlayAnimation(EHumanAnimation.Put);
+                        ChangeState(0, EHumanState.Put);
+                        return true;
                     }
                 }
             }
@@ -273,7 +289,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             // アクション経過時間を再設定
             m_fActionTime = m_fLimitActionTime;
             ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
+            ChangeState(0, EOldState);
         }
+        return false;
     }
 
 
@@ -608,7 +626,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         //Debug.Log("UseItem : " + m_sItemData);
         if(m_sItemData != null)
         {
-            if (m_canPut) {
+            //if (m_canPut) {
                 //Debug.Log("Put!");
                 // プレハブを取得
                 var item = ManagerObjectManager.Instance.GetGameObject(m_sItemData);
@@ -660,6 +678,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     target: item,
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
+                m_SEAudio.MultiplePlay((int)SEAudioType.eSE_SetTrap);
 
                 //MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
                 //MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
@@ -675,7 +694,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 m_sItemData = null;
                 // 無敵状態にする
                 m_isInvincible = true;
-            }
+            //}
         }
     }
 
@@ -803,7 +822,15 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public void OnCatchEvent()
     {
-        m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        m_fSlowDownRate = 0f;
+        if (!ReferenceEquals(hCatchZone.TargetObject, null))
+        {
+            ExecuteEvents.Execute<IMouseInterface>(
+                target: hCatchZone.TargetObject,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Catched());
+            m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        }
     }
 
     public void OnEndCatchEvent()
@@ -813,11 +840,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public void PutingEvent()
     {
-        ExecuteEvents.Execute<IMouseInterface>(
-            target: hCatchZone.TargetObject,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.Catched());
-        m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
+        UseItem();
     }
 
     public void OnEndPutEvent()

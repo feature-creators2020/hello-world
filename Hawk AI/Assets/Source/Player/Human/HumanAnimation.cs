@@ -82,7 +82,7 @@ public class HumanAnimation : MonoBehaviour
 
     public void PutingEvent()
     {
-        m_sHumanStateManager.OnEndPutEvent();
+        m_sHumanStateManager.PutingEvent();
     }
 
     public void OnEndPutEvent()

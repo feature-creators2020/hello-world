@@ -32,9 +32,13 @@ public class HCatchZone : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        //Debug.Log("OnTriggerExit");
-        isCatch = false;
-        this.transform.Find("ExclamationMark").gameObject.SetActive(false);
+        if (other.tag == "Mouse")
+        {
+            //Debug.Log("OnTriggerExit");
+            isCatch = false;
+            this.transform.Find("ExclamationMark").gameObject.SetActive(false);
+            TargetObject = null;
+        }
     }
 
 }

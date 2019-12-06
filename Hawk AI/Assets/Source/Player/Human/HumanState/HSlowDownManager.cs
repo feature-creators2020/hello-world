@@ -33,18 +33,24 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
             //Debug.Log("in the Zone !!");
             if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
             {
-                //Debug.Log("Catch!!");
-                ExecuteEvents.Execute<IMouseInterface>(
-                    target: m_cOwner.hCatchZone.TargetObject,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Catched());
-                m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
+                m_cOwner.PlayAnimation(EHumanAnimation.Catch);
+                m_cOwner.ChangeState(0, EHumanState.Catch);
+                return;
+                ////Debug.Log("Catch!!");
+                //ExecuteEvents.Execute<IMouseInterface>(
+                //    target: m_cOwner.hCatchZone.TargetObject,
+                //    eventData: null,
+                //    functor: (recieveTarget, y) => recieveTarget.Catched());
+                //m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_MouseCatching);    // キャッチSE
                 //m_cOwner.hCatchZone.TargetObject;
             }
         }
 
         // アイテム使用
-        this.m_cOwner.UseItem(playerNo, playerKeyNo);
+        if(this.m_cOwner.UseItem(playerNo, playerKeyNo))
+        {
+            return;
+        }
 
 
         // 移動処理。アクションを起こしていないときに処理
