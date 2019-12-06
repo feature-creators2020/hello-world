@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 // ターゲットの周りを飛んでいる状態
 public class DAroundManager : CStateBase<DroneStateManager>
 {
     public DAroundManager(DroneStateManager _cOwner) : base(_cOwner) { }
 
+    private GameObject m_cSerchLightObject;
+
     public override void Enter()
     {
+        m_cSerchLightObject = this.m_cOwner.transform.GetChild(3).gameObject;
         //Debug.Log("DroneAround");
         m_cOwner.NowState++;
     }
@@ -20,6 +24,8 @@ public class DAroundManager : CStateBase<DroneStateManager>
         // 追跡可能か
         if (m_cOwner.IsCanTarget(m_cOwner.m_gTarget))
         {
+            SerchLightExecute();
+
             // 滑らかに回転して移動したい
             var target = new Vector3(m_cOwner.m_vTargetPos.x, m_cOwner.transform.position.y, m_cOwner.m_vTargetPos.z);
             var distance = Vector3.Distance(target, m_cOwner.transform.position);
@@ -40,6 +46,13 @@ public class DAroundManager : CStateBase<DroneStateManager>
 
     public override void Exit()
     {
+        if (this.m_cOwner.m_bIsNight == true)
+        {
+            ExecuteEvents.Execute<ISerchLight>(
+             target: m_cSerchLightObject,
+             eventData: null,
+             functor: (recieveTarget, y) => recieveTarget.TargetObjectLost());
+        }
 
     }
 
@@ -48,5 +61,16 @@ public class DAroundManager : CStateBase<DroneStateManager>
         float moveX = Random.Range(-1f, 1f);
         float moveZ = Random.Range(-1f, 1f);
         m_cOwner.m_vTargetPos += new Vector3(moveX, 0f, moveZ);
+    }
+
+    void SerchLightExecute()
+    {
+        if (this.m_cOwner.m_bIsNight == true)
+        {
+            ExecuteEvents.Execute<ISerchLight>(
+             target: m_cSerchLightObject,
+             eventData: null,
+             functor: (recieveTarget, y) => recieveTarget.TargetObject(this.m_cOwner.gameObject, this.m_cOwner.m_gTarget));
+        }
     }
 }
