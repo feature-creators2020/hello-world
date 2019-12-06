@@ -10,6 +10,12 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
     [SerializeField]
     private List<GameObject> CheeseIcon;
     private int RemainingCheese = 4;
+    private Sprite Mouse;
+
+    private void Start()
+    {
+        Mouse = Resources.Load<Sprite>("Mouse");
+    }
 
     public void GetCheese()
     {
@@ -31,6 +37,6 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
             //    this.m_cOwner.ChangeState(0, EGameState.End);
         }
         //現状はアイコンの色を変えている、実際はテクスチャを変える
-        CheeseIcon[RemainingCheese].GetComponent<Image>().color = new Color(0, 0, 0);
+        CheeseIcon[RemainingCheese].GetComponent<Image>().sprite = Mouse;
     }
 }
