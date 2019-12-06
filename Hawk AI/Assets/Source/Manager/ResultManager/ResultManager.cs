@@ -179,15 +179,15 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eRight));
 
-        ExecuteEvents.Execute<ILoseEffectInterface>(
-        target: LoseEffectObj,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight,ELoseEffectsType.eWind));
+        //ExecuteEvents.Execute<ILoseEffectInterface>(
+        //target: LoseEffectObj,
+        //eventData: null,
+        //functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight,ELoseEffectsType.eWind));
 
-        ExecuteEvents.Execute<ILoseEffectInterface>(
-        target: LoseEffectObj,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight, ELoseEffectsType.eGaan));
+        //ExecuteEvents.Execute<ILoseEffectInterface>(
+        //target: LoseEffectObj,
+        //eventData: null,
+        //functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight, ELoseEffectsType.eGaan));
 
     }
 
@@ -207,15 +207,17 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Stop((int)EResultFontEffect.eLeft));
 
-        ExecuteEvents.Execute<ILoseEffectInterface>(
-        target: LoseEffectObj,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eLeft, ELoseEffectsType.eWind));
+        
 
-        ExecuteEvents.Execute<ILoseEffectInterface>(
-        target: LoseEffectObj,
-        eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eLeft, ELoseEffectsType.eGaan));
+        //ExecuteEvents.Execute<ILoseEffectInterface>(
+        //target: LoseEffectObj,
+        //eventData: null,
+        //functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eLeft, ELoseEffectsType.eWind));
+
+        //ExecuteEvents.Execute<ILoseEffectInterface>(
+        //target: LoseEffectObj,
+        //eventData: null,
+        //functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eLeft, ELoseEffectsType.eGaan));
 
 
         //Right is Winner

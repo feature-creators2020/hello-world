@@ -12137,7 +12137,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -39791,7 +39791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1686978624, guid: 87381ee1aacf871478da3e5af5336f58, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.9999924
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 223882693, guid: 87381ee1aacf871478da3e5af5336f58, type: 3}
       propertyPath: m_Enabled
