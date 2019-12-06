@@ -12,6 +12,12 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
     [SerializeField]
     private List<GameObject> CircleList;
     private int index = 0;
+    private Sprite Trap;
+
+    private void Start()
+    {
+        Trap = Resources.Load<Sprite>("Trap");
+    }
 
     public void HoldItem(GameObject ItemObj)
     {
@@ -36,11 +42,11 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
 
         if (ItemObj.tag == "Mousetrap")
         {
-            ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("Trap");
+            ItemList[index].GetComponent<Image>().sprite = Trap;
         }
         if (ItemObj.tag == "MouseGetTrap")
         {
-            ItemList[index].GetComponent<Image>().sprite = Resources.Load<Sprite>("Trap");
+            ItemList[index].GetComponent<Image>().sprite = Trap;
         }
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
