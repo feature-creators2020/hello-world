@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe41eb75eb5d7a4d80c0108ca2c9960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenSpeed: 1
+  OpenSpeed: 0.2
   MaxOpenRadian: 90
   StartAngle: {x: 0, y: 0, z: 0}
 --- !u!1 &6855088981794027337

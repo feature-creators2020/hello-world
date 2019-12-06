@@ -105,7 +105,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         if (isOpening == false)
         {
             m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eOpen]);
-            ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>().Play((int)SEAudioType.eSE_DoorOpen);
+            ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>().MultiplePlay((int)SEAudioType.eSE_DoorOpen);
         }
     }
 
@@ -115,7 +115,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
         if (isClosing == false)
         {
             m_cStateMachineList[0].ChangeState(m_cStateList[(int)EDoorState.eClose]);
-            ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>().Play((int)SEAudioType.eSE_DoorClose);
+            ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>().MultiplePlay((int)SEAudioType.eSE_DoorClose);
         }
     }
 
