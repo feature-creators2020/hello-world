@@ -18,7 +18,7 @@ public class EndManager : CStateBase<GameManager>
         ExecuteEvents.Execute<IFadeInterfase>(
         target: obj,
         eventData: null,
-        functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
+        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
     }
     public override void Execute()
     {
@@ -45,7 +45,7 @@ public class EndManager : CStateBase<GameManager>
 
     private void SwitchingUpdate()
     {
-        GameObject gameObject = new GameObject();
+        GameObject gameObject;
 
         switch (SceneManager.GetActiveScene().name)
         {
