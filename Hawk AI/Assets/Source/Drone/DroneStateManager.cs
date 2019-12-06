@@ -133,6 +133,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                     NowState = (int)EDroneState.Move;
                 }
                 m_cStateMachineList[0].ChangeState(m_cStateList[NowState]);
+                RadarCursor.Instance.CheckOutCursor();
                 StateTime = 0f;
             }
         }
@@ -175,6 +176,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                     m_nTargetNum = i;
                     // 追跡
                     m_bCheckResult_list[i] = true;
+                    RadarCursor.Instance.CheckInCursor(gTarget);
                 }
                 else
                 {
@@ -205,6 +207,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         //Debug.Log("TargetObject : " + m_gTarget.name);
         var target = m_gTarget.transform.position;
         m_vTargetPos = new Vector3(target.x, this.transform.position.y, target.z);
+        RadarCursor.Instance.CheckCursor(m_gTarget);
     }
 
     public bool IsCanTarget(GameObject TargetObject)
