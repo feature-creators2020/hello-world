@@ -13,6 +13,8 @@ public interface IRailInterfase : IEventSystemHandler
     Vector3 GetMove();
 
     void ChangeState(ERailState _eRailState);
+
+    void ChangeState();
 }
 
 public enum ERailState
@@ -88,6 +90,31 @@ public class Rail : MonoBehaviour,IRailInterfase
             }
         }
     }
+
+    public void ChangeState()
+    {
+
+        switch (m_eRailState)
+        {
+            case ERailState.Correct:
+
+                m_eRailState = ERailState.Inverse;
+                break;
+
+            case ERailState.Inverse:
+
+                m_eRailState = ERailState.Correct;
+                break;
+
+            case ERailState.Stop:
+            default:
+                Debug.Log("ERailState.Stop : " + ERailState.Stop);
+                break;
+        }
+
+
+    }
+
 
     public void ChangeState(ERailState _eRailState)
     {

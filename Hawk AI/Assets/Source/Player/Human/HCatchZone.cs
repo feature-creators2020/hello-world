@@ -25,6 +25,7 @@ public class HCatchZone : MonoBehaviour
         if(other.tag == "Mouse")
         {
             isCatch = true;
+            this.transform.Find("ExclamationMark").gameObject.SetActive(true);
             TargetObject = other.gameObject;
         }
     }
@@ -33,6 +34,7 @@ public class HCatchZone : MonoBehaviour
     {
         //Debug.Log("OnTriggerExit");
         isCatch = false;
+        this.transform.Find("ExclamationMark").gameObject.SetActive(false);
     }
 
 }
