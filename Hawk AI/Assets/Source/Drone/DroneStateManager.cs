@@ -57,6 +57,8 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     public List<bool> m_bCheckResult_list;                   // ターゲット切り替えの時、対象にターゲットできたか
     public int m_nTargetNum;                        // どちらのネズミを追跡しているか
 
+    public SEAudio m_SEAudio;           // se
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +98,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         m_ItemManager = managerobject.GetGameObject("ItemManager").GetComponent<ItemManager>();
         m_DronePointManager = managerobject.GetGameObject("DronePointManager").GetComponent<DronePointManager>();
         m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
+        m_SEAudio = managerobject.GetGameObject("SEAudio").GetComponent<SEAudio>();
 
         // アイテムのドロップ間隔処理
         if (!m_bCanDropItem)
@@ -302,6 +305,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         drop.SetPoint(m_gTarget);
         // 自身のステートを変えてもらうために渡しておく
         drop.SetDroneObject(this.gameObject);
+        m_SEAudio.Play((int)SEAudioType.eSE_FallOutItem);
     }
 
     // 巡回地点の取得(指定)

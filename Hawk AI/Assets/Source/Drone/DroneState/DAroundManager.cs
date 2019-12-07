@@ -15,6 +15,7 @@ public class DAroundManager : CStateBase<DroneStateManager>
         m_cSerchLightObject = this.m_cOwner.transform.GetChild(3).gameObject;
         //Debug.Log("DroneAround");
         m_cOwner.NowState++;
+        m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Discovery);
     }
 
     public override void Execute()

@@ -16,6 +16,7 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
             m_cOwner.m_fSlowTime = m_cOwner.m_fLimitSlowTime;
         }
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Debuff);    // デバフSE
+        m_cOwner.EOldState = EHumanState.SlowDown;
     }
 
     public override void Execute()
@@ -103,7 +104,7 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
 
     public override void Exit()
     {
-        m_cOwner.EOldState = EHumanState.SlowDown;
+        m_cOwner.EOldState = EHumanState.Normal;
     }
 
 }
