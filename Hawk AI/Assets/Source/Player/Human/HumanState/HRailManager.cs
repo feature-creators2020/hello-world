@@ -98,7 +98,7 @@ public class HRailManager : CStateBase<HumanStateManager>
             //Debug.Log(railmove);
 
             // ベルトコンベアの移動量
-            m_cOwner.transform.position += railmove;
+            moveForward += railmove;
 
             // 移動処理
             m_cOwner.Move(moveForward);
