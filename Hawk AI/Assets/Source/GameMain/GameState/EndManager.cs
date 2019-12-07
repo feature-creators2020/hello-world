@@ -9,6 +9,8 @@ public class EndManager : CStateBase<GameManager>
 {
     public EndManager(GameManager _cOwner) : base(_cOwner) { }
 
+    private FadeManager m_cFadeManager = new FadeManager();
+
     // Start is called before the first frame update
     public override void Enter()
     {
@@ -19,6 +21,8 @@ public class EndManager : CStateBase<GameManager>
         target: obj,
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+
+        m_cFadeManager = obj.GetComponent<FadeManager>();
     }
     public override void Execute()
     {
@@ -51,24 +55,25 @@ public class EndManager : CStateBase<GameManager>
         {
             case "Title":
 
+                if (m_cFadeManager.m_flerpVal >= 1)
+                {
 
+                    gameObject
+                     = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
-                gameObject
-                 = ManagerObjectManager.Instance.GetGameObject("SceneManager");
-
-                ExecuteEvents.Execute<ISceneInterfase>(
-                   target: gameObject,
-                   eventData: null,
-                   functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.PictureStoryShow));
-
+                    ExecuteEvents.Execute<ISceneInterfase>(
+                       target: gameObject,
+                       eventData: null,
+                       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.PictureStoryShow));
+                }
 
                 break;
 
 
             case "GameMain":
 
-                var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager").GetComponent<FadeManager>();
-                if (obj.m_flerpVal >= 1)
+                //var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager").GetComponent<FadeManager>();
+                if (m_cFadeManager.m_flerpVal >= 1)
                 {
                     gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
