@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 849c74ba6a24407439d92a74bb20d4ee
   - enabled: 1
+    path: Assets/Scenes/PictureStoryShow.unity
+    guid: fa94a1dd96277554c94593800a6c8d18
+  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: eb53ff683c12e804eb942b8ea6bc7dbd
   - enabled: 1

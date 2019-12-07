@@ -247,18 +247,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 326401182, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e95f4a7fe31666746bf4b89c59258278, type: 3}
 --- !u!4 &2036226517911816456 stripped
@@ -657,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
         type: 3}
       propertyPath: sceneObjects.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
         type: 3}
@@ -672,21 +660,26 @@ PrefabInstance:
     - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
         type: 3}
       propertyPath: sceneObjects.Array.data[4].m_SceneName
-      value: Tutorial
+      value: PictureStoryShow
       objectReference: {fileID: 0}
     - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
         type: 3}
       propertyPath: sceneObjects.Array.data[5].m_SceneName
-      value: StageSelect
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
         type: 3}
       propertyPath: sceneObjects.Array.data[6].m_SceneName
-      value: GameMain
+      value: StageSelect
       objectReference: {fileID: 0}
     - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
         type: 3}
       propertyPath: sceneObjects.Array.data[7].m_SceneName
+      value: GameMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808781263526652528, guid: 60aee886f4f32294a9474237b8c1fa3d,
+        type: 3}
+      propertyPath: sceneObjects.Array.data[8].m_SceneName
       value: Result
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -713,6 +706,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680955803034909720, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929806465823363153, guid: d3e4fcd024633f348a61ac7d86c93526,
         type: 3}
@@ -772,7 +770,7 @@ PrefabInstance:
     - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
         type: 3}
       propertyPath: ObjectType.Array.size
-      value: 13
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
         type: 3}
@@ -781,9 +779,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
         type: 3}
+      propertyPath: CSVMap
+      value: 
+      objectReference: {fileID: 4900000, guid: cd97d7033b50d2547a0f51bf08c54661, type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
       propertyPath: CSVPipeMap
       value: 
-      objectReference: {fileID: 4900000, guid: 9f4262883d3f8574bbd9330aad4dc1d8, type: 3}
+      objectReference: {fileID: 4900000, guid: 567376f5a44b0564d86dbc77a694a189, type: 3}
     - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
         type: 3}
       propertyPath: ObjectType.Array.data[1]
@@ -849,6 +852,54 @@ PrefabInstance:
       propertyPath: ObjectType.Array.data[11]
       value: 
       objectReference: {fileID: 6889745238291303689, guid: fa0330958704abe45a312ee6649e26d1,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[13]
+      value: 
+      objectReference: {fileID: 2682445437655778001, guid: b0c0d38314069b548a416d28ac9c48d5,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[14]
+      value: 
+      objectReference: {fileID: 5146556599663226550, guid: e0359214bf5659d41b9403a435c55484,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[15]
+      value: 
+      objectReference: {fileID: 7533690857484477649, guid: 9de951782a557fe4d9b7fa6b25ba2b35,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[16]
+      value: 
+      objectReference: {fileID: 6889745238291303689, guid: fa0330958704abe45a312ee6649e26d1,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[18]
+      value: 
+      objectReference: {fileID: 6477527461386847410, guid: b505ae6b1043dc345896a09e4d9b4d82,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[19]
+      value: 
+      objectReference: {fileID: 4205534044244323347, guid: 4ce7a407798c36a42ba12a050e187269,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[20]
+      value: 
+      objectReference: {fileID: 288299340949266617, guid: 48a72c974701d6d4fba14b737bf22a9e,
+        type: 3}
+    - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
+        type: 3}
+      propertyPath: ObjectType.Array.data[21]
+      value: 
+      objectReference: {fileID: 1959947403857704104, guid: b867e91bbe215194f9578c6510791cab,
         type: 3}
     - target: {fileID: 1395217787955859296, guid: d3e4fcd024633f348a61ac7d86c93526,
         type: 3}

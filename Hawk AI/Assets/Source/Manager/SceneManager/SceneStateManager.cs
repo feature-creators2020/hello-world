@@ -10,6 +10,7 @@ public enum ESceneState
     testSceneB,
     testSceneC,
     Title,
+    PictureStoryShow,
     Tutorial,
     StageSelect,
     GameMain,
