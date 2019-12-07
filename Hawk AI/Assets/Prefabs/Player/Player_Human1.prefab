@@ -671,7 +671,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4680553820542856988}
   - component: {fileID: 1282060144384238950}
-  - component: {fileID: 8931570226380192417}
   m_Layer: 0
   m_Name: RadarCamera
   m_TagString: Untagged
@@ -736,14 +735,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8931570226380192417
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4504686571246263674}
-  m_Enabled: 1
 --- !u!111 &4040553604105356870
 Animation:
   m_ObjectHideFlags: 0
