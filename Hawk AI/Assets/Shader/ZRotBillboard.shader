@@ -2,6 +2,7 @@
 {
 	Properties
 	{
+		_Color("Base Color", Color) = (1,1,1,1)
 		_MainTex("Texture", 2D) = "white" {}
 		[KeywordEnum(OFF, ALL_AXIS, Y_AXIS)] _BILLBOARD("Billboard Mode", Float) = 2
 		_Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
@@ -11,6 +12,7 @@
 			Tags{ "Queue" = "AlphaTest" "RenderType" = "TransparentCutout"
 					"IgnoreProjector" = "True" "DisableBatching" = "True" }
 
+			Cull off
 			Blend SrcAlpha OneMinusSrcAlpha
 
 			Pass
@@ -91,6 +93,8 @@
 					return o;
 				}
 
+				fixed4 _Color;
+
 				fixed4 frag(v2f i) : SV_Target
 				{
 					// sample the texture
@@ -98,7 +102,7 @@
 					col = fixed4(col.rgb, _Cutoff)
 						// apply fog
 						UNITY_APPLY_FOG(i.fogCoord, col);
-						return col;
+						return col * _Color;
 					}
 					ENDCG
 				}

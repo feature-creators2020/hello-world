@@ -11,6 +11,8 @@
 			Tags{ "Queue" = "AlphaTest" "RenderType" = "TransparentCutout"
 					"IgnoreProjector" = "True" "DisableBatching" = "True" }
 			
+
+			Cull off
 			Blend SrcAlpha OneMinusSrcAlpha
 
 			Pass
