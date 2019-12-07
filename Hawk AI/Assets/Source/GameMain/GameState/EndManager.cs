@@ -94,7 +94,6 @@ public class EndManager : CStateBase<GameManager>
 
             default:
 
-                this.m_cOwner.ChangeState(0, EGameState.Main);
 
                 break;
 
