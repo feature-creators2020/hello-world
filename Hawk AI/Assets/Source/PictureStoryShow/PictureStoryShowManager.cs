@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
+public enum EPictureStoryShowChild
+{
+    eBackGroundImage,
+    eBackImage,
+    eFrontImage,
+}
+
+
 public class PictureStoryShowManager : MonoBehaviour
 {
     [SerializeField]
@@ -12,13 +21,14 @@ public class PictureStoryShowManager : MonoBehaviour
     [SerializeField]
     private float ChangeSpriteTime;
     private float m_fCountTime = 0f;
+    private float m_flerpVal = 0f;
 
     private int m_nNowPage = 0;
     private int m_nLastPage = 0;
 
     private bool m_bStateFlg = false;
 
-    private Image m_cImage;
+    private List<Image> m_cImageList = new List<Image>();
 
     [SerializeField]
     private GameObject m_cSceneObj;
@@ -30,8 +40,14 @@ public class PictureStoryShowManager : MonoBehaviour
     void Start()
     {
         m_nLastPage = SpriteList.Count;
-        m_cImage = this.gameObject.transform.GetChild(0).GetComponent<Image>();
-        m_cImage.sprite = SpriteList[m_nNowPage];
+
+        for(int i = 0; i < gameObject.transform.childCount;i++)
+        {
+            m_cImageList.Add(gameObject.transform.GetChild(i).GetComponent<Image>());
+        }
+
+        m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage + 1];
+        m_cImageList[(int)EPictureStoryShowChild.eFrontImage].sprite = SpriteList[m_nNowPage];
 
         ExecuteEvents.Execute<IFadeInterfase>(
         target: m_cFadeObj,
@@ -49,10 +65,9 @@ public class PictureStoryShowManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return) || (m_fCountTime >= ChangeSpriteTime))
         {
 
-            m_nNowPage++;
             m_fCountTime = 0f;
 
-            if (m_nNowPage == m_nLastPage)
+            if (m_nNowPage == (m_nLastPage - 1))
             {
                 m_nNowPage = m_nLastPage -1;
 
@@ -62,9 +77,35 @@ public class PictureStoryShowManager : MonoBehaviour
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
 
+                m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage];
             }
+            //else if (m_nNowPage == (m_nLastPage - 1))
+            //{
+            //    m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage];
+            //}
+            else
+            {
+                StartCoroutine(
+                    SlideCoroutine(
+                    new Vector3(m_cImageList[(int)EPictureStoryShowChild.eBackImage].rectTransform.rect.width, 0f, 0f),
+                    Vector3.zero,
+                    m_cImageList[(int)EPictureStoryShowChild.eBackImage].rectTransform)
+                    );
 
-            m_cImage.sprite = SpriteList[m_nNowPage];
+                m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage + 1];
+
+                StartCoroutine(
+                    SlideCoroutine(
+                    Vector3.zero,
+                    new Vector3(-m_cImageList[(int)EPictureStoryShowChild.eFrontImage].rectTransform.rect.width, 0f, 0f),
+                    m_cImageList[(int)EPictureStoryShowChild.eFrontImage].rectTransform)
+                    );
+
+                m_cImageList[(int)EPictureStoryShowChild.eFrontImage].sprite = SpriteList[m_nNowPage];
+
+            }
+            
+            m_nNowPage++;
 
             Debug.Log("m_nNowPage : " + m_nNowPage);
         }
@@ -80,6 +121,20 @@ public class PictureStoryShowManager : MonoBehaviour
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Tutorial));
             }
+        }
+    }
+
+
+    IEnumerator SlideCoroutine(Vector3 _StartAngle, Vector3 _EndAngle,RectTransform _RectTransform)
+    {
+        m_flerpVal = 0f;
+
+        while (m_flerpVal <= 1f)
+        {//時間補間
+            m_flerpVal += Time.deltaTime / 0.5f;
+            _RectTransform.localPosition
+                = Vector3.Lerp(_StartAngle, _EndAngle, m_flerpVal);
+            yield return null;
         }
     }
 }
