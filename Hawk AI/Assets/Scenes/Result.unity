@@ -19208,7 +19208,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 193
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -40337,6 +40337,51 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3415957457098418080, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 198
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415957455315750535, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 184
+      objectReference: {fileID: 0}
+    - target: {fileID: 214255649640985640, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 214255649640985640, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 214255649640985640, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271502097387794491, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271502097387794491, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271502097387794491, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.000008
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654204918520476553, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: ef8252ff43f42eb4ba505496ba4cb7b2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87381ee1aacf871478da3e5af5336f58, type: 3}
 --- !u!111 &3506690170648285980

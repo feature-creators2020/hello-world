@@ -174,6 +174,12 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eRightFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eRightFont].color = Color.white;
 
+        m_cImageList[(int)EResultImage.eRightFont].rectTransform.localScale = new Vector3(
+            m_cImageList[(int)EResultImage.eRightFont].rectTransform.localScale.x / 2,
+            m_cImageList[(int)EResultImage.eRightFont].rectTransform.localScale.y / 2,
+            m_cImageList[(int)EResultImage.eRightFont].rectTransform.localScale.z);
+
+
         ExecuteEvents.Execute<IEffectControllerInterface>(
         target: m_cEffectController,
         eventData: null,
@@ -201,6 +207,13 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         m_cImageList[(int)EResultImage.eLeftBack].color = m_cLeftBackColor;
         m_cImageList[(int)EResultImage.eLeftFont].sprite = m_cLoseSprite;
         m_cImageList[(int)EResultImage.eLeftFont].color = Color.white;
+
+        m_cImageList[(int)EResultImage.eLeftFont].rectTransform.localScale = new Vector3(
+            m_cImageList[(int)EResultImage.eLeftFont].rectTransform.localScale.x / 2,
+            m_cImageList[(int)EResultImage.eLeftFont].rectTransform.localScale.y / 2,
+            m_cImageList[(int)EResultImage.eLeftFont].rectTransform.localScale.z);
+
+
 
         ExecuteEvents.Execute<IEffectControllerInterface>(
         target: m_cEffectController,
