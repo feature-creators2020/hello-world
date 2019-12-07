@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /****シングルトン化****/
 public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
@@ -33,10 +34,24 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
             target: obj,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                Invoke("Retry", 1.0f);
+            }
 
             //    this.m_cOwner.ChangeState(0, EGameState.End);
         }
         //現状はアイコンの色を変えている、実際はテクスチャを変える
         CheeseIcon[RemainingCheese].GetComponent<Image>().sprite = Mouse;
+    }
+
+    void Retry()
+    {
+        var gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
+
+        ExecuteEvents.Execute<ISceneInterfase>(
+           target: gameObject,
+           eventData: null,
+           functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Tutorial));
     }
 }
