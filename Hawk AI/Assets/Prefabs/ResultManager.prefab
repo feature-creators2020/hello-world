@@ -22480,8 +22480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c0aaf406cbd144287a2704bc7c62f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cWinSprite: {fileID: 21300000, guid: cb1681d6dccdc894ea0fd836c52db207, type: 3}
-  m_cLoseSprite: {fileID: 21300000, guid: 4f27c6cbc24a6c842853154891a9bb42, type: 3}
+  m_cWinSprite: {fileID: 21300000, guid: 508b06268d89f024b87b81d2bdd94341, type: 3}
+  m_cLoseSprite: {fileID: 21300000, guid: 916425ad691ea704bb92b85bc8961ee1, type: 3}
   m_cLeftBackColor: {r: 0, g: 0, b: 0, a: 0.39215687}
   m_cRightBackColor: {r: 0, g: 0, b: 0, a: 0.39215687}
 --- !u!1 &3415957457238293628
