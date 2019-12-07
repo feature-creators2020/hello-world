@@ -26,35 +26,76 @@ public class MaterialController : GeneralManager, ISetMaterial
         List<Shader> bufShaders = new List<Shader>();
 
         // 子のコンポーネントをすべて取得し、ループで回す
-        var SkinnedMeshRend = _Object.GetComponentsInChildren<MeshRenderer>();
+        var SkinnedMeshRend = _Object.GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        //マテリアルに変更
-        foreach (var child in SkinnedMeshRend)
+        if (SkinnedMeshRend != null)
         {
-            foreach (var material in child.materials)
+
+            //マテリアルに変更
+            foreach (var child in SkinnedMeshRend)
             {
-                Color col = Color.cyan;
+                foreach (var material in child.materials)
+                {
+                    Color col = Color.cyan;
 
-                if (material != null)
-                {//オブジェクトにマテリアルがセットされている場合
+                    if (material != null)
+                    {//オブジェクトにマテリアルがセットされている場合
 
-                    //マテリアルの元々設定されている色を取得
-                    if (material.HasProperty("_Color") == true)
-                    {
-                        col = material.GetColor("_Color");
-                        //シェーダーに渡す変数
-                        material.SetColor("_Albedo", col);
+                        //マテリアルの元々設定されている色を取得
+                        if (material.HasProperty("_Color") == true)
+                        {
+                            col = material.GetColor("_Color");
+                            //シェーダーに渡す変数
+                            material.SetColor("_Albedo", col);
+                        }
+                        else
+                        {//error log
+                         // Debug.LogError("material.HasProperty is Not Material Color !");
+                        }
+                        //マテリアルのシェーダー変更
+                        bufShaders.Add(material.shader);
+                        material.shader = m_cMaterial.shader;
+
                     }
-                    else
-                    {//error log
-                     // Debug.LogError("material.HasProperty is Not Material Color !");
-                    }
-                    //マテリアルのシェーダー変更
-                    bufShaders.Add(material.shader);
-                    material.shader = m_cMaterial.shader;
-
                 }
             }
+
+        }
+
+        var MeshRend = _Object.GetComponentsInChildren<MeshRenderer>();
+
+        if (MeshRend != null)
+        {
+
+            //マテリアルに変更
+            foreach (var child in MeshRend)
+            {
+                foreach (var material in child.materials)
+                {
+                    Color col = Color.cyan;
+
+                    if (material != null)
+                    {//オブジェクトにマテリアルがセットされている場合
+
+                        //マテリアルの元々設定されている色を取得
+                        if (material.HasProperty("_Color") == true)
+                        {
+                            col = material.GetColor("_Color");
+                            //シェーダーに渡す変数
+                            material.SetColor("_Albedo", col);
+                        }
+                        else
+                        {//error log
+                         // Debug.LogError("material.HasProperty is Not Material Color !");
+                        }
+                        //マテリアルのシェーダー変更
+                        bufShaders.Add(material.shader);
+                        material.shader = m_cMaterial.shader;
+
+                    }
+                }
+            }
+
         }
 
 
@@ -65,26 +106,50 @@ public class MaterialController : GeneralManager, ISetMaterial
     public void RevertMaterial(GameObject _Object)
     {
 
-        // 子のコンポーネントをすべて取得し、ループで回す
-        var SkinnedMeshRend = _Object.GetComponentsInChildren<MeshRenderer>();
-
+        int i = 0;
         List<Shader> Shaders = m_cDicShaders[_Object];
 
-        int i = 0;
-        foreach (var child in SkinnedMeshRend)
+        // 子のコンポーネントをすべて取得し、ループで回す
+        var SkinnedMeshRend = _Object.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        if (SkinnedMeshRend != null)
         {
-            foreach (var material in child.materials)
+            foreach (var child in SkinnedMeshRend)
             {
-                Color col = Color.cyan;
+                foreach (var material in child.materials)
+                {
+                    Color col = Color.cyan;
 
-                if (material != null)
-                {//オブジェクトにマテリアルがセットされている場合
+                    if (material != null)
+                    {//オブジェクトにマテリアルがセットされている場合
 
-                    material.shader = Shaders[i];
-                    i++;
+                        material.shader = Shaders[i];
+                        i++;
+                    }
                 }
             }
         }
+
+        var MeshRend = _Object.GetComponentsInChildren<MeshRenderer>();
+
+        if (MeshRend != null)
+        {
+            foreach (var child in MeshRend)
+            {
+                foreach (var material in child.materials)
+                {
+                    Color col = Color.cyan;
+
+                    if (material != null)
+                    {//オブジェクトにマテリアルがセットされている場合
+
+                        material.shader = Shaders[i];
+                        i++;
+                    }
+                }
+            }
+        }
+
     }
 
 
