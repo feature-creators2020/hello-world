@@ -83,7 +83,7 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 60
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -112,7 +112,7 @@ ModelImporter:
       internalID: 0
       firstFrame: 110
       lastFrame: 120
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -148,11 +148,11 @@ ModelImporter:
       internalID: 0
       firstFrame: 120
       lastFrame: 300
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
-      loop: 0
+      loop: 1
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0

@@ -16,6 +16,7 @@ public class MCatchManager : CStateBase<MouseStateManager>
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Debuff);   // 捕まえられたSE？
+        m_cOwner.PlayAnimation(EMouseAnimation.Wait);
     }
 
     public override void Execute()

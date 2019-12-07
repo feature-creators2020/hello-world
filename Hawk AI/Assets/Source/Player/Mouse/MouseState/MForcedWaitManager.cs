@@ -9,7 +9,7 @@ public class MForcedWaitManager : CStateBase<MouseStateManager>
 
     public override void Enter()
     {
-
+        m_cOwner.PlayAnimation(EMouseAnimation.Wait);
     }
 
     public override void Execute()

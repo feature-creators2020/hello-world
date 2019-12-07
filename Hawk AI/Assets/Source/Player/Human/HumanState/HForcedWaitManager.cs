@@ -9,7 +9,7 @@ public class HForcedWaitManager : CStateBase<HumanStateManager>
 
     public override void Enter()
     {
-
+        m_cOwner.PlayAnimation(EHumanAnimation.Wait);
     }
 
     public override void Execute()

@@ -29,6 +29,7 @@ public class MUpManager : CStateBase<MouseStateManager>
         //Debug.Log("EndPos : " + EndPos);
         m_cOwner.GravityOff();
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Jump);   // ジャンプSE
+        m_cOwner.PlayAnimation(EMouseAnimation.Run);
     }
 
     public override void Execute()

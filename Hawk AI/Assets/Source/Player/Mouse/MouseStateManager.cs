@@ -21,7 +21,8 @@ public enum EMouseState
 public enum EMouseAnimation
 {
     Wait,
-    Run
+    Run,
+    Slow
 }
 
 public interface IMouseInterface : IEventSystemHandler
@@ -76,7 +77,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public SEAudio m_SEAudio;           // se
 
 
-    private string[] AnimationString = { "Mouse_Wait", "Mouse_Run" };          // アニメーション名
+    [System.NonSerialized]
+    public string[] AnimationString = { "Mouse3_Wait", "Mouse3_Run", "Mouse3_Slow" };          // アニメーション名
     private int m_nAnimationNo;                                      // 再生中アニメーション番号
     private Animation m_cAnimation;                                  // アニメーション      
 

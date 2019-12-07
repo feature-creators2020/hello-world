@@ -17,6 +17,7 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
         m_fEffectTime = 5f;
         m_isFadeOut = false;
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_GetCheese);   // チーズゲットSE
+        m_cOwner.PlayAnimation(EMouseAnimation.Wait);
     }
 
     public override void Execute()

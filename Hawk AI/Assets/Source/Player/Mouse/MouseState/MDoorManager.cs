@@ -60,6 +60,11 @@ public class MDoorManager : CStateBase<MouseStateManager>
         if (moveForward != Vector3.zero)
         {
             m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+            m_cOwner.PlayAnimation(EMouseAnimation.Slow);
+        }
+        else
+        {
+            m_cOwner.PlayAnimation(EMouseAnimation.Wait);
         }
 
         // 移動処理

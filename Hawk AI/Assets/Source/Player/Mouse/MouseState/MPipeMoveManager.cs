@@ -49,7 +49,7 @@ public class MPipeMoveManager : CStateBase<MouseStateManager>
         functor: (recieveTarget, y) => recieveTarget.RevertMaterial(this.m_cOwner.gameObject));
 
         GravityOn();
-
+        m_cOwner.PlayAnimation(EMouseAnimation.Run);
     }
 
     private void MoveLerp()

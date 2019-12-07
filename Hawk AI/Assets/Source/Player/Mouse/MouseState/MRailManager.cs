@@ -45,6 +45,11 @@ public class MRailManager : CStateBase<MouseStateManager>
         if (moveForward != Vector3.zero)
         {
             m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+            m_cOwner.PlayAnimation(EMouseAnimation.Run);
+        }
+        else
+        {
+            m_cOwner.PlayAnimation(EMouseAnimation.Wait);
         }
 
         Vector3 railmove = Vector3.zero;
