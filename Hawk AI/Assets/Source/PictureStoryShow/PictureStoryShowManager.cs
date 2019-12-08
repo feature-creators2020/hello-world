@@ -113,7 +113,7 @@ public class PictureStoryShowManager : MonoBehaviour
                 {
                     StartCoroutine(
                         SlideCoroutine(
-                        new Vector3(this.gameObject.GetComponent<CanvasScaler>().referenceResolution.x, 0f, 0f),
+                        new Vector3(0f, this.gameObject.GetComponent<CanvasScaler>().referenceResolution.x, 0f),
                         Vector3.zero,
                         m_cImageList[(int)EPictureStoryShowChild.eBackImage].rectTransform)
                         );
@@ -130,7 +130,7 @@ public class PictureStoryShowManager : MonoBehaviour
                     StartCoroutine(
                         SlideCoroutine(
                         Vector3.zero,
-                        new Vector3(-this.gameObject.GetComponent<CanvasScaler>().referenceResolution.x, 0f, 0f),
+                        new Vector3(0f, -this.gameObject.GetComponent<CanvasScaler>().referenceResolution.y, 0f),
                         m_cImageList[(int)EPictureStoryShowChild.eFrontImage].rectTransform)
                         );
 
