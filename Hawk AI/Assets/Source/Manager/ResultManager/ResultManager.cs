@@ -59,6 +59,10 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private List<GameObject> m_cSpotLightList = new List<GameObject>();
     private List<GameObject> m_cFloorSpotLightList = new List<GameObject>();
 
+    [SerializeField]
+    private GameObject[] HumanObjects;
+    [SerializeField]
+    private GameObject[] MouseObjects;
 
 
     // Start is called before the first frame update
@@ -195,6 +199,23 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         //eventData: null,
         //functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight, ELoseEffectsType.eGaan));
 
+        foreach (var val in HumanObjects)
+        {
+            Debug.Log("HumanObject : " + val.name);
+            ExecuteEvents.Execute<IResultHumanInterfase>(
+            target: val,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.PlayWin());
+        }
+
+        foreach (var val in MouseObjects)
+        {
+            Debug.Log("MouseObject : " + val.name);
+            ExecuteEvents.Execute<IResultMouseInterfase>(
+            target: val,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.PlayLose());
+        }
     }
 
     public void MouseWin()
@@ -245,6 +266,24 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         target: m_cEffectController,
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
+
+        foreach (var val in HumanObjects)
+        {
+            Debug.Log("HumanObject : " + val.name);
+            ExecuteEvents.Execute<IResultHumanInterfase>(
+            target: val,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.PlayLose());
+        }
+
+        foreach (var val in MouseObjects)
+        {
+            Debug.Log("MouseObject : " + val.name);
+            ExecuteEvents.Execute<IResultMouseInterfase>(
+            target: val,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.PlayWin());
+        }
 
     }
 }

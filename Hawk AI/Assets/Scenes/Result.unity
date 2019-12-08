@@ -40382,6 +40382,36 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: ef8252ff43f42eb4ba505496ba4cb7b2, type: 2}
+    - target: {fileID: 3415957457104854404, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: HumanObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415957457104854404, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: MouseObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415957457104854404, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: HumanObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8296172668826631918}
+    - target: {fileID: 3415957457104854404, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: HumanObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8296172667650006164}
+    - target: {fileID: 3415957457104854404, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: MouseObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8296172667773334605}
+    - target: {fileID: 3415957457104854404, guid: 87381ee1aacf871478da3e5af5336f58,
+        type: 3}
+      propertyPath: MouseObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8296172668381757298}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87381ee1aacf871478da3e5af5336f58, type: 3}
 --- !u!111 &3506690170648285980
@@ -43459,6 +43489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006512736876867207}
   - component: {fileID: 3506690170648285980}
+  - component: {fileID: 8296172667650006165}
   m_Layer: 16
   m_Name: human_fun_sad
   m_TagString: Player
@@ -43466,6 +43497,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172667650006165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172667650006164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d073aff0932bb4bbfd3f21b80ba4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8296172667773334605
 GameObject:
   m_ObjectHideFlags: 0
@@ -43476,6 +43519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006512736767166046}
   - component: {fileID: 3506690170762181573}
+  - component: {fileID: 8296172667773334606}
   m_Layer: 16
   m_Name: rat_fun_sad
   m_TagString: Player
@@ -43483,6 +43527,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172667773334606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172667773334605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecef4a227d5fee4b984c09f3dd99571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8296172668381757298
 GameObject:
   m_ObjectHideFlags: 0
@@ -43493,6 +43549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006512736149179745}
   - component: {fileID: 3506690171246473466}
+  - component: {fileID: 8296172668381757299}
   m_Layer: 16
   m_Name: rat_fun_sad
   m_TagString: Player
@@ -43500,6 +43557,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172668381757299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172668381757298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecef4a227d5fee4b984c09f3dd99571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8296172668826631918
 GameObject:
   m_ObjectHideFlags: 0
@@ -43510,6 +43579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5006512735704435965}
   - component: {fileID: 3506690171824910694}
+  - component: {fileID: 8296172668826631919}
   m_Layer: 16
   m_Name: human_fun_sad
   m_TagString: Player
@@ -43517,6 +43587,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172668826631919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172668826631918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d073aff0932bb4bbfd3f21b80ba4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8297120698614222209
 Transform:
   m_ObjectHideFlags: 0

@@ -120,6 +120,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [System.NonSerialized]
     public GameObject m_GTargetBoxObject;
 
+    [System.NonSerialized]
     public string[] AnimationString = { "Human4_Wait", "Human4_Run", "Human4_Catch", "Human4_Put", "Human4_Jump" };          // アニメーション名
     private int m_nAnimationNo;                                      // 再生中アニメーション番号
     private Animation m_cAnimation;                                  // アニメーション      
