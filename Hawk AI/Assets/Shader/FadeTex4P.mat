@@ -26,5 +26,5 @@ Material:
     m_Floats: []
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _TopUV: {r: 0, g: -0.000000074505806, b: 0, a: 0}
-    - _UnderUV: {r: 0, g: -1.0000001, b: 0, a: 0}
+    - _TopUV: {r: 0, g: 2, b: 0, a: 0}
+    - _UnderUV: {r: 0, g: 1, b: 0, a: 0}
