@@ -12,6 +12,7 @@ public enum EPictureStoryShowChild
     eBackGroundImage,
     eBackImage,
     eFrontImage,
+    eTextImage
 }
 
 
@@ -19,6 +20,9 @@ public class PictureStoryShowManager : MonoBehaviour
 {
     [SerializeField]
     private List<Sprite> SpriteList = new List<Sprite>();
+
+    [SerializeField]
+    private List<string> StringList = new List<string>();
 
     [SerializeField]
     private float ChangeSpriteTime;
@@ -31,6 +35,7 @@ public class PictureStoryShowManager : MonoBehaviour
     private bool m_bStateFlg = false;
 
     private List<Image> m_cImageList = new List<Image>();
+    private List<Text> m_cTextList = new List<Text>();
 
     [SerializeField]
     private GameObject m_cSceneObj;
@@ -45,11 +50,16 @@ public class PictureStoryShowManager : MonoBehaviour
 
         for(int i = 0; i < gameObject.transform.childCount;i++)
         {
-            m_cImageList.Add(gameObject.transform.GetChild(i).GetComponent<Image>());
+            if(gameObject.transform.GetChild(i).GetComponent<Image>() != null)
+                m_cImageList.Add(gameObject.transform.GetChild(i).GetComponent<Image>());
+
+            if (gameObject.transform.GetChild(i).GetComponent<Text>() != null)
+                m_cTextList.Add(gameObject.transform.GetChild(i).GetComponent<Text>());
         }
 
         m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage + 1];
         m_cImageList[(int)EPictureStoryShowChild.eFrontImage].sprite = SpriteList[m_nNowPage];
+        m_cTextList[0].text = StringList[m_nNowPage];
 
         ExecuteEvents.Execute<IFadeInterfase>(
         target: m_cFadeObj,
@@ -82,11 +92,8 @@ public class PictureStoryShowManager : MonoBehaviour
                 functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
 
                 m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage];
+                m_cTextList[0].text = StringList[m_nNowPage];
             }
-            //else if (m_nNowPage == (m_nLastPage - 1))
-            //{
-            //    m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage];
-            //}
             else
             {
                 StartCoroutine(
@@ -96,6 +103,7 @@ public class PictureStoryShowManager : MonoBehaviour
                     m_cImageList[(int)EPictureStoryShowChild.eBackImage].rectTransform)
                     );
 
+                m_cTextList[0].text = StringList[m_nNowPage + 1];
                 m_cImageList[(int)EPictureStoryShowChild.eBackImage].sprite = SpriteList[m_nNowPage + 1];
 
                 StartCoroutine(
@@ -105,6 +113,7 @@ public class PictureStoryShowManager : MonoBehaviour
                     m_cImageList[(int)EPictureStoryShowChild.eFrontImage].rectTransform)
                     );
 
+                //m_cTextList[0].text = StringList[m_nNowPage];
                 m_cImageList[(int)EPictureStoryShowChild.eFrontImage].sprite = SpriteList[m_nNowPage];
 
             }
