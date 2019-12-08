@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using GamepadInput;
+using KeyBoardInput;
 
 
 public enum EPictureStoryShowChild
@@ -62,7 +64,9 @@ public class PictureStoryShowManager : MonoBehaviour
     {
         m_fCountTime += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.Return) || (m_fCountTime >= ChangeSpriteTime))
+        if ((Input.anyKeyDown) || (m_fCountTime >= ChangeSpriteTime) ||
+            (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any) || 
+            KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Any)))
         {
 
             m_fCountTime = 0f;
