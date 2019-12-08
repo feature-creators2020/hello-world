@@ -140,5 +140,11 @@ public class PictureStoryShowManager : MonoBehaviour
                 = Vector3.Lerp(_StartAngle, _EndAngle, m_flerpVal);
             yield return null;
         }
+
+        //強制補正
+        if(_StartAngle != _EndAngle)
+        {
+            _RectTransform.localPosition = _EndAngle;
+        }
     }
 }
