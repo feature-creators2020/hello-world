@@ -16,11 +16,12 @@ public class TextCanvasController : MonoBehaviour, ITextCanvasController
     private List<GameObject> m_cObjectList = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    public void TextCanvasControllerStart()
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             m_cObjectList.Add(gameObject.transform.GetChild(i).gameObject);
+            m_cObjectList[i].gameObject.GetComponent<TextCanvas>().TextCanvasStart();
             m_cObjectList[i].SetActive(false);
         }
 

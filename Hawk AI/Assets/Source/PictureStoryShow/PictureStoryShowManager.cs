@@ -71,6 +71,9 @@ public class PictureStoryShowManager : MonoBehaviour
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
 
+
+        m_cTextObj.GetComponent<TextCanvasController>().TextCanvasControllerStart();
+
         ExecuteEvents.Execute<ITextCanvasController>(
            target: m_cTextObj,
            eventData: null,

@@ -33,7 +33,7 @@ public class TextCanvas : MonoBehaviour, ITextCanvas
     private float m_fFadeTime = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    public void TextCanvasStart()
     {
         m_fColorCount = BiasTime;
 
