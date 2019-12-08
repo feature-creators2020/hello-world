@@ -69,5 +69,6 @@ public class MCatchManager : CStateBase<MouseStateManager>
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
 
+        m_cOwner.transform.localScale = m_cOwner.m_vDefaultScale;
     }
 }

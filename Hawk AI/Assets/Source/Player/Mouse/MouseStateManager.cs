@@ -30,6 +30,10 @@ public interface IMouseInterface : IEventSystemHandler
     void Catched();
 
     void ChangeUpState(GameObject _Target);
+
+    void SetCollapse();
+
+    void SetDefaultSize();
 }
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
@@ -83,6 +87,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     private Animation m_cAnimation;                                  // アニメーション      
 
 
+    public Vector3 m_vDefaultScale;               // 元の大きさを保持
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -127,6 +132,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.ForcedWait]);
         EOldState = EMouseState.ForcedWait;
+        m_vDefaultScale = this.transform.localScale;
     }
 
     // Update is called once per frame
@@ -467,6 +473,17 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     }
 
     public Animation GetAnimation { get { return m_cAnimation; } }
+
+    public void SetCollapse()
+    {
+        //m_vDefaultScale = this.transform.localScale;
+        this.transform.localScale = new Vector3(m_vDefaultScale.x, 0.1f, m_vDefaultScale.z);
+    }
+
+    public void SetDefaultSize()
+    {
+        this.transform.localScale = m_vDefaultScale;
+    }
 
     // アニメーションイベント用関数
     public void MouseRunEvent()

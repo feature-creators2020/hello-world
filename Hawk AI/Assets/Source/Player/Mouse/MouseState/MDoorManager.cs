@@ -10,7 +10,7 @@ public class MDoorManager : CStateBase<MouseStateManager>
 
     public override void Enter()
     {
-        
+        m_cOwner.SetCollapse();
     }
 
     public override void Execute()
@@ -76,5 +76,6 @@ public class MDoorManager : CStateBase<MouseStateManager>
     public override void Exit()
     {
         //m_cOwner.EOldState = EMouseState.Door;
+        m_cOwner.SetDefaultSize();
     }
 }

@@ -554,31 +554,35 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // アイテム取得
         if (LayerMask.LayerToName(other.gameObject.layer) == "Item")
         {
-            if (m_sItemData == null)
+            // ドロップアイテムを取得しないようにする
+            if (other.tag != "DropItem")
             {
-                // アイテムマネージャー取得
-                var ItemManagerObject = ManagerObjectManager.Instance.GetGameObject("ItemManager");
-                //Debug.Log(ItemManagerObject.name);
-                m_Itemmanager = ItemManagerObject.GetComponent<ItemManager>();
-                //Debug.Log(m_Itemmanager.name);
+                if (m_sItemData == null)
+                {
+                    // アイテムマネージャー取得
+                    var ItemManagerObject = ManagerObjectManager.Instance.GetGameObject("ItemManager");
+                    //Debug.Log(ItemManagerObject.name);
+                    m_Itemmanager = ItemManagerObject.GetComponent<ItemManager>();
+                    //Debug.Log(m_Itemmanager.name);
 
-                // ネズミ捕り
-                if (other.gameObject.tag == "Mousetrap")
-                {
-                    m_sItemData = "MousetrapManager";
-                    //Debug.Log("GetItem");
+                    // ネズミ捕り
+                    if (other.gameObject.tag == "Mousetrap")
+                    {
+                        m_sItemData = "MousetrapManager";
+                        //Debug.Log("GetItem");
+                    }
+                    if (other.gameObject.tag == "MouseGetTrap")
+                    {
+                        m_sItemData = "MouseGetTrapManager";
+                    }
+                    //CursorManager.Instance.GetItem(other.gameObject);
+                    ItemHolderManager.Instance.HoldItem(other.gameObject);
+                    // 取得したのでオブジェクトを消す
+                    Destroy(other.gameObject);
+                    m_SEAudio.Play((int)SEAudioType.eSE_GetTrap);   // アイテム取得SE
                 }
-                if(other.gameObject.tag == "MouseGetTrap")
-                {
-                    m_sItemData = "MouseGetTrapManager";
-                }
-                //CursorManager.Instance.GetItem(other.gameObject);
-                ItemHolderManager.Instance.HoldItem(other.gameObject);
-                // 取得したのでオブジェクトを消す
-                Destroy(other.gameObject);
-                m_SEAudio.Play((int)SEAudioType.eSE_GetTrap);   // アイテム取得SE
+                //Debug.Log("Item : " + m_sItemData);
             }
-            //Debug.Log("Item : " + m_sItemData);
         }
 
 

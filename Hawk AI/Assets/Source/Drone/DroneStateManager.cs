@@ -82,7 +82,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         StateTime = 0f;
         NowState = 0;
         NowPoint = 0;
-        m_fItemDropCount = 0f;
+        m_fItemDropCount = m_fItemDropTime;
         m_bIsNight = false;
         m_bCheckResult_list = new List<bool>();
 
@@ -288,6 +288,7 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         m_gItemInfo = null;
         var r_num = Random.Range(0, m_ItemManager.GetGameObjectsList().Count);
         m_gItemInfo = m_ItemManager.GetGameObject(r_num);
+        //m_gItemInfo = m_ItemManager.GetGameObject(1);
 
         // 対象のゲームオブジェクトマネージャーからプレハブ情報を取得
         ExecuteEvents.Execute<IItemInterface>(
