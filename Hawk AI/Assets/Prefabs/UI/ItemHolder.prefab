@@ -56,6 +56,9 @@ MonoBehaviour:
   CircleList:
   - {fileID: 5919210515625870175}
   - {fileID: 5919210515429957575}
+  PlayerObj:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5919210514683984845
 GameObject:
   m_ObjectHideFlags: 0

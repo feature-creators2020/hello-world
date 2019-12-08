@@ -576,7 +576,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                         m_sItemData = "MouseGetTrapManager";
                     }
                     //CursorManager.Instance.GetItem(other.gameObject);
-                    ItemHolderManager.Instance.HoldItem(other.gameObject);
+                    ItemHolderManager.Instance.HoldItem(this.gameObject, other.gameObject);
                     // 取得したのでオブジェクトを消す
                     Destroy(other.gameObject);
                     m_SEAudio.Play((int)SEAudioType.eSE_GetTrap);   // アイテム取得SE

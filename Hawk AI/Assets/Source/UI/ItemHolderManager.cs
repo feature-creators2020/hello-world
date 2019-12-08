@@ -21,25 +21,32 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         GetTrap = Resources.Load<Sprite>("Trap");
     }
 
-    public void HoldItem(GameObject ItemObj)
+    public void HoldItem(GameObject HumanObj, GameObject ItemObj)
     {
-        float TDistance = 0;
-        PlayerManager c_PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
-        var HumanList = c_PlayerManager.GetGameObjectsList("Human");
-        for (int i = 0; i < HumanList.Count; i++)
+        //float TDistance = 0;
+        //PlayerManager c_PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        //var HumanList = c_PlayerManager.GetGameObjectsList("Human");
+        //for (int i = 0; i < HumanList.Count; i++)
+        //{
+        //    var targetObj = c_PlayerManager.GetGameObject(i, "Human");
+        //    float nDis = Vector3.Distance(targetObj.transform.position, ItemObj.transform.position);
+        //    if (TDistance == 0)
+        //    {
+        //        TDistance = nDis;
+        //        index = i;
+        //    }
+        //    if (nDis <= TDistance)
+        //    {
+        //        TDistance = nDis;
+        //        index = i;
+        //    }
+        //}
+        if(HumanObj.transform.parent.name == "Player_Human")
         {
-            var targetObj = c_PlayerManager.GetGameObject(i, "Human");
-            float nDis = Vector3.Distance(targetObj.transform.position, ItemObj.transform.position);
-            if (TDistance == 0)
-            {
-                TDistance = nDis;
-                index = i;
-            }
-            if (nDis <= TDistance)
-            {
-                TDistance = nDis;
-                index = i;
-            }
+            index = 0;
+        }else if(HumanObj.transform.parent.name == "Player_Human2")
+        {
+            index = 1;
         }
 
         if (ItemObj.tag == "Mousetrap")
