@@ -52,8 +52,8 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
 
         // 移動処理。アクションを起こしていないときに処理
-        if (m_cOwner.m_fActionTime == m_cOwner.m_fLimitActionTime)
-        {
+        //if (m_cOwner.m_fActionTime == m_cOwner.m_fLimitActionTime)
+        //{
             // 速度設定
             m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed;
 
@@ -84,7 +84,7 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
             // 移動処理
             m_cOwner.Move(moveForward);
-        }
+        //}
 
         // Debug:ステート変更
     }

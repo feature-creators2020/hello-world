@@ -177,6 +177,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // se取得
         m_SEAudio = ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>();
 
+        Debug.Log("HumanState : " + m_cStateMachineList[0].GetCurrentState());
         // 各状態の処理
         base.Update();
 
@@ -192,8 +193,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
             Debug.DrawLine(transform.position, transform.position + transform.forward, Color.red);
             RaycastHit hit;
+            var boxscale = new Vector3(transform.lossyScale.x * 0.5f, transform.lossyScale.y, transform.lossyScale.z * 0.5f);
             // 正面方向にボックスキャスト(ベルトコンベアの側面に当たっているか)
-            if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, transform.forward, out hit, transform.rotation, 0.5f))
+            if (Physics.BoxCast(transform.position, boxscale, transform.forward, out hit, transform.rotation, 1f))
             {
                 //Debug.Log("RootObject : " + hit.collider.gameObject.transform.root.gameObject.name);
                 //Debug.Log("HumanRayHit : " + hit.collider.gameObject.name);
@@ -208,6 +210,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                         //Debug.Log("ChangeState");
                         m_GTargetBoxObject = hit.collider.gameObject;
                         m_TargetBoxNomal = hit.normal;
+                        Debug.Log("Change →Up");
                         ChangeState(0, EHumanState.Up);
                         return;
                     }
@@ -218,7 +221,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             Ray Downray = new Ray(transform.position, -transform.up);
             RaycastHit Downhit;
             Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
-            if (Physics.BoxCast(transform.position, transform.lossyScale * 0.5f, -transform.up, out Downhit))
+            if (Physics.BoxCast(transform.position, boxscale, -transform.up, out Downhit))
             {
                 //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.parent.gameObject.name);
                 //Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
@@ -231,7 +234,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     if (TagName == "Rail")
                     {
                         m_GTargetBoxObject = Downhit.collider.gameObject.transform.parent.parent.gameObject;
-                        ChangeState(0, EHumanState.Rail);
+                        if (!CheckCurrentState(EHumanState.Rail))
+                            ChangeState(0, EHumanState.Rail);
+                        Debug.Log("Change →Rail");
                     }
                 }
                 else
@@ -239,10 +244,22 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     if (CheckCurrentState(EHumanState.Rail))
                     {
                         ChangeState(0, EHumanState.Normal);
+                        Debug.Log("Change Rail→Normal");
                     }
                 }
             }
 
+        }
+
+        // 経過時間処理
+        if (m_fSlowTime > 0f)
+        {
+            m_fSlowTime -= Time.deltaTime;
+            Debug.Log("slowdownTime : " + m_fLimitSlowTime);
+        }
+        else
+        {
+            EOldState = EHumanState.Normal;
         }
 
     }
@@ -287,10 +304,15 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         }
         else
         {
-            // アクション経過時間を再設定
-            m_fActionTime = m_fLimitActionTime;
-            ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
-            ChangeState(0, EOldState);
+            // 置く状態の時、元のステートに戻す
+            if (CheckCurrentState(EHumanState.Put))
+            {
+                // アクション経過時間を再設定
+                m_fActionTime = m_fLimitActionTime;
+                ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
+                Debug.Log("Change →OldState");
+                ChangeState(0, EOldState);
+            }
         }
         return false;
     }
@@ -502,7 +524,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 // ネズミ捕り
                 if (other.gameObject.tag == "Mousetrap")
                 {
-                    ChangeState(0, EHumanState.SlowDown);
+                    m_SEAudio.Play((int)SEAudioType.eSE_Debuff);    // デバフSE
+                    m_fSlowTime = m_fLimitSlowTime;
+                    //ChangeState(0, EHumanState.SlowDown);
+                    //Debug.Log("Change Normal→SlowDown");
                 }
             }
             else
@@ -568,7 +593,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 // ネズミ捕り
                 if (other.gameObject.tag == "Mousetrap")
                 {
-                    m_fSlowTime = m_fLimitSlowTime; // 無敵状態を解除する
+                    m_SEAudio.Play((int)SEAudioType.eSE_Debuff);    // デバフSE
+                    m_fSlowTime = m_fLimitSlowTime; // デバフ時間を更新する
                 }
             }
         }
@@ -603,6 +629,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
         {
             ChangeState(0, EOldState);
+            Debug.Log("Change →OldState");
         }
 
         //if (other.tag == "DoorArea")
@@ -744,14 +771,15 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         PlayerMapPos = vector2Int;
     }
 
-    void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.tag == "Rail")
-        {
-            m_GTargetBoxObject = other.gameObject.transform.parent.parent.gameObject;
-            ChangeState(0, EHumanState.Rail);
-        }
-    }
+    //void OnCollisionStay(Collision other)
+    //{
+    //    if (other.gameObject.tag == "Rail")
+    //    {
+    //        m_GTargetBoxObject = other.gameObject.transform.parent.parent.gameObject;
+    //        ChangeState(0, EHumanState.Rail);
+    //        Debug.Log("Change →Rail");
+    //    }
+    //}
 
     public bool CheckCurrentState(EHumanState _state)
     {
@@ -766,6 +794,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         m_GTargetBoxObject = _Target;
         ChangeState(0, EHumanState.Up);
+        Debug.Log("Change →Up");
     }
 
     public void GravityOff()
@@ -799,6 +828,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 var a = -Vector3.Dot(_moveForward, correctionMove);
                 _moveForward = _moveForward + a * correctionMove;
             }
+        }
+        if(m_fSlowTime > 0f)
+        {
+            // デバフ時間がある時、スピードに速度低下倍率を掛ける
+            m_fmoveSpeed *= m_fSlowDownRate;
         }
         // 移動処理
         transform.position += _moveForward * m_fmoveSpeed * Time.deltaTime;
@@ -837,6 +871,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public void OnEndCatchEvent()
     {
         ChangeState(0, EOldState);
+        Debug.Log("Change →OldState");
     }
 
     public void PutingEvent()
@@ -847,5 +882,6 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public void OnEndPutEvent()
     {
         ChangeState(0, EOldState);
+        Debug.Log("Change →OldState");
     }
 }

@@ -19,9 +19,9 @@ public class HUpManager : CStateBase<HumanStateManager>
         timer = 0f;
         StartPos = m_cOwner.transform.position;
         var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
-        var SubPos = TopPos - StartPos;
+        var SubPos = TopPos - (StartPos - new Vector3(0f, m_cOwner.transform.localScale.y / 2f, 0f));
         var UpPos = StartPos + new Vector3(0f, SubPos.y, 0f);
-        EndPos = UpPos - m_cOwner.m_TargetBoxNomal * 0.5f;
+        EndPos = UpPos - m_cOwner.m_TargetBoxNomal * 1f;
         Distance = Vector3.Distance(StartPos, EndPos);
         //Debug.Log(m_cOwner.m_GTargetBoxObject.name + ".lossyScale : " + m_cOwner.m_GTargetBoxObject.transform.localScale);
         //Debug.Log("StartPos : " + StartPos);
@@ -54,6 +54,7 @@ public class HUpManager : CStateBase<HumanStateManager>
 
         if (presentLocation >= 1.0f)
         {
+            Debug.Log("Change Up→Normal");
             m_cOwner.ChangeState(0, EHumanState.Normal);
         }
 

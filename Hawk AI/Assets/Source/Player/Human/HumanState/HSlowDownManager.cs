@@ -11,10 +11,11 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
     public override void Enter()
     {
         // 前の状態が速度低下以外のときは新しく時間を設定する
-        if (m_cOwner.EOldState != EHumanState.SlowDown)
-        {
-            m_cOwner.m_fSlowTime = m_cOwner.m_fLimitSlowTime;
-        }
+        //if (m_cOwner.EOldState != EHumanState.SlowDown)
+        //{
+        //    m_cOwner.m_fSlowTime = m_cOwner.m_fLimitSlowTime;
+        //}
+        Debug.Log("PlayDebuffSE");
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Debuff);    // デバフSE
         m_cOwner.EOldState = EHumanState.SlowDown;
     }
@@ -55,8 +56,8 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
 
 
         // 移動処理。アクションを起こしていないときに処理
-        if (m_cOwner.m_fActionTime == m_cOwner.m_fLimitActionTime)
-        {
+        //if (m_cOwner.m_fActionTime == m_cOwner.m_fLimitActionTime)
+        //{
             // 速度設定
             m_cOwner.m_fmoveSpeed = m_cOwner.m_fDefaultSpeed * m_cOwner.m_fSlowDownRate;
 
@@ -88,13 +89,12 @@ public class HSlowDownManager : CStateBase<HumanStateManager>
 
             // 移動処理
             m_cOwner.Move(moveForward);
-        }
+        //}
 
-        // 経過時間処理
-        m_cOwner.m_fSlowTime -= Time.deltaTime;
         // タイマーが過ぎたらnormalに遷移する
         if (m_cOwner.m_fSlowTime <= 0f)
         {
+            Debug.Log("Change SlowDown→Normal");
             m_cOwner.ChangeState(0, EHumanState.Normal);
         }
 
