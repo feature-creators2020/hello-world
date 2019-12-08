@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7075472, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1141,7 +1141,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: 69c9057e836fc8345a14508f993f8ccd,
+      objectReference: {fileID: 32900000, guid: a9aa71388059f364ba9a1eaf2cadb7e2,
         type: 3}
     - target: {fileID: 8999721506597412346, guid: 3cb7f0638228d2e4e9b04b9fc8822e27,
         type: 3}
