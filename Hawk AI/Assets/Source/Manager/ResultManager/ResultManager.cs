@@ -1,14 +1,22 @@
-﻿using System.Collections;
+﻿
+//#define _Beta_Result
+#define _Master_Result
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public interface IResultManagerInterfase
+
+
+public interface IResultManagerInterfase : IEventSystemHandler
 {
     void HawkAIWin();
     void MouseWin();
 }
+
+#if _Beta_Result
 
 public enum EResultChildObj
 {
@@ -42,9 +50,12 @@ public enum EFloorSpotLightObject
     eLeft,
     eRight,
 }
+#endif //_Beta_Result
 
 public class ResultManager : MonoBehaviour, IResultManagerInterfase
 {
+
+#if _Beta_Result
     [SerializeField]
     private Sprite m_cWinSprite;
     [SerializeField]
@@ -59,6 +70,8 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private List<GameObject> m_cSpotLightList = new List<GameObject>();
     private List<GameObject> m_cFloorSpotLightList = new List<GameObject>();
 
+#endif //_Beta_Result
+
     [SerializeField]
     private GameObject[] HumanObjects;
     [SerializeField]
@@ -68,6 +81,8 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     // Start is called before the first frame update
     void Start()
     {
+#if _Beta_Result
+
         // Hack : Make Chileren Class
         GameObject m_cEffectController = new GameObject();
         GameObject ImgaeObj = null;
@@ -137,6 +152,9 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
             this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
         m_cEffectController.GetComponent<ResultFontEffect>().CallStart();
 
+#endif //_Beta_Result
+
+
         //勝ったほうの関数を呼ぶ
         if (GameManager.IsHumanWin)
         {
@@ -155,6 +173,9 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
     public void HawkAIWin()
     {
+
+#if _Beta_Result
+
         GameObject LoseEffectObj = gameObject.transform.GetChild((int)EResultChildObj.eLoseEffects).gameObject;
         m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
 
@@ -199,9 +220,25 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         //eventData: null,
         //functor: (recieveTarget, y) => recieveTarget.PlayEffects(ELoseSide.eRight, ELoseEffectsType.eGaan));
 
+
+
+#endif //_Beta_Result
+
+
+        for (int i = 0; i < gameObject.transform.GetChild(1).gameObject.transform.childCount;i++)
+        {
+            Debug.Log("Child : " + gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject);
+
+            ExecuteEvents.Execute<IResultManagerInterfase>(
+            target: gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.HawkAIWin());
+
+        }
+
+
         foreach (var val in HumanObjects)
         {
-            Debug.Log("HumanObject : " + val.name);
             ExecuteEvents.Execute<IResultHumanInterfase>(
             target: val,
             eventData: null,
@@ -210,7 +247,6 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         foreach (var val in MouseObjects)
         {
-            Debug.Log("MouseObject : " + val.name);
             ExecuteEvents.Execute<IResultMouseInterfase>(
             target: val,
             eventData: null,
@@ -220,6 +256,9 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
     public void MouseWin()
     {
+
+#if _Beta_Result
+
         GameObject LoseEffectObj = gameObject.transform.GetChild((int)EResultChildObj.eLoseEffects).gameObject;
         m_cEffectController = this.gameObject.transform.GetChild((int)EResultChildObj.eWinEffects).gameObject;
 
@@ -267,9 +306,23 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.Play((int)EResultFontEffect.eRight));
 
+
+
+#endif //_Beta_Result
+
+        for (int i = 0; i < gameObject.transform.GetChild(1).gameObject.transform.childCount; i++)
+        {
+            Debug.Log("Child : " + gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject);
+
+            ExecuteEvents.Execute<IResultManagerInterfase>(
+            target: gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.MouseWin());
+
+        }
+
         foreach (var val in HumanObjects)
         {
-            Debug.Log("HumanObject : " + val.name);
             ExecuteEvents.Execute<IResultHumanInterfase>(
             target: val,
             eventData: null,
@@ -278,12 +331,10 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         foreach (var val in MouseObjects)
         {
-            Debug.Log("MouseObject : " + val.name);
             ExecuteEvents.Execute<IResultMouseInterfase>(
             target: val,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.PlayWin());
         }
-
     }
 }
