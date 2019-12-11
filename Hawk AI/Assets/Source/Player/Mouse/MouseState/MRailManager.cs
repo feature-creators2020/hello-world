@@ -54,7 +54,7 @@ public class MRailManager : CStateBase<MouseStateManager>
 
         Vector3 railmove = Vector3.zero;
         ExecuteEvents.Execute<IRailInterfase>(
-            target: m_cOwner.m_GTargetBoxObject,
+            target: m_cOwner.m_GRailObject,
             eventData: null,
             functor: (recieveTarget, y) => railmove = recieveTarget.GetMove());
         //Debug.Log(m_cOwner.m_GTargetBoxObject.name);

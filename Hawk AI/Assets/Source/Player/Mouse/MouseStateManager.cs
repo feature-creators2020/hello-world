@@ -88,7 +88,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     private Animation m_cAnimation;                                  // アニメーション      
 
 
-    public Vector3 m_vDefaultScale;               // 元の大きさを保持
+    public Vector3 m_vDefaultScale;                 // 元の大きさを保持
+    public GameObject m_GRailObject;                // ベルトコンベアの情報
     /*{
         get { return m_fmoveSpeed; }
         set { m_fmoveSpeed = value; }
@@ -102,6 +103,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     [System.NonSerialized]
     public EMouseState EOldState;        // 前の状態を保持
+
+    public bool m_isOnRail;                // ベルトコンベアの上にいるか
 
     // Start is called before the first frame update
     void Start()
@@ -134,6 +137,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_cStateMachineList[0].ChangeState(m_cStateList[(int)EMouseState.ForcedWait]);
         EOldState = EMouseState.ForcedWait;
         m_vDefaultScale = this.transform.localScale;
+        m_isOnRail = false;
     }
 
     // Update is called once per frame
@@ -174,7 +178,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
 
         // レイキャストによる壁の当たり判定処理
-        if (!CheckCurrentState(EMouseState.Up) || !CheckCurrentState(EMouseState.GetCheese))
+        if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)))
         {
             Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
             Ray ray = new Ray(this.transform.position, this.transform.forward);
@@ -234,6 +238,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 }
             }
 
+        }
+        if (m_isOnRail)
+        {
+            ChangeState(0, EMouseState.Rail);
+            return;
         }
     }
 
@@ -389,16 +398,29 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 m_rb.velocity = m_rb.velocity + a * val.normal;
             }
         }
+        if(other.gameObject.tag == "Rail")
+        {
+            m_isOnRail = true;
+            m_GRailObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+        }
     }
 
-    //void OnCollisionStay(Collision other)
-    //{
-    //    if (other.gameObject.tag == "Rail")
-    //    {
-    //        m_GTargetBoxObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-    //        ChangeState(0, EMouseState.Rail);
-    //    }
-    //}
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Rail")
+        {
+            m_GRailObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+            ChangeState(0, EMouseState.Rail);
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Rail")
+        {
+            m_isOnRail = false;
+        }
+    }
 
     public bool CheckCurrentState(EMouseState _state)
     {
@@ -478,7 +500,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public void SetCollapse()
     {
         //m_vDefaultScale = this.transform.localScale;
-        this.transform.localScale = new Vector3(m_vDefaultScale.x, 0.1f, m_vDefaultScale.z);
+        this.transform.localScale = new Vector3(m_vDefaultScale.x, 0.3f, m_vDefaultScale.z);
     }
 
     public void SetDefaultSize()
