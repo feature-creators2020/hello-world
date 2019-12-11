@@ -14,53 +14,53 @@
 			Tags { "RenderType" = "Opaque" }
 			LOD 100
 
-		//	//1パス目でアウトライン描画
-		//	Pass
-		//	{
-		//		Cull Front
-		//		CGPROGRAM
-		//		#pragma vertex vert			//頂点シェーダー
-		//		#pragma fragment frag		//フラグメントシェーダ
-		//		#include "UnityCG.cginc"
-		//	//Inspector上で編集できるようにする値
-		//	fixed4  _OutlineColor;		//アウトラインの色
-		//	float	_OutlineSize;		//アウトラインサイズ
-		//	float4 _Albedo;
-		//	sampler2D _MainTex;
-		//	float4 _MainTex_ST;
-		//	//頂点シェーダーの引数
-		//	struct appdata
-		//	{
-		//		float4 vertex : POSITION;
-		//		float3 normal : NORMAL;
-		//		float2 uv	  : TEXCOORD0;
-		//	};
-		//	//フラグメントシェーダーの引数
-		//	struct v2f
-		//	{
-		//		float4 vertex : SV_POSITION;
-		//		float3 normal : TEXCOORD1;
-		//		float2 uv	  : TEXCOORD2;
-		//	};
-		//	//頂点シェーダー
-		//	v2f vert(appdata v)
-		//	{
-		//		v2f o;
-		//		o.vertex = UnityObjectToClipPos(v.vertex * _OutlineSize);
-		//		o.normal = UnityObjectToWorldNormal(v.normal);
-		//		o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-		//		return o;
-		//	}
-		//	//フラグメントシェーダー
-		//	fixed4 frag(v2f i) : SV_Target
-		//	{
-		//		fixed4 tex = tex2D(_MainTex, i.uv);
-		//		//NOTE: 色を変える場合、テクスチャの色から暗い色をブレンドして算出する
-		//		fixed4 col = fixed4(0.5, 0.5, 0.5, 0.5) * _Albedo * tex;
-		//		return col;
-		//	}
-		//	ENDCG
-		//}//Pass
+			//1パス目でアウトライン描画
+			Pass
+			{
+				Cull Front
+				CGPROGRAM
+				#pragma vertex vert			//頂点シェーダー
+				#pragma fragment frag		//フラグメントシェーダ
+				#include "UnityCG.cginc"
+			//Inspector上で編集できるようにする値
+			fixed4  _OutlineColor;		//アウトラインの色
+			float	_OutlineSize;		//アウトラインサイズ
+			float4 _Albedo;
+			sampler2D _MainTex;
+			float4 _MainTex_ST;
+			//頂点シェーダーの引数
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+				float2 uv	  : TEXCOORD0;
+			};
+			//フラグメントシェーダーの引数
+			struct v2f
+			{
+				float4 vertex : SV_POSITION;
+				float3 normal : TEXCOORD1;
+				float2 uv	  : TEXCOORD2;
+			};
+			//頂点シェーダー
+			v2f vert(appdata v)
+			{
+				v2f o;
+				o.vertex = UnityObjectToClipPos(v.vertex * _OutlineSize);
+				o.normal = UnityObjectToWorldNormal(v.normal);
+				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				return o;
+			}
+			//フラグメントシェーダー
+			fixed4 frag(v2f i) : SV_Target
+			{
+				fixed4 tex = tex2D(_MainTex, i.uv);
+				//NOTE: 色を変える場合、テクスチャの色から暗い色をブレンドして算出する
+				fixed4 col = fixed4(0.5, 0.5, 0.5, 0.5) * _Albedo * tex;
+				return col;
+			}
+			ENDCG
+		}//Pass
 
 		//2パス目でモデル本体の描画
 		Pass
