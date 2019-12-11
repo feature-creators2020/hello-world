@@ -17,11 +17,11 @@ public class MouseAnimation : MonoBehaviour
         var animName = m_sMouseStateManager.AnimationString;
 
         //イベントの追加
-        //AnimationEvent ev = new AnimationEvent();
-        //ev.time = 0.0f;
-        //ev.functionName = "OnFootEvent";
-        //ev.floatParameter = 1.0f;
-        //m_sAnimation[animName[(int)EHumanAnimation.Run]].clip.AddEvent(ev);
+        AnimationEvent ev = new AnimationEvent();
+        ev.time = m_sAnimation[animName[(int)EMouseAnimation.Eat]].clip.length / 5f;
+        ev.functionName = "OnEatEvent";
+        ev.floatParameter = 1.0f;
+        m_sAnimation[animName[(int)EMouseAnimation.Eat]].clip.AddEvent(ev);
         ////イベントをアニメーションクリップに追加するとそのイベントが起動した際SendMessageとしてfunctionNameの関数が起動される
         ////この場合タイムラインの０フレーム目でSendMessage("StepSound",1.0f); が起動する 
 
@@ -87,5 +87,10 @@ public class MouseAnimation : MonoBehaviour
     public void OnEndPutEvent()
     {
         //m_sHumanStateManager.OnEndPutEvent();
+    }
+
+    public void OnEatEvent()
+    {
+        m_sMouseStateManager.OnEatEvent();
     }
 }

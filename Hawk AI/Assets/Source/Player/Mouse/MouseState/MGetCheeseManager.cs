@@ -83,10 +83,10 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
 
     void Respawn()
     {
-        //ExecuteEvents.Execute<IFadeInterfase>(
-        //        target: m_cOwner.targetCamera.gameObject,
-        //        eventData: null,
-        //        functor: (recieveTarget, y) => recieveTarget.CallFadeOut());
+        ExecuteEvents.Execute<ICheeseInterfase>(
+                target: m_cOwner.m_GTargetBoxObject,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.SetDefault());
 
         ScoreBoard.Instance.GetCheese();
         RespawnPoint.Instance.Respawn(m_cOwner.gameObject);

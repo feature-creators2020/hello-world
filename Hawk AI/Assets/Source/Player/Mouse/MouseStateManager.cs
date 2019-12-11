@@ -174,7 +174,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
 
         // レイキャストによる壁の当たり判定処理
-        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Up])
+        if (!CheckCurrentState(EMouseState.Up) || !CheckCurrentState(EMouseState.GetCheese))
         {
             Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
             Ray ray = new Ray(this.transform.position, this.transform.forward);
@@ -324,7 +324,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 //Destroy(other.gameObject); // トラップを削除する
                 ChangeState(0, EOldState);
             }
-            
+            SetDefaultSize();
         }
 
         if (LayerName == "Gap")
@@ -391,14 +391,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
     }
 
-    void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.tag == "Rail")
-        {
-            m_GTargetBoxObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-            ChangeState(0, EMouseState.Rail);
-        }
-    }
+    //void OnCollisionStay(Collision other)
+    //{
+    //    if (other.gameObject.tag == "Rail")
+    //    {
+    //        m_GTargetBoxObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+    //        ChangeState(0, EMouseState.Rail);
+    //    }
+    //}
 
     public bool CheckCurrentState(EMouseState _state)
     {
@@ -490,5 +490,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public void MouseRunEvent()
     {
         m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseRunning);
+    }
+
+    public void OnEatEvent()
+    {
+        ExecuteEvents.Execute<ICheeseInterfase>(
+                    target: m_GTargetBoxObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.StartScaling(4f));
+        
     }
 }
