@@ -18,7 +18,7 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
     private void Start()
     {
         Torimoti = Resources.Load<Sprite>("MouseTrap_Torimoti");
-        GetTrap = Resources.Load<Sprite>("Trap");
+        GetTrap = Resources.Load<Sprite>("MouseTrap_pachin");
     }
 
     public void HoldItem(GameObject HumanObj, GameObject ItemObj)

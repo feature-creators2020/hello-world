@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject CameraObj;
-
-    void Update()
+    void LateUpdate()
     {
-        Vector3 p = CameraObj.transform.position;
-        p.y = transform.position.y;
-        transform.LookAt(p);
+        this.transform.rotation = new Quaternion(0,0,0,1);
     }
 }
