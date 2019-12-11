@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 79bbef3bc91619948b6d6f3c65c2b12c
+guid: 6059d6ad0fff2e647a62c0e8b398d340
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
@@ -7,14 +7,17 @@ ModelImporter:
       74: 1827226128182048838
     second: Take 001
   - first:
-      74: 5288775097750765592
-    second: Mouse3_Wait
+      74: -2015013881254042601
+    second: Mouse4_Wait
   - first:
-      74: -2321807807061032394
-    second: Mouse3_Run
+      74: 5818465061236916489
+    second: Mouse4_Run
   - first:
-      74: 4504324190897767608
-    second: Mouse3_Slow
+      74: 5132207084957124872
+    second: Mouse4_Slow
+  - first:
+      74: -7426587912931279773
+    second: Mouse4_Eat
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -53,7 +56,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 500
+      lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -78,11 +81,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Mouse3_Wait
+      name: Mouse4_Wait
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 65
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Mouse4_Run
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 108.899994
+      lastFrame: 120
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Mouse4_Slow
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 108.9
+      lastFrame: 120
       wrapMode: 2
       orientationOffsetY: 0
       level: 0
@@ -107,52 +168,16 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Mouse3_Run
+      name: Mouse4_Eat
       takeName: Take 001
       internalID: 0
-      firstFrame: 110
-      lastFrame: 120
-      wrapMode: 2
+      firstFrame: 122
+      lastFrame: 240
+      wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
-      loop: 1
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events:
-      - time: 0.6416041
-        functionName: MouseRunEvent
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Mouse3_Slow
-      takeName: Take 001
-      internalID: 0
-      firstFrame: 120
-      lastFrame: 300
-      wrapMode: 2
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 1
+      loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0

@@ -22,7 +22,8 @@ public enum EMouseAnimation
 {
     Wait,
     Run,
-    Slow
+    Slow,
+    Eat
 }
 
 public interface IMouseInterface : IEventSystemHandler
@@ -82,7 +83,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
 
     [System.NonSerialized]
-    public string[] AnimationString = { "Mouse3_Wait", "Mouse3_Run", "Mouse3_Slow" };          // アニメーション名
+    public string[] AnimationString = { "Mouse4_Wait", "Mouse4_Run", "Mouse4_Slow", "Mouse4_Eat" };          // アニメーション名
     private int m_nAnimationNo;                                      // 再生中アニメーション番号
     private Animation m_cAnimation;                                  // アニメーション      
 
