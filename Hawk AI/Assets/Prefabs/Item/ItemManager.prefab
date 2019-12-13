@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strTag: VarsanTrap
-  PrefabObject: {fileID: 0}
+  PrefabObject: {fileID: 5136192577673123106, guid: 8ab654b5b29edef47b45a734c1f9d28a,
+    type: 3}
 --- !u!1 &1374563612739654388
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strTag: VarsanTrap
-  PrefabObject: {fileID: 0}
+  PrefabObject: {fileID: 3848136486638909014, guid: 337f5878269dfcd4eab2f57b8e946b8d,
+    type: 3}
 --- !u!1 &1913975050015183054
 GameObject:
   m_ObjectHideFlags: 0

@@ -295,6 +295,18 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         target: m_gItemInfo,
         eventData: null,
         functor: (recieveTarget, y) => m_gItemInfo = recieveTarget.GetPrefab());
+        if (!ReferenceEquals(m_gItemInfo, null))
+        {
+            if (m_gItemInfo.tag == "VarsanTrap")
+            {
+                // バルサンタイプなら抽選しなおす
+                SelectItem();
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 
     // ドロップアイテムを生成する
