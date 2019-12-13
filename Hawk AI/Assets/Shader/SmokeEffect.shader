@@ -4,6 +4,7 @@
     {
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex ("Texture", 2D) = "white" {}
+		_SrcTex("SrcTexture", 2D) = "white" {}
     }
     SubShader
     {
@@ -40,13 +41,17 @@
 
 			fixed4 _Color;
             sampler2D _MainTex;
+			sampler2D _SrcTex;
+			fixed4 _SrcTextureUV;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
+				fixed4 SrcCol = tex2D(_SrcTex, _SrcTextureUV.xy);
+
                 // just invert the colors
                 //col.rgb = 1 - col.rgb;
-                return col * _Color;
+                return col * SrcCol;
             }
             ENDCG
         }
