@@ -188,7 +188,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         //var startpos = this.transform.position /*+ new Vector3(0f, -0.8f)*/;
         //Debug.DrawLine(startpos, startpos + this.transform.forward, Color.red);
-        if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EHumanState.Up])
+        if (!CheckCurrentState(EHumanState.Up))
         {
             Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
             Debug.DrawLine(transform.position, transform.position + transform.forward, Color.red);
@@ -221,7 +221,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             Ray Downray = new Ray(transform.position, -transform.up);
             RaycastHit Downhit;
             Debug.DrawLine(transform.position, transform.position - transform.up, Color.red);
-            if (Physics.BoxCast(transform.position, boxscale, -transform.up, out Downhit))
+            if (Physics.BoxCast(transform.position, new Vector3(transform.lossyScale.x * 0.5f, transform.lossyScale.y * 0.5f, transform.lossyScale.z * 0.5f), -transform.up, out Downhit))
             {
                 //Debug.Log("DownRootObject : " + Downhit.collider.gameObject.transform.parent.parent.gameObject.name);
                 //Debug.Log("DownHumanRayHit : " + Downhit.collider.gameObject.name);
