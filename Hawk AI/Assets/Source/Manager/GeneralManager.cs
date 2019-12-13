@@ -50,13 +50,13 @@ public class GeneralManager : MonoBehaviour, IGeneralInterface
 
     public virtual void DebugUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            foreach (var obj in m_cGameObjects)
-            {
-                Debug.Log(obj.name);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    foreach (var obj in m_cGameObjects)
+        //    {
+        //        Debug.Log(obj.name);
+        //    }
+        //}
     }
     public virtual void OnDestroy()
     {
