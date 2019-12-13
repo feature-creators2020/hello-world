@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FadeTex1P
-  m_Shader: {fileID: 4800000, guid: 81444b2ba576df34f9213181a9df512d, type: 3}
+  m_Name: OutlineWithMaterialColor_MouseTrap
+  m_Shader: {fileID: 4800000, guid: 93f359cbbdd37ce4887df3934dbd609a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,12 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5ea99ef8f72a4444fb8097e96fca899a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _OutlineSize: 1.02
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _TopUV: {r: 0, g: -0.000000074505806, b: 0, a: 0}
-    - _UV: {r: 0, g: 2.719998, b: 0, a: 0}
-    - _UnderUV: {r: 0, g: -1.0000001, b: 0, a: 0}
+    - _Albedo: {r: 1, g: 1, b: 1, a: 1}
+    - _DirectionalLight: {r: 1, g: 1, b: 1, a: 1}

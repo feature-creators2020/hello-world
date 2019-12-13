@@ -358,6 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fSpeed: 0.2
   m_isblend: 1
+  m_bReverse: 0
 --- !u!1001 &6618441756235785728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -440,6 +441,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 3b984619fc4b9354ab120baf2bbcd7f9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ec33c85030b29948bcf715836aff4e5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b984619fc4b9354ab120baf2bbcd7f9, type: 3}
 --- !u!4 &2207847354287148314 stripped

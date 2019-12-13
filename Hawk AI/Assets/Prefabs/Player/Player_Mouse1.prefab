@@ -283,6 +283,8 @@ MonoBehaviour:
   m_rb: {fileID: 0}
   m_SEAudio: {fileID: 0}
   m_vDefaultScale: {x: 0, y: 0, z: 0}
+  m_GRailObject: {fileID: 0}
+  m_isOnRail: 0
 --- !u!65 &8630323227638150942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -554,6 +556,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7426587912931279773, guid: 6059d6ad0fff2e647a62c0e8b398d340,
         type: 3}
+    - target: {fileID: -879247654521487750, guid: 6059d6ad0fff2e647a62c0e8b398d340,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bcf839fa0c8e97440abf8f93d5bfb8d7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6059d6ad0fff2e647a62c0e8b398d340, type: 3}
 --- !u!1 &591462101424068906 stripped
