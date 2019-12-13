@@ -42,21 +42,30 @@ public class CameraMove : MonoBehaviour
         var keyboardState = KeyBoard.GetState(KeyboardIndex, false);
 
         // ゲームパッドの入力情報取得
-        if (GamePad.GetButtonDown(GamePad.Button.Start, playerNo))
-        {
-            SwitchInput = !SwitchInput;
-            //Debug.Log("Switch Mode " + playerNo);
-        }
+        //if (GamePad.GetButtonDown(GamePad.Button.Start, playerNo))
+        //{
+        //    SwitchInput = !SwitchInput;
+        //    //Debug.Log("Switch Mode " + playerNo);
+        //}
 
         float LeftTrigger = keyState.LeftTrigger + 1.0f;
         float RightTrigger = keyState.RightTrigger + 1.0f;
-        float inputViewHorizontal = (RightTrigger - LeftTrigger) * 0.5f;
+        float inputViewHorizontal = keyState.rightStickAxis.x;
+        inputViewHorizontal += (RightTrigger - LeftTrigger) * 0.5f;
         inputViewHorizontal += keyboardState.rightStickAxis.x;
 
-        if (SwitchInput)
+        if(inputViewHorizontal >= 1.0f)
         {
-            inputViewHorizontal = keyState.rightStickAxis.x;
+            inputViewHorizontal = 1.0f;
         }
+        if(inputViewHorizontal <= -1.0f)
+        {
+            inputViewHorizontal = -1.0f;
+        }
+        //if (SwitchInput)
+        //{
+        //    inputViewHorizontal = keyState.rightStickAxis.x;
+        //}
 
         this.transform.RotateAround(targetObj.transform.position, Vector3.up, inputViewHorizontal * Time.deltaTime * 200f);
     }
