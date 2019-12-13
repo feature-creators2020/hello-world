@@ -21,6 +21,7 @@ TagManager:
   - Drone
   - RoomSpotLight
   - MouseGetTrap
+  - VarsanTrap
   layers:
   - Default
   - TransparentFX
