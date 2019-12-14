@@ -14,37 +14,22 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
     private int index = 0;
     private Sprite Torimoti;
     private Sprite GetTrap;
+    private Sprite Varsan;
 
     private void Start()
     {
         Torimoti = Resources.Load<Sprite>("MouseTrap_Torimoti");
         GetTrap = Resources.Load<Sprite>("MouseTrap_pachin");
+        Varsan = Resources.Load<Sprite>("MouseTrap_varsan");
     }
 
     public void HoldItem(GameObject HumanObj, GameObject ItemObj)
     {
-        //float TDistance = 0;
-        //PlayerManager c_PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
-        //var HumanList = c_PlayerManager.GetGameObjectsList("Human");
-        //for (int i = 0; i < HumanList.Count; i++)
-        //{
-        //    var targetObj = c_PlayerManager.GetGameObject(i, "Human");
-        //    float nDis = Vector3.Distance(targetObj.transform.position, ItemObj.transform.position);
-        //    if (TDistance == 0)
-        //    {
-        //        TDistance = nDis;
-        //        index = i;
-        //    }
-        //    if (nDis <= TDistance)
-        //    {
-        //        TDistance = nDis;
-        //        index = i;
-        //    }
-        //}
         if(HumanObj.transform.parent.name == "Player_Human")
         {
             index = 0;
-        }else if(HumanObj.transform.parent.name == "Player_Human2")
+        }
+        else if(HumanObj.transform.parent.name == "Player_Human2")
         {
             index = 1;
         }
@@ -53,34 +38,19 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         {
             ItemList[index].GetComponent<Image>().sprite = Torimoti;
         }
-        if (ItemObj.tag == "MouseGetTrap")
+        else if (ItemObj.tag == "MouseGetTrap")
         {
             ItemList[index].GetComponent<Image>().sprite = GetTrap;
+        }
+        else if (ItemObj.tag == "VarsanTrap")
+        {
+            ItemList[index].GetComponent<Image>().sprite = Varsan;
         }
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
     public void ReleaseItem(GameObject HumanObj, Vector3 ItemPos)
     {
-        //Debug.Log(ItemPos);
-        //float TDistance = 0;
-        //PlayerManager c_PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
-        //var HumanList = c_PlayerManager.GetGameObjectsList("Human");
-        //for (int i = 0; i < HumanList.Count; i++)
-        //{
-        //    var targetObj = c_PlayerManager.GetGameObject(i, "Human");
-        //    float nDis = Vector3.Distance(targetObj.transform.position, ItemPos);
-        //    if (TDistance == 0)
-        //    {
-        //        TDistance = nDis;
-        //        index = i;
-        //    }
-        //    if (nDis <= TDistance)
-        //    {
-        //        TDistance = nDis;
-        //        index = i;
-        //    }
-        //}
         if (HumanObj.transform.parent.name == "Player_Human")
         {
             index = 0;
