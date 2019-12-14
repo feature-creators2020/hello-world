@@ -35,6 +35,8 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
     private List<Color> SmokeEffects = new List<Color>();
     private List<Color> SmokeColor = new List<Color>();
 
+    private bool m_bStart = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,7 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
         }
 
 
+        if(m_bStart == true)
         MaskingPlayerCamera();
     }
 
@@ -110,6 +113,7 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
         {
             val.GetComponent<ParticleSystem>().Play();
         }
+        m_bStart = true;
     }
 
     public void Stop()
@@ -118,6 +122,7 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
         {
             val.GetComponent<ParticleSystem>().Stop();
         }
+        m_bStart = false;
     }
 
 }

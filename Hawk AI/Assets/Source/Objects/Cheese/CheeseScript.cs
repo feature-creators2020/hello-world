@@ -22,6 +22,9 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     Vector3 m_vDefaultPosition; // 元の位置
     Vector3 m_vTargetPosition;  // 目的の位置
 
+    [SerializeField]
+    private GameObject m_cCheeseEffects;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +50,24 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
             m_vTargetPosition = m_vDefaultPosition + new Vector3(0f, -0.3f, 0f);
             m_isSetting = true;
         }
+
+        ExecuteEvents.Execute<ICheeseEffect>(
+        target: m_cCheeseEffects,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.Play());
+
+        
+    }
+
+    void OnDisable()
+    {
+        ExecuteEvents.Execute<ICheeseEffect>(
+target: m_cCheeseEffects,
+eventData: null,
+functor: (recieveTarget, y) => recieveTarget.Stop());
+
+
+
     }
 
     // Update is called once per frame
@@ -100,5 +121,7 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
         m_CheeseObject.transform.localScale = Vector3.Lerp(m_vDefaultScale, m_vTargetScale, 0f);
         m_CheeseObject.transform.position = Vector3.Lerp(m_vDefaultPosition, m_vTargetPosition, 0f);
         m_isScaling = false;
+
+
     }
 }

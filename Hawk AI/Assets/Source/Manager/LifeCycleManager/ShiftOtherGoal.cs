@@ -11,15 +11,24 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
 
     void Start()
     {
-        for (int i = 0; i < GoalObj.Count; i++)
+        for(int i = 0; i < GoalObj.Count;i++)
         {
-            Numbers.Add(i);
+            GoalObj[i].SetActive(false);
+           // Numbers.Add(i);
         }
-        for(int i = 0; i < GoalObj.Count - 2; i++)
+
+        //for (int i = 0; i < GoalObj.Count; i++)
+        //{
+        //    Numbers.Add(i);
+        //}
+        for (int i = 0; i < GoalObj.Count - 2; i++)
         {
-            int index = Random.Range(0, Numbers.Count);
-            GoalObj[Numbers[index]].SetActive(false);
-            Numbers.RemoveAt(index);
+            
+            int index = Random.Range(0, GoalObj.Count - i);
+            Numbers.Add(index);
+            GoalObj[Numbers[i]].SetActive(true);
+            
+            
         }
         //CursorManager.Instance.SetCheeseActive();
     }
@@ -28,22 +37,50 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
     {
         for(int i = 0; i < GoalObj.Count; i++)
         {
-            if (GoalObj[i] == Cheese)   Numbers.Remove(i);
-            Cheese.SetActive(false);
-        }
-        if(Numbers.Count == 0)
-        {
-            for(int i = 0; i < GoalObj.Count; i++)
+            if (GoalObj[i] == Cheese)
             {
-                GoalObj[i].SetActive(true);
                 Numbers.Add(i);
+                Cheese.SetActive(false);
             }
-            for(int i = 0; i < GoalObj.Count - 2; i++)
+        }
+        if(Numbers.Count == 4)
+        {
+            //for(int i = 0; i < GoalObj.Count; i++)
+            //{
+            //    GoalObj[i].SetActive(true);
+            //    Numbers.Add(i);
+            //}
+            //for(int i = 0; i < GoalObj.Count - 2; i++)
+            //{
+            //    int index = Random.Range(0, Numbers.Count);
+            //    GoalObj[Numbers[index]].SetActive(false);
+            //    Numbers.RemoveAt(index);
+            //}
+
+
+            Numbers = new List<int>();
+
+            for (int i = 0; i < GoalObj.Count; i++)
             {
-                int index = Random.Range(0, Numbers.Count);
-                GoalObj[Numbers[index]].SetActive(false);
-                Numbers.RemoveAt(index);
+                GoalObj[i].SetActive(false);
+                // Numbers.Add(i);
             }
+
+            //for (int i = 0; i < GoalObj.Count; i++)
+            //{
+            //    Numbers.Add(i);
+            //}
+            for (int i = 0; i < GoalObj.Count - 2; i++)
+            {
+
+                int index = Random.Range(0, GoalObj.Count - i);
+                Numbers.Add(index);
+                GoalObj[Numbers[i]].SetActive(true);
+
+
+            }
+
+
         }
         //CursorManager.Instance.SetCheeseActive();
     }
