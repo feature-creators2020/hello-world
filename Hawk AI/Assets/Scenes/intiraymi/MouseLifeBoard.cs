@@ -5,30 +5,31 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/****シングルトン化****/
-public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
+public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
 {
     [SerializeField]
-    private List<GameObject> CheeseIcon = new List<GameObject>();
-    private int RemainingCheese = 4;
-    private Sprite Mouse;
+    private GameObject Life;
+    [SerializeField]
+    private List<Sprite> Numbers = new List<Sprite>();
+    private int RemainingMouse = 8;
 
-    private void Start()
+    //Start is called before the first frame update
+    void Start()
     {
-        Mouse = Resources.Load<Sprite>("Mouse");
+        Life.GetComponent<Image>().sprite = Numbers[RemainingMouse];
     }
 
-    public void GetCheese()
+    public void GetCaught()
     {
-        RemainingCheese -= 1;
-        if (RemainingCheese <= 0)
-        {// State To Result
-            RemainingCheese = 0;
+        RemainingMouse -= 1;
+        if(RemainingMouse < 0)
+        {
+            RemainingMouse = 0;
 
             var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
-            //ネズミ側勝利
 
-            GameManager.IsHumanWin = false;
+            //人間側勝利
+            GameManager.IsHumanWin = true;
 
             ExecuteEvents.Execute<IGameInterface>(
             target: obj,
@@ -38,11 +39,9 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
             {
                 Invoke("Retry", 1.0f);
             }
-
-            //    this.m_cOwner.ChangeState(0, EGameState.End);
         }
-        //現状はアイコンの色を変えている、実際はテクスチャを変える
-        CheeseIcon[RemainingCheese].GetComponent<Image>().sprite = Mouse;
+
+        Life.GetComponent<Image>().sprite = Numbers[RemainingMouse];
     }
 
     void Retry()
