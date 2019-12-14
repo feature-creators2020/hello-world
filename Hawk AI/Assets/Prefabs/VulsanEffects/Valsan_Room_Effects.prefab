@@ -5648,7 +5648,7 @@ GameObject:
   - component: {fileID: 507357963696958224}
   - component: {fileID: 242799254}
   m_Layer: 0
-  m_Name: Bulsan_Room_Effects
+  m_Name: Valsan_Room_Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
