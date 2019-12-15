@@ -935,6 +935,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4688608975424148753, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
+    - target: {fileID: 6380789278667187175, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688608975361119403, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
+    - target: {fileID: 6380789278579024477, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688608976874546342, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
+    - target: {fileID: 6380789278541730384, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688608975836921209, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
+    - target: {fileID: 6380789279584340879, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2796dc493b676489564eb4a704c569, type: 3}
 --- !u!1 &21942873
@@ -71163,6 +71203,12 @@ Transform:
   m_Father: {fileID: 1997808516}
   m_RootOrder: 135
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1294934672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8977317483250597718, guid: 5d1b067ec7e429e48a7cb0e4ef6485b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 466499990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1294954772
 GameObject:
   m_ObjectHideFlags: 0

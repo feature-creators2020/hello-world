@@ -94,10 +94,14 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
             functor: (recieveTarget, y) => eTimeZone = recieveTarget.TimeZoneStatus);
 
             if (eTimeZone == ETimeZone.eMorning)
-            {
+            {// 昼夜で場合分け
                 if (m_nPhaseCount >= ExpandEffectPhaseAtMorning)
                 {
                     return;
+                }
+                else
+                {
+                    ExpandOnTime();
                 }
             }
             else
@@ -106,22 +110,31 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
                 {
                     return;
                 }
-
+                else
+                {
+                    ExpandOnTime();
+                }
             }
 
-            m_fTimeCounter += Time.deltaTime;
-
-            if (m_fTimeCounter >= ExpandEffectTime)
-            {//デカくする処理
-                ParticleList[0].transform.localScale = new Vector3
-                (ParticleList[0].transform.localScale.x + ExpandEffectRate,
-                ParticleList[0].transform.localScale.y + ExpandEffectRate,
-                ParticleList[0].transform.localScale.z + ExpandEffectRate);
-
-                m_nPhaseCount++;
-                m_fTimeCounter = 0f;
-            }
         }
+    }
+
+
+    private void ExpandOnTime()
+    {
+        m_fTimeCounter += Time.deltaTime;
+
+        if (m_fTimeCounter >= ExpandEffectTime)
+        {//デカくする処理
+            ParticleList[0].transform.localScale = new Vector3
+            (ParticleList[0].transform.localScale.x + ExpandEffectRate,
+            ParticleList[0].transform.localScale.y + ExpandEffectRate,
+            ParticleList[0].transform.localScale.z + ExpandEffectRate);
+
+            m_nPhaseCount++;
+            m_fTimeCounter = 0f;
+        }
+
     }
 
     private void MaskingPlayerCamera()
@@ -145,9 +158,12 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
     {
         foreach (var val in ParticleList)
         {
-            if(val.GetComponent<ParticleSystem>().isPlaying == false)
+//            val.gameObject.transform.localScale = m_cInitialScales[0];
             val.GetComponent<ParticleSystem>().Play();
         }
+
+        //ParticleList[0].transform.localScale = m_cInitialScales[0];
+
         m_bStartFlg = true;
 
     }
@@ -166,5 +182,20 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
         m_bStartFlg = false;
     }
 
+    void OnEnable()
+    {
+        if (m_bStartFlg == true)
+        {
 
+            foreach (var val in ParticleList)
+            {
+                val.gameObject.transform.localScale = m_cInitialScales[0];
+            }
+
+            m_nPhaseCount = 0;
+            m_fTimeCounter = 0f;
+
+        }
+
+    }
 }

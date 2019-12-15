@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /****シングルトン化****/
 public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
@@ -14,21 +15,23 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
         for(int i = 0; i < GoalObj.Count;i++)
         {
             GoalObj[i].SetActive(false);
-           // Numbers.Add(i);
         }
 
-        //for (int i = 0; i < GoalObj.Count; i++)
-        //{
-        //    Numbers.Add(i);
-        //}
-        for (int i = 0; i < GoalObj.Count - 2; i++)
+        for (int i = 0; i < 2; i++)
         {
-            
-            int index = Random.Range(0, GoalObj.Count - i);
+            int index = Random.Range(0, GoalObj.Count);
+
+            foreach (var val in Numbers)
+            {
+                while (val == index)
+                {
+                    index = Random.Range(0, GoalObj.Count);
+                }
+            }
+
             Numbers.Add(index);
-            GoalObj[Numbers[i]].SetActive(true);
-            
-            
+            GoalObj[index].SetActive(true);
+                       
         }
         //CursorManager.Instance.SetCheeseActive();
     }
@@ -39,11 +42,18 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
         {
             if (GoalObj[i] == Cheese)
             {
-                Numbers.Add(i);
+                Numbers.Remove(i);
+
+                ExecuteEvents.Execute<ICheeseEffect>(
+                target: Cheese.GetComponent<CheeseScript>().m_cCheeseEffects,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Stop());
+
+
                 Cheese.SetActive(false);
             }
         }
-        if(Numbers.Count == 4)
+        if(Numbers.Count == 0)
         {
             //for(int i = 0; i < GoalObj.Count; i++)
             //{
@@ -63,20 +73,22 @@ public class ShiftOtherGoal : SingletonMonoBehaviour<ShiftOtherGoal>
             for (int i = 0; i < GoalObj.Count; i++)
             {
                 GoalObj[i].SetActive(false);
-                // Numbers.Add(i);
             }
 
-            //for (int i = 0; i < GoalObj.Count; i++)
-            //{
-            //    Numbers.Add(i);
-            //}
-            for (int i = 0; i < GoalObj.Count - 2; i++)
+            for (int i = 0; i < 2; i++)
             {
+                int index = Random.Range(0, GoalObj.Count);
 
-                int index = Random.Range(0, GoalObj.Count - i);
+                foreach (var val in Numbers)
+                {
+                    while (val == index)
+                    {
+                        index = Random.Range(0, GoalObj.Count);
+                    }
+                }
+
                 Numbers.Add(index);
-                GoalObj[Numbers[i]].SetActive(true);
-
+                GoalObj[index].SetActive(true);
 
             }
 

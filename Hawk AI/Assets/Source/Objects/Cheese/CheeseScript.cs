@@ -23,7 +23,7 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     Vector3 m_vTargetPosition;  // 目的の位置
 
     [SerializeField]
-    private GameObject m_cCheeseEffects;
+    public GameObject m_cCheeseEffects;
 
     // Start is called before the first frame update
     void Start()
@@ -59,16 +59,6 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
         
     }
 
-    void OnDisable()
-    {
-        ExecuteEvents.Execute<ICheeseEffect>(
-target: m_cCheeseEffects,
-eventData: null,
-functor: (recieveTarget, y) => recieveTarget.Stop());
-
-
-
-    }
 
     // Update is called once per frame
     void Update()
