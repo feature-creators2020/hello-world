@@ -35,6 +35,11 @@ public interface IMouseInterface : IEventSystemHandler
     void SetCollapse();
 
     void SetDefaultSize();
+
+    int GetRoomID();
+
+    void SetRoomID(int _id);
+
 }
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
@@ -105,6 +110,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public EMouseState EOldState;        // 前の状態を保持
 
     public bool m_isOnRail;                // ベルトコンベアの上にいるか
+
+    [SerializeField]
+    private int m_nRoomID;                      // 現在いるルームの情報
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -507,6 +517,17 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         this.transform.localScale = m_vDefaultScale;
     }
+
+    public int GetRoomID()
+    {
+        return m_nRoomID;
+    }
+
+    public void SetRoomID(int _id)
+    {
+        m_nRoomID = _id;
+    }
+
 
     // アニメーションイベント用関数
     public void MouseRunEvent()

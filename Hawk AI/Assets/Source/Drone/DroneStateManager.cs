@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public interface IDroneInterfase : IEventSystemHandler
+public interface IDroneInterface : IEventSystemHandler
 {
     void ChangeMoveState();
+    int GetRoomID();
+    void SetRoomID(int _id);
 }
 
 
@@ -19,7 +21,7 @@ public enum EDroneState
     MaxState
 }
 
-public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState>, IDroneInterfase
+public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState>, IDroneInterface
 {
 
     //[System.NonSerialized]
@@ -58,6 +60,9 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
     public int m_nTargetNum;                        // どちらのネズミを追跡しているか
 
     public SEAudio m_SEAudio;           // se
+
+    [SerializeField]
+    private int m_nRoomID;                      // 現在いるルームの情報
 
     // Start is called before the first frame update
     void Start()
@@ -257,18 +262,19 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
                     else
                     {
                         bool result = false;    // 同じエリアにいるか
-                        switch (_num)
-                        {
-                            case 0:
-                                result = (room.GetDroneIn() == room.GetMouse01In());
-                                break;
-                            case 1:
-                                result = (room.GetDroneIn() == room.GetMouse02In());
-                                break;
-                            default:
-                                result = false;
-                                break;
-                        }
+                        //switch (_num)
+                        //{
+                        //    case 0:
+                        //        result = (room.GetDroneIn() == room.GetMouse01In());
+                        //        break;
+                        //    case 1:
+                        //        result = (room.GetDroneIn() == room.GetMouse02In());
+                        //        break;
+                        //    default:
+                        //        result = false;
+                        //        break;
+                        //}
+                        result = (m_nRoomID == room.GetObjectRoomID(TargetObject));
                         if (result)
                         {
                             return true;
@@ -402,5 +408,17 @@ public class DroneStateManager : CStateObjectBase<DroneStateManager, EDroneState
         {
             ChangeState(0, EDroneState.Move);
         }
+    }
+
+
+    public int GetRoomID()
+    {
+        return m_nRoomID;
+    }
+
+
+    public void SetRoomID(int _id)
+    {
+        m_nRoomID = _id;
     }
 }

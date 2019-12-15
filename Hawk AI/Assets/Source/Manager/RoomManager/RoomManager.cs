@@ -1,6 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
+public struct ObjectRoomInfo
+{
+    public GameObject ObjectInfo { get; set; }
+    public int RoomInfo { get; set; }
+}
 
 public class RoomManager : GeneralManager
 {
@@ -11,6 +18,11 @@ public class RoomManager : GeneralManager
     private List<int> List_Mouse01 = new List<int>();
     private List<int> List_Mouse02 = new List<int>();
     private List<int> List_Drone = new List<int>();
+    private List<int> List_Debug = new List<int>();
+
+    [SerializeField] private List<ObjectRoomInfo> Object_RoomIDs = new List<ObjectRoomInfo>();
+
+    [SerializeField] private GameObject DroneObject;
 
     void Awake()
     {
@@ -20,11 +32,13 @@ public class RoomManager : GeneralManager
     public override void GeneralInit()
     {
         base.GeneralInit();
+        CheckRoomInfo();
     }
 
     public override void GeneralUpdate()
     {
         base.GeneralUpdate();
+        //CheckRoomInfo();
     }
 
     //人間が入ってきたときに部屋番号をリストに追加
@@ -113,5 +127,123 @@ public class RoomManager : GeneralManager
     public int GetDroneIn()
     {
         return List_Drone[0];
+    }
+
+    public void CheckRoomInfo()
+    {
+        int i, j;
+        // それぞれのルーム情報を更新する
+        var manager = ManagerObjectManager.Instance;
+        var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        var MouseList = playermanager.GetGameObjectsList("Mouse");
+
+        ObjectRoomInfo _inInfo = new ObjectRoomInfo();
+
+        for (i = 0; i < MouseList.Count; i++)
+        {
+            _inInfo.ObjectInfo = playermanager.GetGameObject(i, "Mouse");
+            ExecuteEvents.Execute<IMouseInterface>(
+                    target: _inInfo.ObjectInfo,
+                    eventData: null,
+                    functor: (recieveTarget, y) => _inInfo.RoomInfo = recieveTarget.GetRoomID());
+            Debug.Log("Mouse : " + _inInfo.ObjectInfo);
+            for (j = 0; j < Object_RoomIDs.Count; j++)
+            {
+                if(Object_RoomIDs[j].ObjectInfo == _inInfo.ObjectInfo)
+                {
+                    // すでに情報が入っている
+                    Object_RoomIDs[j] = _inInfo;    // 構造体の情報ごと変える必要がある
+                    break;
+                }
+            }
+            // 情報が入っていなかった場合
+            if (j >= Object_RoomIDs.Count)
+            {
+                Object_RoomIDs.Add(new ObjectRoomInfo());
+                Object_RoomIDs[j] = _inInfo;
+            }
+        }
+
+        var HumanList = playermanager.GetGameObjectsList("Human");
+        for (i = 0; i < HumanList.Count; i++)
+        {
+            _inInfo.ObjectInfo = playermanager.GetGameObject(i, "Human");
+            ExecuteEvents.Execute<IHumanInterface>(
+                    target: _inInfo.ObjectInfo,
+                    eventData: null,
+                    functor: (recieveTarget, y) => _inInfo.RoomInfo = recieveTarget.GetRoomID());
+            Debug.Log("Human : " + _inInfo.ObjectInfo);
+            for (j = 0; j < Object_RoomIDs.Count; j++)
+            {
+                if (Object_RoomIDs[j].ObjectInfo == _inInfo.ObjectInfo)
+                {
+                    // すでに情報が入っている
+                    Object_RoomIDs[j] = _inInfo;    // 構造体の情報ごと変える必要がある
+                    break;
+                }
+            }
+            // 情報が入っていなかった場合
+            if (j >= Object_RoomIDs.Count)
+            {
+                Object_RoomIDs.Add(new ObjectRoomInfo());
+                Object_RoomIDs[j] = _inInfo;
+            }
+        }
+
+        _inInfo.ObjectInfo = DroneObject;
+        ExecuteEvents.Execute<IDroneInterface>(
+                target: _inInfo.ObjectInfo,
+                eventData: null,
+                functor: (recieveTarget, y) => _inInfo.RoomInfo = recieveTarget.GetRoomID());
+        Debug.Log("Drone : " + _inInfo.ObjectInfo);
+        for (j = 0; j < Object_RoomIDs.Count; j++)
+        {
+            if (Object_RoomIDs[j].ObjectInfo == _inInfo.ObjectInfo)
+            {
+                // すでに情報が入っている
+                Object_RoomIDs[j] = _inInfo;    // 構造体の情報ごと変える必要がある
+                break;
+            }
+        }
+        // 情報が入っていなかった場合
+        if (j >= Object_RoomIDs.Count)
+        {
+            Object_RoomIDs.Add(new ObjectRoomInfo());
+            Object_RoomIDs[j] = _inInfo;
+        }
+
+        // デバッグ用
+        Debug.Log("ObjectCount : " + Object_RoomIDs.Count);
+        for(int debug_i = 0; debug_i < Object_RoomIDs.Count; debug_i++)
+        {
+            if(List_Debug.Count < Object_RoomIDs.Count)
+            {
+                List_Debug.Add(Object_RoomIDs[debug_i].RoomInfo);
+            }
+            else
+            {
+                List_Debug[i] = Object_RoomIDs[debug_i].RoomInfo;
+            }
+        }
+    }
+
+    // 指定したオブジェクトのルーム情報を取得する
+    public int GetObjectRoomID(GameObject _object)
+    {
+        int i = 0;
+        int RoomNum = 99;   // 初期でどこにも当てはまらない値を入れる
+        for(i=0;i< Object_RoomIDs.Count; i++)
+        {
+            if(Object_RoomIDs[i].ObjectInfo == _object)
+            {
+                RoomNum = Object_RoomIDs[i].RoomInfo;
+                break;
+            }
+        }
+
+        // 情報がなかった場合
+        //if (i >= Object_RoomIDs.Count) return RoomNum;
+        Debug.Log(Object_RoomIDs[i].ObjectInfo.name + ".RoomId : " + RoomNum);
+        return RoomNum;
     }
 }

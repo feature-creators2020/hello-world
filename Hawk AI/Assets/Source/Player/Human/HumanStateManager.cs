@@ -43,6 +43,11 @@ public enum EHumanAnimation
 public interface IHumanInterface : IEventSystemHandler
 {
     void ChangeUpState(GameObject _Target);
+
+    int GetRoomID();
+
+    void SetRoomID(int _id);
+
 }
 
 public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase, IHumanInterface
@@ -90,6 +95,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     [System.NonSerialized]
     public Vector3 m_TargetBoxNomal;            // 上る段の面の法線ベクトル
+
+    [SerializeField]
+    private int m_nRoomID;                      // 現在いるルームの情報
 
     /*{
         get { return m_fmoveSpeed; }
@@ -851,6 +859,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     }
 
     public Animation GetAnimation { get { return m_cAnimation; } }
+
+    public int GetRoomID()
+    {
+        return m_nRoomID;
+    }
+
+    public void SetRoomID(int _id)
+    {
+        m_nRoomID = _id;
+    }
 
 
     // アニメーションイベント用関数

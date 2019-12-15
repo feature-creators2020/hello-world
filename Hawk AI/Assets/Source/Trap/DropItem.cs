@@ -100,7 +100,7 @@ public class DropItem : GeneralObject
             target: item.transform.Find("ItemImage").gameObject,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.SetPoint(m_gPointObject));
-        ExecuteEvents.Execute<IDroneInterfase>(
+        ExecuteEvents.Execute<IDroneInterface>(
             target: m_gDroneObject,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.ChangeMoveState());
