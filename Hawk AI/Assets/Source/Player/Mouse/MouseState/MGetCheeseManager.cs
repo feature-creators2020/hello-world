@@ -61,7 +61,7 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
             var distance = Vector3.Distance(target, m_cOwner.transform.position);
             if (distance > 0.01f)
             {
-                m_cOwner.transform.rotation = Quaternion.LookRotation(m_cOwner.transform.forward, m_cOwner.transform.up);
+                m_cOwner.transform.rotation = Quaternion.LookRotation(target - m_cOwner.transform.position);
             }
             m_cOwner.transform.position = Vector3.Lerp(m_cOwner.transform.position, target, (m_fMaxEffectTime - m_fEffectTime) / m_fMaxEffectTime);
         }
