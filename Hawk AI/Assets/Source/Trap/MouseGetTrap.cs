@@ -38,7 +38,7 @@ public class MouseGetTrap : GeneralObject
         m_gTrap.SetActive(false);
         m_fRotTime = m_fMaxRotTime;
         StartRot = m_gTrap.transform.rotation;
-        EndRot = new Quaternion(0, 0, 160f, StartRot.w);
+        EndRot = new Quaternion(0, 0, 20f, StartRot.w);
     }
 
     public override void GeneralUpdate()
@@ -80,10 +80,10 @@ public class MouseGetTrap : GeneralObject
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.SetDefaultSize());
                 }
-                Quaternion rot = Quaternion.AngleAxis(speed, transform.forward);
+                Quaternion rot = Quaternion.AngleAxis(speed, transform.right);
 
                 // 元の回転値と合成して上書き
-                m_gTrap.transform.rotation = rot * transform.localRotation;
+                m_gTrap.transform.localRotation = StartRot * rot;
                 //m_gTrap.transform.rotation = Quaternion.Slerp(StartRot, EndRot, m_fMaxRotTime - m_fRotTime);
                 m_fRotTime -= Time.deltaTime;
                 if(m_fRotTime < 0f)
