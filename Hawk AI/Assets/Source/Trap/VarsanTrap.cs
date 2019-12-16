@@ -88,17 +88,46 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface
                 ExecuteEvents.Execute<IHumanInterface>(
                     target: _gameObject,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.SetVarsan());
+                    functor: (recieveTarget, y) => recieveTarget.StartVarsan());
             }
             else
             {
                 ExecuteEvents.Execute<IHumanInterface>(
                     target: _gameObject,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.EndVarsan());
+                    functor: (recieveTarget, y) => recieveTarget.StopVarsan());
             }
         }
 
+    }
+
+    void OnDestroy()
+    {
+        var manager = ManagerObjectManager.Instance;
+        var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        var MouseList = playermanager.GetGameObjectsList("Mouse");
+        var HumanList = playermanager.GetGameObjectsList("Human");
+        GameObject _gameObject;
+        int i;
+        int _roomID = 99;
+
+        for (i = 0; i < MouseList.Count; i++)
+        {
+            _gameObject = playermanager.GetGameObject(i, "Mouse");
+            ExecuteEvents.Execute<IMouseInterface>(
+                target: _gameObject,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.EndVarsan());
+        }
+
+        for (i = 0; i < HumanList.Count; i++)
+        {
+            _gameObject = playermanager.GetGameObject(i, "Human");
+            ExecuteEvents.Execute<IHumanInterface>(
+                target: _gameObject,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.EndVarsan());
+        }
     }
 
     bool CheckRoomMatch(int _roomID)

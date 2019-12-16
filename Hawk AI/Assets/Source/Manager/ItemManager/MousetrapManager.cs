@@ -42,19 +42,21 @@ public class MousetrapManager : GeneralManager, IItemInterface
         return base.GetGameObjectsList();
     }
 
-    public virtual void Instant(Transform _transform)
+    public virtual GameObject Instant(Transform _transform)
     {
         Vector3 setpos = new Vector3(_transform.position.x, _transform.position.y, _transform.position.z);
         //Debug.Log("Position : " + setpos);
         var Object = Instantiate(PrefabObject, setpos, _transform.rotation);
         m_cGameObjects.Add(Object);
+        return Object;
     }
-    public virtual void Instant(Vector3 _pos, Quaternion _qua)
+    public virtual GameObject Instant(Vector3 _pos, Quaternion _qua)
     {
         Vector3 setpos = _pos;
         //Debug.Log("Position : " + setpos);
         var Object = Instantiate(PrefabObject, setpos, _qua);
         m_cGameObjects.Add(Object);
+        return Object;
     }
 
 

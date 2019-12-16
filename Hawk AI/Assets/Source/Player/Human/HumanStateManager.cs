@@ -19,7 +19,8 @@ public enum EHumanState
     Rail,
     ForcedWait,
     Catch,
-    Put
+    Put,
+    VarsanDown
 }
 
 public enum EHumanDirectionalState
@@ -36,7 +37,10 @@ public enum EHumanAnimation
     Run,
     Catch,
     Put,
-    Jump
+    Jump,
+    VarsanDown_Start,
+    VarsanDown_Wait,
+    VarsanDown_End
 }
 
 
@@ -48,9 +52,11 @@ public interface IHumanInterface : IEventSystemHandler
 
     void SetRoomID(int _id);
 
-    void SetVarsan();
+    void StartVarsan();
 
     bool GetVarsan();
+
+    void StopVarsan();
 
     void EndVarsan();
 
@@ -158,6 +164,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         var ForcedWait = new HForcedWaitManager(this);
         var Catch = new HCatchManager(this);
         var Put = new HPutManager(this);
+        var VarsanDown = new HVarsanDownManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
@@ -167,6 +174,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_cStateList.Add(ForcedWait);
         m_cStateList.Add(Catch);
         m_cStateList.Add(Put);
+        m_cStateList.Add(VarsanDown);
 
         m_cAnimation = this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Animation>();
 
@@ -726,33 +734,36 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 vector3 = new Vector3(m_cSetItemColliderObj.transform.position.x, -0.5f, m_cSetItemColliderObj.transform.position.z);
                 vector3 += this.transform.forward * collider.center.z;
 
-            if (item.tag == "VarsanTrap")
-            {
-                // バルサンのとき、部屋情報を入れる
-                ExecuteEvents.Execute<IVarsanTrapInterface>(
-                    target: item,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.SetRoom(m_nRoomID));
-
-            }
+            var insObject = new GameObject();
 
             // プレハブからインスタンスを生成
             ExecuteEvents.Execute<IItemInterface>(
                     target: item,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
+                    functor: (recieveTarget, y) => insObject = recieveTarget.Instant(vector3, this.transform.rotation));
             m_SEAudio.MultiplePlay((int)SEAudioType.eSE_SetTrap);
 
-                //MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
-                //MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
+            if (insObject.tag == "VarsanTrap")
+            {
+                Debug.Log("Trap is Varsan!");
+                // バルサンのとき、部屋情報を入れる
+                ExecuteEvents.Execute<IVarsanTrapInterface>(
+                    target: insObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.SetRoom(m_nRoomID));
 
-                // インスタンスにmapの位置を登録
-                //ExecuteEvents.Execute<IMouseTrap>(
-                //    target: item,
-                //    eventData: null,
-                //    functor: (recieveTarget, y) => recieveTarget.SetMapPosition(MapPos));
+            }
 
-                ItemHolderManager.Instance.ReleaseItem(this.gameObject, vector3);
+            //MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
+            //MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
+
+            // インスタンスにmapの位置を登録
+            //ExecuteEvents.Execute<IMouseTrap>(
+            //    target: item,
+            //    eventData: null,
+            //    functor: (recieveTarget, y) => recieveTarget.SetMapPosition(MapPos));
+
+            ItemHolderManager.Instance.ReleaseItem(this.gameObject, vector3);
                 // 所持アイテム情報を削除
                 m_sItemData = null;
                 // 無敵状態にする
@@ -903,9 +914,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             if (m_fVarsanTimeCount >= 5.0f)
             {
                 // 気絶状態の時は処理しない
-                if (true)
+                if (!CheckCurrentState(EHumanState.VarsanDown))
                 {
                     // ステートを変える
+                    ChangeState(0, EHumanState.VarsanDown);
                 }
             }
         }
@@ -915,7 +927,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         }
     }
 
-    public void SetVarsan()
+    public void StartVarsan()
     {
         m_isVarsan = true;
         // バルサンの状態になるので、エフェクトを再生させる
@@ -931,18 +943,31 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         return m_isVarsan;
     }
 
-    public void EndVarsan()
+    public void StopVarsan()
     {
-        if (!m_isVarsan)
+        // バルサンのエフェクトを一時停止する
+        if (m_isVarsan)
         {
             m_isVarsan = false;
-            // エフェクトも止める
             ExecuteEvents.Execute<IValsanEffect>(
                 target: m_gVarsanEffect,
                 eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.End());
-            //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+                functor: (recieveTarget, y) => recieveTarget.Stop((int)GamePadIndex));
+
         }
+    }
+
+    public void EndVarsan()
+    {
+        m_isVarsan = false;
+        m_fVarsanTimeCount = 0f;
+        // エフェクトも止める
+        ExecuteEvents.Execute<IValsanEffect>(
+            target: m_gVarsanEffect,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.End());
+        ChangeState(0, EHumanState.Normal);
+        //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
     }
 
     // アニメーションイベント用関数
