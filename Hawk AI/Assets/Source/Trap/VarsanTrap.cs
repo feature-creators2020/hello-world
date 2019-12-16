@@ -9,13 +9,16 @@ public interface IVarsanTrapInterface : IEventSystemHandler
 
 }
 
-public class VarsanTrap : GeneralObject, IVarsanTrapInterface
+public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
 {
 
     float m_fLifeTime;                  // トラップの生存時間
     float m_fMaxLifeTime;               // トラップの最大生存時間
     bool m_isActive = false;            // カウントを始める
     int m_nRoomNum;                     // 存在しているルームの番号
+
+    GameObject m_gHavePlayer;   // 所有者
+
 
     // Start is called before the first frame update
     void OnEnable()
@@ -101,7 +104,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface
 
     }
 
-    void OnDestroy()
+    public override void OnDestroy()
     {
         var manager = ManagerObjectManager.Instance;
         var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
@@ -109,7 +112,6 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface
         var HumanList = playermanager.GetGameObjectsList("Human");
         GameObject _gameObject;
         int i;
-        int _roomID = 99;
 
         for (i = 0; i < MouseList.Count; i++)
         {
@@ -142,5 +144,10 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface
         m_fMaxLifeTime = 20f;
         m_isActive = true;
         Debug.Log("SetVarsan");
+    }
+
+    public void SetPlayer(GameObject _Human)
+    {
+        m_gHavePlayer = _Human;
     }
 }

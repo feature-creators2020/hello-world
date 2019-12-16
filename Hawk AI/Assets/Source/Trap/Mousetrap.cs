@@ -5,8 +5,9 @@ using UnityEngine.EventSystems;
 
 public interface IMouseTrap : IEventSystemHandler
 {
-    void SetMapPosition(Vector2Int[] _mappos);
+    //void SetMapPosition(Vector2Int[] _mappos);
 
+    void SetPlayer(GameObject _Human);
 }
 
 
@@ -20,6 +21,9 @@ public class Mousetrap : GeneralObject, IMouseTrap
     float m_fLifeTime = 5f;
 
     MeshRenderer m_Mesh;    // 自身のメッシュ
+
+    GameObject m_gHavePlayer;   // 所有者
+
 
     public override void GeneralInit()
     {
@@ -78,13 +82,13 @@ public class Mousetrap : GeneralObject, IMouseTrap
     //    base.OnDestroy();
     //}
 
-    public void SetMapPosition(Vector2Int[] _mappos)
-    {
-        for (int i = 0; i < m_cTrapWidth; i++)
-        {
-            m_cTrapPos[i] = _mappos[i];
-        }
-    }
+    //public void SetMapPosition(Vector2Int[] _mappos)
+    //{
+    //    for (int i = 0; i < m_cTrapWidth; i++)
+    //    {
+    //        m_cTrapPos[i] = _mappos[i];
+    //    }
+    //}
 
     void OnTriggerEnter(Collider other)
     {
@@ -122,5 +126,10 @@ public class Mousetrap : GeneralObject, IMouseTrap
                 m_Mesh.enabled = false;
             }
         }
+    }
+
+    public void SetPlayer(GameObject _Human)
+    {
+        m_gHavePlayer = _Human;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseGetTrap : GeneralObject
+public class MouseGetTrap : GeneralObject, IMouseTrap
 {
 
     GameObject MouseObject; // 上に乗ったネズミの情報
@@ -20,6 +20,8 @@ public class MouseGetTrap : GeneralObject
 
     Quaternion StartRot;    // 初期姿勢
     Quaternion EndRot;      // 最終姿勢
+
+    GameObject m_gHavePlayer;   // 所有者
 
     public override void GeneralInit()
     {
@@ -128,4 +130,8 @@ public class MouseGetTrap : GeneralObject
         }
     }
 
+    public void SetPlayer(GameObject _Human)
+    {
+        m_gHavePlayer = _Human;
+    }
 }
