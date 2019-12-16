@@ -208,16 +208,16 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
 
     public void Play(int _nPlayerRoomNo)
     {
-        
+        int PlayNo = _nPlayerRoomNo - 1;
 
-        if((m_eValsanEffectsStates[_nPlayerRoomNo] == EValsanEffectsState.eStop) ||
-            (m_eValsanEffectsStates[_nPlayerRoomNo] == EValsanEffectsState.eEnd))
+        if((m_eValsanEffectsStates[PlayNo] == EValsanEffectsState.eStop) ||
+            (m_eValsanEffectsStates[PlayNo] == EValsanEffectsState.eEnd))
         {
-            m_fValsanEffectsRates[_nPlayerRoomNo] = 0f;
-            m_fValsanEffectsCanvasRates[_nPlayerRoomNo] = 0f;
+            m_fValsanEffectsRates[PlayNo] = 0f;
+            m_fValsanEffectsCanvasRates[PlayNo] = 0f;
         }
 
-        m_eValsanEffectsStates[_nPlayerRoomNo] = EValsanEffectsState.ePlay;
+        m_eValsanEffectsStates[PlayNo] = EValsanEffectsState.ePlay;
 
         foreach (var val in ParticleList)
         {
@@ -232,7 +232,9 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
 
     public void Stop(int _nPlayerRoomNo)
     {
-        m_eValsanEffectsStates[_nPlayerRoomNo] = EValsanEffectsState.eStop;
+        int PlayNo = _nPlayerRoomNo;
+
+        m_eValsanEffectsStates[PlayNo] = EValsanEffectsState.eStop;
 
         foreach (var val in ParticleList)
         {           

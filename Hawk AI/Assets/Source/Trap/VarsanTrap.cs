@@ -64,7 +64,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface
                 ExecuteEvents.Execute<IMouseInterface>(
                     target: _gameObject,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.SetVarsan());
+                    functor: (recieveTarget, y) => recieveTarget.StartVarsan());
             }
             else
             {

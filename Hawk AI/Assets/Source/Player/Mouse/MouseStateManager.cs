@@ -15,7 +15,8 @@ public enum EMouseState
     Catch,
     Rail,
     ForcedWait,
-    GetCheese
+    GetCheese,
+    VarsanDown
 }
 
 public enum EMouseAnimation
@@ -23,7 +24,9 @@ public enum EMouseAnimation
     Wait,
     Run,
     Slow,
-    Eat
+    Eat,
+    VarsanDown_Start,
+    VarsanDown_Wait
 }
 
 public interface IMouseInterface : IEventSystemHandler
@@ -40,9 +43,11 @@ public interface IMouseInterface : IEventSystemHandler
 
     void SetRoomID(int _id);
 
-    void SetVarsan();
+    void StartVarsan();
 
     bool GetVarsan();
+
+    void StopVarsan();
 
     void EndVarsan();
 
@@ -125,6 +130,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     private float m_fVarsanTimeCount;           // バルサンを受けている状態にカウントをする
 
+    [SerializeField]
+    private GameObject m_gVarsanEffect;         // バルサンのエフェクト用
 
     // Start is called before the first frame update
     void Start()
@@ -141,6 +148,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         var Rail = new MRailManager(this);
         var ForcedWait = new MForcedWaitManager(this);
         var GetCheese = new MGetCheeseManager(this);
+        var VarsanDown = new MVarsanDownManager(this);
 
         m_cStateList.Add(Normal);
         m_cStateList.Add(SlowDown);
@@ -151,6 +159,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_cStateList.Add(Rail);
         m_cStateList.Add(ForcedWait);
         m_cStateList.Add(GetCheese);
+        m_cStateList.Add(VarsanDown);
 
         m_cAnimation = this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animation>();
 
@@ -522,7 +531,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public void SetCollapse()
     {
         //m_vDefaultScale = this.transform.localScale;
-        this.transform.localScale = new Vector3(m_vDefaultScale.x, 0.3f, m_vDefaultScale.z);
+        this.transform.localScale = new Vector3(m_vDefaultScale.x, 0.1f, m_vDefaultScale.z);
     }
 
     public void SetDefaultSize()
@@ -553,6 +562,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 if (true)
                 {
                     // ステートを変える
+                    ChangeState(0, EMouseState.VarsanDown);
                 }
             }
         }
@@ -562,11 +572,15 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
     }
 
-    public void SetVarsan()
+    public void StartVarsan()
     {
         m_isVarsan = true;
         // バルサンの状態になるので、エフェクトを再生させる
-
+        ExecuteEvents.Execute<IValsanEffect>(
+                target: m_gVarsanEffect,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
+        //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
     }
 
     public bool GetVarsan()
@@ -574,14 +588,31 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         return m_isVarsan;
     }
 
-    public void EndVarsan()
+    public void StopVarsan()
     {
-        if (!m_isVarsan)
+        // バルサンのエフェクトを一時停止する
+        if (m_isVarsan)
         {
             m_isVarsan = false;
-            // エフェクトも止める
+            ExecuteEvents.Execute<IValsanEffect>(
+                target: m_gVarsanEffect,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Stop((int)GamePadIndex));
 
         }
+    }
+
+    public void EndVarsan()
+    {
+        m_isVarsan = false;
+        m_fVarsanTimeCount = 0f;
+        // エフェクトも止める
+        ExecuteEvents.Execute<IValsanEffect>(
+            target: m_gVarsanEffect,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.End());
+        ChangeState(0, EMouseState.Normal);
+        //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
     }
 
 
