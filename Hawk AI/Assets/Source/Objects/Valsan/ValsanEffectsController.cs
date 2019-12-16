@@ -6,23 +6,36 @@ using UnityEngine.EventSystems;
 
 public interface IValsanEffect : IEventSystemHandler
 {
-    void Play();
+    void Play(EPlayerRoom _ePlayerRoomNo);
 
-    void Stop();
+    void Stop(EPlayerRoom _ePlayerRoomNo);
+
+    void End();
+
 }
 
-public enum ERoomArea
+public enum EPlayerRoom
 {
-    eRoom1,
-    eRoom2,
-    eRoom3,
-    eRoom4,
+    ePlayerRoom1,
+    ePlayerRoom2,
+    ePlayerRoom3,
+    ePlayerRoom4,
 }
 
+
+public enum EValsanEffectsState
+{
+    ePlay,
+    eStop,
+    eEnd
+}
 
 
 public class ValsanEffectsController : MonoBehaviour, IValsanEffect
 {
+    [SerializeField]
+    private List<GameObject> PlayerList = new List<GameObject>();
+
     [SerializeField]
     private List<GameObject> ParticleList = new List<GameObject>();
 
@@ -32,14 +45,26 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
     [SerializeField]
     private List<Image> SmokeColorCanvas = new List<Image>();
 
+    [SerializeField]
+    private float FadeRate;
+
     private List<Color> SmokeEffects = new List<Color>();
     private List<Color> SmokeColor = new List<Color>();
 
     private bool m_bStart = false;
+    private EValsanEffectsState[] m_eValsanEffectsStates = new EValsanEffectsState[4];
+
+    private float[] m_fValsanEffectsRates = new float[4];
+    private float[] m_fValsanEffectsCanvasRates = new float[4];
 
     // Start is called before the first frame update
     void Start()
     {
+        for(int i = 0; i < m_eValsanEffectsStates.Length;i++)
+        {
+            m_eValsanEffectsStates[i] = EValsanEffectsState.eEnd;
+        }
+
         for (int i = 0; i < SmokeEffectsCanvas.Count; i++)
         {
             SmokeEffects.Add(SmokeEffectsCanvas[i].color);
@@ -66,63 +91,187 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        //if(Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    Play(EPlayerRoom.ePlayerRoom1);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    Stop(EPlayerRoom.ePlayerRoom1);
+        //}
+
+
+        for (int i = 0; i <  m_eValsanEffectsStates.Length;i++)
         {
-            Play();
+            switch (m_eValsanEffectsStates[i])
+            {
+                case EValsanEffectsState.ePlay:
+                    PlayEffectsRate(i);
+                    break;
+
+                case EValsanEffectsState.eStop:
+                    StopEffectsRate(i);
+                    break;
+
+                default:
+                    break;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Stop();
-        }
 
-
-        if(m_bStart == true)
+        if (m_bStart == true)
         MaskingPlayerCamera();
+    }
+
+
+    private void PlayEffectsRate(int _PlayerNo)
+    {
+        if (m_fValsanEffectsRates[_PlayerNo] <= SmokeColor[_PlayerNo].a)
+        {
+            m_fValsanEffectsRates[_PlayerNo] += FadeRate;
+
+
+            SmokeColorCanvas[_PlayerNo].color = new Color(
+                SmokeColor[_PlayerNo].r,
+                SmokeColor[_PlayerNo].g,
+                SmokeColor[_PlayerNo].b,
+                m_fValsanEffectsRates[_PlayerNo]);
+
+            //SmokeEffectsCanvas[_PlayerNo].color = SmokeEffects[_PlayerNo];
+            //SmokeColorCanvas[_PlayerNo].color = SmokeColor[_PlayerNo];
+        }
+
+        if (m_fValsanEffectsCanvasRates[_PlayerNo] <= SmokeEffects[_PlayerNo].a)
+        {
+            m_fValsanEffectsCanvasRates[_PlayerNo] += FadeRate;
+
+
+            SmokeEffectsCanvas[_PlayerNo].color = new Color(
+                SmokeEffects[_PlayerNo].r,
+                SmokeEffects[_PlayerNo].g,
+                SmokeEffects[_PlayerNo].b,
+                m_fValsanEffectsCanvasRates[_PlayerNo]);
+        }
+
+    }
+
+    private void StopEffectsRate(int _PlayerNo)
+    {
+        if (m_fValsanEffectsRates[_PlayerNo] >= 0)
+        {
+            m_fValsanEffectsRates[_PlayerNo] -= FadeRate;
+
+            SmokeColorCanvas[_PlayerNo].color = new Color(
+                SmokeColor[_PlayerNo].r,
+                SmokeColor[_PlayerNo].g,
+                SmokeColor[_PlayerNo].b,
+                m_fValsanEffectsRates[_PlayerNo]);
+        }
+
+        if (m_fValsanEffectsCanvasRates[_PlayerNo] >= 0)
+        {
+            m_fValsanEffectsCanvasRates[_PlayerNo] -= FadeRate;
+
+
+            SmokeEffectsCanvas[_PlayerNo].color = new Color(
+                SmokeEffects[_PlayerNo].r,
+                SmokeEffects[_PlayerNo].g,
+                SmokeEffects[_PlayerNo].b,
+                m_fValsanEffectsCanvasRates[_PlayerNo]);
+        }
+
     }
 
     private void MaskingPlayerCamera()
     {
-        //Hack : Playerがどこのエリアにいるか
+        //for (int i = 0; i < SmokeEffectsCanvas.Count; i++)
+        //{
+        //    //自分と同じエリアであれば
+        //    if ()
+        //    {
+        //        SmokeEffectsCanvas[i].color = SmokeEffects[i];
+        //    }
+        //}
 
-        for (int i = 0; i < SmokeEffectsCanvas.Count; i++)
-        {
-            // TODO : 自分と同じエリアであれば
-            //if ()
-            //{
-            SmokeEffectsCanvas[i].color = SmokeEffects[i];
-            //}
-        }
-
-        for (int i = 0; i < SmokeColorCanvas.Count; i++)
-        {
-            // TODO : 自分と同じエリアであれば
-            //if ()
-            //{
-                SmokeColorCanvas[i].color = SmokeColor[i];
-            //}
-        }
+        //for (int i = 0; i < SmokeColorCanvas.Count; i++)
+        //{
+        //    // TODO : 自分と同じエリアであれば
+        //    //if ()
+        //    //{
+        //        SmokeColorCanvas[i].color = SmokeColor[i];
+        //    //}
+        //}
 
     }
 
 
 
-    public void Play()
+    public void Play(EPlayerRoom _ePlayerRoomNo)
     {
-        foreach(var val in ParticleList)
+        int playerno = (int)_ePlayerRoomNo;
+
+        if((m_eValsanEffectsStates[(int)_ePlayerRoomNo] == EValsanEffectsState.eStop) ||
+            (m_eValsanEffectsStates[(int)_ePlayerRoomNo] == EValsanEffectsState.eEnd))
+        {
+            m_fValsanEffectsRates[playerno] = 0f;
+            m_fValsanEffectsCanvasRates[playerno] = 0f;
+        }
+
+        m_eValsanEffectsStates[(int)_ePlayerRoomNo] = EValsanEffectsState.ePlay;
+
+        foreach (var val in ParticleList)
         {
             val.GetComponent<ParticleSystem>().Play();
         }
+
+        //SmokeEffectsCanvas[playerno].color = SmokeEffects[playerno];
+        //SmokeColorCanvas[playerno].color = SmokeColor[playerno];
+
         m_bStart = true;
     }
 
-    public void Stop()
+    public void Stop(EPlayerRoom _ePlayerRoomNo)
     {
+        int playerno = (int)_ePlayerRoomNo;
+        m_eValsanEffectsStates[(int)_ePlayerRoomNo] = EValsanEffectsState.eStop;
+
         foreach (var val in ParticleList)
-        {
+        {           
             val.GetComponent<ParticleSystem>().Stop();
         }
+            //SmokeEffects.Add(SmokeEffectsCanvas[playerno].color);
+
+            //SmokeEffectsCanvas[playerno].color = new Color(
+            //    SmokeEffectsCanvas[playerno].color.r,
+            //    SmokeEffectsCanvas[playerno].color.g,
+            //    SmokeEffectsCanvas[playerno].color.b,
+            //    0);
+        
+
+
+            //SmokeColor.Add(SmokeColorCanvas[playerno].color);
+
+            //SmokeColorCanvas[playerno].color = new Color(
+            //    SmokeColorCanvas[playerno].color.r,
+            //    SmokeColorCanvas[playerno].color.g,
+            //    SmokeColorCanvas[playerno].color.b,
+            //    0);
+
         m_bStart = false;
     }
 
+    public void End()
+    {
+        for (int i = 0; i < m_eValsanEffectsStates.Length; i++)
+        {
+            m_eValsanEffectsStates[i] = EValsanEffectsState.eEnd;
+        }
+
+        foreach (var val in ParticleList)
+        {
+            val.GetComponent<ParticleSystem>().Clear(false);
+        }
+
+
+    }
 }

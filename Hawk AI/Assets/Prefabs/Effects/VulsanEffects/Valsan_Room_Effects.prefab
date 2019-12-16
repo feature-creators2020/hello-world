@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 199537097}
   - component: {fileID: 199537096}
   m_Layer: 5
-  m_Name: SmokeEffectImage2
+  m_Name: SmokeEffectImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: -220}
+  m_AnchoredPosition: {x: -400, y: -220}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &266129025
@@ -279,7 +279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -220}
+  m_AnchoredPosition: {x: 400, y: -220}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1248286496
@@ -454,7 +454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -200}
+  m_AnchoredPosition: {x: 400, y: -200}
   m_SizeDelta: {x: 800, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1698545010
@@ -5277,7 +5277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: -200}
+  m_AnchoredPosition: {x: -400, y: -200}
   m_SizeDelta: {x: 800, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1732259298
@@ -5325,7 +5325,7 @@ GameObject:
   - component: {fileID: 1753925867}
   - component: {fileID: 1753925866}
   m_Layer: 5
-  m_Name: SmokeMaskImage1
+  m_Name: SmokeMaskImage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5398,7 +5398,7 @@ GameObject:
   - component: {fileID: 1992340899}
   - component: {fileID: 1992340898}
   m_Layer: 5
-  m_Name: SmokeEffectImage1
+  m_Name: SmokeEffectImage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5468,7 +5468,7 @@ GameObject:
   - component: {fileID: 2084030061}
   - component: {fileID: 2084030060}
   m_Layer: 5
-  m_Name: SmokeMaskImage2
+  m_Name: SmokeMaskImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5731,6 +5731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e534112ee6f874d888477e69eac3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerList: []
   ParticleList:
   - {fileID: 507357964286148309}
   - {fileID: 1699907361}

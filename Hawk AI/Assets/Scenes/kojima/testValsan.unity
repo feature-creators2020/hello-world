@@ -22163,6 +22163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strTag: Room
+  DroneObject: {fileID: 0}
 --- !u!4 &419625059
 Transform:
   m_ObjectHideFlags: 0
@@ -36554,6 +36555,26 @@ PrefabInstance:
     - target: {fileID: 6232627324413639858, guid: 4d2796dc493b676489564eb4a704c569,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380789279584340879, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380789278579024477, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380789278667187175, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380789278541730384, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -120636,6 +120657,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6380789278840071845, guid: 614690e014259524caa28f4b6a9d2e1a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 614690e014259524caa28f4b6a9d2e1a, type: 3}
 --- !u!1001 &507357964001864438
@@ -120703,14 +120729,6 @@ PrefabInstance:
     - target: {fileID: 507357963696958238, guid: a6f841bbe6474564c86463c95851740c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1557727745, guid: a6f841bbe6474564c86463c95851740c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 556228135, guid: a6f841bbe6474564c86463c95851740c, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
