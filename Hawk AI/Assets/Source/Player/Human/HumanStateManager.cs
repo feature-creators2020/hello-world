@@ -754,6 +754,12 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
             }
 
+            // 所有者情報を渡す
+            ExecuteEvents.Execute<IMouseTrap>(
+                    target: insObject,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.SetPlayer(this.gameObject));
+
             //MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
             //MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
 
@@ -984,7 +990,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             ExecuteEvents.Execute<IMouseInterface>(
                 target: hCatchZone.TargetObject,
                 eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.Catched(/*this.gameObject*/));
+                functor: (recieveTarget, y) => recieveTarget.Catched(this.gameObject));
             m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
         }
     }

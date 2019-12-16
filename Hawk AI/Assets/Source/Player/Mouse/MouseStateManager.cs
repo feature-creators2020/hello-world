@@ -31,7 +31,7 @@ public enum EMouseAnimation
 
 public interface IMouseInterface : IEventSystemHandler
 {
-    void Catched();
+    void Catched(GameObject _Owner);
 
     void ChangeUpState(GameObject _Target);
 
@@ -302,7 +302,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         if (LayerName == "Goal")
         {
             m_GTargetBoxObject = other.gameObject;
-            ChangeState(0, EMouseState.GetCheese);
+            if (!CheckCurrentState(EMouseState.GetCheese))
+            {
+                ChangeState(0, EMouseState.GetCheese);
+            }
         }
 
         if (LayerName == "Pipe")
@@ -385,34 +388,34 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     }
 
-    public virtual void Catched()
+    public virtual void Catched(GameObject _Owner)
     {
         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
         {
             //Debug.Log("Catched!");
 
             // Hack : PlayerManager実装
-            //var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").
-            //    GetComponent<PlayerManager>();
-            //var HumanList = PlayerManager.GetGameObjectsList("Human");
+            var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").
+                GetComponent<PlayerManager>();
+            var HumanList = PlayerManager.GetGameObjectsList("Human");
 
-            //GameObject Player = new GameObject();
+            GameObject Player = new GameObject();
 
-            //for (int i = 0; i < HumanList.Count; i++)
-            //{
-            //    if (HumanObj == PlayerManager.GetGameObject(i, "Human"))
-            //    {
-            //        if (i == 0)
-            //        {
-            //            GameManager.KillCountByHuman1++;
-            //        }
-            //        else
-            //        {
-            //            GameManager.KillCountByHuman2++;
-            //        }
-            //        break;
-            //    }
-            //}
+            for (int i = 0; i < HumanList.Count; i++)
+            {
+                if (_Owner == PlayerManager.GetGameObject(i, "Human"))
+                {
+                    if (i == 0)
+                    {
+                        GameManager.KillCountByHuman1++;
+                    }
+                    else
+                    {
+                        GameManager.KillCountByHuman2++;
+                    }
+                    break;
+                }
+            }
             ChangeState(0, EMouseState.Catch);
         }
     }

@@ -99,6 +99,10 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
         //base.Update();
         this.DebugUpdate();
 
+        Debug.Log("human1 kill : " + KillCountByHuman1);
+        Debug.Log("human2 kill : " + KillCountByHuman1);
+        Debug.Log("mouse1 eat : " + m_nEatCountByMouse1);
+        Debug.Log("mouse2 eat : " + m_nEatCountByMouse2);
     }
 
     public virtual void GeneralRelease()

@@ -60,7 +60,7 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
                     ExecuteEvents.Execute<IMouseInterface>(
                         target: MouseObject,
                         eventData: null,
-                        functor: (recieveTarget, y) => recieveTarget.Catched());
+                        functor: (recieveTarget, y) => recieveTarget.Catched(m_gHavePlayer));
 
                     Destroy(this.gameObject);
                 }
