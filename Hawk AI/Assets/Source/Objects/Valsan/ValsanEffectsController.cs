@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 
 public interface IValsanEffect : IEventSystemHandler
 {
-    void Play(EPlayerRoom _ePlayerRoomNo);
+    void Play(int _nPlayerRoomNo);
 
-    void Stop(EPlayerRoom _ePlayerRoomNo);
+    void Stop(int _nPlayerRoomNo);
 
     void End();
 
@@ -206,18 +206,18 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
 
 
 
-    public void Play(EPlayerRoom _ePlayerRoomNo)
+    public void Play(int _nPlayerRoomNo)
     {
-        int playerno = (int)_ePlayerRoomNo;
+        
 
-        if((m_eValsanEffectsStates[(int)_ePlayerRoomNo] == EValsanEffectsState.eStop) ||
-            (m_eValsanEffectsStates[(int)_ePlayerRoomNo] == EValsanEffectsState.eEnd))
+        if((m_eValsanEffectsStates[_nPlayerRoomNo] == EValsanEffectsState.eStop) ||
+            (m_eValsanEffectsStates[_nPlayerRoomNo] == EValsanEffectsState.eEnd))
         {
-            m_fValsanEffectsRates[playerno] = 0f;
-            m_fValsanEffectsCanvasRates[playerno] = 0f;
+            m_fValsanEffectsRates[_nPlayerRoomNo] = 0f;
+            m_fValsanEffectsCanvasRates[_nPlayerRoomNo] = 0f;
         }
 
-        m_eValsanEffectsStates[(int)_ePlayerRoomNo] = EValsanEffectsState.ePlay;
+        m_eValsanEffectsStates[_nPlayerRoomNo] = EValsanEffectsState.ePlay;
 
         foreach (var val in ParticleList)
         {
@@ -230,10 +230,9 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
         m_bStart = true;
     }
 
-    public void Stop(EPlayerRoom _ePlayerRoomNo)
+    public void Stop(int _nPlayerRoomNo)
     {
-        int playerno = (int)_ePlayerRoomNo;
-        m_eValsanEffectsStates[(int)_ePlayerRoomNo] = EValsanEffectsState.eStop;
+        m_eValsanEffectsStates[_nPlayerRoomNo] = EValsanEffectsState.eStop;
 
         foreach (var val in ParticleList)
         {           

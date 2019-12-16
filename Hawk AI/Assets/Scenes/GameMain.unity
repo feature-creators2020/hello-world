@@ -935,21 +935,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6380789279584340879, guid: 4d2796dc493b676489564eb4a704c569,
+    - target: {fileID: 4688608975424148753, guid: 4d2796dc493b676489564eb4a704c569,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6380789278579024477, guid: 4d2796dc493b676489564eb4a704c569,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
     - target: {fileID: 6380789278667187175, guid: 4d2796dc493b676489564eb4a704c569,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4688608975361119403, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
+    - target: {fileID: 6380789278579024477, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688608976874546342, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: TimeZoneObj
+      value: 
+      objectReference: {fileID: 1294934672}
     - target: {fileID: 6380789278541730384, guid: 4d2796dc493b676489564eb4a704c569,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -960,21 +970,11 @@ PrefabInstance:
       propertyPath: TimeZoneObj
       value: 
       objectReference: {fileID: 1294934672}
-    - target: {fileID: 4688608975361119403, guid: 4d2796dc493b676489564eb4a704c569,
+    - target: {fileID: 6380789279584340879, guid: 4d2796dc493b676489564eb4a704c569,
         type: 3}
-      propertyPath: TimeZoneObj
-      value: 
-      objectReference: {fileID: 1294934672}
-    - target: {fileID: 4688608975424148753, guid: 4d2796dc493b676489564eb4a704c569,
-        type: 3}
-      propertyPath: TimeZoneObj
-      value: 
-      objectReference: {fileID: 1294934672}
-    - target: {fileID: 4688608976874546342, guid: 4d2796dc493b676489564eb4a704c569,
-        type: 3}
-      propertyPath: TimeZoneObj
-      value: 
-      objectReference: {fileID: 1294934672}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2796dc493b676489564eb4a704c569, type: 3}
 --- !u!1 &21942873
@@ -54345,6 +54345,12 @@ PrefabInstance:
       propertyPath: isEnable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3119138605471699372, guid: 58c35965b4a30b74a8a47292cfcc0dad,
+        type: 3}
+      propertyPath: m_gVarsanEffect
+      value: 
+      objectReference: {fileID: 507357963696958226, guid: a6f841bbe6474564c86463c95851740c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c35965b4a30b74a8a47292cfcc0dad, type: 3}
 --- !u!4 &971018305 stripped
@@ -69104,6 +69110,11 @@ PrefabInstance:
       propertyPath: DroneObject
       value: 
       objectReference: {fileID: 1831233113}
+    - target: {fileID: 3146035583299076707, guid: 966d53e8c7502004cb2013f421c8d480,
+        type: 3}
+      propertyPath: PlayerManagerObject
+      value: 
+      objectReference: {fileID: 1049198309}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966d53e8c7502004cb2013f421c8d480, type: 3}
 --- !u!1001 &1251958020
@@ -115883,6 +115894,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8717897689533605020, guid: 0f545b34dbf55fa419b68bc0f36432d4,
+        type: 3}
+      propertyPath: m_gVarsanEffect
+      value: 
+      objectReference: {fileID: 507357963696958226, guid: a6f841bbe6474564c86463c95851740c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f545b34dbf55fa419b68bc0f36432d4, type: 3}
 --- !u!4 &2086019704 stripped

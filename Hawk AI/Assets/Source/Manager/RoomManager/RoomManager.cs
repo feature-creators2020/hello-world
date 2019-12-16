@@ -72,7 +72,7 @@ public class RoomManager : GeneralManager
     public void Mouse01Enter(int index)
     {
         List_Mouse01.Add(index);
-        Debug.Log(index);
+        //Debug.Log(index);
     }
 
     //ネズミが出て行ったときに部屋番号をリストから（1つのみ）除外
@@ -148,7 +148,7 @@ public class RoomManager : GeneralManager
                     target: _inInfo.ObjectInfo,
                     eventData: null,
                     functor: (recieveTarget, y) => _inInfo.RoomInfo = recieveTarget.GetRoomID());
-            Debug.Log("Mouse : " + _inInfo.ObjectInfo);
+            //Debug.Log("Mouse : " + _inInfo.ObjectInfo);
             for (j = 0; j < Object_RoomIDs.Count; j++)
             {
                 if(Object_RoomIDs[j].ObjectInfo == _inInfo.ObjectInfo)
@@ -174,7 +174,7 @@ public class RoomManager : GeneralManager
                     target: _inInfo.ObjectInfo,
                     eventData: null,
                     functor: (recieveTarget, y) => _inInfo.RoomInfo = recieveTarget.GetRoomID());
-            Debug.Log("Human : " + _inInfo.ObjectInfo);
+            //Debug.Log("Human : " + _inInfo.ObjectInfo);
             for (j = 0; j < Object_RoomIDs.Count; j++)
             {
                 if (Object_RoomIDs[j].ObjectInfo == _inInfo.ObjectInfo)
@@ -197,7 +197,7 @@ public class RoomManager : GeneralManager
                 target: _inInfo.ObjectInfo,
                 eventData: null,
                 functor: (recieveTarget, y) => _inInfo.RoomInfo = recieveTarget.GetRoomID());
-        Debug.Log("Drone : " + _inInfo.ObjectInfo);
+        //Debug.Log("Drone : " + _inInfo.ObjectInfo);
         for (j = 0; j < Object_RoomIDs.Count; j++)
         {
             if (Object_RoomIDs[j].ObjectInfo == _inInfo.ObjectInfo)
@@ -215,7 +215,7 @@ public class RoomManager : GeneralManager
         }
 
         // デバッグ用
-        Debug.Log("ObjectCount : " + Object_RoomIDs.Count);
+        //Debug.Log("ObjectCount : " + Object_RoomIDs.Count);
         for(int debug_i = 0; debug_i < Object_RoomIDs.Count; debug_i++)
         {
             if(List_Debug.Count < Object_RoomIDs.Count)
@@ -245,7 +245,7 @@ public class RoomManager : GeneralManager
 
         // 情報がなかった場合
         //if (i >= Object_RoomIDs.Count) return RoomNum;
-        Debug.Log(Object_RoomIDs[i].ObjectInfo.name + ".RoomId : " + RoomNum);
+        //Debug.Log(Object_RoomIDs[i].ObjectInfo.name + ".RoomId : " + RoomNum);
         return RoomNum;
     }
 }

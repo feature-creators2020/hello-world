@@ -79,7 +79,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     [System.NonSerialized]
     public GameObject GDoorData;
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public string m_sItemData;                // 現在取得しているアイテム
     [System.NonSerialized]
     public bool m_canPut = true;
@@ -108,6 +108,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     private bool m_isVarsan;                    // バルサンを受けているの状態
 
     private float m_fVarsanTimeCount;           // バルサンを受けている状態にカウントをする
+
+    [SerializeField]
+    GameObject m_gVarsanEffect;                 // バルサンのエフェクトを表示するためのオブジェクト
 
     public float RunRate                // 別状態の速度倍率
     {
@@ -723,12 +726,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 vector3 = new Vector3(m_cSetItemColliderObj.transform.position.x, -0.5f, m_cSetItemColliderObj.transform.position.z);
                 vector3 += this.transform.forward * collider.center.z;
 
-                // プレハブからインスタンスを生成
-                ExecuteEvents.Execute<IItemInterface>(
-                    target: item,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
-            if(item.tag == "VarsanTrap")
+            if (item.tag == "VarsanTrap")
             {
                 // バルサンのとき、部屋情報を入れる
                 ExecuteEvents.Execute<IVarsanTrapInterface>(
@@ -737,6 +735,12 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     functor: (recieveTarget, y) => recieveTarget.SetRoom(m_nRoomID));
 
             }
+
+            // プレハブからインスタンスを生成
+            ExecuteEvents.Execute<IItemInterface>(
+                    target: item,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
             m_SEAudio.MultiplePlay((int)SEAudioType.eSE_SetTrap);
 
                 //MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
@@ -915,7 +919,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         m_isVarsan = true;
         // バルサンの状態になるので、エフェクトを再生させる
-
+        ExecuteEvents.Execute<IValsanEffect>(
+                target: m_gVarsanEffect,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
+        //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
     }
 
     public bool GetVarsan()
@@ -929,7 +937,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         {
             m_isVarsan = false;
             // エフェクトも止める
-
+            ExecuteEvents.Execute<IValsanEffect>(
+                target: m_gVarsanEffect,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.End());
+            //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
         }
     }
 

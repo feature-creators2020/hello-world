@@ -112,5 +112,6 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface
         m_fLifeTime = 0f;
         m_fMaxLifeTime = 20f;
         m_isActive = true;
+        Debug.Log("SetVarsan");
     }
 }
