@@ -14,6 +14,7 @@ public class Item : MonoBehaviour, IItemObjectInterface
     bool isLimitScale = false;
     Vector3 keepScale;
     GameObject m_gPointObject;
+    [SerializeField] GameObject m_gItemManager;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +60,8 @@ public class Item : MonoBehaviour, IItemObjectInterface
         //            functor: (recieveTarget, y) => recieveTarget.SetItem(this.gameObject));
 
         // アイテムマネージャーから自身のアイテムマネージャーを取得し、リストに追加する
-        var manager = ManagerObjectManager.Instance.GetGameObject("ItemManager");
-        var itemmanager = manager.GetComponent<ItemManager>();
+        //var manager = ManagerObjectManager.Instance.GetGameObject("ItemManager");
+        var itemmanager = m_gItemManager.GetComponent<ItemManager>();
         string managertag = null;
         foreach (var val in itemmanager.GetGameObjectsList())
         {
