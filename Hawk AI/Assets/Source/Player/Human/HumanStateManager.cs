@@ -48,6 +48,12 @@ public interface IHumanInterface : IEventSystemHandler
 
     void SetRoomID(int _id);
 
+    void SetVarsan();
+
+    bool GetVarsan();
+
+    void EndVarsan();
+
 }
 
 public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase, IHumanInterface
@@ -99,10 +105,9 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     [SerializeField]
     private int m_nRoomID;                      // 現在いるルームの情報
 
-    /*{
-        get { return m_fmoveSpeed; }
-        set { m_fmoveSpeed = value; }
-    }*/
+    private bool m_isVarsan;                    // バルサンを受けているの状態
+
+    private float m_fVarsanTimeCount;           // バルサンを受けている状態にカウントをする
 
     public float RunRate                // 別状態の速度倍率
     {
@@ -185,7 +190,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // se取得
         m_SEAudio = ManagerObjectManager.Instance.GetGameObject("SEAudio").GetComponent<SEAudio>();
 
-        Debug.Log("HumanState : " + m_cStateMachineList[0].GetCurrentState());
+        //Debug.Log("HumanState : " + m_cStateMachineList[0].GetCurrentState());
         // 各状態の処理
         base.Update();
 
@@ -218,7 +223,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                         //Debug.Log("ChangeState");
                         m_GTargetBoxObject = hit.collider.gameObject;
                         m_TargetBoxNomal = hit.normal;
-                        Debug.Log("Change →Up");
+                        //Debug.Log("Change →Up");
                         ChangeState(0, EHumanState.Up);
                         return;
                     }
@@ -244,7 +249,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                         m_GTargetBoxObject = Downhit.collider.gameObject.transform.parent.parent.gameObject;
                         if (!CheckCurrentState(EHumanState.Rail))
                             ChangeState(0, EHumanState.Rail);
-                        Debug.Log("Change →Rail");
+                        //Debug.Log("Change →Rail");
                     }
                 }
                 else
@@ -252,7 +257,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     if (CheckCurrentState(EHumanState.Rail))
                     {
                         ChangeState(0, EHumanState.Normal);
-                        Debug.Log("Change Rail→Normal");
+                        //Debug.Log("Change Rail→Normal");
                     }
                 }
             }
@@ -270,6 +275,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             EOldState = EHumanState.Normal;
         }
 
+        VarsanUpdate();
     }
 
     public virtual bool UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
@@ -318,7 +324,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                 // アクション経過時間を再設定
                 m_fActionTime = m_fLimitActionTime;
                 ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
-                Debug.Log("Change →OldState");
+                //Debug.Log("Change →OldState");
                 ChangeState(0, EOldState);
             }
         }
@@ -583,6 +589,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     {
                         m_sItemData = "MouseGetTrapManager";
                     }
+                    if(other.gameObject.tag == "VarsanTrap")
+                    {
+                        m_sItemData = "VarsanTrapManager";
+                    }
                     //CursorManager.Instance.GetItem(other.gameObject);
                     ItemHolderManager.Instance.HoldItem(this.gameObject, other.gameObject);
                     // 取得したのでオブジェクトを消す
@@ -641,7 +651,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         if (LayerMask.LayerToName(other.gameObject.layer) == "Door")
         {
             ChangeState(0, EOldState);
-            Debug.Log("Change →OldState");
+            //Debug.Log("Change →OldState");
         }
 
         //if (other.tag == "DoorArea")
@@ -718,7 +728,16 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     target: item,
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.Instant(vector3, this.transform.rotation));
-                m_SEAudio.MultiplePlay((int)SEAudioType.eSE_SetTrap);
+            if(item.tag == "VarsanTrap")
+            {
+                // バルサンのとき、部屋情報を入れる
+                ExecuteEvents.Execute<IVarsanTrapInterface>(
+                    target: item,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.SetRoom(m_nRoomID));
+
+            }
+            m_SEAudio.MultiplePlay((int)SEAudioType.eSE_SetTrap);
 
                 //MapManager.Instance.MapData[MapPos[0].y][MapPos[0].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
                 //MapManager.Instance.MapData[MapPos[1].y][MapPos[1].x] = (int)ObjectNo.MOUSE_TRAP_LOW;
@@ -806,7 +825,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         m_GTargetBoxObject = _Target;
         ChangeState(0, EHumanState.Up);
-        Debug.Log("Change →Up");
+        //Debug.Log("Change →Up");
     }
 
     public void GravityOff()
@@ -870,6 +889,49 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         m_nRoomID = _id;
     }
 
+    public void VarsanUpdate()
+    {
+        // バルサンの処理
+        if (m_isVarsan)
+        {
+            m_fVarsanTimeCount += Time.deltaTime;
+            // 一定時間バルサンを受けていると、気絶する状態になる
+            if (m_fVarsanTimeCount >= 5.0f)
+            {
+                // 気絶状態の時は処理しない
+                if (true)
+                {
+                    // ステートを変える
+                }
+            }
+        }
+        else
+        {
+            m_fVarsanTimeCount = 0f;
+        }
+    }
+
+    public void SetVarsan()
+    {
+        m_isVarsan = true;
+        // バルサンの状態になるので、エフェクトを再生させる
+
+    }
+
+    public bool GetVarsan()
+    {
+        return m_isVarsan;
+    }
+
+    public void EndVarsan()
+    {
+        if (!m_isVarsan)
+        {
+            m_isVarsan = false;
+            // エフェクトも止める
+
+        }
+    }
 
     // アニメーションイベント用関数
     public void OnFootEvent()
@@ -893,7 +955,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public void OnEndCatchEvent()
     {
         ChangeState(0, EOldState);
-        Debug.Log("Change →OldState");
+        //Debug.Log("Change →OldState");
     }
 
     public void PutingEvent()
@@ -904,6 +966,6 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public void OnEndPutEvent()
     {
         ChangeState(0, EOldState);
-        Debug.Log("Change →OldState");
+        //Debug.Log("Change →OldState");
     }
 }

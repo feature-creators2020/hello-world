@@ -37,7 +37,7 @@ public class MouseGetTrap : GeneralObject
         //m_gTrap = this.gameObject.transform.GetChild(1).gameObject;
         m_gTrap.SetActive(false);
         m_fRotTime = m_fMaxRotTime;
-        StartRot = m_gTrap.transform.rotation;
+        StartRot = m_gTrap.transform.localRotation;
         EndRot = new Quaternion(0, 0, 20f, StartRot.w);
     }
 
@@ -80,7 +80,7 @@ public class MouseGetTrap : GeneralObject
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.SetDefaultSize());
                 }
-                Quaternion rot = Quaternion.AngleAxis(speed, transform.right);
+                Quaternion rot = Quaternion.AngleAxis(speed, m_gTrap.transform.forward);
 
                 // 元の回転値と合成して上書き
                 m_gTrap.transform.localRotation = StartRot * rot;

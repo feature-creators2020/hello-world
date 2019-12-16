@@ -24,6 +24,8 @@ public class RoomManager : GeneralManager
 
     [SerializeField] private GameObject DroneObject;
 
+    [SerializeField] private GameObject PlayerManagerObject;
+
     void Awake()
     {
         Instance = this;
@@ -134,7 +136,7 @@ public class RoomManager : GeneralManager
         int i, j;
         // それぞれのルーム情報を更新する
         var manager = ManagerObjectManager.Instance;
-        var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
+        var playermanager = PlayerManagerObject.GetComponent<PlayerManager>();
         var MouseList = playermanager.GetGameObjectsList("Mouse");
 
         ObjectRoomInfo _inInfo = new ObjectRoomInfo();

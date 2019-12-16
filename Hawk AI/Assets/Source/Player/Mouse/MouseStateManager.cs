@@ -40,6 +40,13 @@ public interface IMouseInterface : IEventSystemHandler
 
     void SetRoomID(int _id);
 
+    void SetVarsan();
+
+    bool GetVarsan();
+
+    void EndVarsan();
+
+
 }
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
@@ -114,6 +121,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [SerializeField]
     private int m_nRoomID;                      // 現在いるルームの情報
 
+    private bool m_isVarsan;                    // バルサンを受けているの状態
+
+    private float m_fVarsanTimeCount;           // バルサンを受けている状態にカウントをする
 
 
     // Start is called before the first frame update
@@ -254,6 +264,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             ChangeState(0, EMouseState.Rail);
             return;
         }
+
+        VarsanUpdate();
     }
 
     void OnTriggerEnter(Collider other)
@@ -526,6 +538,50 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public void SetRoomID(int _id)
     {
         m_nRoomID = _id;
+    }
+
+    public void VarsanUpdate()
+    {
+        // バルサンの処理
+        if (m_isVarsan)
+        {
+            m_fVarsanTimeCount += Time.deltaTime;
+            // 一定時間バルサンを受けていると、気絶する状態になる
+            if (m_fVarsanTimeCount >= 5.0f)
+            {
+                // 気絶状態の時は処理しない
+                if (true)
+                {
+                    // ステートを変える
+                }
+            }
+        }
+        else
+        {
+            m_fVarsanTimeCount = 0f;
+        }
+    }
+
+    public void SetVarsan()
+    {
+        m_isVarsan = true;
+        // バルサンの状態になるので、エフェクトを再生させる
+
+    }
+
+    public bool GetVarsan()
+    {
+        return m_isVarsan;
+    }
+
+    public void EndVarsan()
+    {
+        if (!m_isVarsan)
+        {
+            m_isVarsan = false;
+            // エフェクトも止める
+
+        }
     }
 
 
