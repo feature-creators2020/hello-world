@@ -78,6 +78,29 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
         m_fEffectTime = m_fMaxEffectTime;
         m_isFadeOut = false;
 
+        // Hack : PlayerManager実装
+        var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").
+            GetComponent<PlayerManager>();
+        var MouseList = PlayerManager.GetGameObjectsList("Mouse");
+
+        GameObject Player = new GameObject();
+
+        for(int i = 0; i < MouseList.Count;i++)
+        {
+            if (this.m_cOwner.gameObject == PlayerManager.GetGameObject(i, "Mouse"))
+            {
+                if (i == 0)
+                {
+                    GameManager.EatCountByMouse1++;
+                }
+                else
+                {
+                    GameManager.EatCountByMouse2++;
+                }
+                break;
+            }
+        }
+
     }
 
 

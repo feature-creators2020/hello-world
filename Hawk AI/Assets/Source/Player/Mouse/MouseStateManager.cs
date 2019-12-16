@@ -390,6 +390,29 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         if (m_cStateMachineList[0].GetCurrentState() != m_cStateList[(int)EMouseState.Pipe])
         {
             //Debug.Log("Catched!");
+
+            // Hack : PlayerManager実装
+            //var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").
+            //    GetComponent<PlayerManager>();
+            //var HumanList = PlayerManager.GetGameObjectsList("Human");
+
+            //GameObject Player = new GameObject();
+
+            //for (int i = 0; i < HumanList.Count; i++)
+            //{
+            //    if (HumanObj == PlayerManager.GetGameObject(i, "Human"))
+            //    {
+            //        if (i == 0)
+            //        {
+            //            GameManager.KillCountByHuman1++;
+            //        }
+            //        else
+            //        {
+            //            GameManager.KillCountByHuman2++;
+            //        }
+            //        break;
+            //    }
+            //}
             ChangeState(0, EMouseState.Catch);
         }
     }

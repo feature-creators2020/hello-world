@@ -33,13 +33,44 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     [SerializeField]
     public float ResultStatingTime;
 
-    private static bool m_bHumanWin = false;
+    private static bool m_bHumanWin = true;
+    private static int m_nKillCountByHuman1 = 0;
+    private static int m_nKillCountByHuman2 = 0;
+    private static int m_nEatCountByMouse1 = 0;
+    private static int m_nEatCountByMouse2 = 0;
 
     public static bool IsHumanWin
     {
         get { return m_bHumanWin; }
         set { m_bHumanWin = value; }
     }
+
+    public static int KillCountByHuman1
+    {
+        get { return m_nKillCountByHuman1; }
+        set { m_nKillCountByHuman1 = value; }
+
+    }
+    public static int KillCountByHuman2
+    {
+        get { return m_nKillCountByHuman2; }
+        set { m_nKillCountByHuman2 = value; }
+
+    }
+
+    public static int EatCountByMouse1
+    {
+        get { return m_nEatCountByMouse1; }
+        set { m_nEatCountByMouse1 = value; }
+
+    }
+    public static int EatCountByMouse2
+    {
+        get { return m_nEatCountByMouse2; }
+        set { m_nEatCountByMouse2 = value; }
+
+    }
+
 
     // Start is called before the first frame update
     public virtual void GeneralInit()

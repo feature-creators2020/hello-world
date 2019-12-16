@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using GamepadInput;
+using KeyBoardInput;
 
 
 
@@ -77,6 +79,8 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     [SerializeField]
     private GameObject[] MouseObjects;
 
+    [SerializeField]
+    private GameObject PlayerRecordsUI;
 
     // Start is called before the first frame update
     void Start()
@@ -169,8 +173,27 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     // Update is called once per frame
     void Update()
     {
-    }
+        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any) || 
+            KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Any))
+        {
+            PlayerRecordsUI.SetActive(true);
+            if (GameManager.IsHumanWin)
+            {
+                ExecuteEvents.Execute<IResultManagerInterfase>(
+                target: PlayerRecordsUI,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.HawkAIWin());
 
+            }
+            else
+            {
+                ExecuteEvents.Execute<IResultManagerInterfase>(
+                target: PlayerRecordsUI,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.MouseWin());
+            }
+        }
+    }
     public void HawkAIWin()
     {
 

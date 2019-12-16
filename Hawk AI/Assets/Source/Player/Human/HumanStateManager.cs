@@ -984,7 +984,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             ExecuteEvents.Execute<IMouseInterface>(
                 target: hCatchZone.TargetObject,
                 eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.Catched());
+                functor: (recieveTarget, y) => recieveTarget.Catched(/*this.gameObject*/));
             m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
         }
     }
