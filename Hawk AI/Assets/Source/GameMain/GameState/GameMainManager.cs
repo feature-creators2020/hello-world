@@ -89,6 +89,11 @@ public class GameMainManager : CStateBase<GameManager>
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.Play((int)BGMAudioType.Main));
 
+                GameManager.EatCountByMouse1 = 0;
+                GameManager.EatCountByMouse2 = 0;
+                GameManager.KillCountByHuman1 = 0;
+                GameManager.KillCountByHuman2 = 0;
+
                 break;
 
             case "Result":
@@ -146,29 +151,31 @@ public class GameMainManager : CStateBase<GameManager>
 
             case "Result":
 
-                float NowTimeCount = 0f;
+                //float NowTimeCount = 0f;
 
-                ExecuteEvents.Execute<ITimeManager>(
-                target: m_cTimerObject,
-                eventData: null,
-                functor: (recieveTarget, y) => NowTimeCount = recieveTarget.ExecuteTime);
+                //ExecuteEvents.Execute<ITimeManager>(
+                //target: m_cTimerObject,
+                //eventData: null,
+                //functor: (recieveTarget, y) => NowTimeCount = recieveTarget.ExecuteTime);
 
 
-                if(NowTimeCount >= this.m_cOwner.ResultStatingTime)
-                {
-                    ExecuteEvents.Execute<ISceneInterfase>(
-                    target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
-                }
+                //if(NowTimeCount >= this.m_cOwner.ResultStatingTime)
+                //{
+                //    ExecuteEvents.Execute<ISceneInterfase>(
+                //    target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
+                //    eventData: null,
+                //    functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+                //}
 
-                if ((KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.Any)) || (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.Any)))
-                {
-                    ExecuteEvents.Execute<ISceneInterfase>(
-                    target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
-                }
+                //if ((KeyBoard.GetButtonDown(KeyBoard.Button.Start, KeyBoard.Index.Any)) || (GamePad.GetButtonDown(GamePad.Button.Start, GamePad.Index.Any)))
+                //{
+                //    ExecuteEvents.Execute<ISceneInterfase>(
+                //    target: ManagerObjectManager.Instance.GetGameObject("SceneManager"),
+                //    eventData: null,
+                //    functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+                //}
+
+                //this.m_cOwner.ChangeState(0, EGameState.End);
 
 
                 break;

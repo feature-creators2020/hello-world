@@ -87,7 +87,15 @@ public class EndManager : CStateBase<GameManager>
 
             case "Result":
 
+                if (m_cFadeManager.m_flerpVal >= 1)
+                {
+                    gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
+                    ExecuteEvents.Execute<ISceneInterfase>(
+                       target: gameObject,
+                       eventData: null,
+                       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Title));
+                }
 
 
                 break;

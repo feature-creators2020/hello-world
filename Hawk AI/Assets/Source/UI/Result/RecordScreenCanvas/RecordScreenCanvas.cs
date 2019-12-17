@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+public interface IRecordScreenCanvas : IEventSystemHandler
+{
+    void ChangeRecordScreen(int id);
+}
+
+
 public enum ERecordScreenChild
 {
     eBackScreen,
@@ -21,7 +28,7 @@ public enum ERecordPlayerType
     eMouse2
 }
 
-public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
+public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecordScreenCanvas
 {
 
     [SerializeField]
@@ -37,38 +44,30 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
     private Sprite RecordHumanIcon;
 
     [SerializeField]
+    private Sprite RecordMask;
+
+    [SerializeField]
     private List<GameObject> PlayerRecordObj = new List<GameObject>();
 
-    private int First = 0;
-    private int Seconed = 1;
-    private int Third = 2;
-    private int Forth = 3;
+    private const int First = 0;
+    private const int Seconed = 1;
+    private const int Third = 2;
+    private const int Forth = 3;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private ERecordScreenChild FirstObj;
+    private ERecordScreenChild SeconedObj;
+    private ERecordScreenChild ThirdObj;
+    private ERecordScreenChild ForthObj;
 
     public void HawkAIWin()
     {
         SortingHumanWin();
-        
-
     }
 
 
     public void MouseWin()
     {
         SortingMouseWin();
-
     }
 
 
@@ -85,18 +84,22 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
         {
             Player1Image.sprite = HumanIcon[0];
             RecordPopUp(First, ERecordPlayerType.eHuman1);
+            FirstObj = ERecordScreenChild.ePlayer1;
 
             Player2Image.sprite = HumanIcon[1];
             RecordPopUp(Seconed, ERecordPlayerType.eHuman2);
+            SeconedObj = ERecordScreenChild.ePlayer2;
 
         }
         else
         {
             Player1Image.sprite = HumanIcon[1];
             RecordPopUp(First, ERecordPlayerType.eHuman2);
+            FirstObj = ERecordScreenChild.ePlayer2;
 
             Player2Image.sprite = HumanIcon[0];
             RecordPopUp(Seconed, ERecordPlayerType.eHuman1);
+            SeconedObj = ERecordScreenChild.ePlayer1;
         }
 
         // Decide Third n Forth.
@@ -104,18 +107,23 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
         {
             Player3Image.sprite = MouseIcon[0];
             RecordPopUp(Third, ERecordPlayerType.eMouse1);
+            ThirdObj = ERecordScreenChild.ePlayer3;
 
             Player4Image.sprite = MouseIcon[1];
             RecordPopUp(Forth, ERecordPlayerType.eMouse2);
+            ForthObj = ERecordScreenChild.ePlayer4;
 
         }
         else
         {
             Player3Image.sprite = MouseIcon[1];
             RecordPopUp(Third, ERecordPlayerType.eMouse2);
+            ThirdObj = ERecordScreenChild.ePlayer4;
 
             Player4Image.sprite = MouseIcon[0];
             RecordPopUp(Forth, ERecordPlayerType.eMouse1);
+            ForthObj = ERecordScreenChild.ePlayer3;
+
         }
     }
 
@@ -132,18 +140,22 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
         {
             Player1Image.sprite = MouseIcon[0];
             RecordPopUp(First, ERecordPlayerType.eMouse1);
+            FirstObj = ERecordScreenChild.ePlayer3;
 
             Player2Image.sprite = MouseIcon[1];
             RecordPopUp(Seconed, ERecordPlayerType.eMouse2);
+            SeconedObj = ERecordScreenChild.ePlayer4;
 
         }
         else
         {
             Player1Image.sprite = MouseIcon[1];
             RecordPopUp(First, ERecordPlayerType.eMouse2);
+            FirstObj = ERecordScreenChild.ePlayer4;
 
             Player2Image.sprite = MouseIcon[0];
             RecordPopUp(Seconed, ERecordPlayerType.eMouse1);
+            SeconedObj = ERecordScreenChild.ePlayer3;
         }
 
         // Decide Third n Forth.
@@ -151,17 +163,22 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
         {
             Player3Image.sprite = HumanIcon[0];
             RecordPopUp(Third, ERecordPlayerType.eHuman1);
+            ThirdObj = ERecordScreenChild.ePlayer1;
 
             Player4Image.sprite = HumanIcon[1];
             RecordPopUp(Forth, ERecordPlayerType.eHuman2);
+            ForthObj = ERecordScreenChild.ePlayer2;
         }
         else
         {
             Player3Image.sprite = HumanIcon[1];
             RecordPopUp(Third, ERecordPlayerType.eHuman2);
+            ThirdObj = ERecordScreenChild.ePlayer2;
 
             Player4Image.sprite = HumanIcon[0];
             RecordPopUp(Forth, ERecordPlayerType.eHuman1);
+            ForthObj = ERecordScreenChild.ePlayer1;
+
         }
     }
 
@@ -206,6 +223,38 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase
                 break;
 
         }
+    }
+
+    public void ChangeRecordScreen(int id)
+    {
+        int childnum = 0;
+
+        switch(id)
+        {
+            case 0:
+                childnum = (int)FirstObj;
+
+                break;
+
+            case 1:
+                childnum = (int)SeconedObj;
+
+                break;
+            case 2:
+                childnum = (int)ThirdObj;
+
+                break;
+            case 3:
+                childnum = (int)ForthObj;
+
+                break;
+
+        }
+
+        Image PlayerImage = this.gameObject.transform.GetChild(childnum).
+            gameObject.GetComponent<Image>();
+
+        PlayerImage.sprite = RecordMask;
     }
 
 }

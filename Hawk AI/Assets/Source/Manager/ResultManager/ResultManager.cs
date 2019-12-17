@@ -82,6 +82,9 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     [SerializeField]
     private List<GameObject> PlayerRecordsUI = new List<GameObject>();
 
+    private int PhaseCount = 0;
+    private bool[] m_bOKFlg = new bool[4];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -173,32 +176,121 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     // Update is called once per frame
     void Update()
     {
-        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any) || 
-            KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Any))
+        switch (PhaseCount)
         {
+            case 0:
+
+                    Phase_0();
+                
+                break;
+
+            case 1:
+                Phase_1();
+
+                break;
+
+
+
+        }
+    }
+
+
+    private void Phase_0()
+    {
+
+        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any) ||
+              KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Any))
+        {
+
             foreach (var val in PlayerRecordsUI)
             {
                 val.SetActive(true);
             }
 
-                if (GameManager.IsHumanWin)
-                {
-                    ExecuteEvents.Execute<IResultManagerInterfase>(
-                    target: PlayerRecordsUI[0],
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.HawkAIWin());
+            if (GameManager.IsHumanWin)
+            {
+                ExecuteEvents.Execute<IResultManagerInterfase>(
+                target: PlayerRecordsUI[0],
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.HawkAIWin());
 
-                }
-                else
-                {
-                    ExecuteEvents.Execute<IResultManagerInterfase>(
-                    target: PlayerRecordsUI[0],
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.MouseWin());
-                }
-            
+            }
+            else
+            {
+                ExecuteEvents.Execute<IResultManagerInterfase>(
+                target: PlayerRecordsUI[0],
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.MouseWin());
+            }
+
+            PhaseCount++;
         }
     }
+
+    private void Phase_1()
+    {
+        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.One) ||
+             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.One))
+        {
+            m_bOKFlg[0] = true;
+            ExecuteEvents.Execute<IRecordScreenCanvas>(
+            target: PlayerRecordsUI[0],
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(0));
+
+            
+        }
+
+        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Two) ||
+            KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Two))
+        {
+            m_bOKFlg[1] = true;
+            ExecuteEvents.Execute<IRecordScreenCanvas>(
+            target: PlayerRecordsUI[0],
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(1));
+
+        }
+
+        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Three) ||
+            KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Three))
+        {
+            m_bOKFlg[2] = true;
+            ExecuteEvents.Execute<IRecordScreenCanvas>(
+            target: PlayerRecordsUI[0],
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(2));
+
+        }
+
+        if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Four) ||
+             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Four))
+        {
+            m_bOKFlg[3] = true;
+            ExecuteEvents.Execute<IRecordScreenCanvas>(
+            target: PlayerRecordsUI[0],
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(3));
+
+        }
+
+
+        foreach (var val in m_bOKFlg)
+        {
+            if (val == false)
+                return;
+        }
+
+        var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
+
+        ExecuteEvents.Execute<IGameInterface>(
+        target: obj,
+        eventData: null,
+        functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
+
+    }
+
+
     public void HawkAIWin()
     {
 
