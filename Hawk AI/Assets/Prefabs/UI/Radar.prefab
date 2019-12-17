@@ -416,6 +416,8 @@ MonoBehaviour:
   CameraObj:
   - {fileID: 0}
   - {fileID: 0}
+  CursorRadius: 45
+  DetectionRange: 7
 --- !u!1 &7593370258618272177
 GameObject:
   m_ObjectHideFlags: 0
