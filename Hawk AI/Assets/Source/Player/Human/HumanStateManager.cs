@@ -196,6 +196,21 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     // Update is called once per frame
     public override void Update()
     {
+        // デバッグ
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            StartVarsan();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            StopVarsan();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EndVarsan();
+        }
+
+
         hCatchZone = this.transform.Find("CatchZone").GetComponent<HCatchZone>();
         hMoveColliderScript = this.gameObject.GetComponent<MoveCollider>();
         // se取得
@@ -935,13 +950,17 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public void StartVarsan()
     {
-        m_isVarsan = true;
-        // バルサンの状態になるので、エフェクトを再生させる
-        ExecuteEvents.Execute<IValsanEffect>(
-                target: m_gVarsanEffect,
-                eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
-        //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        if (!m_isVarsan)
+        {
+            m_isVarsan = true;
+            // バルサンの状態になるので、エフェクトを再生させる
+            ExecuteEvents.Execute<IValsanEffect>(
+                    target: m_gVarsanEffect,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
+            Debug.Log("HumanVarsan" + (int)GamePadIndex);
+            //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        }
     }
 
     public bool GetVarsan()

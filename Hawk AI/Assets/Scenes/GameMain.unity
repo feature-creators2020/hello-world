@@ -52820,7 +52820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 760802853, guid: eb425763a181bc4469154e35d1f84715, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3
+      value: -3.000061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb425763a181bc4469154e35d1f84715, type: 3}
@@ -54350,6 +54350,11 @@ PrefabInstance:
       propertyPath: m_gVarsanEffect
       value: 
       objectReference: {fileID: 2037493899}
+    - target: {fileID: 3119138605471699372, guid: 58c35965b4a30b74a8a47292cfcc0dad,
+        type: 3}
+      propertyPath: m_nRoomID
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c35965b4a30b74a8a47292cfcc0dad, type: 3}
 --- !u!4 &971018305 stripped
@@ -69119,15 +69124,15 @@ PrefabInstance:
       propertyPath: PlayerManagerObject
       value: 
       objectReference: {fileID: 1049198309}
-    - target: {fileID: 3146035583758497896, guid: 966d53e8c7502004cb2013f421c8d480,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 29.72
-      objectReference: {fileID: 0}
     - target: {fileID: 3146035584059500072, guid: 966d53e8c7502004cb2013f421c8d480,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.280003
+      value: -20.200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146035583255585685, guid: 966d53e8c7502004cb2013f421c8d480,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966d53e8c7502004cb2013f421c8d480, type: 3}
@@ -115923,8 +115928,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_gVarsanEffect
       value: 
-      objectReference: {fileID: 507357963696958226, guid: a6f841bbe6474564c86463c95851740c,
+      objectReference: {fileID: 2037493899}
+    - target: {fileID: 8717897689533605020, guid: 0f545b34dbf55fa419b68bc0f36432d4,
         type: 3}
+      propertyPath: m_nRoomID
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f545b34dbf55fa419b68bc0f36432d4, type: 3}
 --- !u!4 &2086019704 stripped

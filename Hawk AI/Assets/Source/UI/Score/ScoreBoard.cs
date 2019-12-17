@@ -15,7 +15,7 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
 
     private void Start()
     {
-        Mouse = Resources.Load<Sprite>("Mouse");
+        Mouse = Resources.Load<Sprite>("love");
     }
 
     public void GetCheese()
