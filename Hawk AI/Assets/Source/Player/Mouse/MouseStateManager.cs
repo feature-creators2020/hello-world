@@ -172,6 +172,21 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     // Update is called once per frame
     public override void Update()
     {
+        // デバッグ
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            StartVarsan();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            StopVarsan();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EndVarsan();
+        }
+
+
         // マネージャー取得
         var managerobject = ManagerObjectManager.Instance;
         m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
@@ -600,13 +615,17 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public void StartVarsan()
     {
-        m_isVarsan = true;
-        // バルサンの状態になるので、エフェクトを再生させる
-        ExecuteEvents.Execute<IValsanEffect>(
-                target: m_gVarsanEffect,
-                eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
-        //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        if (!m_isVarsan)
+        {
+            m_isVarsan = true;
+            // バルサンの状態になるので、エフェクトを再生させる
+            ExecuteEvents.Execute<IValsanEffect>(
+                    target: m_gVarsanEffect,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
+            Debug.Log("MouseVarsan" + (int)GamePadIndex);
+            //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        }
     }
 
     public bool GetVarsan()

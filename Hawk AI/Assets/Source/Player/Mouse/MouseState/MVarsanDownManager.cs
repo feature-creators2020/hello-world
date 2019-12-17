@@ -17,7 +17,7 @@ public class MVarsanDownManager : CStateBase<MouseStateManager>
 
     public override void Execute()
     {
-        Debug.Log("State:VarsanDown");
+       // Debug.Log("State:VarsanDown");
 
         var playerNo = m_cOwner.GamePadIndex;
         var keyState = GamePad.GetState(playerNo, false);

@@ -210,6 +210,8 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
     {
         int PlayNo = _nPlayerRoomNo - 1;
 
+        Debug.Log("Player" + PlayNo + "EffectPlay");
+
         if((m_eValsanEffectsStates[PlayNo] == EValsanEffectsState.eStop) ||
             (m_eValsanEffectsStates[PlayNo] == EValsanEffectsState.eEnd))
         {
@@ -232,14 +234,11 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
 
     public void Stop(int _nPlayerRoomNo)
     {
-        int PlayNo = _nPlayerRoomNo;
+        int PlayNo = _nPlayerRoomNo - 1;
 
+        Debug.Log("Player" + PlayNo + "EffectStop");
         m_eValsanEffectsStates[PlayNo] = EValsanEffectsState.eStop;
 
-        foreach (var val in ParticleList)
-        {           
-            val.GetComponent<ParticleSystem>().Stop();
-        }
             //SmokeEffects.Add(SmokeEffectsCanvas[playerno].color);
 
             //SmokeEffectsCanvas[playerno].color = new Color(
@@ -263,16 +262,21 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
 
     public void End()
     {
+        Debug.Log("PlayerAll EffectEnd");
         for (int i = 0; i < m_eValsanEffectsStates.Length; i++)
         {
-            m_eValsanEffectsStates[i] = EValsanEffectsState.eEnd;
+            m_eValsanEffectsStates[i] = EValsanEffectsState.eStop;
         }
+
+        //foreach (var val in ParticleList)
+        //{
+        //    val.GetComponent<ParticleSystem>().Clear(false);
+        //}
 
         foreach (var val in ParticleList)
         {
-            val.GetComponent<ParticleSystem>().Clear(false);
+            val.GetComponent<ParticleSystem>().Stop();
         }
-
 
     }
 }
