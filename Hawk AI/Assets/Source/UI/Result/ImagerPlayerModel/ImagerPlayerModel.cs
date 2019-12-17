@@ -20,6 +20,12 @@ public class ImagerPlayerModel : MonoBehaviour,IResultManagerInterfase
     [SerializeField]
     private Texture MouseTexture;
 
+    [SerializeField]
+    private Texture EatCheeseTexture;
+
+    [SerializeField]
+    private Texture KillMouseTexture;
+
     // Start is called before the first frame update
     void Start()
     {

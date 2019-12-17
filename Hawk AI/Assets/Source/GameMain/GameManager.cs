@@ -33,11 +33,11 @@ public class GameManager : CStateObjectBase<GameManager, EGameState>, IGameInter
     [SerializeField]
     public float ResultStatingTime;
 
-    private static bool m_bHumanWin = true;
-    private static int m_nKillCountByHuman1 = 0;
-    private static int m_nKillCountByHuman2 = 0;
-    private static int m_nEatCountByMouse1 = 0;
-    private static int m_nEatCountByMouse2 = 0;
+    private static bool m_bHumanWin = false;
+    private static int m_nKillCountByHuman1 = 1;
+    private static int m_nKillCountByHuman2 = 2;
+    private static int m_nEatCountByMouse1 = 3;
+    private static int m_nEatCountByMouse2 = 4;
 
     public static bool IsHumanWin
     {

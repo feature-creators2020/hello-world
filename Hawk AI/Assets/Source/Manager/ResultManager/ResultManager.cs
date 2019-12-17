@@ -80,7 +80,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
     private GameObject[] MouseObjects;
 
     [SerializeField]
-    private GameObject PlayerRecordsUI;
+    private List<GameObject> PlayerRecordsUI = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -176,22 +176,27 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any) || 
             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Any))
         {
-            PlayerRecordsUI.SetActive(true);
-            if (GameManager.IsHumanWin)
+            foreach (var val in PlayerRecordsUI)
             {
-                ExecuteEvents.Execute<IResultManagerInterfase>(
-                target: PlayerRecordsUI,
-                eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.HawkAIWin());
+                val.SetActive(true);
+            }
 
-            }
-            else
-            {
-                ExecuteEvents.Execute<IResultManagerInterfase>(
-                target: PlayerRecordsUI,
-                eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.MouseWin());
-            }
+                if (GameManager.IsHumanWin)
+                {
+                    ExecuteEvents.Execute<IResultManagerInterfase>(
+                    target: PlayerRecordsUI[0],
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.HawkAIWin());
+
+                }
+                else
+                {
+                    ExecuteEvents.Execute<IResultManagerInterfase>(
+                    target: PlayerRecordsUI[0],
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.MouseWin());
+                }
+            
         }
     }
     public void HawkAIWin()
@@ -250,8 +255,6 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         for (int i = 0; i < gameObject.transform.GetChild(1).gameObject.transform.childCount;i++)
         {
-            Debug.Log("Child : " + gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject);
-
             ExecuteEvents.Execute<IResultManagerInterfase>(
             target: gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject,
             eventData: null,
@@ -335,8 +338,6 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
         for (int i = 0; i < gameObject.transform.GetChild(1).gameObject.transform.childCount; i++)
         {
-            Debug.Log("Child : " + gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject);
-
             ExecuteEvents.Execute<IResultManagerInterfase>(
             target: gameObject.transform.GetChild(1).gameObject.transform.GetChild(i).gameObject,
             eventData: null,
