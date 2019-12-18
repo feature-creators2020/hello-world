@@ -118,7 +118,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 0
-  m_Color: {r: 0, g: 0.9505663, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.29995975, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 2
   m_SpotAngle: 100
@@ -354,9 +354,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959e5b9802534794fa0da00728ba1471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutlineColor: {r: 0, g: 1, b: 0.9905014, a: 0}
+  OutlineColor: {r: 1, g: 0.29995975, b: 0, a: 1}
   OutlineSize: 1.2
-  EleMaterial: {fileID: 2100000, guid: fde6688e4128c2c4a92632d8b754827c, type: 2}
+  EleMaterial: {fileID: 2100000, guid: 8beec0938c0aac74e84241ec377cc1b7, type: 2}
   Texture: {fileID: 0}
   isNumMaterials: 0
 --- !u!1 &4522739688211848845
@@ -644,7 +644,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.91636705, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.29995975, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1743,9 +1743,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.86881304, b: 1, a: 1}
-        key1: {r: 0, g: 1, b: 1, a: 0}
-        key2: {r: 0.5784977, g: 0.9811321, b: 0.9769763, a: 0}
+        key0: {r: 1, g: 0.29995975, b: 0, a: 0.8862745}
+        key1: {r: 1, g: 0.29995975, b: 0, a: 0}
+        key2: {r: 1, g: 0.29995975, b: 0, a: 0}
         key3: {r: 0.5784977, g: 0.9811321, b: 0.9769763, a: 0}
         key4: {r: 0.5784977, g: 0.9811321, b: 0.9769763, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -5415,7 +5415,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6509804, g: 0.990566, b: 0.973529, a: 1}
+      maxColor: {r: 1, g: 0.03199654, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6514,9 +6514,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7372549, g: 0.99794674, b: 0.99749446, a: 1}
-        key1: {r: 0.570683, g: 0.9885503, b: 0.98602843, a: 0.7058824}
-        key2: {r: 0.5784977, g: 0.9811321, b: 0.9769763, a: 0}
+        key0: {r: 1, g: 0.29995975, b: 0, a: 1}
+        key1: {r: 1, g: 0.29995975, b: 0, a: 0.7058824}
+        key2: {r: 1, g: 0.29995975, b: 0, a: 0}
         key3: {r: 0.5784977, g: 0.9811321, b: 0.9769763, a: 0}
         key4: {r: 0.5784977, g: 0.9811321, b: 0.9769763, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -9913,7 +9913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959e5b9802534794fa0da00728ba1471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutlineColor: {r: 0, g: 1, b: 0.9905014, a: 0}
+  OutlineColor: {r: 1, g: 0.29995975, b: 0, a: 1}
   OutlineSize: 1.2
   EleMaterial: {fileID: 2100000, guid: fde6688e4128c2c4a92632d8b754827c, type: 2}
   Texture: {fileID: 0}
