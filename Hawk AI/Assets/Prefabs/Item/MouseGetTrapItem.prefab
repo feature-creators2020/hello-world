@@ -9950,6 +9950,23 @@ Transform:
   m_Father: {fileID: 4206914249966406605}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2557837155978618364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049560700806806198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959e5b9802534794fa0da00728ba1471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor: {r: 1, g: 0.98423976, b: 0.6650944, a: 1}
+  OutlineSize: 1.2
+  EleMaterial: {fileID: 2100000, guid: fde6688e4128c2c4a92632d8b754827c, type: 2}
+  Texture: {fileID: 0}
+  isNumMaterials: 0
 --- !u!1 &8727602750243288048
 GameObject:
   m_ObjectHideFlags: 0
@@ -9989,6 +10006,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7203373365433203844}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 32dbf0935cf5cba4f974ccf5a8f776f0,
+        type: 3}
+      propertyPath: m_Name
+      value: death_rap_parts
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 32dbf0935cf5cba4f974ccf5a8f776f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10044,13 +10066,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 32dbf0935cf5cba4f974ccf5a8f776f0,
+    - target: {fileID: -1504981713932161579, guid: 32dbf0935cf5cba4f974ccf5a8f776f0,
         type: 3}
-      propertyPath: m_Name
-      value: death_rap_parts
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 84c2974c604e7fd42b58aea8f2ba8066, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32dbf0935cf5cba4f974ccf5a8f776f0, type: 3}
+--- !u!1 &8049560700806806198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 32dbf0935cf5cba4f974ccf5a8f776f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2059312545558684607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2777930591528441758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10058,6 +10086,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8508894145612396053}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: d37d470bc725ad9408214010c378cf56,
+        type: 3}
+      propertyPath: m_Name
+      value: death_trap_body
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d37d470bc725ad9408214010c378cf56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10128,11 +10161,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d37d470bc725ad9408214010c378cf56,
+    - target: {fileID: -1504981713932161579, guid: d37d470bc725ad9408214010c378cf56,
         type: 3}
-      propertyPath: m_Name
-      value: death_trap_body
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 84c2974c604e7fd42b58aea8f2ba8066, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d37d470bc725ad9408214010c378cf56, type: 3}
 --- !u!1 &6173551295596662423 stripped
