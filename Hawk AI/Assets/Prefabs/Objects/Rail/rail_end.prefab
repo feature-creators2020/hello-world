@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 3163407472754432565}
   - component: {fileID: 5003602486728337039}
   - component: {fileID: 1840081017890636340}
-  m_Layer: 14
+  m_Layer: 19
   m_Name: Collider (1)
   m_TagString: CanClimbing
   m_Icon: {fileID: 0}
