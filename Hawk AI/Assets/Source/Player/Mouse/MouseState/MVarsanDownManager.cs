@@ -12,7 +12,7 @@ public class MVarsanDownManager : CStateBase<MouseStateManager>
     public override void Enter()
     {
         // ダウン開始時のアニメーションを再生させる
-        m_cOwner.PlayAnimation(EMouseAnimation.Wait);
+        m_cOwner.PlayAnimation(EMouseAnimation.VarsanDown_Start);
     }
 
     public override void Execute()

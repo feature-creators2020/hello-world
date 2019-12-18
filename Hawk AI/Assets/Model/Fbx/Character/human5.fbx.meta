@@ -8,28 +8,28 @@ ModelImporter:
     second: Take 001
   - first:
       74: -5488887684428014072
-    second: Human4_Wait
+    second: Human_Wait
   - first:
       74: -5583849191221469394
-    second: Human4_Run
+    second: Human_Run
   - first:
       74: 815261131751070305
-    second: Human4_Catch
+    second: Human_Catch
   - first:
       74: 371413148503096286
-    second: Human4_Put
+    second: Human_Put
   - first:
       74: -2914207814787032935
-    second: Human4_Jump
+    second: Human_Jump
   - first:
       74: 3853540240510929245
-    second: Human4_VarsanDown
+    second: Human_VarsanDown
   - first:
       74: 5163884234369970488
-    second: Human4_VarsanWait
+    second: Human_VarsanWait
   - first:
       74: 7912183815749265796
-    second: Human4_VarsanEnd
+    second: Human_VarsanEnd
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -93,7 +93,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_Wait
+      name: Human_Wait
       takeName: Take 001
       internalID: 0
       firstFrame: 0
@@ -122,7 +122,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_Run
+      name: Human_Run
       takeName: Take 001
       internalID: 0
       firstFrame: 41
@@ -151,7 +151,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_Catch
+      name: Human_Catch
       takeName: Take 001
       internalID: 0
       firstFrame: 60
@@ -180,7 +180,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_Put
+      name: Human_Put
       takeName: Take 001
       internalID: 0
       firstFrame: 100
@@ -209,7 +209,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_Jump
+      name: Human_Jump
       takeName: Take 001
       internalID: 0
       firstFrame: 61
@@ -238,7 +238,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_VarsanDown
+      name: Human_VarsanDown
       takeName: Take 001
       internalID: 0
       firstFrame: 133
@@ -267,7 +267,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_VarsanWait
+      name: Human_VarsanWait
       takeName: Take 001
       internalID: 0
       firstFrame: 189
@@ -296,7 +296,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Human4_VarsanEnd
+      name: Human_VarsanEnd
       takeName: Take 001
       internalID: 0
       firstFrame: 212
@@ -351,7 +351,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -25,19 +25,19 @@ public class MouseAnimation : MonoBehaviour
         ////イベントをアニメーションクリップに追加するとそのイベントが起動した際SendMessageとしてfunctionNameの関数が起動される
         ////この場合タイムラインの０フレーム目でSendMessage("StepSound",1.0f); が起動する 
 
-        //AnimationEvent ev2 = new AnimationEvent();
-        //ev2.time = m_sAnimation[animName[(int)EHumanAnimation.Run]].clip.length / 2;
-        //ev2.functionName = "OnFootEvent";
-        //ev2.floatParameter = 1.0f;
-        //m_sAnimation[animName[(int)EHumanAnimation.Run]].clip.AddEvent(ev2);
+        AnimationEvent ev2 = new AnimationEvent();
+        ev2.time = m_sAnimation[animName[(int)EMouseAnimation.VarsanDown_Start]].clip.length;
+        ev2.functionName = "OnEndVarsanStartEvent";
+        ev2.floatParameter = 1.0f;
+        m_sAnimation[animName[(int)EMouseAnimation.VarsanDown_Start]].clip.AddEvent(ev2);
         ////この場合runクリップのタイムライン半分の位置でSendMessage("StepSound",1.0f); が起動する 
         ////考え方的にはアニメーションクリップにイベント関数を紐付する感覚に近い
 
-        //AnimationEvent ev3 = new AnimationEvent();
-        //ev3.time = m_sAnimation[animName[(int)EHumanAnimation.Catch]].clip.length / 2;
-        //ev3.functionName = "OnCatchEvent";
-        //ev3.floatParameter = 1.0f;
-        //m_sAnimation[animName[(int)EHumanAnimation.Catch]].clip.AddEvent(ev3);
+        AnimationEvent ev3 = new AnimationEvent();
+        ev3.time = m_sAnimation[animName[(int)EMouseAnimation.VarsanDown_Wait]].clip.length;
+        ev3.functionName = "OnEndVarsanWaitEvent";
+        ev3.floatParameter = 1.0f;
+        m_sAnimation[animName[(int)EMouseAnimation.VarsanDown_Wait]].clip.AddEvent(ev3);
 
         //AnimationEvent ev4 = new AnimationEvent();
         //ev4.time = m_sAnimation[animName[(int)EHumanAnimation.Catch]].clip.length;
@@ -92,5 +92,15 @@ public class MouseAnimation : MonoBehaviour
     public void OnEatEvent()
     {
         m_sMouseStateManager.OnEatEvent();
+    }
+
+    public void OnEndVarsanStartEvent()
+    {
+        m_sMouseStateManager.OnEndVarsanStartEvent();
+    }
+
+    public void OnEndVarsanWaitEvent()
+    {
+        m_sMouseStateManager.OnEndVarsanWaitEvent();
     }
 }

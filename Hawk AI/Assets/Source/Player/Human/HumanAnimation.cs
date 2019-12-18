@@ -57,6 +57,18 @@ public class HumanAnimation : MonoBehaviour
         ev6.functionName = "OnEndPutEvent";
         ev6.floatParameter = 1.0f;
         m_sAnimation[animName[(int)EHumanAnimation.Put]].clip.AddEvent(ev6);
+
+        AnimationEvent ev7 = new AnimationEvent();
+        ev7.time = m_sAnimation[animName[(int)EHumanAnimation.VarsanDown_Start]].clip.length;
+        ev7.functionName = "OnEndVarsanStartEvent";
+        ev7.floatParameter = 1.0f;
+        m_sAnimation[animName[(int)EHumanAnimation.VarsanDown_Start]].clip.AddEvent(ev7);
+
+        AnimationEvent ev8 = new AnimationEvent();
+        ev8.time = m_sAnimation[animName[(int)EHumanAnimation.VarsanDown_End]].clip.length;
+        ev8.functionName = "OnEndVarsanEndEvent";
+        ev8.floatParameter = 1.0f;
+        m_sAnimation[animName[(int)EHumanAnimation.VarsanDown_End]].clip.AddEvent(ev8);
     }
 
     // Update is called once per frame
@@ -90,4 +102,13 @@ public class HumanAnimation : MonoBehaviour
         m_sHumanStateManager.OnEndPutEvent();
     }
 
+    public void OnEndVarsanStartEvent()
+    {
+        m_sHumanStateManager.OnEndVarsanStartEvent();
+    }
+
+    public void OnEndVarsanEndEvent()
+    {
+        m_sHumanStateManager.OnEndVarsanEndEvent();
+    }
 }

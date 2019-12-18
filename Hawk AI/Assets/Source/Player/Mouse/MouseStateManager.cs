@@ -100,7 +100,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
 
     [System.NonSerialized]
-    public string[] AnimationString = { "Mouse4_Wait", "Mouse4_Run", "Mouse4_Slow", "Mouse4_Eat" };          // アニメーション名
+    public string[] AnimationString = { "Mouse_Wait", "Mouse_Run", "Mouse_Slow", "Mouse_Eat", "Mouse_VarsanDown", "Mouse_VarsanWait" };          // アニメーション名
     private int m_nAnimationNo;                                      // 再生中アニメーション番号
     private Animation m_cAnimation;                                  // アニメーション      
 
@@ -674,5 +674,15 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.StartScaling(4f));
         
+    }
+
+    public void OnEndVarsanStartEvent()
+    {
+        PlayAnimation(EMouseAnimation.VarsanDown_Wait);
+    }
+
+    public void OnEndVarsanWaitEvent()
+    {
+        ChangeState(0, EMouseState.Catch);
     }
 }

@@ -12,7 +12,7 @@ public class HVarsanDownManager : CStateBase<HumanStateManager>
     public override void Enter()
     {
         // ダウン開始時のアニメーションを再生させる
-        m_cOwner.PlayAnimation(EHumanAnimation.Wait);
+        m_cOwner.PlayAnimation(EHumanAnimation.VarsanDown_Start);
     }
 
     public override void Execute()

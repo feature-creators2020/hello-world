@@ -143,7 +143,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public GameObject m_GTargetBoxObject;
 
     [System.NonSerialized]
-    public string[] AnimationString = { "Human4_Wait", "Human4_Run", "Human4_Catch", "Human4_Put", "Human4_Jump" };          // アニメーション名
+    public string[] AnimationString = { "Human_Wait", "Human_Run", "Human_Catch", "Human_Put", "Human_Jump", "Human_VarsanDown", "Human_VarsanWait", "Human_VarsanEnd" };          // アニメーション名
     private int m_nAnimationNo;                                      // 再生中アニメーション番号
     private Animation m_cAnimation;                                  // アニメーション      
 
@@ -991,7 +991,14 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             target: m_gVarsanEffect,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.End());
-        ChangeState(0, EHumanState.Normal);
+        if (CheckCurrentState(EHumanState.VarsanDown))
+        {
+            PlayAnimation(EHumanAnimation.VarsanDown_End);
+        }
+        else
+        {
+            ChangeState(0, EHumanState.Normal);
+        }
         //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
     }
 
@@ -1029,5 +1036,15 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     {
         ChangeState(0, EOldState);
         //Debug.Log("Change →OldState");
+    }
+
+    public void OnEndVarsanStartEvent()
+    {
+        PlayAnimation(EHumanAnimation.VarsanDown_Wait);
+    }
+
+    public void OnEndVarsanEndEvent()
+    {
+        ChangeState(0, EHumanState.Normal);
     }
 }
