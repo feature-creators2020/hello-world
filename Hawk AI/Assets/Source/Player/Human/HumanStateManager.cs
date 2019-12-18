@@ -60,6 +60,7 @@ public interface IHumanInterface : IEventSystemHandler
 
     void EndVarsan();
 
+    int GetPlayerControllerNum();
 }
 
 public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase, IHumanInterface
@@ -766,7 +767,10 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                     target: insObject,
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.SetRoom(m_nRoomID));
-
+                ExecuteEvents.Execute<IValsanEffect>(
+                    target: m_gVarsanEffect,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.SetSignalFirePos(insObject.transform.position + new Vector3(0f, 1f, 0f)));
             }
 
             // 所有者情報を渡す
@@ -1000,6 +1004,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             ChangeState(0, EHumanState.Normal);
         }
         //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+    }
+
+    public int GetPlayerControllerNum()
+    {
+        return (int)GamePadIndex;
     }
 
     // アニメーションイベント用関数

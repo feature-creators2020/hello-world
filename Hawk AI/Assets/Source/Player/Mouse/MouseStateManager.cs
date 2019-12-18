@@ -128,7 +128,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     private bool m_isVarsan;                    // バルサンを受けているの状態
 
-    private float m_fVarsanTimeCount;           // バルサンを受けている状態にカウントをする
+    public float m_fVarsanTimeCount;           // バルサンを受けている状態にカウントをする
 
     [SerializeField]
     private GameObject m_gVarsanEffect;         // バルサンのエフェクト用
@@ -600,7 +600,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             if (m_fVarsanTimeCount >= 5.0f)
             {
                 // 気絶状態の時は処理しない
-                if (true)
+                if (!CheckCurrentState(EMouseState.VarsanDown) && !CheckCurrentState(EMouseState.Catch))
                 {
                     // ステートを変える
                     ChangeState(0, EMouseState.VarsanDown);

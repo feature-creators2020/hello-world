@@ -12,6 +12,7 @@ public interface IValsanEffect : IEventSystemHandler
 
     void End();
 
+    void SetSignalFirePos(Vector3 _pos);
 }
 
 public enum EPlayerRoom
@@ -278,5 +279,10 @@ public class ValsanEffectsController : MonoBehaviour, IValsanEffect
             val.GetComponent<ParticleSystem>().Stop();
         }
 
+    }
+
+    public void SetSignalFirePos(Vector3 _pos)
+    {
+        ParticleList[0].transform.position = _pos;
     }
 }

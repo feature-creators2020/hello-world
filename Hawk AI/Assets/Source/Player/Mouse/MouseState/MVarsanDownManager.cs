@@ -30,6 +30,7 @@ public class MVarsanDownManager : CStateBase<MouseStateManager>
     public override void Exit()
     {
         m_cOwner.EOldState = EMouseState.Normal;
+        m_cOwner.m_fVarsanTimeCount = 0f;
     }
 
 }
