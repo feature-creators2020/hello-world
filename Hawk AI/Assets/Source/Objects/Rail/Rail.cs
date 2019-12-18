@@ -51,15 +51,18 @@ public class Rail : MonoBehaviour,IRailInterfase
     void Update()
     {
         var managerobject = ManagerObjectManager.Instance;
-        m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
-
-        // 昼夜状態取得
-        if (m_TimeZoneManager.TimeZoneStatus == ETimeZone.eEvenning) // タイムマネージャーから昼夜の状態を取得し、判定する
+        var timezonemanager = managerobject.GetGameObject("TimeZoneManager");
+        if (timezonemanager != null)
         {
-            // 夜状態に切り替える
-            ChangeState(ERailState.Stop);
-        }
+            m_TimeZoneManager = timezonemanager.GetComponent<TimeZoneManager>();
 
+            // 昼夜状態取得
+            if (m_TimeZoneManager.TimeZoneStatus == ETimeZone.eEvenning) // タイムマネージャーから昼夜の状態を取得し、判定する
+            {
+                // 夜状態に切り替える
+                ChangeState(ERailState.Stop);
+            }
+        }
     }
 
     public Vector3 GetMove()

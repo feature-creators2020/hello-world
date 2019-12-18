@@ -3600,6 +3600,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &73200743
 Transform:
   m_ObjectHideFlags: 0
@@ -11583,6 +11584,7 @@ MonoBehaviour:
   m_fSpeed: 0
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &210470008
 Transform:
   m_ObjectHideFlags: 0
@@ -26705,6 +26707,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &471724446
 Transform:
   m_ObjectHideFlags: 0
@@ -31794,6 +31797,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &556530625
 Transform:
   m_ObjectHideFlags: 0
@@ -33304,6 +33308,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &585267450
 Transform:
   m_ObjectHideFlags: 0
@@ -35951,6 +35956,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &623646207
 Transform:
   m_ObjectHideFlags: 0
@@ -39797,6 +39803,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &693878404
 Transform:
   m_ObjectHideFlags: 0
@@ -40086,6 +40093,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &695566507
 Transform:
   m_ObjectHideFlags: 0
@@ -43918,6 +43926,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &755423677
 Transform:
   m_ObjectHideFlags: 0
@@ -51165,6 +51174,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &899236959
 Transform:
   m_ObjectHideFlags: 0
@@ -52055,6 +52065,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &916024455
 Transform:
   m_ObjectHideFlags: 0
@@ -54478,7 +54489,7 @@ PrefabInstance:
     - target: {fileID: 5647166656177558286, guid: 58c35965b4a30b74a8a47292cfcc0dad,
         type: 3}
       propertyPath: isEnable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c35965b4a30b74a8a47292cfcc0dad, type: 3}
@@ -56578,6 +56589,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1005966974
 Transform:
   m_ObjectHideFlags: 0
@@ -62519,6 +62531,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1119183557
 Transform:
   m_ObjectHideFlags: 0
@@ -62761,6 +62774,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1123732377
 Transform:
   m_ObjectHideFlags: 0
@@ -64249,6 +64263,7 @@ MonoBehaviour:
   m_fSpeed: 0
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1151566731
 Transform:
   m_ObjectHideFlags: 0
@@ -68875,6 +68890,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1244424543
 Transform:
   m_ObjectHideFlags: 0
@@ -71307,6 +71323,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1283168150
 Transform:
   m_ObjectHideFlags: 0
@@ -72995,6 +73012,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1319223379
 Transform:
   m_ObjectHideFlags: 0
@@ -74618,6 +74636,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1349763470
 Transform:
   m_ObjectHideFlags: 0
@@ -78171,6 +78190,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1425609657
 Transform:
   m_ObjectHideFlags: 0
@@ -81113,6 +81133,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1482180531
 Transform:
   m_ObjectHideFlags: 0
@@ -86163,6 +86184,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1577056043
 Transform:
   m_ObjectHideFlags: 0
@@ -88021,6 +88043,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1616910901
 Transform:
   m_ObjectHideFlags: 0
@@ -92776,6 +92799,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1702239519
 Transform:
   m_ObjectHideFlags: 0
@@ -93505,6 +93529,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1717687464
 Transform:
   m_ObjectHideFlags: 0
@@ -97874,6 +97899,7 @@ MonoBehaviour:
   m_fSpeed: 0
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1802991683
 Transform:
   m_ObjectHideFlags: 0
@@ -108158,6 +108184,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1984486560
 Transform:
   m_ObjectHideFlags: 0
@@ -108223,6 +108250,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &1986527609
 Transform:
   m_ObjectHideFlags: 0
@@ -111216,6 +111244,7 @@ MonoBehaviour:
   m_fSpeed: 0.2
   m_isblend: 0
   m_bReverse: 0
+  m_eRailState: 0
 --- !u!4 &2005974796
 Transform:
   m_ObjectHideFlags: 0
