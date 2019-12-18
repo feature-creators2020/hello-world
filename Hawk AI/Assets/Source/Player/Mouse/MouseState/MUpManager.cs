@@ -13,6 +13,8 @@ public class MUpManager : CStateBase<MouseStateManager>
     float speed = 5.0f;
     float timer = 0f;
 
+    bool m_isUp;        // 上に上った
+
     public MUpManager(MouseStateManager _cOwner) : base(_cOwner) { }
 
     public override void Enter()
@@ -22,7 +24,8 @@ public class MUpManager : CStateBase<MouseStateManager>
         var TopPos = m_cOwner.m_GTargetBoxObject.transform.position + new Vector3(0f, m_cOwner.m_GTargetBoxObject.transform.localScale.y / 2f, 0f);
         var SubPos = TopPos - StartPos;
         var UpPos = StartPos + new Vector3(0f, SubPos.y, 0f);
-        EndPos = UpPos - m_cOwner.m_TargetBoxNomal * 0.5f;
+        //EndPos = UpPos - m_cOwner.m_TargetBoxNomal * 0.5f;
+        EndPos = UpPos;
         Distance = Vector3.Distance(StartPos, EndPos);
         //Debug.Log(m_cOwner.m_GTargetBoxObject.name + ".lossyScale : " + m_cOwner.m_GTargetBoxObject.transform.localScale);
         //Debug.Log("StartPos : " + StartPos);
@@ -30,6 +33,7 @@ public class MUpManager : CStateBase<MouseStateManager>
         m_cOwner.GravityOff();
         m_cOwner.m_SEAudio.Play((int)SEAudioType.eSE_Jump);   // ジャンプSE
         m_cOwner.PlayAnimation(EMouseAnimation.Run);
+        m_isUp = false;
     }
 
     public override void Execute()
@@ -46,16 +50,29 @@ public class MUpManager : CStateBase<MouseStateManager>
         //m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
         //m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
-        float presentLocation = (timer * speed);// / Distance;
+        float presentLocation = (timer * speed) / Distance;
 
-        m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
+        m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);        
+
         LookAtPoint();
 
         timer += Time.deltaTime;
 
         if(presentLocation >= 1.0f)
         {
-            m_cOwner.ChangeState(0, m_cOwner.EOldState);
+            if (m_isUp)
+            {
+                m_cOwner.ChangeState(0, m_cOwner.EOldState);
+            }
+            else
+            {
+                m_isUp = true;
+                // 位置を更新する（前に少し進めるため）
+                StartPos = EndPos;
+                EndPos = EndPos - m_cOwner.m_TargetBoxNomal * 0.5f;
+                timer = 0f;
+                Distance = Vector3.Distance(StartPos, EndPos);
+            }
         }
 
     }
@@ -72,7 +89,7 @@ public class MUpManager : CStateBase<MouseStateManager>
     {
         // キャラクターの向きを進行方向に
         Vector3 moveForward = EndPos - StartPos;
-        m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
+        m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward, m_cOwner.m_TargetBoxNomal);
 
     }
 
