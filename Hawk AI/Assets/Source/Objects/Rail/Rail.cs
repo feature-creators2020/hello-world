@@ -35,7 +35,11 @@ public class Rail : MonoBehaviour,IRailInterfase
     [SerializeField]
     bool m_bReverse;    // 逆向きか
 
+    [SerializeField]
     ERailState m_eRailState;
+
+    [System.NonSerialized]
+    public TimeZoneManager m_TimeZoneManager;           // 昼夜の状態を取得する
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +50,16 @@ public class Rail : MonoBehaviour,IRailInterfase
     // Update is called once per frame
     void Update()
     {
-        
+        var managerobject = ManagerObjectManager.Instance;
+        m_TimeZoneManager = managerobject.GetGameObject("TimeZoneManager").GetComponent<TimeZoneManager>();
+
+        // 昼夜状態取得
+        if (m_TimeZoneManager.TimeZoneStatus == ETimeZone.eEvenning) // タイムマネージャーから昼夜の状態を取得し、判定する
+        {
+            // 夜状態に切り替える
+            ChangeState(ERailState.Stop);
+        }
+
     }
 
     public Vector3 GetMove()

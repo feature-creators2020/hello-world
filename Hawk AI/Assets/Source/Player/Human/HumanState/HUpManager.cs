@@ -48,13 +48,13 @@ public class HUpManager : CStateBase<HumanStateManager>
         float presentLocation = (timer * speed);// / Distance;
 
         m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
-        //LookAtPoint();
+        LookAtPoint();
 
         timer += Time.deltaTime;
 
         if (presentLocation >= 1.0f)
         {
-            Debug.Log("Change Up→Normal");
+            //Debug.Log("Change Up→Normal");
             m_cOwner.ChangeState(0, EHumanState.Normal);
         }
 
@@ -71,7 +71,7 @@ public class HUpManager : CStateBase<HumanStateManager>
     private void LookAtPoint()
     {
         // キャラクターの向きを進行方向に
-        Vector3 moveForward = EndPos - StartPos;
+        Vector3 moveForward = new Vector3(EndPos.x, StartPos.y, EndPos.z) - StartPos;
         m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward);
 
     }
