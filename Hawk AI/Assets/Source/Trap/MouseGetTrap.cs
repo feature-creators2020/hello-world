@@ -94,7 +94,7 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
 
                 // 元の回転値と合成して上書き
                 //m_gTrap.transform.localRotation = StartRot * rot;
-                m_gTrap.transform.rotation = Quaternion.Euler(Vector3.Lerp(StartRot, EndRot, m_fRotTime));
+                m_gTrap.transform.localRotation = Quaternion.Euler(Vector3.Lerp(StartRot, EndRot, m_fRotTime));
                 m_fRotTime += Time.deltaTime * m_fSpeed / m_fMaxRotTime;
                 //m_gTrap.transform.rotation = Quaternion.Slerp(StartRot, EndRot, m_fMaxRotTime - m_fRotTime);
                 
@@ -106,7 +106,7 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
             else
             {
                 // 初期姿勢に戻す
-                m_gTrap.transform.rotation = Quaternion.Euler(StartRot);
+                m_gTrap.transform.localRotation = Quaternion.Euler(StartRot);
                 m_fRotTime = m_fMaxRotTime;
             }
         }
@@ -152,7 +152,10 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
 
     void CheckMousePos(GameObject _object)
     {
-        if (true)
+        var TrapMouseRot = Quaternion.LookRotation(this.transform.position - _object.transform.position).eulerAngles;
+        //Debug.Log("TraptoMouseRot : " + TrapMouseRot);
+
+        if (TrapMouseRot.y > 180f)
         {
             EndRot = StartRot + SubRot;
         }
