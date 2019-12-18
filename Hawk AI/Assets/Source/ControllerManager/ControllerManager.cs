@@ -106,7 +106,7 @@ namespace KeyBoardInput
                 case Index.One:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick1Button1;
+                        case Button.A: return KeyCode.Z;
                         case Button.B: return KeyCode.X;
                         case Button.X: return KeyCode.Joystick1Button0;
                         case Button.Y: return KeyCode.Joystick1Button3;
@@ -121,7 +121,7 @@ namespace KeyBoardInput
                 case Index.Two:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick2Button1;
+                        case Button.A: return KeyCode.V;
                         case Button.B: return KeyCode.B;
                         case Button.X: return KeyCode.Joystick2Button0;
                         case Button.Y: return KeyCode.Joystick2Button3;
@@ -136,7 +136,7 @@ namespace KeyBoardInput
                 case Index.Three:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick3Button1;
+                        case Button.A: return KeyCode.M;
                         case Button.B: return KeyCode.Comma;
                         case Button.X: return KeyCode.Joystick3Button0;
                         case Button.Y: return KeyCode.Joystick3Button3;
@@ -152,7 +152,7 @@ namespace KeyBoardInput
 
                     switch (button)
                     {
-                        case Button.A: return KeyCode.Joystick4Button1;
+                        case Button.A: return KeyCode.Slash;
                         case Button.B: return KeyCode.Backslash;
                         case Button.X: return KeyCode.Joystick4Button0;
                         case Button.Y: return KeyCode.Joystick4Button3;
@@ -168,7 +168,7 @@ namespace KeyBoardInput
                 case Index.Any:
                     switch (button)
                     {
-                        case Button.A: return KeyCode.JoystickButton1;
+                        case Button.A: return KeyCode.Z;
                         case Button.B: return KeyCode.X;
                         case Button.X: return KeyCode.JoystickButton0;
                         case Button.Y: return KeyCode.JoystickButton3;
