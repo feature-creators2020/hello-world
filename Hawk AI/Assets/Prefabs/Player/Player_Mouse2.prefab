@@ -163,6 +163,7 @@ MonoBehaviour:
   m_GRailObject: {fileID: 0}
   m_isOnRail: 0
   m_nRoomID: 0
+  m_fVarsanTimeCount: 0
   m_gVarsanEffect: {fileID: 0}
 --- !u!65 &7362056044338792377
 BoxCollider:
@@ -245,13 +246,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2533581663403881557}
-  m_LocalRotation: {x: 0.06975647, y: 0, z: 0, w: 0.9975641}
-  m_LocalPosition: {x: 0, y: 0.2, z: -0.7}
+  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0, y: 0, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2533581663618436497}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 8, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
 --- !u!20 &2533581663403881555
 Camera:
   m_ObjectHideFlags: 0
@@ -461,7 +462,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 2b69a6595acdbad4c9064f55178c718c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.227
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2b69a6595acdbad4c9064f55178c718c,
         type: 3}
