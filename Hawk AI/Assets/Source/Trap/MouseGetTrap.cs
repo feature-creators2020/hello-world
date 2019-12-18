@@ -9,8 +9,11 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
     GameObject MouseObject; // 上に乗ったネズミの情報
 
     float m_fLifeTime = 5f;
-    float m_fRotTime = 2f;
+    float m_fRotTime = 0f;
     float m_fMaxRotTime = 2f;
+    float m_fSpeed = 5f;
+
+    bool m_TrapActive;      // トラップを作動させるか
 
     MeshRenderer m_Mesh;    // 自身のメッシュ
     [SerializeField]
@@ -18,8 +21,9 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
     [SerializeField]
     GameObject m_gTrap;     // 回転させる部分
 
-    Quaternion StartRot;    // 初期姿勢
-    Quaternion EndRot;      // 最終姿勢
+    Vector3 StartRot;    // 初期姿勢
+    Vector3 SubRot;      // 回転角度
+    Vector3 EndRot;      // 最終姿勢
 
     GameObject m_gHavePlayer;   // 所有者
 
@@ -37,10 +41,14 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
         //m_gMesh = this.gameObject.transform.GetChild(0).gameObject;
         m_gMesh.SetActive(false);
         //m_gTrap = this.gameObject.transform.GetChild(1).gameObject;
-        m_gTrap.SetActive(false);
-        m_fRotTime = m_fMaxRotTime;
-        StartRot = m_gTrap.transform.localRotation;
-        EndRot = new Quaternion(0, 0, 20f, StartRot.w);
+        //m_gTrap.SetActive(false);
+        m_TrapActive = false;
+        m_fRotTime = 0f;
+        StartRot = m_gTrap.transform.localRotation.eulerAngles;
+        SubRot = new Vector3(92f, 0f, 0f);
+        EndRot = StartRot;
+        Debug.Log("StartRot : " + StartRot);
+        Debug.Log("EndRot : " + EndRot);
     }
 
     public override void GeneralUpdate()
@@ -66,37 +74,39 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
                 }
             }
 
-            if (m_gTrap.activeSelf)
+            if (m_TrapActive)
             {
                 ExecuteEvents.Execute<IMouseInterface>(
                 target: MouseObject,
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.SetCollapse());
 
-                float speed = -(m_fMaxRotTime - m_fRotTime) * EndRot.z;
-                if(speed >= EndRot.z)
-                {
-                    speed = EndRot.z;
-                    ExecuteEvents.Execute<IMouseInterface>(
-                    target: MouseObject,
-                    eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.SetDefaultSize());
-                }
-                Quaternion rot = Quaternion.AngleAxis(speed, m_gTrap.transform.forward);
+                //float speed = -(m_fMaxRotTime - m_fRotTime) * EndRot.z;
+                //if(speed >= EndRot.z)
+                //{
+                //    speed = EndRot.z;
+                //    ExecuteEvents.Execute<IMouseInterface>(
+                //    target: MouseObject,
+                //    eventData: null,
+                //    functor: (recieveTarget, y) => recieveTarget.SetDefaultSize());
+                //}
+                //Quaternion rot = Quaternion.AngleAxis(speed, m_gTrap.transform.forward);
 
                 // 元の回転値と合成して上書き
-                m_gTrap.transform.localRotation = StartRot * rot;
+                //m_gTrap.transform.localRotation = StartRot * rot;
+                m_gTrap.transform.rotation = Quaternion.Euler(Vector3.Lerp(StartRot, EndRot, m_fRotTime));
+                m_fRotTime += Time.deltaTime * m_fSpeed / m_fMaxRotTime;
                 //m_gTrap.transform.rotation = Quaternion.Slerp(StartRot, EndRot, m_fMaxRotTime - m_fRotTime);
-                m_fRotTime -= Time.deltaTime;
-                if(m_fRotTime < 0f)
+                
+                if(m_fRotTime > m_fMaxRotTime)
                 {
-                    m_fRotTime = 0f;
+                    //m_fRotTime = 0f;
                 }
             }
             else
             {
                 // 初期姿勢に戻す
-                m_gTrap.transform.rotation = StartRot;
+                m_gTrap.transform.rotation = Quaternion.Euler(StartRot);
                 m_fRotTime = m_fMaxRotTime;
             }
         }
@@ -114,8 +124,12 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
         m_gMesh.SetActive(true);
         if (other.tag == "Mouse")
         {
-            m_gTrap.SetActive(true);
+            //m_gTrap.SetActive(true);
+            m_TrapActive = true;
             MouseObject = other.gameObject;
+
+            // ネズミの位置で倒れる方向を判断する
+            CheckMousePos(MouseObject);
         }
     }
 
@@ -125,7 +139,8 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
         m_gMesh.SetActive(false);
         if (other.tag == "Mouse")
         {
-            m_gTrap.SetActive(false);
+            //m_gTrap.SetActive(false);
+            m_TrapActive = false;
             MouseObject = null;
         }
     }
@@ -133,5 +148,17 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
     public void SetPlayer(GameObject _Human)
     {
         m_gHavePlayer = _Human;
+    }
+
+    void CheckMousePos(GameObject _object)
+    {
+        if (true)
+        {
+            EndRot = StartRot + SubRot;
+        }
+        else
+        {
+            EndRot = StartRot - SubRot;
+        }
     }
 }
