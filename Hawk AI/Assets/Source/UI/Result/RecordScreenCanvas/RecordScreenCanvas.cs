@@ -28,6 +28,14 @@ public enum ERecordPlayerType
     eMouse2
 }
 
+public enum EPlayerContorollerID
+{
+    eHuman1,
+    eMouse1,
+    eMouse2,
+    eHuman2,
+}
+
 public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecordScreenCanvas
 {
 
@@ -39,6 +47,9 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
 
     [SerializeField]
     private List<Sprite> PlayerNoSprite = new List<Sprite>();
+
+    [SerializeField]
+    private List<Sprite> RecordScreen = new List<Sprite>();
 
     [SerializeField]
     private Sprite RecordMouseIcon;
@@ -61,6 +72,7 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
     [SerializeField]
     private GameObject m_cResultManager;
 
+    private const int PlayerScreenNo = 0;
     private const int PlayerIconNo = 4;
     private const int PlayerScreenShotNo = 5;
 
@@ -131,27 +143,40 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
 
     private void SortingHumanWin()
     {
-        Image Player1Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image Player2Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image Player3Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image Player4Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        Image Player1Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image Player2Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image Player3Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image Player4Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(3).gameObject.GetComponent<Image>();
 
-        Image PlayerNo1Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image PlayerNo2Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image PlayerNo3Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image PlayerNo4Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        Image PlayerNo1Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image PlayerNo2Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image PlayerNo3Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image PlayerNo4Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+
+        Image PlayerScreen1Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer1).gameObject.GetComponent<Image>();
+        Image PlayerScreen2Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer2).gameObject.GetComponent<Image>();
+        Image PlayerScreen3Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer3).gameObject.GetComponent<Image>();
+        Image PlayerScreen4Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer4).gameObject.GetComponent<Image>();
 
 
         // Decide First n Seconed.
         if (GameManager.KillCountByHuman1 >= GameManager.KillCountByHuman2)
         {
             Player1Image.sprite = HumanIcon[0];
-            PlayerNo1Image.sprite = PlayerNoSprite[0];
+            PlayerNo1Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman1];
+            PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
+
             RecordPopUp(First, ERecordPlayerType.eHuman1);
             FirstObj = ERecordScreenChild.ePlayer1;
 
             Player2Image.sprite = HumanIcon[1];
-            PlayerNo2Image.sprite = PlayerNoSprite[1];
+            PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman2];
+            PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
+
             RecordPopUp(Seconed, ERecordPlayerType.eHuman2);
             SeconedObj = ERecordScreenChild.ePlayer2;
 
@@ -159,12 +184,16 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         else
         {
             Player1Image.sprite = HumanIcon[1];
-            PlayerNo1Image.sprite = PlayerNoSprite[1];
+            PlayerNo1Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman2];
+            PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
+
             RecordPopUp(First, ERecordPlayerType.eHuman2);
             FirstObj = ERecordScreenChild.ePlayer2;
 
             Player2Image.sprite = HumanIcon[0];
-            PlayerNo2Image.sprite = PlayerNoSprite[0];
+            PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman1];
+            PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
+
             RecordPopUp(Seconed, ERecordPlayerType.eHuman1);
             SeconedObj = ERecordScreenChild.ePlayer1;
         }
@@ -173,12 +202,16 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         if (GameManager.EatCountByMouse1 >= GameManager.EatCountByMouse2)
         {
             Player3Image.sprite = MouseIcon[0];
-            PlayerNo3Image.sprite = PlayerNoSprite[2];
+            PlayerNo3Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse1];
+            PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
+
             RecordPopUp(Third, ERecordPlayerType.eMouse1);
             ThirdObj = ERecordScreenChild.ePlayer3;
 
             Player4Image.sprite = MouseIcon[1];
-            PlayerNo4Image.sprite = PlayerNoSprite[3];
+            PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse2];
+            PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
+
             RecordPopUp(Forth, ERecordPlayerType.eMouse2);
             ForthObj = ERecordScreenChild.ePlayer4;
 
@@ -186,12 +219,16 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         else
         {
             Player3Image.sprite = MouseIcon[1];
-            PlayerNo4Image.sprite = PlayerNoSprite[3];
+            PlayerNo3Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse2];
+            PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
+
             RecordPopUp(Third, ERecordPlayerType.eMouse2);
             ThirdObj = ERecordScreenChild.ePlayer4;
 
             Player4Image.sprite = MouseIcon[0];
-            PlayerNo3Image.sprite = PlayerNoSprite[2];
+            PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse1];
+            PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
+
             RecordPopUp(Forth, ERecordPlayerType.eMouse1);
             ForthObj = ERecordScreenChild.ePlayer3;
 
@@ -200,27 +237,39 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
 
     private void SortingMouseWin()
     {
-        Image Player1Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image Player2Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image Player3Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image Player4Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        Image Player1Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image Player2Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image Player3Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image Player4Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(3).gameObject.GetComponent<Image>();
 
-        Image PlayerNo1Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image PlayerNo2Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image PlayerNo3Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image PlayerNo4Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        Image PlayerNo1Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image PlayerNo2Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image PlayerNo3Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image PlayerNo4Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(3).gameObject.GetComponent<Image>();
 
+        Image PlayerScreen1Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer1).gameObject.GetComponent<Image>();
+        Image PlayerScreen2Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer2).gameObject.GetComponent<Image>();
+        Image PlayerScreen3Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer3).gameObject.GetComponent<Image>();
+        Image PlayerScreen4Image = this.gameObject.transform.
+            GetChild((int)ERecordScreenChild.ePlayer4).gameObject.GetComponent<Image>();
 
         // Decide First n Seconed.
         if (GameManager.EatCountByMouse1 >= GameManager.EatCountByMouse2)
         {
             Player1Image.sprite = MouseIcon[0];
-            PlayerNo1Image.sprite = PlayerNoSprite[0];
+            PlayerNo1Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse1];
+            PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
+
             RecordPopUp(First, ERecordPlayerType.eMouse1);
             FirstObj = ERecordScreenChild.ePlayer3;
 
             Player2Image.sprite = MouseIcon[1];
-            PlayerNo2Image.sprite = PlayerNoSprite[1];
+            PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse2];
+            PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
+
             RecordPopUp(Seconed, ERecordPlayerType.eMouse2);
             SeconedObj = ERecordScreenChild.ePlayer4;
 
@@ -228,12 +277,16 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         else
         {
             Player1Image.sprite = MouseIcon[1];
-            PlayerNo1Image.sprite = PlayerNoSprite[1];
+            PlayerNo1Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse2];
+            PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
+
             RecordPopUp(First, ERecordPlayerType.eMouse2);
             FirstObj = ERecordScreenChild.ePlayer4;
 
             Player2Image.sprite = MouseIcon[0];
-            PlayerNo2Image.sprite = PlayerNoSprite[0];
+            PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse1];
+            PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
+
             RecordPopUp(Seconed, ERecordPlayerType.eMouse1);
             SeconedObj = ERecordScreenChild.ePlayer3;
         }
@@ -242,24 +295,32 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         if (GameManager.KillCountByHuman1 >= GameManager.KillCountByHuman2)
         {
             Player3Image.sprite = HumanIcon[0];
-            PlayerNo3Image.sprite = PlayerNoSprite[2];
+            PlayerNo3Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman1];
+            PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
+
             RecordPopUp(Third, ERecordPlayerType.eHuman1);
             ThirdObj = ERecordScreenChild.ePlayer1;
 
             Player4Image.sprite = HumanIcon[1];
-            PlayerNo4Image.sprite = PlayerNoSprite[3];
+            PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman2];
+            PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
+
             RecordPopUp(Forth, ERecordPlayerType.eHuman2);
             ForthObj = ERecordScreenChild.ePlayer2;
         }
         else
         {
             Player3Image.sprite = HumanIcon[1];
-            PlayerNo4Image.sprite = PlayerNoSprite[3];
+            PlayerNo3Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman2];
+            PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
+
             RecordPopUp(Third, ERecordPlayerType.eHuman2);
             ThirdObj = ERecordScreenChild.ePlayer2;
 
             Player4Image.sprite = HumanIcon[0];
-            PlayerNo3Image.sprite = PlayerNoSprite[2];
+            PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman1];
+            PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
+
             RecordPopUp(Forth, ERecordPlayerType.eHuman1);
             ForthObj = ERecordScreenChild.ePlayer1;
 
