@@ -48,12 +48,12 @@ public class RadarCursor : SingletonMonoBehaviour<RadarCursor>
                                         MouseObj[0].transform.position.z - HumanObj[0].transform.position.z);
             Vector2 Range02 = new Vector2(MouseObj[0].transform.position.x - HumanObj[1].transform.position.x,
                                         MouseObj[0].transform.position.z - HumanObj[1].transform.position.z);
-            if (Range01.magnitude >= 10.0f)
+            if (Range01.magnitude >= DetectionRange)
             {
                 Mouse01Cursor[0].SetActive(true);
                 Vector2 Camera_forward = new Vector2(CameraObj[0].transform.forward.x, CameraObj[0].transform.forward.z);
                 var rad = Mathf.Atan2(Range01.x, Range01.y) - Mathf.Atan2(Camera_forward.x, Camera_forward.y);
-                Mouse01Cursor[0].transform.localPosition = new Vector3(Mathf.Sin(rad) * 45, Mathf.Cos(rad) * 45);
+                Mouse01Cursor[0].transform.localPosition = new Vector3(Mathf.Sin(rad) * CursorRadius, Mathf.Cos(rad) * CursorRadius);
                 Mouse01Cursor[0].GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -rad * Mathf.Rad2Deg);
             }
             else
@@ -61,12 +61,12 @@ public class RadarCursor : SingletonMonoBehaviour<RadarCursor>
                 Mouse01Cursor[0].SetActive(false);
                 CameraObj[0].transform.Find("RadarCamera").GetComponent<Camera>().cullingMask |= 1 << 22;
             }
-            if (Range02.magnitude >= 10.0f)
+            if (Range02.magnitude >= DetectionRange)
             {
                 Mouse01Cursor[1].SetActive(true);
                 Vector2 Camera_forward = new Vector2(CameraObj[1].transform.forward.x, CameraObj[1].transform.forward.z);
                 var rad = Mathf.Atan2(Range02.x, Range02.y) - Mathf.Atan2(Camera_forward.x, Camera_forward.y);
-                Mouse01Cursor[1].transform.localPosition = new Vector3(Mathf.Sin(rad) * 45, Mathf.Cos(rad) * 45);
+                Mouse01Cursor[1].transform.localPosition = new Vector3(Mathf.Sin(rad) * CursorRadius, Mathf.Cos(rad) * CursorRadius);
                 Mouse01Cursor[1].GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -rad * Mathf.Rad2Deg);
             }
             else
@@ -81,12 +81,12 @@ public class RadarCursor : SingletonMonoBehaviour<RadarCursor>
                                         MouseObj[1].transform.position.z - HumanObj[0].transform.position.z);
             Vector2 Range02 = new Vector2(MouseObj[1].transform.position.x - HumanObj[1].transform.position.x,
                                         MouseObj[1].transform.position.z - HumanObj[1].transform.position.z);
-            if (Range01.magnitude >= 10.0f)
+            if (Range01.magnitude >= DetectionRange)
             {
                 Mouse02Cursor[0].SetActive(true);
                 Vector2 Camera_forward = new Vector2(CameraObj[0].transform.forward.x, CameraObj[0].transform.forward.z);
                 var rad = Mathf.Atan2(Range01.x, Range01.y) - Mathf.Atan2(Camera_forward.x, Camera_forward.y);
-                Mouse02Cursor[0].transform.localPosition = new Vector3(Mathf.Sin(rad) * 45, Mathf.Cos(rad) * 45);
+                Mouse02Cursor[0].transform.localPosition = new Vector3(Mathf.Sin(rad) * CursorRadius, Mathf.Cos(rad) * CursorRadius);
                 Mouse02Cursor[0].GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -rad * Mathf.Rad2Deg);
             }
             else
@@ -94,12 +94,12 @@ public class RadarCursor : SingletonMonoBehaviour<RadarCursor>
                 Mouse02Cursor[0].SetActive(false);
                 CameraObj[0].transform.Find("RadarCamera").GetComponent<Camera>().cullingMask |= 1 << 23;
             }
-            if (Range02.magnitude >= 10.0f)
+            if (Range02.magnitude >= DetectionRange)
             {
                 Mouse02Cursor[1].SetActive(true);
                 Vector2 Camera_forward = new Vector2(CameraObj[1].transform.forward.x, CameraObj[1].transform.forward.z);
                 var rad = Mathf.Atan2(Range02.x, Range02.y) - Mathf.Atan2(Camera_forward.x, Camera_forward.y);
-                Mouse02Cursor[1].transform.localPosition = new Vector3(Mathf.Sin(rad) * 45, Mathf.Cos(rad) * 45);
+                Mouse02Cursor[1].transform.localPosition = new Vector3(Mathf.Sin(rad) * CursorRadius, Mathf.Cos(rad) * CursorRadius);
                 Mouse02Cursor[1].GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -rad * Mathf.Rad2Deg);
             }
             else

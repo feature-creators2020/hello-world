@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-/****シングルトン化****/
-public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
+public interface IRespawnInterface : IEventSystemHandler
+{
+    void SetVarsanRoomID(int _id);
+
+    void RemoveVarsanRoomId();
+}
+
+
+public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>, IRespawnInterface
 {
     [SerializeField]
     private List<GameObject> List_RespObj;
     [SerializeField]
     private List<int> List_RoomIndex;
+    private int m_nVarsanRoom = -1;
 
     //Respawn関数(出現させるオブジェクト)
     public void Respawn(GameObject Obj)
@@ -19,20 +28,37 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>
         //ランダムで生成場所を決定
         int number;
         Vector3 pos;
+        if(m_nVarsanRoom >= 0)
+        {
+            RespList.Remove(m_nVarsanRoom);
+        }
         //もしすべての部屋に人間がいる状況が生まれた場合はすべてのリスポーン地からランダム
-        if (RespList.Count > 0)
+        if (RespList.Count <= 0)
         {
-            number = Random.Range(0, RespList.Count);
-            //設定位置に移動
-            pos = List_RespObj[RespList[number]].transform.position;
+            RespList.Clear();
+            for (int i = 0; i < List_RespObj.Count; i++)
+            {
+                RespList.Add(i);
+            }
+            if (m_nVarsanRoom >= 0)
+            {
+                RespList.Remove(m_nVarsanRoom);
+            }
         }
-        else
-        {
-            number = Random.Range(0, List_RespObj.Count);
-            //設定位置に移動
-            pos = List_RespObj[number].transform.position;
-        }
+        number = Random.Range(0, RespList.Count);
+        //設定位置に移動
+        pos = List_RespObj[RespList[number]].transform.position;
         Obj.transform.position = pos;
+    }
+
+    public void SetVarsanRoomID(int _id)
+    {
+        m_nVarsanRoom = _id;
+    }
+
+    public void RemoveVarsanRoomId()
+    {
+        m_nVarsanRoom = -1;
     }
 
     //public void RespInit(GameObject Obj,int RoomIndex)

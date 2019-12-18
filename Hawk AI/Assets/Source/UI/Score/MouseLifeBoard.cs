@@ -10,19 +10,26 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
     [SerializeField]
     private GameObject Life;
     [SerializeField]
+    private GameObject State;
+    [SerializeField]
     private List<Sprite> Numbers = new List<Sprite>();
+    [SerializeField]
+    private List<Sprite> StateIcon = new List<Sprite>();
     private int RemainingMouse = 8;
+    private bool m_bIsNight;
 
     //Start is called before the first frame update
     void Start()
     {
         Life.GetComponent<Image>().sprite = Numbers[RemainingMouse];
+        State.GetComponent<Image>().sprite = StateIcon[0];
+        m_bIsNight = false;
     }
 
     public void GetCaught()
     {
         RemainingMouse -= 1;
-        if(RemainingMouse < 0)
+        if(RemainingMouse <= 0)
         {
             RemainingMouse = 0;
 
@@ -44,7 +51,7 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
         Life.GetComponent<Image>().sprite = Numbers[RemainingMouse];
     }
 
-    void Retry()
+    private void Retry()
     {
         var gameObject = ManagerObjectManager.Instance.GetGameObject("SceneManager");
 
@@ -52,5 +59,28 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
            target: gameObject,
            eventData: null,
            functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.Tutorial));
+    }
+
+    public void IsNight(bool TorF)
+    {
+        m_bIsNight = TorF;
+    }
+
+    public void ChangeIconState(int num)
+    {
+        State.GetComponent<Image>().sprite = StateIcon[num + 1];
+        Invoke("RemoveState", 5.0f / num);
+    }
+
+    public void RemoveState()
+    {
+        if (m_bIsNight)
+        {
+            State.GetComponent<Image>().sprite = StateIcon[1];
+        }
+        else
+        {
+            State.GetComponent<Image>().sprite = StateIcon[0];
+        }
     }
 }
