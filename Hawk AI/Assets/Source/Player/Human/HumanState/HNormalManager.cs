@@ -26,7 +26,7 @@ public class HNormalManager : CStateBase<HumanStateManager>
 
 
         // 捕獲処理
-        if (m_cOwner.hCatchZone.isCatch)
+        //if (m_cOwner.hCatchZone.isCatch)
         {
             //Debug.Log("in the Zone !!");
             if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))

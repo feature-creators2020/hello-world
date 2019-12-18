@@ -80,7 +80,7 @@ public class Door : CStateObjectBase<Door, EDoorState>, IDoorInterface
             var keyboardState = KeyBoard.GetState(human.KeyboardIndex, false);
 
             // 開閉させる処理
-            if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
+            if (GamePad.GetButtonDown(GamePad.Button.A, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.A, playerKeyNo))
             {
                 OpenOrClose();
             }

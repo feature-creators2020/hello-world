@@ -173,18 +173,18 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     public override void Update()
     {
         // デバッグ
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            StartVarsan();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            StopVarsan();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            EndVarsan();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    StartVarsan();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    StopVarsan();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    EndVarsan();
+        //}
 
 
         // マネージャー取得

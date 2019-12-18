@@ -51,7 +51,7 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
         if(m_bActivation == true)
         {
             // コントローラー対応
-            if (GamePad.GetButton(GamePad.Button.B, GamePad.Index.One) || KeyBoard.GetButton(KeyBoard.Button.B, KeyBoard.Index.Three) 
+            if (GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.One) || KeyBoard.GetButtonDown(KeyBoard.Button.A, KeyBoard.Index.Three) 
                 || Input.GetKeyDown(KeyCode.X))
             {
                 if (GetState() == ELeverSwitchState.ActiveCorrect)

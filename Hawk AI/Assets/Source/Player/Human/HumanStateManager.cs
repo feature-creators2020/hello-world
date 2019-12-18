@@ -79,6 +79,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public float m_fDefaultSpeed;               // 基礎速度
     public float m_fSlowDownRate;               // ネズミこうを踏んだとき(倍率)
     public float m_fDoorSpeed;                  // ドアの下を通るとき
+    public float m_fCatchDownRate;              // ネズミを捕まえるときの速度倍率
 
     [System.NonSerialized]
     public float m_fSlowTime;                   // 速度低下の効果時間経過
@@ -198,18 +199,18 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public override void Update()
     {
         // デバッグ
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            StartVarsan();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            StopVarsan();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            EndVarsan();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    StartVarsan();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    StopVarsan();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    EndVarsan();
+        //}
 
 
         hCatchZone = this.transform.Find("CatchZone").GetComponent<HCatchZone>();
@@ -307,7 +308,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public virtual bool UseItem(GamePad.Index playerNo, KeyBoard.Index playerKeyNo)
     {
-        if (GamePad.GetButton(GamePad.Button.B, playerNo) || KeyBoard.GetButton(KeyBoard.Button.B, playerKeyNo))
+        if (GamePad.GetButton(GamePad.Button.A, playerNo) || KeyBoard.GetButton(KeyBoard.Button.A, playerKeyNo))
         {
             // アイテムを所持しているか
             if (m_sItemData != null)
@@ -1019,7 +1020,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public void OnCatchEvent()
     {
-        m_fSlowDownRate = 0f;
+        m_fCatchDownRate = 0f;
         if (!ReferenceEquals(hCatchZone.TargetObject, null))
         {
             ExecuteEvents.Execute<IMouseInterface>(

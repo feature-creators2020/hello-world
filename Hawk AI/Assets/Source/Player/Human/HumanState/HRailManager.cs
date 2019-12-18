@@ -32,7 +32,7 @@ public class HRailManager : CStateBase<HumanStateManager>
         m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
         // 捕獲処理
-        if (m_cOwner.hCatchZone.isCatch)
+        //if (m_cOwner.hCatchZone.isCatch)
         {
             //Debug.Log("in the Zone !!");
             if (GamePad.GetButtonDown(GamePad.Button.B, playerNo) || KeyBoard.GetButtonDown(KeyBoard.Button.B, playerKeyNo))
