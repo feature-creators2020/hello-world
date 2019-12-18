@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public interface IActivatePlayerRecordImage : IEventSystemHandler
 {
-    void SetActive(Sprite Icon,int numObj);
+    void SetActive(Sprite Icon,int numObj,bool isVal);
 }
 
 public class PlayerRecordCanvas : MonoBehaviour, IActivatePlayerRecordImage
@@ -18,7 +18,7 @@ public class PlayerRecordCanvas : MonoBehaviour, IActivatePlayerRecordImage
     void Start()
     {
     }
-    public void SetActive(Sprite Icon, int numObj)
+    public void SetActive(Sprite Icon, int numObj, bool isVal)
     {
         for (int i = 0; i < this.gameObject.transform.childCount; i++)
         {
@@ -28,7 +28,7 @@ public class PlayerRecordCanvas : MonoBehaviour, IActivatePlayerRecordImage
 
         for (int i = 0; i < numObj; i++)
         {
-            ImageObj[i].SetActive(true);
+            ImageObj[i].SetActive(isVal);
             ImageObj[i].GetComponent<Image>().sprite = Icon;
         }
 

@@ -45,4 +45,8 @@ public class ShadowCanvas : MonoBehaviour, IResultManagerInterfase
         this.gameObject.transform.GetChild((int)EResultCircleShadowChild.eMouse2).gameObject.SetActive(true);
     }
 
+    public void SetIsOk(int id, bool isVal)
+    {
+
+    }
 }

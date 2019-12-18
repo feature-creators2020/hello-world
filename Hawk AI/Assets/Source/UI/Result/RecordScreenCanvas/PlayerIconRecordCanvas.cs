@@ -16,11 +16,10 @@ public class PlayerIconRecordCanvas : MonoBehaviour, IActivatePlayerRecordImage
         //    ImageObj[i].SetActive(false);
         //}
     }
-    public void SetActive(Sprite Icon, int numObj)
+    public void SetActive(Sprite Icon, int numObj,bool isVal)
     {
 
-
-       this.gameObject.transform.GetChild(numObj).gameObject.SetActive(true);
+       this.gameObject.transform.GetChild(numObj).gameObject.SetActive(false);
        this.gameObject.transform.GetChild(numObj).gameObject.GetComponent<Image>().sprite = Icon;
 
     }

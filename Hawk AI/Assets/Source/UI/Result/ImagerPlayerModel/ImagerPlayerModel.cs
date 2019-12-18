@@ -63,4 +63,8 @@ public class ImagerPlayerModel : MonoBehaviour,IResultManagerInterfase
 
     }
 
+    public void SetIsOk(int id, bool isVal)
+    {
+
+    }
 }

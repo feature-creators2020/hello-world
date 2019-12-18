@@ -16,6 +16,8 @@ public interface IResultManagerInterfase : IEventSystemHandler
 {
     void HawkAIWin();
     void MouseWin();
+    void SetIsOk(int id, bool isVal);
+
 }
 
 #if _Beta_Result
@@ -180,7 +182,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         {
             case 0:
 
-                    Phase_0();
+                Phase_0();
                 
                 break;
 
@@ -232,7 +234,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.One) ||
              KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.One))
         {
-            m_bOKFlg[0] = true;
+            //m_bOKFlg[0] = true;
             ExecuteEvents.Execute<IRecordScreenCanvas>(
             target: PlayerRecordsUI[0],
             eventData: null,
@@ -244,7 +246,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Two) ||
             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Two))
         {
-            m_bOKFlg[1] = true;
+            //m_bOKFlg[1] = true;
             ExecuteEvents.Execute<IRecordScreenCanvas>(
             target: PlayerRecordsUI[0],
             eventData: null,
@@ -255,7 +257,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Three) ||
             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Three))
         {
-            m_bOKFlg[2] = true;
+            //m_bOKFlg[2] = true;
             ExecuteEvents.Execute<IRecordScreenCanvas>(
             target: PlayerRecordsUI[0],
             eventData: null,
@@ -266,7 +268,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Four) ||
              KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Four))
         {
-            m_bOKFlg[3] = true;
+            //m_bOKFlg[3] = true;
             ExecuteEvents.Execute<IRecordScreenCanvas>(
             target: PlayerRecordsUI[0],
             eventData: null,
@@ -452,5 +454,10 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.PlayWin());
         }
+    }
+
+    public void SetIsOk(int id,bool isVal)
+    {
+        m_bOKFlg[id] = isVal;
     }
 }
