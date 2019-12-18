@@ -25,6 +25,9 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     [SerializeField]
     public GameObject m_cCheeseEffects;
 
+    [SerializeField]
+    public GameObject m_cCheeseSpreadPiece;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +95,7 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     {
         if(other.tag == "Mouse")
         {
-            
+            m_cCheeseSpreadPiece.GetComponent<ParticleSystem>().Play();
         }
     }
 
@@ -100,6 +103,7 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     {
         if(other.tag == "Mouse")
         {
+            m_cCheeseSpreadPiece.GetComponent<ParticleSystem>().Stop();
             m_isScaling = false;
             SetDefault();
         }
