@@ -116,4 +116,41 @@ public class PlayerManager : GeneralManager
         }
     }
 
+    public int GetPlayerNum(GameObject _object)
+    {
+        int playerNum = 99;
+
+        // プレイヤー種類判定
+        if(_object.tag == "Human")
+        {
+            // 人で検索
+            for (int i = 0; i < GetGameObjectsList("Human").Count; i++)
+            {
+                if (_object == GetGameObject(i, "Human"))
+                {
+                    playerNum = i;
+                    break;
+                }
+            }
+        }
+        else if(_object.tag == "Mouse")
+        {
+            // ネズミで検索
+            for (int i = 0; i < GetGameObjectsList("Mouse").Count; i++)
+            {
+                if (_object == GetGameObject(i, "Mouse"))
+                {
+                    playerNum = i;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            // どちらでもない
+            playerNum = 99;
+        }
+
+        return playerNum;
+    }
 }

@@ -130,6 +130,12 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.EndVarsan());
         }
+
+        var varsanitemspawn = manager.GetGameObject("VarsanItemSpawnManager").GetComponent<VarsanItemSpawnManager>().GetGameObject("VarsanItemSpawn");
+        ExecuteEvents.Execute<IVarsanItemSpawnInterfase>(
+               target: varsanitemspawn,
+               eventData: null,
+               functor: (recieveTarget, y) => recieveTarget.SetDefault());
     }
 
     bool CheckRoomMatch(int _roomID)
