@@ -2,6 +2,7 @@
 {
 	Properties
 	{
+		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Texture", 2D) = "white" {}
 		[KeywordEnum(OFF, ALL_AXIS, Y_AXIS)] _BILLBOARD("Billboard Mode", Float) = 2
 		_Cutoff("Alpha Cutoff", Range(0, 1)) = 0.5
@@ -41,7 +42,7 @@
 
 				sampler2D _MainTex;
 				float4 _MainTex_ST;
-
+				float4 _Color;
 				float _Cutoff;
 
 				v2f vert(appdata v)
@@ -100,7 +101,7 @@
 					col = fixed4(col.rgb, _Cutoff)
 					// apply fog
 					UNITY_APPLY_FOG(i.fogCoord, col);
-					return col;
+					return col * _Color;
 				}
 				ENDCG
 			}

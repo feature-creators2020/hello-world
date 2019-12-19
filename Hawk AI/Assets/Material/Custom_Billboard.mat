@@ -26,4 +26,5 @@ Material:
     m_Floats:
     - _BILLBOARD: 2
     - _Cutoff: 0.24
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 1, g: 0.029075107, b: 0, a: 0.22352941}

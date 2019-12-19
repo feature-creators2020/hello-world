@@ -28,6 +28,9 @@ public class TimeZoneManager : GeneralManager, IETimeZone
     private GameObject m_cRoomLightManager = null;
 
     [SerializeField]
+    private List<GameObject> PlayerCameramask = new List<GameObject>();
+
+    [SerializeField]
     private float m_fLerpRotationX;
 
     [SerializeField]
@@ -100,7 +103,12 @@ public class TimeZoneManager : GeneralManager, IETimeZone
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.LightOn());
 
-            
+
+            foreach(var val in PlayerCameramask)
+            {
+                val.SetActive(true);
+            }
+
             m_eTimeZone = ETimeZone.eEvenning;
         }
     }
