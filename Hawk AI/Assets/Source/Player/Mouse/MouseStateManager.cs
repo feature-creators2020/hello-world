@@ -136,6 +136,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [System.NonSerialized]
     public GameObject m_TrapObject;             // トラップでリスポーンしたときに所有者を取得する為
 
+    public int ContinueCount;                   // リスポーン可能回数を保持
+
     // Start is called before the first frame update
     void Start()
     {
@@ -453,6 +455,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             }
             ChangeState(0, EMouseState.Catch);
             MouseLifeBoard.Instance.ChangeIconState(2);
+            ContinueCount = MouseLifeBoard.Instance.GetRemainingMouse();
             MouseLifeBoard.Instance.GetCaught();
         }
     }

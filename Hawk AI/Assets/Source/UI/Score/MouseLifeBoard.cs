@@ -15,8 +15,9 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
     private List<Sprite> Numbers = new List<Sprite>();
     [SerializeField]
     private List<Sprite> StateIcon = new List<Sprite>();
-    private int RemainingMouse = 8;
+    private int RemainingMouse = 9;
     private bool m_bIsNight;
+    private int m_DontRespawnCount;     // ネズミがリスポーンできなかった回数
 
     //Start is called before the first frame update
     void Start()
@@ -30,24 +31,29 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
     public void GetCaught()
     {
         RemainingMouse -= 1;
+        // ネズミの残機がなくなった
         if(RemainingMouse < 0)
         {
             RemainingMouse = 0;
 
-
-
-            var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
-
-            //人間側勝利
-            GameManager.IsHumanWin = true;
-
-            ExecuteEvents.Execute<IGameInterface>(
-            target: obj,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
-            if (SceneManager.GetActiveScene().name == "Tutorial")
+            m_DontRespawnCount++;
+            // ネズミが2匹とも捕まった
+            if (m_DontRespawnCount >= 2)
             {
-                Invoke("Retry", 1.0f);
+
+                var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
+
+                //人間側勝利
+                GameManager.IsHumanWin = true;
+
+                ExecuteEvents.Execute<IGameInterface>(
+                target: obj,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
+                if (SceneManager.GetActiveScene().name == "Tutorial")
+                {
+                    Invoke("Retry", 1.0f);
+                }
             }
         }
 
@@ -85,5 +91,10 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
         {
             State.GetComponent<Image>().sprite = StateIcon[0];
         }
+    }
+
+    public int GetRemainingMouse()
+    {
+        return RemainingMouse;
     }
 }
