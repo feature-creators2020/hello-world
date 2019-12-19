@@ -43,7 +43,7 @@ public interface IMouseInterface : IEventSystemHandler
 
     void SetRoomID(int _id);
 
-    void StartVarsan();
+    void StartVarsan(GameObject _Trap);
 
     bool GetVarsan();
 
@@ -132,6 +132,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     [SerializeField]
     private GameObject m_gVarsanEffect;         // バルサンのエフェクト用
+
+    [System.NonSerialized]
+    public GameObject m_TrapObject;             // トラップでリスポーンしたときに所有者を取得する為
 
     // Start is called before the first frame update
     void Start()
@@ -372,6 +375,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             {
                 m_fSlowTime = m_fLimitSlowTime; // 無敵状態を解除する
             }
+            m_TrapObject = other.gameObject;    // トラップオブジェクト取得
         }
     }
 
@@ -389,6 +393,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 //Destroy(other.gameObject); // トラップを削除する
                 ChangeState(0, EOldState);
             }
+            m_TrapObject = null;            // トラップオブジェクト消去
             SetDefaultSize();
         }
 
@@ -417,11 +422,19 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             //Debug.Log("Catched!");
 
             // Hack : PlayerManager実装
-            var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").
-                GetComponent<PlayerManager>();
+            var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
             var HumanList = PlayerManager.GetGameObjectsList("Human");
 
-            GameObject Player = new GameObject();
+            GameObject Player = _Owner;
+            if(Player.tag != "Human")
+            {
+                // トラップによるリスポーン
+                // トラップの所有者を取得する
+                ExecuteEvents.Execute<IMouseTrap>(
+                    target: Player,
+                    eventData: null,
+                    functor: (recieveTarget, y) => Player = recieveTarget.GetPlayer());
+            }
 
             for (int i = 0; i < HumanList.Count; i++)
             {
@@ -615,6 +628,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     ChangeState(0, EMouseState.VarsanDown);
                 }
             }
+            //m_TrapObject = ManagerObjectManager.Instance.GetGameObject("VarsanTrapManager").GetComponent<VarsanTrapManager>().GetGameObject(0);
         }
         else
         {
@@ -622,7 +636,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
     }
 
-    public void StartVarsan()
+    public void StartVarsan(GameObject _Trap)
     {
         if (!m_isVarsan)
         {
@@ -634,6 +648,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     functor: (recieveTarget, y) => recieveTarget.Play((int)GamePadIndex));
             Debug.Log("MouseVarsan" + (int)GamePadIndex);
             //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+            m_TrapObject = _Trap;
         }
     }
 
@@ -652,7 +667,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 target: m_gVarsanEffect,
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.Stop((int)GamePadIndex));
-
+            m_TrapObject = null;
         }
     }
 
@@ -667,6 +682,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             functor: (recieveTarget, y) => recieveTarget.End());
         ChangeState(0, EMouseState.Normal);
         //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+        m_TrapObject = null;
     }
 
 
@@ -692,6 +708,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public void OnEndVarsanWaitEvent()
     {
-        ChangeState(0, EMouseState.Catch);
+        Catched(m_TrapObject);
+        //ChangeState(0, EMouseState.Catch);
     }
 }

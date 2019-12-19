@@ -8,6 +8,8 @@ public interface IMouseTrap : IEventSystemHandler
     //void SetMapPosition(Vector2Int[] _mappos);
 
     void SetPlayer(GameObject _Human);
+
+    GameObject GetPlayer();
 }
 
 
@@ -131,5 +133,10 @@ public class Mousetrap : GeneralObject, IMouseTrap
     public void SetPlayer(GameObject _Human)
     {
         m_gHavePlayer = _Human;
+    }
+
+    public GameObject GetPlayer()
+    {
+        return m_gHavePlayer;
     }
 }

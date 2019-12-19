@@ -35,6 +35,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
             {
                 // 生存時間終了
                 Destroy(this.gameObject);
+                //ManagerObjectManager.Instance.GetGameObject("VarsanTrapManager").GetComponent<VarsanTrapManager>().Destroy(this.gameObject);
                 return;
             }
             m_fLifeTime += Time.deltaTime;  // 生存時間カウント
@@ -68,7 +69,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
                 ExecuteEvents.Execute<IMouseInterface>(
                     target: _gameObject,
                     eventData: null,
-                    functor: (recieveTarget, y) => recieveTarget.StartVarsan());
+                    functor: (recieveTarget, y) => recieveTarget.StartVarsan(this.gameObject));
             }
             else
             {
@@ -168,4 +169,10 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
     {
         m_gHavePlayer = _Human;
     }
+
+    public GameObject GetPlayer()
+    {
+        return m_gHavePlayer;
+    }
+
 }

@@ -164,4 +164,10 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
             EndRot = StartRot - SubRot;
         }
     }
+
+    public GameObject GetPlayer()
+    {
+        return m_gHavePlayer;
+    }
+
 }
