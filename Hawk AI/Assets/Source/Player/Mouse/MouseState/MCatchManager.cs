@@ -32,7 +32,7 @@ public class MCatchManager : CStateBase<MouseStateManager>
         if (this.m_cOwner.targetCamera.gameObject.GetComponent<FadeEffect>().IsCompleteFlg)
         {
             // ここで残機を取得して、残りがない場合はリスポーンさせない
-            if (m_cOwner.ContinueCount <= 0)
+            if (m_cOwner.ContinueCount <= 1)
             {
                 RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
                 m_cOwner.transform.position = new Vector3(0f, -100f, 0f);

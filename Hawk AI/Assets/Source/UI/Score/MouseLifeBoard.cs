@@ -38,7 +38,7 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
 
             m_DontRespawnCount++;
             // ネズミが2匹とも捕まった
-            if (m_DontRespawnCount >= 2)
+            //if (m_DontRespawnCount >= 2)
             {
 
                 var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
