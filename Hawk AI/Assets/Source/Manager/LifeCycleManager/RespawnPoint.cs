@@ -24,27 +24,30 @@ public class RespawnPoint : SingletonMonoBehaviour<RespawnPoint>, IRespawnInterf
     {
         //人間がいない空間にあるリスポーン地の配列を作成
         List<int> RespList = new List<int>();
-        RoomManager.Instance.FarOffHuman(List_RoomIndex, RespList);
-        //ランダムで生成場所を決定
-        int number;
-        Vector3 pos;
-        if(m_nVarsanRoom >= 0)
+        //RoomManager.Instance.FarOffHuman(List_RoomIndex, RespList);
+        // リスポーンリストに全要素を追加
+        for (int i = 0; i < List_RespObj.Count; i++)
+        {
+            RespList.Add(List_RoomIndex[i]);
+        }
+        // プレイヤーのルーム情報を取得
+        List<ObjectRoomInfo> roominfos = RoomManager.Instance.GetRoomInfoList();
+        for(int i = 0; i < roominfos.Count; i++)
+        {
+            if(roominfos[i].ObjectInfo.tag == "Human")
+            {
+                RespList.Remove(roominfos[i].RoomInfo);
+            }
+        }
+        // バルサンが存在している場合、そのルームも対象外
+        if (m_nVarsanRoom >= 0)
         {
             RespList.Remove(m_nVarsanRoom);
         }
-        //もしすべての部屋に人間がいる状況が生まれた場合はすべてのリスポーン地からランダム
-        if (RespList.Count <= 0)
-        {
-            RespList.Clear();
-            for (int i = 0; i < List_RespObj.Count; i++)
-            {
-                RespList.Add(i);
-            }
-            if (m_nVarsanRoom >= 0)
-            {
-                RespList.Remove(m_nVarsanRoom);
-            }
-        }
+
+        //ランダムで生成場所を決定
+        int number;
+        Vector3 pos;
         number = Random.Range(0, RespList.Count);
         //設定位置に移動
         pos = List_RespObj[RespList[number]].transform.position;

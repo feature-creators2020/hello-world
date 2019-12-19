@@ -248,4 +248,9 @@ public class RoomManager : GeneralManager
         //Debug.Log(Object_RoomIDs[i].ObjectInfo.name + ".RoomId : " + RoomNum);
         return RoomNum;
     }
+
+    public List<ObjectRoomInfo> GetRoomInfoList()
+    {
+        return Object_RoomIDs;
+    }
 }

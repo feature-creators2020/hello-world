@@ -1030,6 +1030,36 @@ PrefabInstance:
       propertyPath: InitialModule.startSpeed.scalar
       value: 0.08409241
       objectReference: {fileID: 0}
+    - target: {fileID: 6232627325302855817, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232627325302855817, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232627324822296639, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232627324822296639, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232627324307472800, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232627324307472800, guid: 4d2796dc493b676489564eb4a704c569,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30.33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2796dc493b676489564eb4a704c569, type: 3}
 --- !u!1 &21942873
@@ -9633,7 +9663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &178125949
 BoxCollider:
   m_ObjectHideFlags: 0
