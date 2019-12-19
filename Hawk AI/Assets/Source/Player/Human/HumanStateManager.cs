@@ -1020,15 +1020,18 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public void OnCatchEvent()
     {
-        m_fCatchDownRate = 0f;
         if (!ReferenceEquals(hCatchZone.TargetObject, null))
         {
-            ExecuteEvents.Execute<IMouseInterface>(
+            if(m_fCatchDownRate != 0)
+            {
+                ExecuteEvents.Execute<IMouseInterface>(
                 target: hCatchZone.TargetObject,
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.Catched(this.gameObject));
-            m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+                m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
+            }
         }
+        m_fCatchDownRate = 0f;
     }
 
     public void OnEndCatchEvent()

@@ -202,6 +202,12 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // 昼夜状態取得
         if (m_TimeZoneManager.TimeZoneStatus == ETimeZone.eEvenning) // タイムマネージャーから昼夜の状態を取得し、判定する
         {
+            // アイコン設定(一度だけ)
+            if (!m_bIsNight)
+            {
+                MouseLifeBoard.Instance.ChangeIconState(0);
+                MouseLifeBoard.Instance.IsNight(true);
+            }
             // 夜状態に切り替える
             m_bIsNight = true;
         }
@@ -320,6 +326,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             if (!CheckCurrentState(EMouseState.GetCheese))
             {
                 ChangeState(0, EMouseState.GetCheese);
+                MouseLifeBoard.Instance.ChangeIconState(1);
             }
         }
 
@@ -432,6 +439,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                 }
             }
             ChangeState(0, EMouseState.Catch);
+            MouseLifeBoard.Instance.ChangeIconState(2);
+            MouseLifeBoard.Instance.GetCaught();
         }
     }
 

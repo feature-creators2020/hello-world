@@ -26,12 +26,15 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
         m_bIsNight = false;
     }
 
+    //TODO--killされたら1度だけこの処理を動かす
     public void GetCaught()
     {
         RemainingMouse -= 1;
-        if(RemainingMouse <= 0)
+        if(RemainingMouse < 0)
         {
             RemainingMouse = 0;
+
+
 
             var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
 

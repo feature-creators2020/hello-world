@@ -51,6 +51,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
         var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
         var MouseList = playermanager.GetGameObjectsList("Mouse");
         var HumanList = playermanager.GetGameObjectsList("Human");
+        var RespObj = manager.GetGameObject("LifeCycleManager").transform.Find("Respawn").gameObject;
         GameObject _gameObject;
         int i;
         int _roomID = 99;
@@ -102,6 +103,11 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
             }
         }
 
+        ExecuteEvents.Execute<IRespawnInterface>(
+                    target: RespObj,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.SetVarsanRoomID(m_nRoomNum));
+
     }
 
     public override void OnDestroy()
@@ -110,6 +116,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
         var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();
         var MouseList = playermanager.GetGameObjectsList("Mouse");
         var HumanList = playermanager.GetGameObjectsList("Human");
+        var RespObj = manager.GetGameObject("LifeCycleManager").transform.Find("Respawn").gameObject;
         GameObject _gameObject;
         int i;
 
@@ -130,6 +137,11 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
                 eventData: null,
                 functor: (recieveTarget, y) => recieveTarget.EndVarsan());
         }
+
+        ExecuteEvents.Execute<IRespawnInterface>(
+                    target: RespObj,
+                    eventData: null,
+                    functor: (recieveTarget, y) => recieveTarget.RemoveVarsanRoomId());
 
         var varsanitemspawn = manager.GetGameObject("VarsanItemSpawnManager").GetComponent<VarsanItemSpawnManager>().GetGameObject("VarsanItemSpawn");
         ExecuteEvents.Execute<IVarsanItemSpawnInterfase>(
