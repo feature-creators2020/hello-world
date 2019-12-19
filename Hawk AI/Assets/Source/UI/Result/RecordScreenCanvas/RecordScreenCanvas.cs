@@ -32,8 +32,8 @@ public enum EPlayerContorollerID
 {
     eHuman1,
     eMouse1,
-    eMouse2,
     eHuman2,
+    eMouse2,
 }
 
 public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecordScreenCanvas
@@ -84,10 +84,10 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
     private bool[] m_bScreenOut = new bool[4];
     private bool[] m_bScreenOutComplete = new bool[4];
 
-    private ERecordScreenChild FirstObj;
-    private ERecordScreenChild SeconedObj;
-    private ERecordScreenChild ThirdObj;
-    private ERecordScreenChild ForthObj;
+    //private ERecordScreenChild FirstObj;
+    //private ERecordScreenChild SeconedObj;
+    //private ERecordScreenChild ThirdObj;
+    //private ERecordScreenChild ForthObj;
 
     private Vector2[] m_cMaskTexUV = new Vector2[4];
 
@@ -171,14 +171,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
 
             RecordPopUp(First, ERecordPlayerType.eHuman1);
-            FirstObj = ERecordScreenChild.ePlayer1;
+   //         FirstObj = ERecordScreenChild.ePlayer1;
 
             Player2Image.sprite = HumanIcon[1];
             PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman2];
             PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
 
             RecordPopUp(Seconed, ERecordPlayerType.eHuman2);
-            SeconedObj = ERecordScreenChild.ePlayer2;
+    //        SeconedObj = ERecordScreenChild.ePlayer3;
 
         }
         else
@@ -188,14 +188,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
 
             RecordPopUp(First, ERecordPlayerType.eHuman2);
-            FirstObj = ERecordScreenChild.ePlayer2;
+      //      FirstObj = ERecordScreenChild.ePlayer3;
 
             Player2Image.sprite = HumanIcon[0];
             PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman1];
             PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
 
             RecordPopUp(Seconed, ERecordPlayerType.eHuman1);
-            SeconedObj = ERecordScreenChild.ePlayer1;
+     //       SeconedObj = ERecordScreenChild.ePlayer1;
         }
 
         // Decide Third n Forth.
@@ -206,14 +206,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
 
             RecordPopUp(Third, ERecordPlayerType.eMouse1);
-            ThirdObj = ERecordScreenChild.ePlayer3;
+   //         ThirdObj = ERecordScreenChild.ePlayer2;
 
             Player4Image.sprite = MouseIcon[1];
             PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse2];
             PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
 
             RecordPopUp(Forth, ERecordPlayerType.eMouse2);
-            ForthObj = ERecordScreenChild.ePlayer4;
+    //        ForthObj = ERecordScreenChild.ePlayer4;
 
         }
         else
@@ -223,14 +223,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
 
             RecordPopUp(Third, ERecordPlayerType.eMouse2);
-            ThirdObj = ERecordScreenChild.ePlayer4;
+     //       ThirdObj = ERecordScreenChild.ePlayer4;
 
             Player4Image.sprite = MouseIcon[0];
             PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse1];
             PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
 
             RecordPopUp(Forth, ERecordPlayerType.eMouse1);
-            ForthObj = ERecordScreenChild.ePlayer3;
+     //       ForthObj = ERecordScreenChild.ePlayer2;
 
         }
     }
@@ -264,14 +264,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
 
             RecordPopUp(First, ERecordPlayerType.eMouse1);
-            FirstObj = ERecordScreenChild.ePlayer3;
+    //        FirstObj = ERecordScreenChild.ePlayer2;
 
             Player2Image.sprite = MouseIcon[1];
             PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse2];
             PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
 
             RecordPopUp(Seconed, ERecordPlayerType.eMouse2);
-            SeconedObj = ERecordScreenChild.ePlayer4;
+       //     SeconedObj = ERecordScreenChild.ePlayer4;
 
         }
         else
@@ -281,14 +281,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen1Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse2];
 
             RecordPopUp(First, ERecordPlayerType.eMouse2);
-            FirstObj = ERecordScreenChild.ePlayer4;
+      //      FirstObj = ERecordScreenChild.ePlayer4;
 
             Player2Image.sprite = MouseIcon[0];
             PlayerNo2Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eMouse1];
             PlayerScreen2Image.sprite = RecordScreen[(int)EPlayerContorollerID.eMouse1];
 
             RecordPopUp(Seconed, ERecordPlayerType.eMouse1);
-            SeconedObj = ERecordScreenChild.ePlayer3;
+      //      SeconedObj = ERecordScreenChild.ePlayer2;
         }
 
         // Decide Third n Forth.
@@ -299,14 +299,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
 
             RecordPopUp(Third, ERecordPlayerType.eHuman1);
-            ThirdObj = ERecordScreenChild.ePlayer1;
+        //    ThirdObj = ERecordScreenChild.ePlayer1;
 
             Player4Image.sprite = HumanIcon[1];
             PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman2];
             PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
 
             RecordPopUp(Forth, ERecordPlayerType.eHuman2);
-            ForthObj = ERecordScreenChild.ePlayer2;
+          //  ForthObj = ERecordScreenChild.ePlayer3;
         }
         else
         {
@@ -315,14 +315,14 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
             PlayerScreen3Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman2];
 
             RecordPopUp(Third, ERecordPlayerType.eHuman2);
-            ThirdObj = ERecordScreenChild.ePlayer2;
+        //    ThirdObj = ERecordScreenChild.ePlayer3;
 
             Player4Image.sprite = HumanIcon[0];
             PlayerNo4Image.sprite = PlayerNoSprite[(int)EPlayerContorollerID.eHuman1];
             PlayerScreen4Image.sprite = RecordScreen[(int)EPlayerContorollerID.eHuman1];
 
             RecordPopUp(Forth, ERecordPlayerType.eHuman1);
-            ForthObj = ERecordScreenChild.ePlayer1;
+         //   ForthObj = ERecordScreenChild.ePlayer1;
 
         }
     }
@@ -373,37 +373,23 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
     public void ChangeRecordScreen(int id)
     {
         int childnum = 0;
-
-        switch(id)
-        {
-            case 0:
-                childnum = (int)FirstObj;
-
-                break;
-
-            case 1:
-                childnum = (int)SeconedObj;
-
-                break;
-            case 2:
-                childnum = (int)ThirdObj;
-
-                break;
-            case 3:
-                childnum = (int)ForthObj;
-
-                break;
-
-        }
+        EPlayerContorollerID PlayerNum = (EPlayerContorollerID)id;
 
 
+        SetJudgeRank(PlayerNum, ref childnum);
+
+        
+
+        // Icno N records
         m_bScreenOut[childnum - 1] = true;
+
         Image PlayerImage = this.gameObject.transform.GetChild(childnum).
             gameObject.GetComponent<Image>();
 
         PlayerImage.material = RecordMaskMaterial[childnum - 1];
 
-        m_cMaskTexUV[childnum - 1] = new Vector4(0,1,1,1);
+        //set uv value
+        m_cMaskTexUV[childnum - 1] = new Vector4(0, 1, 1, 1);
 
         ExecuteEvents.Execute<IActivatePlayerRecordImage>(
         target: PlayerRecordObj[childnum - 1],
@@ -414,6 +400,140 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         target: PlayerRecordObj[PlayerIconNo],
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.SetActive(RecordMouseIcon, childnum - 1, false));
+
+    }
+
+    private void SetJudgeRank(EPlayerContorollerID _PlayerNum, ref int chilnum)
+    {
+        int First = 1;
+        int Seconed = 2;
+        int Third = 3;
+        int Forth = 4;
+
+        // プレイヤーから順位の判定
+        switch (_PlayerNum)
+        {
+            case EPlayerContorollerID.eHuman1:
+                if (GameManager.IsHumanWin == true)
+                {// Decide First n Seconed.
+                    if (GameManager.KillCountByHuman1 >= GameManager.KillCountByHuman2)
+                    {
+                        chilnum = First;
+                    }
+                    else
+                    {
+                        chilnum = Seconed;
+                    }
+
+                }
+                else
+                {//GameManager.IsHumanWin == false
+
+                    // Decide Third n Forth.
+                    if (GameManager.KillCountByHuman1 >= GameManager.KillCountByHuman2)
+                    {
+                        chilnum = Third;
+                    }
+                    else
+                    {
+                        chilnum = Forth;
+                    }
+                }
+
+                break;
+
+            case EPlayerContorollerID.eHuman2:
+
+                if (GameManager.IsHumanWin == true)
+                {// Decide First n Seconed.
+                    if (GameManager.KillCountByHuman1 >= GameManager.KillCountByHuman2)
+                    {
+                        chilnum = Seconed;
+                    }
+                    else
+                    {
+                        chilnum = First;
+                    }
+
+                }
+                else
+                {//GameManager.IsHumanWin == false
+
+                    // Decide Third n Forth.
+                    if (GameManager.KillCountByHuman1 >= GameManager.KillCountByHuman2)
+                    {
+                        chilnum = Forth;
+                    }
+                    else
+                    {
+                        chilnum = Third;
+                    }
+                }
+
+                break;
+
+            case EPlayerContorollerID.eMouse1:
+
+                if (GameManager.IsHumanWin == true)
+                {// Decide First n Seconed.
+                    if (GameManager.EatCountByMouse1 >= GameManager.EatCountByMouse2)
+                    {
+                        chilnum = Third;
+                    }
+                    else
+                    {
+                        chilnum = Forth;
+                    }
+
+                }
+                else
+                {//GameManager.IsHumanWin == false
+
+                    // Decide Third n Forth.
+                    if (GameManager.EatCountByMouse1 >= GameManager.EatCountByMouse2)
+                    {
+                        chilnum = First;
+                    }
+                    else
+                    {
+                        chilnum = Seconed;
+                    }
+                }
+
+                break;
+
+            case EPlayerContorollerID.eMouse2:
+
+                if (GameManager.IsHumanWin == true)
+                {  // Decide Third n Forth.
+
+                    if (GameManager.EatCountByMouse1 >= GameManager.EatCountByMouse2)
+                    {
+                        chilnum = Forth;
+                    }
+                    else
+                    {
+                        chilnum = Third;
+                    }
+
+                }
+                else
+                {//GameManager.IsHumanWin == false
+                    // Decide First n Seconed.                  
+
+                    if (GameManager.EatCountByMouse1 >= GameManager.EatCountByMouse2)
+                    {
+                        chilnum = Seconed;
+                    }
+                    else
+                    {
+                        chilnum = First;
+                    }
+                }
+
+                break;
+
+        }
 
     }
 

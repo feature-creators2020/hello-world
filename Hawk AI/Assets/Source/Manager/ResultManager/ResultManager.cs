@@ -86,6 +86,7 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
 
     private int PhaseCount = 0;
     private bool[] m_bOKFlg = new bool[4];
+    private bool[] m_bNotDoubleTapFlg = new bool[4];
 
     // Start is called before the first frame update
     void Start()
@@ -234,46 +235,58 @@ public class ResultManager : MonoBehaviour, IResultManagerInterfase
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.One) ||
              KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.One))
         {
-            //m_bOKFlg[0] = true;
-            ExecuteEvents.Execute<IRecordScreenCanvas>(
-            target: PlayerRecordsUI[0],
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(0));
+            if (m_bNotDoubleTapFlg[0] == false)
+            {
+                m_bNotDoubleTapFlg[0] = true;
+                ExecuteEvents.Execute<IRecordScreenCanvas>(
+                target: PlayerRecordsUI[0],
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(0));
 
-            
+            }
         }
 
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Two) ||
             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Two))
         {
-            //m_bOKFlg[1] = true;
-            ExecuteEvents.Execute<IRecordScreenCanvas>(
-            target: PlayerRecordsUI[0],
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(1));
+            if (m_bNotDoubleTapFlg[1] == false)
+            {
+                m_bNotDoubleTapFlg[1] = true;
+
+                ExecuteEvents.Execute<RecordScreenCanvas>(
+                target: PlayerRecordsUI[0],
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(1));
+            }
 
         }
 
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Three) ||
             KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Three))
         {
-            //m_bOKFlg[2] = true;
-            ExecuteEvents.Execute<IRecordScreenCanvas>(
-            target: PlayerRecordsUI[0],
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(2));
+            if (m_bNotDoubleTapFlg[2] == false)
+            {
+                m_bNotDoubleTapFlg[2] = true;
 
+                ExecuteEvents.Execute<IRecordScreenCanvas>(
+                target: PlayerRecordsUI[0],
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(2));
+            }
         }
 
         if (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Four) ||
              KeyBoard.GetButtonDown(KeyBoard.Button.B, KeyBoard.Index.Four))
         {
-            //m_bOKFlg[3] = true;
-            ExecuteEvents.Execute<IRecordScreenCanvas>(
-            target: PlayerRecordsUI[0],
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(3));
+            if (m_bNotDoubleTapFlg[3] == false)
+            {
+                m_bNotDoubleTapFlg[3] = true;
 
+                ExecuteEvents.Execute<IRecordScreenCanvas>(
+                target: PlayerRecordsUI[0],
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.ChangeRecordScreen(3));
+            }
         }
 
 
