@@ -90,6 +90,7 @@ public class TimeZoneManager : GeneralManager, IETimeZone
             {
                 m_bCoroutineFlg = true;
                 StartCoroutine(LightingCoroutine());
+                
             }
 
             ExecuteEvents.Execute<IRoomSpotLightManager>(
@@ -124,9 +125,10 @@ public class TimeZoneManager : GeneralManager, IETimeZone
 
         while (lerpVal <= 1f)
         {//時間補間
-            m_cDirectionaLight.transform.rotation = Quaternion.Euler(
-                Vector3.Lerp(Start, End, lerpVal));
+            //m_cDirectionaLight.transform.rotation = Quaternion.Euler(
+                //Vector3.Lerp(Start, End, lerpVal));
             lerpVal += Time.deltaTime / m_fLerpRotationTime;
+            m_cDirectionaLight.GetComponent<Light>().intensity -= Time.deltaTime / m_fLerpRotationTime;
             yield return null;
         }
 
@@ -134,5 +136,6 @@ public class TimeZoneManager : GeneralManager, IETimeZone
         {//強硬手段
             m_cDirectionaLight.transform.rotation = Quaternion.Euler(End);
         }
+        m_cDirectionaLight.SetActive(false);
     }
 }
