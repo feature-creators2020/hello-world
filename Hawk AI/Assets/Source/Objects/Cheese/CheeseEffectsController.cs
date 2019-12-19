@@ -78,8 +78,8 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
 
         ExpandingEffects();
 
-        if(m_bStartFlg == true)
-        MaskingPlayerCamera();
+        if (m_bStartFlg == true)
+            MaskingPlayerCamera();
     }
 
     private void ExpandingEffects()
@@ -158,7 +158,7 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
     {
         foreach (var val in ParticleList)
         {
-//            val.gameObject.transform.localScale = m_cInitialScales[0];
+            //            val.gameObject.transform.localScale = m_cInitialScales[0];
             val.GetComponent<ParticleSystem>().Play();
         }
 
@@ -197,5 +197,10 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
 
         }
 
+    }
+
+    void OnDisable()
+    {
+        m_bStartFlg = false;
     }
 }
