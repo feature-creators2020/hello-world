@@ -22,6 +22,8 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     Vector3 m_vDefaultPosition; // 元の位置
     Vector3 m_vTargetPosition;  // 目的の位置
 
+    public GameObject m_cEaterObj = null;
+
     [SerializeField]
     public GameObject m_cCheeseEffects;
 
@@ -31,6 +33,7 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     // Start is called before the first frame update
     void Start()
     {
+        m_cEaterObj = null;
         //m_vDefaultScale = m_CheeseObject.transform.localScale;
         //m_isScaling = false;
         //m_vTargetScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -110,7 +113,11 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     {
         if(other.tag == "Mouse")
         {
-            m_cCheeseSpreadPiece.GetComponent<ParticleSystem>().Play();
+            if (m_cEaterObj == null)
+            {
+                m_cEaterObj = other.gameObject;
+                m_cCheeseSpreadPiece.GetComponent<ParticleSystem>().Play();
+            }
         }
     }
 
@@ -118,9 +125,13 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     {
         if(other.tag == "Mouse")
         {
-            m_cCheeseSpreadPiece.GetComponent<ParticleSystem>().Stop();
-            m_isScaling = false;
-            SetDefault();
+            if (m_cEaterObj == other.gameObject)
+            {
+                m_cCheeseSpreadPiece.GetComponent<ParticleSystem>().Stop();
+                m_isScaling = false;
+                SetDefault();
+            //    m_cEaterObj = null;
+            }
         }
     }
 
@@ -130,7 +141,7 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
         m_CheeseObject.transform.localScale = Vector3.Lerp(m_vDefaultScale, m_vTargetScale, 0f);
         m_CheeseObject.transform.position = Vector3.Lerp(m_vDefaultPosition, m_vTargetPosition, 0f);
         m_isScaling = false;
-
+        m_cEaterObj = null;
 
     }
 }

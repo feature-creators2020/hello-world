@@ -334,11 +334,14 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         // ゴール地点
         if (LayerName == "Goal")
         {
-            m_GTargetBoxObject = other.gameObject;
-            if (!CheckCurrentState(EMouseState.GetCheese))
+            if (other.gameObject.GetComponent<CheeseScript>().m_cEaterObj == null)
             {
-                ChangeState(0, EMouseState.GetCheese);
-                MouseLifeBoard.Instance.ChangeIconState(1);
+                m_GTargetBoxObject = other.gameObject;
+                if (!CheckCurrentState(EMouseState.GetCheese))
+                {
+                    ChangeState(0, EMouseState.GetCheese);
+                    MouseLifeBoard.Instance.ChangeIconState(1);
+                }
             }
         }
 
