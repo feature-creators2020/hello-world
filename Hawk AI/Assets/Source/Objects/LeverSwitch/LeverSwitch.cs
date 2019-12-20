@@ -36,6 +36,9 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
     [SerializeField]
     private List<GameObject> RailObjects = new List<GameObject>();
 
+    GameObject m_gActorObject;
+    int m_nActorControllerNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,8 +54,7 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
         if(m_bActivation == true)
         {
             // コントローラー対応
-            if ((GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.One) || GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.Three)) ||
-                (KeyBoard.GetButtonDown(KeyBoard.Button.A, KeyBoard.Index.One ) || KeyBoard.GetButtonDown(KeyBoard.Button.A, KeyBoard.Index.Three)))
+            if ((GamePad.GetButtonDown(GamePad.Button.A, (GamePad.Index)m_nActorControllerNum) || (KeyBoard.GetButtonDown(KeyBoard.Button.A, (KeyBoard.Index)m_nActorControllerNum))))
             {
                 if (GetState() == ELeverSwitchState.ActiveCorrect)
                 {
@@ -130,6 +132,11 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
         {
             m_bActivation = true;
             ExclamationMark.SetActive(true);
+            m_gActorObject = other.gameObject;
+            ExecuteEvents.Execute<IHumanInterface>(
+                            target: m_gActorObject,
+                            eventData: null,
+                            functor: (recieveTarget, y) => m_nActorControllerNum = recieveTarget.GetPlayerControllerNum());
         }
     }
 
@@ -139,6 +146,7 @@ public class LeverSwitch : MonoBehaviour, ILeverSwitch
         {
             m_bActivation = false;
             ExclamationMark.SetActive(false);
+            m_gActorObject = null;
         }
     }
 
