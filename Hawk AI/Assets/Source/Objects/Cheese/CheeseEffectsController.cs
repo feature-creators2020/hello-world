@@ -8,6 +8,8 @@ public interface ICheeseEffect : IEventSystemHandler
 {
     void Play();
 
+    bool IsPlaying(int Childno);
+
     void Stop();
 }
 
@@ -66,15 +68,16 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Play();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    Play();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Stop();
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    Stop();
+        //}
+
 
         ExpandingEffects();
 
@@ -166,6 +169,11 @@ public class CheeseEffectsController : MonoBehaviour, ICheeseEffect
 
         m_bStartFlg = true;
 
+    }
+
+    public bool IsPlaying(int _ChildNo)
+    {        
+        return ParticleList[_ChildNo].GetComponent<ParticleSystem>().isPlaying;
     }
 
     public void Stop()

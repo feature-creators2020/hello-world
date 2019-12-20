@@ -66,6 +66,21 @@ public class CheeseScript : MonoBehaviour, ICheeseInterfase
     // Update is called once per frame
     void Update()
     {
+        bool isPlaying = false;
+        ExecuteEvents.Execute<ICheeseEffect>(
+        target: m_cCheeseEffects,
+        eventData: null,
+        functor: (recieveTarget, y) => isPlaying = recieveTarget.IsPlaying(0));
+
+        if(isPlaying == false)
+        {
+            ExecuteEvents.Execute<ICheeseEffect>(
+            target: m_cCheeseEffects,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.Play());
+
+        }
+
         if (isActiveAndEnabled)
         {
             if (m_isScaling)
