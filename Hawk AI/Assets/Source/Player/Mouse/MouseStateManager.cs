@@ -301,6 +301,13 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
 
         VarsanUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            // デバッグ：残機減らす、人１の捕獲数を増やす
+            GameManager.KillCountByHuman1++;
+            MouseLifeBoard.Instance.GetCaught();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -683,7 +690,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             target: m_gVarsanEffect,
             eventData: null,
             functor: (recieveTarget, y) => recieveTarget.End());
-        ChangeState(0, EMouseState.Normal);
+        if (!CheckCurrentState(EMouseState.Catch))
+        {
+            ChangeState(0, EMouseState.Normal);
+        }
         //m_SEAudio.MultiplePlay((int)SEAudioType.eSE_MouseCatching);
         m_TrapObject = null;
     }

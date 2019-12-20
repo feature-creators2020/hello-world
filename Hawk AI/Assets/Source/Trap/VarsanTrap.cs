@@ -34,6 +34,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
             if(m_fLifeTime >= m_fMaxLifeTime)
             {
                 // 生存時間終了
+                EndVarsan();
                 Destroy(this.gameObject);
                 //ManagerObjectManager.Instance.GetGameObject("VarsanTrapManager").GetComponent<VarsanTrapManager>().Destroy(this.gameObject);
                 return;
@@ -111,7 +112,7 @@ public class VarsanTrap : GeneralObject, IVarsanTrapInterface, IMouseTrap
 
     }
 
-    public override void OnDestroy()
+    public void EndVarsan()
     {
         var manager = ManagerObjectManager.Instance;
         var playermanager = manager.GetGameObject("PlayerManager").GetComponent<PlayerManager>();

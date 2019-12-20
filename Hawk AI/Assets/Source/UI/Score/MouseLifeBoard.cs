@@ -15,7 +15,7 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
     private List<Sprite> Numbers = new List<Sprite>();
     [SerializeField]
     private List<Sprite> StateIcon = new List<Sprite>();
-    private int RemainingMouse = 9;
+    private int RemainingMouse = 10;
     private bool m_bIsNight;
     private int m_DontRespawnCount;     // ネズミがリスポーンできなかった回数
 
@@ -32,7 +32,7 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
     {
         RemainingMouse -= 1;
         // ネズミの残機がなくなった
-        if(RemainingMouse < 0)
+        if(RemainingMouse <= 0)
         {
             RemainingMouse = 0;
 
