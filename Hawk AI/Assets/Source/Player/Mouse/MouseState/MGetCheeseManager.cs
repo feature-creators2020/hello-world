@@ -78,14 +78,28 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
         m_fEffectTime = m_fMaxEffectTime;
         m_isFadeOut = false;
 
+
+    }
+
+
+    void Respawn()
+    {
+        ExecuteEvents.Execute<ICheeseInterfase>(
+                target: m_cOwner.m_GTargetBoxObject,
+                eventData: null,
+                functor: (recieveTarget, y) => recieveTarget.SetDefault());
+
+        ScoreBoard.Instance.GetCheese();
+        RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
+        ShiftOtherGoal.Instance.Shift(m_cOwner.m_GTargetBoxObject);
+
         // Hack : PlayerManager実装
         var PlayerManager = ManagerObjectManager.Instance.GetGameObject("PlayerManager").
             GetComponent<PlayerManager>();
         var MouseList = PlayerManager.GetGameObjectsList("Mouse");
 
         GameObject Player = new GameObject();
-
-        for(int i = 0; i < MouseList.Count;i++)
+        for (int i = 0; i < MouseList.Count; i++)
         {
             if (this.m_cOwner.gameObject == PlayerManager.GetGameObject(i, "Mouse"))
             {
@@ -101,18 +115,5 @@ public class MGetCheeseManager : CStateBase<MouseStateManager>
             }
         }
 
-    }
-
-
-    void Respawn()
-    {
-        ExecuteEvents.Execute<ICheeseInterfase>(
-                target: m_cOwner.m_GTargetBoxObject,
-                eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.SetDefault());
-
-        ScoreBoard.Instance.GetCheese();
-        RespawnPoint.Instance.Respawn(m_cOwner.gameObject);
-        ShiftOtherGoal.Instance.Shift(m_cOwner.m_GTargetBoxObject);
     }
 }

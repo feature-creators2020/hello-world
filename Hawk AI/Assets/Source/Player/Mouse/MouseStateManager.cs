@@ -440,7 +440,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
             for (int i = 0; i < HumanList.Count; i++)
             {
-                if (_Owner == PlayerManager.GetGameObject(i, "Human"))
+                if (Player == PlayerManager.GetGameObject(i, "Human"))
                 {
                     if (i == 0)
                     {
