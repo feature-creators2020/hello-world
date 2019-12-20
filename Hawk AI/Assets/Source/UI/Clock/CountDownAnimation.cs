@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class CountDownAnimation : SingletonMonoBehaviour<CountDownAnimation>
 {
-    public void SetCount3(float Num)
+    public void SetCount3(bool TorF)
     {
-        GetComponent<Animator>().SetFloat("CountDown3", Num);
+        GetComponent<Animator>().SetBool("CountDown3", TorF);
     }
-    public void SetCount10(float Num)
+    public void SetCount10(bool TorF)
     {
-        GetComponent<Animator>().SetFloat("CountDown10", Num);
+        GetComponent<Animator>().SetBool("CountDown10", TorF);
+    }
+    public void SetFinish(bool TorF)
+    {
+        GetComponent<Animator>().SetBool("Finish", TorF);
     }
 }

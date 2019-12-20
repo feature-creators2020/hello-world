@@ -29,6 +29,8 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
             //ネズミ側勝利
 
             GameManager.IsHumanWin = false;
+            CountDownAnimation.Instance.SetFinish(true);
+
 
             ExecuteEvents.Execute<IGameInterface>(
             target: obj,
