@@ -451,10 +451,13 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     functor: (recieveTarget, y) => Player = recieveTarget.GetPlayer());
             }
             // 引っかかっているトラップも消す
-            if (m_TrapObject.tag != "VarsanTrap")
+            if (m_TrapObject != null)
             {
-                Destroy(m_TrapObject);
-                m_TrapObject = null;
+                if (m_TrapObject.tag != "VarsanTrap")
+                {
+                    Destroy(m_TrapObject);
+                    m_TrapObject = null;
+                }
             }
 
 
