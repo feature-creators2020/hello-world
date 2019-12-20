@@ -77,6 +77,13 @@ public class MCatchManager : CStateBase<MouseStateManager>
         eventData: null,
         functor: (recieveTarget, y) => recieveTarget.CallFadeIn());
 
+        var VarsanSpawn = GameObject.FindWithTag("VarsanItemSpawn");
+        ExecuteEvents.Execute<IVarsanItemSpawnInterfase>(
+            target: VarsanSpawn,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.AddTime());
+
+
         m_cOwner.transform.localScale = m_cOwner.m_vDefaultScale;
     }
 }
