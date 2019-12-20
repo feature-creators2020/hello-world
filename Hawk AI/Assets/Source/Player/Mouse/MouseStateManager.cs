@@ -133,7 +133,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [SerializeField]
     private GameObject m_gVarsanEffect;         // バルサンのエフェクト用
 
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public GameObject m_TrapObject;             // トラップでリスポーンしたときに所有者を取得する為
 
     public int ContinueCount;                   // リスポーン可能回数を保持
@@ -447,6 +447,13 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
                     eventData: null,
                     functor: (recieveTarget, y) => Player = recieveTarget.GetPlayer());
             }
+            // 引っかかっているトラップも消す
+            if (m_TrapObject.tag != "VarsanTrap")
+            {
+                Destroy(m_TrapObject);
+                m_TrapObject = null;
+            }
+
 
             for (int i = 0; i < HumanList.Count; i++)
             {
