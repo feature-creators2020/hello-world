@@ -61,6 +61,8 @@ public interface IHumanInterface : IEventSystemHandler
     void EndVarsan();
 
     int GetPlayerControllerNum();
+
+    void StartPutEvent(float _eventTime);
 }
 
 public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase, IHumanInterface
@@ -325,13 +327,20 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
                             //m_SEAudio.Play((int)SEAudioType.eSE_FallOutItem);   // 設置SE
                             // アクション経過時間を再設定
                             m_fActionTime = m_fLimitActionTime;
-                            ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
+                            float TimeParLimitTime = (m_fLimitActionTime - m_fActionTime) / m_fLimitActionTime;
+                            ItemHolderManager.Instance.UsingFromHolder(TimeParLimitTime, playerNo, playerKeyNo);
+                            //ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
                         }
                         else
                         {
                             // アクション時間を経過させる
                             m_fActionTime -= Time.deltaTime;
                             float TimeParLimitTime = (m_fLimitActionTime - m_fActionTime) / m_fLimitActionTime;
+                            if(TimeParLimitTime > 0.9f)
+                            {
+                                TimeParLimitTime = 1f;
+                            }
+                            Debug.Log("TimeParLimitTime : " + TimeParLimitTime);
                             ItemHolderManager.Instance.UsingFromHolder(TimeParLimitTime, playerNo, playerKeyNo);
                         }
                     }
@@ -350,11 +359,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             if (CheckCurrentState(EHumanState.Put))
             {
                 // アクション経過時間を再設定
-                m_fActionTime = m_fLimitActionTime;
-                ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
+                m_fActionTime = m_fLimitActionTime;               
                 //Debug.Log("Change →OldState");
                 ChangeState(0, EOldState);
             }
+            ItemHolderManager.Instance.UsingFromHolder(0, playerNo, playerKeyNo);
         }
         return false;
     }
@@ -789,6 +798,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
             //    eventData: null,
             //    functor: (recieveTarget, y) => recieveTarget.SetMapPosition(MapPos));
 
+            ItemHolderManager.Instance.UsingFromHolder(0, GamePadIndex, KeyboardIndex);
             ItemHolderManager.Instance.ReleaseItem(this.gameObject, vector3);
                 // 所持アイテム情報を削除
                 m_sItemData = null;
@@ -1059,5 +1069,12 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public void OnEndVarsanEndEvent()
     {
         ChangeState(0, EHumanState.Normal);
+    }
+
+    public void StartPutEvent(float _eventTime)
+    {
+        m_fLimitActionTime = _eventTime;
+        m_fActionTime = m_fLimitActionTime;
+        Debug.Log("SetActionTime : " + m_fLimitActionTime);
     }
 }

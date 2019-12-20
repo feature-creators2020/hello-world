@@ -35,7 +35,7 @@ public class HPutManager : CStateBase<HumanStateManager>
 
     public override void Exit()
     {
-        
+        ItemHolderManager.Instance.UsingFromHolder(0, m_cOwner.GamePadIndex, (KeyBoard.Index)m_cOwner.GamePadIndex);
     }
 
 }

@@ -7,6 +7,7 @@ public class HumanAnimation : MonoBehaviour
 
     HumanStateManager m_sHumanStateManager;
     Animation m_sAnimation;
+    string[] animName;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,7 @@ public class HumanAnimation : MonoBehaviour
         m_sAnimation = this.gameObject.GetComponent<Animation>();
 
 
-        var animName = m_sHumanStateManager.AnimationString;
+        animName = m_sHumanStateManager.AnimationString;
 
         //イベントの追加
         AnimationEvent ev = new AnimationEvent();
@@ -69,6 +70,12 @@ public class HumanAnimation : MonoBehaviour
         ev8.functionName = "OnEndVarsanEndEvent";
         ev8.floatParameter = 1.0f;
         m_sAnimation[animName[(int)EHumanAnimation.VarsanDown_End]].clip.AddEvent(ev8);
+
+        AnimationEvent ev9 = new AnimationEvent();
+        ev9.time = 0f;
+        ev9.functionName = "StartPutEvent";
+        ev9.floatParameter = 1.0f;
+        m_sAnimation[animName[(int)EHumanAnimation.Put]].clip.AddEvent(ev9);
     }
 
     // Update is called once per frame
@@ -110,5 +117,10 @@ public class HumanAnimation : MonoBehaviour
     public void OnEndVarsanEndEvent()
     {
         m_sHumanStateManager.OnEndVarsanEndEvent();
+    }
+
+    public void StartPutEvent()
+    {
+        m_sHumanStateManager.StartPutEvent(m_sAnimation[animName[(int)EHumanAnimation.Put]].clip.length / 3);
     }
 }
