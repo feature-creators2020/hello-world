@@ -136,6 +136,6 @@ public class TimeZoneManager : GeneralManager, IETimeZone
         {//強硬手段
             m_cDirectionaLight.transform.rotation = Quaternion.Euler(End);
         }
-        m_cDirectionaLight.SetActive(false);
+        //m_cDirectionaLight.SetActive(false);
     }
 }
