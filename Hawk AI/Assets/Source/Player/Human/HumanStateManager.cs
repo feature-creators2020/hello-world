@@ -229,7 +229,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
         //var startpos = this.transform.position /*+ new Vector3(0f, -0.8f)*/;
         //Debug.DrawLine(startpos, startpos + this.transform.forward, Color.red);
-        if (!CheckCurrentState(EHumanState.Up))
+        if (!CheckCurrentState(EHumanState.Up) && (!CheckCurrentState(EHumanState.VarsanDown)))
         {
             Ray ray = new Ray(this.transform.position /*+ new Vector3(0f,-0.8f)*/, this.transform.forward);
             Debug.DrawLine(transform.position, transform.position + transform.forward, Color.red);

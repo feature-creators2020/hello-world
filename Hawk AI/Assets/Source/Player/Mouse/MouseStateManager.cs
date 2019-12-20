@@ -233,7 +233,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
 
         // レイキャストによる壁の当たり判定処理
-        if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)))
+        if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)) && (!CheckCurrentState(EMouseState.VarsanDown)))
         {
             Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
             Ray ray = new Ray(this.transform.position, this.transform.forward);
@@ -296,8 +296,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
         if (m_isOnRail)
         {
-            ChangeState(0, EMouseState.Rail);
-            return;
+            if (!CheckCurrentState(EMouseState.VarsanDown))
+            {
+                ChangeState(0, EMouseState.Rail);
+                return;
+            }
         }
 
         VarsanUpdate();
@@ -523,8 +526,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         if (other.gameObject.tag == "Rail")
         {
-            m_GRailObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-            ChangeState(0, EMouseState.Rail);
+            if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)) && (!CheckCurrentState(EMouseState.VarsanDown)))
+            {
+                m_GRailObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+                ChangeState(0, EMouseState.Rail);
+            }
         }
     }
 
