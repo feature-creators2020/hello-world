@@ -36,6 +36,16 @@ public enum EPlayerContorollerID
     eMouse2,
 }
 
+public enum PlayerRecordObjLsit
+{
+    ePlayer1RecordCanvas,
+    ePlayer2RecordCanvas,
+    ePlayer3RecordCanvas,
+    ePlayer4RecordCanvas,
+    ePlayerIconCanvas,
+    ePlayerScreenShotCanvas,
+}
+
 public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecordScreenCanvas
 {
 
@@ -72,7 +82,6 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
     [SerializeField]
     private GameObject m_cResultManager;
 
-    private const int PlayerScreenNo = 0;
     private const int PlayerIconNo = 4;
     private const int PlayerScreenShotNo = 5;
 
@@ -143,15 +152,16 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
 
     private void SortingHumanWin()
     {
-        Image Player1Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image Player2Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image Player3Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image Player4Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].SetActive(true);
+        Image Player1Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image Player2Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image Player3Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image Player4Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(3).gameObject.GetComponent<Image>();
 
-        Image PlayerNo1Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image PlayerNo2Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image PlayerNo3Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image PlayerNo4Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        Image PlayerNo1Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image PlayerNo2Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image PlayerNo3Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image PlayerNo4Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(3).gameObject.GetComponent<Image>();
 
         Image PlayerScreen1Image = this.gameObject.transform.
             GetChild((int)ERecordScreenChild.ePlayer1).gameObject.GetComponent<Image>();
@@ -237,15 +247,16 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
 
     private void SortingMouseWin()
     {
-        Image Player1Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image Player2Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image Player3Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image Player4Image = PlayerRecordObj[PlayerScreenShotNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].SetActive(true);
+        Image Player1Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image Player2Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image Player3Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image Player4Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].transform.GetChild(3).gameObject.GetComponent<Image>();
 
-        Image PlayerNo1Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(0).gameObject.GetComponent<Image>();
-        Image PlayerNo2Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(1).gameObject.GetComponent<Image>();
-        Image PlayerNo3Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(2).gameObject.GetComponent<Image>();
-        Image PlayerNo4Image = PlayerRecordObj[PlayerIconNo].transform.GetChild(3).gameObject.GetComponent<Image>();
+        Image PlayerNo1Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(0).gameObject.GetComponent<Image>();
+        Image PlayerNo2Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(1).gameObject.GetComponent<Image>();
+        Image PlayerNo3Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(2).gameObject.GetComponent<Image>();
+        Image PlayerNo4Image = PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerIconCanvas].transform.GetChild(3).gameObject.GetComponent<Image>();
 
         Image PlayerScreen1Image = this.gameObject.transform.
             GetChild((int)ERecordScreenChild.ePlayer1).gameObject.GetComponent<Image>();
@@ -375,10 +386,7 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
         int childnum = 0;
         EPlayerContorollerID PlayerNum = (EPlayerContorollerID)id;
 
-
         SetJudgeRank(PlayerNum, ref childnum);
-
-        
 
         // Icno N records
         m_bScreenOut[childnum - 1] = true;
@@ -390,6 +398,11 @@ public class RecordScreenCanvas : MonoBehaviour, IResultManagerInterfase,IRecord
 
         //set uv value
         m_cMaskTexUV[childnum - 1] = new Vector4(0, 1, 1, 1);
+
+        //
+
+        PlayerRecordObj[(int)PlayerRecordObjLsit.ePlayerScreenShotCanvas].
+            gameObject.transform.GetChild(childnum - 1).gameObject.SetActive(false);
 
         ExecuteEvents.Execute<IActivatePlayerRecordImage>(
         target: PlayerRecordObj[childnum - 1],

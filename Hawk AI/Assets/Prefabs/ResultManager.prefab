@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &45182895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1565,7 +1565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &449649473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3037,7 +3037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1066925822
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3158,7 +3158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1071288396
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3257,10 +3257,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HumanIcon:
   - {fileID: 21300000, guid: 52b2210c6a28641429c8dee3f46ffe69, type: 3}
-  - {fileID: 21300000, guid: f2387a37a69c0a94b8e6ee08e8426607, type: 3}
+  - {fileID: 21300000, guid: 81872247ad31f2f4b831e27556087613, type: 3}
   MouseIcon:
+  - {fileID: 21300000, guid: f2387a37a69c0a94b8e6ee08e8426607, type: 3}
+  - {fileID: 21300000, guid: aeb7f1999d6319d4eb2150e51b70ed73, type: 3}
+  PlayerNoSprite:
+  - {fileID: 21300000, guid: 52b2210c6a28641429c8dee3f46ffe69, type: 3}
+  - {fileID: 21300000, guid: f2387a37a69c0a94b8e6ee08e8426607, type: 3}
   - {fileID: 21300000, guid: 81872247ad31f2f4b831e27556087613, type: 3}
   - {fileID: 21300000, guid: aeb7f1999d6319d4eb2150e51b70ed73, type: 3}
+  RecordScreen:
+  - {fileID: 21300000, guid: 912f1944dccfaa7458f75b578186ce80, type: 3}
+  - {fileID: 21300000, guid: 594a05166cbf01642b6580493643a1e7, type: 3}
+  - {fileID: 21300000, guid: 81df8ab2cf3eef44c816bc933fe91735, type: 3}
+  - {fileID: 21300000, guid: e47f987218a2e5a49ac7484b8e523f7b, type: 3}
   RecordMouseIcon: {fileID: 21300000, guid: 8ab08d116193cc44b8a6c1d0c0dd799a, type: 3}
   RecordHumanIcon: {fileID: 21300000, guid: f5c279d1994571b4f9d212fe69e9ddbe, type: 3}
   RecordMask: {fileID: 21300000, guid: 7619a3ad26f98624c9612746f632ce19, type: 3}
@@ -3276,6 +3286,7 @@ MonoBehaviour:
   - {fileID: 1066925821}
   - {fileID: 449649472}
   - {fileID: 1966836105}
+  - {fileID: 8962112634412744138}
   m_cResultManager: {fileID: 3415957457104854406}
 --- !u!1 &1108917369
 GameObject:
@@ -5442,7 +5453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1751696253
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10934,7 +10945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1966836106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31258,14 +31269,14 @@ GameObject:
   - component: {fileID: 7356093715189117223}
   - component: {fileID: 282422877100473770}
   - component: {fileID: 1479056035745562526}
-  - component: {fileID: 1495269348976661907}
+  - component: {fileID: 6170484549631213708}
   m_Layer: 5
   m_Name: PlayerScreenShotCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6522523502745271622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31349,7 +31360,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1495269348976661907
+--- !u!114 &6170484549631213708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31358,7 +31369,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8962112634412744138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92fef97359dbcd2459dc0fbf5f8994e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c5bb6717563d2a4783c44c0f72ec979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9014077110214797669
