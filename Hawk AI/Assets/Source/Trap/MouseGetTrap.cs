@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseGetTrap : GeneralObject, IMouseTrap
+public enum EMouseGetTrapColliderChild
+{
+    eLeft,
+    eRight
+}
+
+public interface IMouseGetTrap : IEventSystemHandler
+{
+    void TrapActive(bool isActive, GameObject HitObj);
+}
+
+public class MouseGetTrap : GeneralObject, IMouseTrap, IMouseGetTrap
 {
 
     GameObject MouseObject; // 上に乗ったネズミの情報
@@ -20,6 +31,9 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
     GameObject m_gMesh;     // メッシュ全体
     [SerializeField]
     GameObject m_gTrap;     // 回転させる部分
+
+    [SerializeField]
+    List<GameObject> MouseTrapColliderList = new List<GameObject>();     // 回転させる部分
 
     Vector3 StartRot;    // 初期姿勢
     Vector3 SubRot;      // 回転角度
@@ -118,32 +132,61 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
     }
 
 
-    void OnTriggerEnter(Collider other)
+    public void TrapActive(bool isActive,GameObject HitObj)
     {
-        //m_Mesh.enabled = true;
-        m_gMesh.SetActive(true);
-        if (other.tag == "Mouse")
-        {
-            //m_gTrap.SetActive(true);
-            m_TrapActive = true;
-            MouseObject = other.gameObject;
+        m_gMesh.SetActive(isActive);
 
-            // ネズミの位置で倒れる方向を判断する
-            CheckMousePos(MouseObject);
+        if (isActive == true)
+        {
+            if (m_TrapActive == false)
+            {
+                //もう片方が判定済みかどうか
+                if (MouseObject == null)
+                {
+                    MouseObject = HitObj;
+
+                    // ネズミの位置で倒れる方向を判断する
+                    CheckMousePos(MouseObject);
+                }
+            }
         }
+        else
+        {
+            if (m_TrapActive == true)
+            {
+                m_TrapActive = false;
+                MouseObject = null;
+            }
+        }
+
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        //m_Mesh.enabled = false;
-        m_gMesh.SetActive(false);
-        if (other.tag == "Mouse")
-        {
-            //m_gTrap.SetActive(false);
-            m_TrapActive = false;
-            MouseObject = null;
-        }
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    //m_Mesh.enabled = true;
+    //    m_gMesh.SetActive(true);
+    //    if (other.tag == "Mouse")
+    //    {
+    //        //m_gTrap.SetActive(true);
+    //        m_TrapActive = true;
+    //        MouseObject = other.gameObject;
+
+    //        // ネズミの位置で倒れる方向を判断する
+    //        CheckMousePos(MouseObject);
+    //    }
+    //}
+
+    //void OnTriggerExit(Collider other)
+    //{
+    //    //m_Mesh.enabled = false;
+    //    m_gMesh.SetActive(false);
+    //    if (other.tag == "Mouse")
+    //    {
+    //        //m_gTrap.SetActive(false);
+    //        m_TrapActive = false;
+    //        MouseObject = null;
+    //    }
+    //}
 
     public void SetPlayer(GameObject _Human)
     {
@@ -152,17 +195,21 @@ public class MouseGetTrap : GeneralObject, IMouseTrap
 
     void CheckMousePos(GameObject _object)
     {
-        var TrapMouseRot = Quaternion.LookRotation(this.transform.position - _object.transform.position).eulerAngles;
+        //var TrapMouseRot = Quaternion.LookRotation(this.transform.position - _object.transform.position).eulerAngles;
         //Debug.Log("TraptoMouseRot : " + TrapMouseRot);
 
-        if (TrapMouseRot.y > 180f)
-        {
-            EndRot = StartRot + SubRot;
-        }
-        else
-        {
+        //if (TrapMouseRot.y > 180f)
+        if (this.gameObject.transform.position.x >= _object.transform.position.x)
+        {// To Left
             EndRot = StartRot - SubRot;
         }
+        else 
+        {// To Right
+            EndRot = StartRot + SubRot;
+        }
+
+        m_TrapActive = true;
+
     }
 
     public GameObject GetPlayer()
