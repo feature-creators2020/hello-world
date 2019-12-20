@@ -52,16 +52,17 @@ MonoBehaviour:
   Life: {fileID: 3494386248281223927}
   State: {fileID: 1519784804604611538}
   Numbers:
-  - {fileID: 21300000, guid: 8ce1f8be3e8e74d46a43488fefd0e0d8, type: 3}
-  - {fileID: 21300000, guid: 6090f7eb4ab95f840b498335a0059717, type: 3}
-  - {fileID: 21300000, guid: 3dcd3b925afb0bf46972253f2cec01f0, type: 3}
-  - {fileID: 21300000, guid: 36083dafc4b473a4f9f62fa02899a5cb, type: 3}
-  - {fileID: 21300000, guid: f3be5b70791102c4da434d89c5c2662c, type: 3}
-  - {fileID: 21300000, guid: 1afcd166d01735e41a65c13ead3de9c5, type: 3}
-  - {fileID: 21300000, guid: d21cc43b6b79ad84892abc5c041f44f8, type: 3}
-  - {fileID: 21300000, guid: 8153addc06913a048b29fde37264c663, type: 3}
-  - {fileID: 21300000, guid: 862db67f38faf10458463af1ae842ae1, type: 3}
-  - {fileID: 21300000, guid: 0460059f8de4b0047a9430f369888e4d, type: 3}
+  - {fileID: 21300000, guid: a5548033ab1d444428cd465f50d72e96, type: 3}
+  - {fileID: 21300000, guid: 15bb1d8d01341f34f8219b48c66149fa, type: 3}
+  - {fileID: 21300000, guid: c5e7ef28ea4c8f841a2bc7b8d3739fd4, type: 3}
+  - {fileID: 21300000, guid: 36f6084e78c680b46ad9d40055b82840, type: 3}
+  - {fileID: 21300000, guid: 2550e44b7a6b77c4084ee3f6192aa6cc, type: 3}
+  - {fileID: 21300000, guid: 96f6a49c40ba7ce439c351e21b58cf1b, type: 3}
+  - {fileID: 21300000, guid: bd17a7fadb45667448e06a1d0debaac1, type: 3}
+  - {fileID: 21300000, guid: 0132b985ddb646f4884ff0437559fa58, type: 3}
+  - {fileID: 21300000, guid: 6ed28ec81cb14b5478569b5f34b4845c, type: 3}
+  - {fileID: 21300000, guid: 67a11749a6135664e9e9307084bee178, type: 3}
+  - {fileID: 21300000, guid: 6ddee2f9c1bcf2e4f9052b53163b86db, type: 3}
   StateIcon:
   - {fileID: 21300000, guid: b80eb4e2f8c1cd54ba78374cbaa7edb6, type: 3}
   - {fileID: 21300000, guid: b00138099d9059a429a314d1774c6967, type: 3}
@@ -250,8 +251,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: -25}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: 55, y: -24}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3865170670691863606
 CanvasRenderer:
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0460059f8de4b0047a9430f369888e4d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ddee2f9c1bcf2e4f9052b53163b86db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -299,7 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1818313432766860934}
   - component: {fileID: 1267595341875829151}
-  - component: {fileID: 1233134852409066182}
+  - component: {fileID: 4769389550232812781}
   m_Layer: 5
   m_Name: "\xD7"
   m_TagString: Untagged
@@ -323,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -25}
+  m_AnchoredPosition: {x: 23.4, y: -19.6}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1267595341875829151
@@ -334,7 +335,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6149044405285123981}
   m_CullTransparentMesh: 0
---- !u!114 &1233134852409066182
+--- !u!114 &4769389550232812781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -343,22 +344,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6149044405285123981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 91ac033d645dd5d408a96da3d7717514, type: 3}
+    m_FontSize: 57
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 76
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\xD7"
