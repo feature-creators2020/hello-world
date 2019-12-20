@@ -217,7 +217,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14daea3ab791c434e8fa6c86c8db545c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db9825b0415295048ba4425adcc3e1a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -481,6 +481,7 @@ MonoBehaviour:
   m_fDefaultSpeed: 6
   m_fSlowDownRate: 0.5
   m_fDoorSpeed: 2.5
+  m_fCatchDownRate: 0
   m_fLimitSlowTime: 2
   m_sItemData: 
   m_nRoomID: 0
@@ -864,7 +865,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3098961516013865134}
-  - component: {fileID: 2342473907423236812}
   - component: {fileID: 4608977743587444716}
   m_Layer: 0
   m_Name: "Push\u25CBBottonMark"
@@ -881,32 +881,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8839433242998845383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: -1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4552286420106694798}
   m_Father: {fileID: 7733803730101025362}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2342473907423236812
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8839433242998845383}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df7a94bcdfaa8eb43b956bea8108c436, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4608977743587444716
 MonoBehaviour:
   m_ObjectHideFlags: 0

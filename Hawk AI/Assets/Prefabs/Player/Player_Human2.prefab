@@ -291,6 +291,7 @@ MonoBehaviour:
   m_fDefaultSpeed: 6
   m_fSlowDownRate: 0.5
   m_fDoorSpeed: 2.5
+  m_fCatchDownRate: 0
   m_fLimitSlowTime: 2
   m_sItemData: 
   m_nRoomID: 0
@@ -364,7 +365,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3138062995252444802}
-  - component: {fileID: 6843645374747839085}
   - component: {fileID: 4956336114855096986}
   m_Layer: 0
   m_Name: "Push\u25CBBottonMark"
@@ -381,32 +381,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2431848573092745263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: -1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 7935494959503245731}
   m_Father: {fileID: 7720549026879073757}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6843645374747839085
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2431848573092745263}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df7a94bcdfaa8eb43b956bea8108c436, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4956336114855096986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,7 +709,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14daea3ab791c434e8fa6c86c8db545c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db9825b0415295048ba4425adcc3e1a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

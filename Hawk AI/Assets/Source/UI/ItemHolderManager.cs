@@ -19,7 +19,7 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
     private void Start()
     {
         Torimoti = Resources.Load<Sprite>("MouseTrap_Torimoti");
-        GetTrap = Resources.Load<Sprite>("MouseTrap_pachin");
+        GetTrap = Resources.Load<Sprite>("MouseGetTrap");
         Varsan = Resources.Load<Sprite>("MouseTrap_varsan");
     }
 
