@@ -45,6 +45,8 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
 
                 //人間側勝利
                 GameManager.IsHumanWin = true;
+                CountDownAnimation.Instance.SetFinish(true);
+
 
                 ExecuteEvents.Execute<IGameInterface>(
                 target: obj,

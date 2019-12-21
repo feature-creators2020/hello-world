@@ -143,7 +143,7 @@ public class GameMainManager : CStateBase<GameManager>
                 {
                     Debug.Log("Counting!");
                     //人間側勝利
-                    GameManager.IsHumanWin = true;
+                    CountDownAnimation.Instance.SetFinish(true);
                     this.m_cOwner.ChangeState(0, EGameState.End);
                 }
 

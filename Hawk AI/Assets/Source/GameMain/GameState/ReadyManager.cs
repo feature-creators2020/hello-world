@@ -81,12 +81,12 @@ public class ReadyManager : CStateBase<GameManager>
             case "GameMain":
 
                 m_fStartTime -= Time.deltaTime;
-                CountDownAnimation.Instance.SetCount3(m_fStartTime);
+                if(m_fStartTime <= 3)   CountDownAnimation.Instance.SetCount3(true);
 
                 if (m_fStartTime <= 0)
                 {
                     this.m_cOwner.ChangeState(0, EGameState.Main);
-                    CountDownAnimation.Instance.SetCount3(5.0f);
+                    CountDownAnimation.Instance.SetCount3(false);
                 }
 
                 break;
