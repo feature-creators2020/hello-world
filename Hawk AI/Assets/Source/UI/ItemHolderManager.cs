@@ -11,6 +11,8 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
     private List<GameObject> ItemList;
     [SerializeField]
     private List<GameObject> CircleList;
+    [SerializeField]
+    private List<GameObject> XKeepList;
     private int index = 0;
     private Sprite Torimoti;
     private Sprite GetTrap;
@@ -46,6 +48,7 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         {
             ItemList[index].GetComponent<Image>().sprite = Varsan;
         }
+        XKeepList[index].SetActive(true);
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
     }
 
@@ -59,7 +62,7 @@ public class ItemHolderManager : SingletonMonoBehaviour<ItemHolderManager>
         {
             index = 1;
         }
-
+        XKeepList[index].SetActive(false);
         ItemList[index].GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 
