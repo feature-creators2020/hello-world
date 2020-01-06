@@ -67,29 +67,32 @@ public class FadeEffect : PostEffect,IFadeInterfase
         {
             case EFadeState.FadeIn:
 
-                m_cTopUV[1] -= m_fSpeed;
-                m_cMaterial.SetVector("_TopUV", m_cTopUV);
-                m_cUnderUV[1] -= m_fSpeed;
-                m_cMaterial.SetVector("_UnderUV", m_cUnderUV);
-
                 if (m_cTopUV[1] <= 0f)
                 {
                     CallFadeStay();
+                }
+                else
+                {
+                    m_cTopUV[1] -= m_fSpeed;
+                    m_cMaterial.SetVector("_TopUV", m_cTopUV);
+                    m_cUnderUV[1] -= m_fSpeed;
+                    m_cMaterial.SetVector("_UnderUV", m_cUnderUV);
                 }
 
                 break;
             case EFadeState.FadeOut:
 
-                m_cTopUV[1] -= m_fSpeed;
-                m_cMaterial.SetVector("_TopUV", m_cTopUV);
-                m_cUnderUV[1] -= m_fSpeed;
-                m_cMaterial.SetVector("_UnderUV", m_cUnderUV);
-
                 if (m_cUnderUV[1] <= 0f)
                 {
                     CallFadeStay();
                 }
-
+                else
+                {
+                    m_cTopUV[1] -= m_fSpeed;
+                    m_cMaterial.SetVector("_TopUV", m_cTopUV);
+                    m_cUnderUV[1] -= m_fSpeed;
+                    m_cMaterial.SetVector("_UnderUV", m_cUnderUV);
+                }
 
                 break;
             case EFadeState.FadeStay:
