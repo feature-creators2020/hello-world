@@ -40,26 +40,28 @@ public class MouseLifeBoard : SingletonMonoBehaviour<MouseLifeBoard>
             // ネズミが2匹とも捕まった
             //if (m_DontRespawnCount >= 2)
             {
-
-                var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
-
                 //人間側勝利
                 GameManager.IsHumanWin = true;
                 CountDownAnimation.Instance.SetFinish(true);
 
-
-                ExecuteEvents.Execute<IGameInterface>(
-                target: obj,
-                eventData: null,
-                functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
-                if (SceneManager.GetActiveScene().name == "Tutorial")
-                {
-                    Invoke("Retry", 1.0f);
-                }
+                Invoke("End", 1.0f);
             }
         }
 
         Life.GetComponent<Image>().sprite = Numbers[RemainingMouse];
+    }
+
+    private void End()
+    {
+        var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
+        ExecuteEvents.Execute<IGameInterface>(
+            target: obj,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            Invoke("Retry", 1.0f);
+        }
     }
 
     private void Retry()

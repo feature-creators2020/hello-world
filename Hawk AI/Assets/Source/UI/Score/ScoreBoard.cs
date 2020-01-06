@@ -25,26 +25,28 @@ public class ScoreBoard : SingletonMonoBehaviour<ScoreBoard>
         {// State To Result
             RemainingCheese = 0;
 
-            var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
             //ネズミ側勝利
-
             GameManager.IsHumanWin = false;
             CountDownAnimation.Instance.SetFinish(true);
 
-
-            ExecuteEvents.Execute<IGameInterface>(
-            target: obj,
-            eventData: null,
-            functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
-            if (SceneManager.GetActiveScene().name == "Tutorial")
-            {
-                Invoke("Retry", 1.0f);
-            }
-
+            Invoke("End", 1.0f);
             //    this.m_cOwner.ChangeState(0, EGameState.End);
         }
         //現状はアイコンの色を変えている、実際はテクスチャを変える
         CheeseIcon[RemainingCheese].GetComponent<Image>().sprite = Mouse;
+    }
+
+    void End()
+    {
+        var obj = ManagerObjectManager.Instance.GetGameObject("GameManager");
+        ExecuteEvents.Execute<IGameInterface>(
+            target: obj,
+            eventData: null,
+            functor: (recieveTarget, y) => recieveTarget.ChangeState(EGameState.End));
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            Invoke("Retry", 1.0f);
+        }
     }
 
     void Retry()
