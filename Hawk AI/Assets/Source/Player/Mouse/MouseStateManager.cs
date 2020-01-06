@@ -138,6 +138,9 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
 
     public int ContinueCount;                   // リスポーン可能回数を保持
 
+    [SerializeField]
+    public GameObject m_MouseMesh;              // ネズミのメッシュオブジェクト（回転の時に使用）
+
     // Start is called before the first frame update
     void Start()
     {
@@ -453,7 +456,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             // 引っかかっているトラップも消す
             if (m_TrapObject != null)
             {
-                if (m_TrapObject.tag != "VarsanTrap")
+                if (m_TrapObject.tag == "Mousetrap" || m_TrapObject.tag == "MouseGetTrap")
                 {
                     Destroy(m_TrapObject);
                     m_TrapObject = null;

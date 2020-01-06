@@ -82,15 +82,16 @@ public class MUpManager : CStateBase<MouseStateManager>
         //m_cOwner.EOldState = EMouseState.Normal;
         m_cOwner.GravityOn();
         var fowardVec = Vector3.Scale(m_cOwner.transform.forward, new Vector3(1, 0, 1)).normalized;
-        m_cOwner.transform.rotation = Quaternion.LookRotation(fowardVec);
+        //m_cOwner.transform.rotation = Quaternion.LookRotation(fowardVec);
+        m_cOwner.m_MouseMesh.transform.rotation = Quaternion.LookRotation(fowardVec);
     }
 
     private void LookAtPoint()
     {
         // キャラクターの向きを進行方向に
         Vector3 moveForward = EndPos - StartPos;
-        m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward, m_cOwner.m_TargetBoxNomal);
-
+        //m_cOwner.transform.rotation = Quaternion.LookRotation(moveForward, m_cOwner.m_TargetBoxNomal);
+        m_cOwner.m_MouseMesh.transform.rotation = Quaternion.LookRotation(moveForward, m_cOwner.m_TargetBoxNomal);
     }
 
 }

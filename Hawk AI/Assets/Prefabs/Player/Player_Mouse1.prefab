@@ -278,6 +278,7 @@ MonoBehaviour:
   m_gVarsanEffect: {fileID: 0}
   m_TrapObject: {fileID: 0}
   ContinueCount: 0
+  m_MouseMesh: {fileID: 8904581596055872334}
 --- !u!65 &8630323227638150942
 BoxCollider:
   m_ObjectHideFlags: 0
