@@ -63,6 +63,8 @@ public interface IHumanInterface : IEventSystemHandler
     int GetPlayerControllerNum();
 
     void StartPutEvent(float _eventTime);
+
+    void SetRespawn();
 }
 
 public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState>, IPlayerInterfase, IHumanInterface
@@ -153,6 +155,8 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
 
     public SEAudio m_SEAudio;           // se
 
+    private Vector3 m_StartPosition;    // ゲーム開始時の地点
+
 
     // Start is called before the first frame update
     void Start()
@@ -187,6 +191,7 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
         // 初期設定
         m_sItemData = null;
         m_nInTrapCnt = 0;
+        m_StartPosition = this.transform.position;
         //
         m_cSetItemColliderObj = this.gameObject.transform.GetChild(2).gameObject;
     }
@@ -1020,6 +1025,11 @@ public class HumanStateManager : CStateObjectBase<HumanStateManager, EHumanState
     public int GetPlayerControllerNum()
     {
         return (int)GamePadIndex;
+    }
+
+    public void SetRespawn()
+    {
+        this.transform.position = m_StartPosition;
     }
 
     // アニメーションイベント用関数

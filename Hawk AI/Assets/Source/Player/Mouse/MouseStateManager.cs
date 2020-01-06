@@ -51,7 +51,7 @@ public interface IMouseInterface : IEventSystemHandler
 
     void EndVarsan();
 
-
+    void SetRespawn();
 }
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
@@ -141,6 +141,8 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     [SerializeField]
     public GameObject m_MouseMesh;              // ネズミのメッシュオブジェクト（回転の時に使用）
 
+    private Vector3 m_StartPosition;            // ゲーム開始時の地点
+
     // Start is called before the first frame update
     void Start()
     {
@@ -175,6 +177,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         EOldState = EMouseState.ForcedWait;
         m_vDefaultScale = this.transform.localScale;
         m_isOnRail = false;
+        m_StartPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -236,7 +239,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
 
         // レイキャストによる壁の当たり判定処理
-        if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)) && (!CheckCurrentState(EMouseState.VarsanDown)))
+        if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)) && (!CheckCurrentState(EMouseState.VarsanDown)) && (!CheckCurrentState(EMouseState.Catch)))
         {
             Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * 0.5f, Color.red);
             Ray ray = new Ray(this.transform.position, this.transform.forward);
@@ -299,7 +302,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         }
         if (m_isOnRail)
         {
-            if (!CheckCurrentState(EMouseState.VarsanDown))
+            if (!CheckCurrentState(EMouseState.VarsanDown) && (!CheckCurrentState(EMouseState.Catch)))
             {
                 ChangeState(0, EMouseState.Rail);
                 return;
@@ -343,7 +346,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
             if (other.gameObject.GetComponent<CheeseScript>().m_cEaterObj == null)
             {
                 m_GTargetBoxObject = other.gameObject;
-                if (!CheckCurrentState(EMouseState.GetCheese))
+                if (!CheckCurrentState(EMouseState.GetCheese) && (!CheckCurrentState(EMouseState.Catch)))
                 {
                     ChangeState(0, EMouseState.GetCheese);
                     MouseLifeBoard.Instance.ChangeIconState(1);
@@ -532,7 +535,7 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
     {
         if (other.gameObject.tag == "Rail")
         {
-            if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)) && (!CheckCurrentState(EMouseState.VarsanDown)))
+            if ((!CheckCurrentState(EMouseState.Up)) && (!CheckCurrentState(EMouseState.GetCheese)) && (!CheckCurrentState(EMouseState.VarsanDown)) && (!CheckCurrentState(EMouseState.Catch)))
             {
                 m_GRailObject = other.gameObject.transform.parent.gameObject.transform.parent.gameObject;
                 ChangeState(0, EMouseState.Rail);
@@ -720,6 +723,10 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         m_TrapObject = null;
     }
 
+    public void SetRespawn()
+    {
+        this.transform.position = m_StartPosition;
+    }
 
     // アニメーションイベント用関数
     public void MouseRunEvent()
