@@ -122,7 +122,8 @@ public class GameMainManager : CStateBase<GameManager>
         {
             case "Title":
 
-                if ((Input.anyKeyDown) || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
+                if (Input.GetKeyDown(KeyCode.Space)
+                    || (GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)))
                 {
                     this.m_cOwner.ChangeState(0, EGameState.End);
                 }
