@@ -66,13 +66,13 @@ public class TimeManager : GeneralManager, ITimeManager
             if(Input.GetKey(KeyCode.Alpha8))
             {
                 m_fNowCountTime += 3f;
-                Debug.Log("Forward Track Skipping Time : " + m_fNowCountTime);
+ //               Debug.Log("Forward Track Skipping Time : " + m_fNowCountTime);
             }
 
             if (Input.GetKey(KeyCode.Alpha7))
             {
                 m_fNowCountTime -= 3f;
-                Debug.Log("ReWind Track Time : " + m_fNowCountTime);
+ //               Debug.Log("ReWind Track Time : " + m_fNowCountTime);
             }
 
         }

@@ -86,13 +86,13 @@ public class ManagerObjectManager : SingletonMonoBehaviour<ManagerObjectManager>
 
     public virtual void DebugUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            foreach (var obj in m_cGameObjects)
-            {
-                Debug.Log(obj.name);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    foreach (var obj in m_cGameObjects)
+        //    {
+        //        Debug.Log(obj.name);
+        //    }
+        //}
     }
     public virtual GameObject GetGameObject(int _ID)
     {

@@ -14,7 +14,7 @@ public class ReadyManager : CStateBase<GameManager>
     // Start is called before the first frame update
     public override void Enter()
     {
-        Debug.Log(" NowState : ReadyManager");
+        //Debug.Log(" NowState : ReadyManager");
 
         var obj = ManagerObjectManager.Instance.GetGameObject("FadeManager");
         ExecuteEvents.Execute<IFadeInterfase>(

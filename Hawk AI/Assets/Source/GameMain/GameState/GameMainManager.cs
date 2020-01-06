@@ -18,7 +18,7 @@ public class GameMainManager : CStateBase<GameManager>
     public override void Enter()
     {
 
-        Debug.Log(" NowState : GameMainManager");
+        //Debug.Log(" NowState : GameMainManager");
 
         m_cTimerObject = ManagerObjectManager.Instance.GetGameObject("TimeManager");
         m_cBGMAudioObj = ManagerObjectManager.Instance.GetGameObject("BGMAudio");

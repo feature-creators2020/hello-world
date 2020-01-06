@@ -26,15 +26,15 @@ public class StockManager : GeneralManager, IStockManager
 
     public override void GeneralUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("KeyCode.C");
+        //if(Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Debug.Log("KeyCode.C");
 
-            foreach (var val in m_nPlayerStockCount)
-            {
-                Debug.Log(val);
-            }
-        }
+        //    foreach (var val in m_nPlayerStockCount)
+        //    {
+        //        Debug.Log(val);
+        //    }
+        //}
 
     }
 
