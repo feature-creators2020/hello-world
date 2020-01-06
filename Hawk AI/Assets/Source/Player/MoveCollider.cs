@@ -10,10 +10,14 @@ public class MoveCollider : MonoBehaviour
     [System.NonSerialized]
     public RaycastHit hit;
 
+    Vector3 Movevec;
+
     public void JudgeCollision(Vector3 _vec)
     {
         var scale = transform.lossyScale.x * 0.5f;
         var scaley = transform.lossyScale.y * 0.2f;
+
+        Movevec = _vec;
 
         var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, _vec, out hit);
     }
@@ -27,7 +31,7 @@ public class MoveCollider : MonoBehaviour
         var scale = transform.lossyScale.x * 0.5f;
         var scaley = transform.lossyScale.y * 0.2f;
 
-        var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, this.transform.forward, out hit);
+        var isHit = Physics.BoxCast(this.transform.position, new Vector3(scale, scaley, scale) /*Vector3.one * scale*/, /*this.transform.forward*/ Movevec, out hit);
         if (isHit)
         {
             Gizmos.DrawRay(this.transform.position, this.transform.forward * hit.distance);
