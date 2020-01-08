@@ -84,6 +84,7 @@ public class MSlowDownManager : CStateBase<MouseStateManager>
     public override void Exit()
     {
         m_cOwner.m_fSlowDownRate = DefaultSlowDownRate;
+        m_cOwner.SetDefaultSize();
         //m_cOwner.EOldState = EMouseState.SlowDown;
     }
 

@@ -62,13 +62,14 @@ public class MouseGetTrapCollider : MonoBehaviour, IMouseGetTrapCollider
         }
     }
 
+
     private void OnTriggerExit(Collider other)
     {
         if (MouseObject == other.gameObject)
         {
             if (other.tag == "Mouse")
             {
-                if (isAnotherSideHit == false)
+                //if (isAnotherSideHit == false)
                 {
                     MouseObject = null;
 
@@ -76,6 +77,8 @@ public class MouseGetTrapCollider : MonoBehaviour, IMouseGetTrapCollider
                     target: MouseGetTrapObj,
                     eventData: null,
                     functor: (recieveTarget, y) => recieveTarget.TrapActive(false, other.gameObject));
+
+                    isAnotherSideHit = false;
                 }
             }
         }
