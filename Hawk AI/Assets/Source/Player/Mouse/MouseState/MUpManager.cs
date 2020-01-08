@@ -50,15 +50,41 @@ public class MUpManager : CStateBase<MouseStateManager>
         //m_cOwner.inputHorizontal = keyState.LeftStickAxis.x;
         //m_cOwner.inputVertical = keyState.LeftStickAxis.y;
 
+        if (Distance <= 0f)
+        {
+
+            Debug.DrawLine(m_cOwner.transform.position, m_cOwner.transform.position + m_cOwner.transform.forward * 0.5f, Color.red);
+            Ray ray = new Ray(m_cOwner.transform.position, m_cOwner.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 0.5f))
+            {
+                var LayerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
+                var TagName = hit.collider.gameObject.tag;
+                if (LayerName == "Box" || LayerName == "Rail")
+                {
+                    if (TagName == "CanClimbing")
+                    {
+                        m_cOwner.transform.position = new Vector3(
+                            m_cOwner.transform.position.x,
+                            m_cOwner.transform.position.y + 0.5f,
+                            m_cOwner.transform.position.z);
+
+                        m_cOwner.ChangeState(0, m_cOwner.EOldState);
+                        return;
+                    }
+                }
+            }
+        }
+
         float presentLocation = (timer * speed) / Distance;
 
-        m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);        
+        m_cOwner.transform.position = Vector3.Slerp(StartPos, EndPos, presentLocation);
 
         LookAtPoint();
 
         timer += Time.deltaTime;
 
-        if(presentLocation >= 1.0f)
+        if (presentLocation >= 1.0f)
         {
             if (m_isUp)
             {

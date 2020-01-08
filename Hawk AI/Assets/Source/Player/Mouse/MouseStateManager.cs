@@ -56,6 +56,8 @@ public interface IMouseInterface : IEventSystemHandler
 
 public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState>, IMouseInterface
 {
+    //public EMouseState DebugState;
+
     [System.NonSerialized]
     public float inputHorizontal;               // コントローラーLスティック横軸情報
     [System.NonSerialized]
@@ -197,6 +199,11 @@ public class MouseStateManager : CStateObjectBase<MouseStateManager, EMouseState
         //    EndVarsan();
         //}
 
+        //for (int i = 0; i <= (int)EMouseState.VarsanDown; i++)
+        //{
+        //    if(GetCurrentState() == m_cStateList[i])
+        //    DebugState = (EMouseState)i;
+        //}
 
         // マネージャー取得
         var managerobject = ManagerObjectManager.Instance;
