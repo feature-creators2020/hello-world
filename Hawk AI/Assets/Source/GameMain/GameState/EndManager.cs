@@ -64,7 +64,7 @@ public class EndManager : CStateBase<GameManager>
                     ExecuteEvents.Execute<ISceneInterfase>(
                        target: gameObject,
                        eventData: null,
-                       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.PictureStoryShow));
+                       functor: (recieveTarget, y) => recieveTarget.ChangeStete(ESceneState.GameMain));
                 }
 
                 break;
