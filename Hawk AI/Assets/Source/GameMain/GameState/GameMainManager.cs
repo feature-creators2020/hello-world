@@ -84,6 +84,8 @@ public class GameMainManager : CStateBase<GameManager>
 
             case "GameMain":
 
+                GameManager.IsHumanWin = true;
+
                 ExecuteEvents.Execute<IAudioInterface>(
                 target: m_cBGMAudioObj,
                 eventData: null,
